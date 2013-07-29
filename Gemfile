@@ -39,6 +39,7 @@ end
 
 # QuienManda app
 gem 'devise'
+gem 'rails_admin'
 
 
 # Use ActiveModel has_secure_password
