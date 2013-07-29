@@ -20,6 +20,7 @@ Then install and run locally:
     $ cd quienmanda.es
     $ bundle install
     $ rake db:migrate
+    $ rails server
 
 ### Deploying in Heroku
 
