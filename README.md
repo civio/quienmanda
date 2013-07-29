@@ -29,5 +29,6 @@ There is a nice guide [here][1], but basically:
     $ heroku apps:create
     $ git push heroku master
     $ heroku run rake db:migrate
+    $ heroku apps:open
     
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
