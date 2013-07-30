@@ -14,12 +14,18 @@ Postgres is used for the database. If developing in OS X Postgres.app is the eas
     $ createdb -O qm -h localhost qm_development
     $ createdb -O qm -h localhost qm_test
     
-Then install and run locally:
+Then install and run locally, get a copy of the code, install the dependencies:
  
     $ git clone https://github.com/dcabo/quienmanda.es.git
     $ cd quienmanda.es
     $ bundle install
-    $ rake db:migrate
+    
+Set up the database (this will also create some sample data, and a user with email `admin@quienmanda.es` and password `password`):
+
+    $ rake db:setup
+    
+And run…
+
     $ rails server
 
 ### Deploying in Heroku
