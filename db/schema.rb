@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730185852) do
+ActiveRecord::Schema.define(version: 20130730190908) do
 
   create_table "entities", force: true do |t|
-    t.string   "name"
+    t.string   "name",           null: false
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
+    t.string   "category",       null: false
+    t.integer  "priority",       null: false
+    t.string   "short_name"
+    t.string   "twitter_handle"
+    t.string   "wikipedia_page"
+    t.string   "facebook_page"
+    t.string   "flickr_page"
+    t.string   "linkedin_page"
+    t.text     "notes"
   end
 
   create_table "posts", force: true do |t|
