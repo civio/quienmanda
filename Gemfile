@@ -40,6 +40,7 @@ end
 # QuienManda app
 gem 'devise'
 gem 'rails_admin'
+gem 'enumerize'
 
 
 # Use ActiveModel has_secure_password
