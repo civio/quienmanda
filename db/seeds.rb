@@ -9,4 +9,6 @@
 Entity.create(name: 'Emilio Botín', description: 'El banquero de España', category: :person, priority: :high)
 Entity.create(name: 'Juan Carlos I', description: 'Rey de España', category: :person, priority: :high)
 
-User.create(:email => 'admin@quienmanda.es', :password => 'password', :password_confirmation => 'password')
+admin = User.create(:name => 'Admin', :email => 'admin@quienmanda.es', :password => 'password', :password_confirmation => 'password')
+
+Post.create(:title => 'Caso Urdangarín', :content => 'Blah blah', :author => admin, :published => true)
