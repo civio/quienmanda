@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
     group :basic_info do
       label "Content"
       field :title
-      field :content
+      field :content, :ck_editor
       field :author
     end
     group :internal do

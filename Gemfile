@@ -43,6 +43,7 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'enumerize'
 gem 'stringex'
+gem 'ckeditor_rails'
 
 
 # Use ActiveModel has_secure_password
