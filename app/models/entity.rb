@@ -3,7 +3,7 @@ class Entity < ActiveRecord::Base
   enumerize :category, in: [:person, :company, :public_body]
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
 
-  scope :people, where(category: :person)
+  scope :people, -> { where(category: :person) }
 
   # RailsAdmin configuration
   rails_admin do
