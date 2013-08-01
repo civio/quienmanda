@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  load_and_authorize_resource :entity, parent: false
+
   before_action :set_person, only: [:show]
 
   # GET /people

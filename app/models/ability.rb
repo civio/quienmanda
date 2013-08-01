@@ -7,6 +7,9 @@ class Ability
       can :access, :rails_admin   # grant access to rails_admin
       can :dashboard              # grant access to the dashboard
       can :manage, :all           # access all models
+    else
+      can :read, Post
+      can :read, Entity
     end
     
     # Define abilities for the passed in user here. For example:
