@@ -1,12 +1,12 @@
 class PeopleController < ApplicationController
-  load_and_authorize_resource :entity, parent: false
+  load_and_authorize_resource :entity, parent: false, find_by: :slug
 
   before_action :set_person, only: [:show]
 
   # GET /people
   # GET /people.json
   def index
-    @people = Entity.people.all
+    @people = Entity.people
   end
 
   # GET /people/1
@@ -17,6 +17,6 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Entity.people.find(params[:id])
+      @person = Entity.people.find_by_slug(params[:id])
     end
 end

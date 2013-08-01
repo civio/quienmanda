@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801005040) do
+ActiveRecord::Schema.define(version: 20130801015852) do
 
   create_table "entities", force: true do |t|
     t.string   "name",           null: false
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20130801005040) do
     t.string   "flickr_page"
     t.string   "linkedin_page"
     t.text     "notes"
+    t.text     "slug"
   end
+
+  add_index "entities", ["slug"], name: "index_entities_on_slug", using: :btree
 
   create_table "posts", force: true do |t|
     t.text     "content"
@@ -37,9 +40,11 @@ ActiveRecord::Schema.define(version: 20130801005040) do
     t.string   "title",                      null: false
     t.boolean  "published",  default: false, null: false
     t.text     "notes"
+    t.text     "slug"
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
+  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"

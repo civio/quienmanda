@@ -42,6 +42,7 @@ gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
 gem 'enumerize'
+gem 'stringex'
 
 
 # Use ActiveModel has_secure_password

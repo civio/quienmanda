@@ -3,6 +3,11 @@ class Entity < ActiveRecord::Base
   enumerize :category, in: [:person, :company, :public_body]
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
 
+  acts_as_url :name, url_attribute: :slug
+  def to_param
+    slug
+  end
+
   scope :people, -> { where(category: :person) }
 
   # RailsAdmin configuration

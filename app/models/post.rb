@@ -1,6 +1,11 @@
 class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
 
+  acts_as_url :title, url_attribute: :slug
+  def to_param
+    slug
+  end
+
   scope :published, -> { where(published: true) }
 
   # RailsAdmin configuration
