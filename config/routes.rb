@@ -1,12 +1,14 @@
+# The priority is based upon order of creation: first created -> highest priority.
+# See how all your routes lay out with "rake routes".
 Quienmanda::Application.routes.draw do
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :posts, only: [:index, :show]
 
-  # You can have the root of your site routed with "root"
+  resources :people, only: [:index, :show]
+
   root 'welcome#index'
 
   # Example of regular route:
@@ -14,9 +16,6 @@ Quienmanda::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :people, only: [:index, :show]
 
   # Example resource route with options:
   #   resources :products do
