@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730190908) do
+ActiveRecord::Schema.define(version: 20130731234435) do
 
   create_table "entities", force: true do |t|
     t.string   "name",           null: false
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20130730190908) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_id"
+    t.string   "title",                      null: false
+    t.boolean  "published",  default: false, null: false
+    t.text     "notes"
   end
 
   create_table "rails_admin_histories", force: true do |t|
