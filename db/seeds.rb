@@ -12,3 +12,4 @@ Entity.create(name: 'Juan Carlos I', description: 'Rey de España', category: :p
 admin = User.create(:name => 'Admin', :email => 'admin@quienmanda.es', :password => 'password', :password_confirmation => 'password')
 
 Post.create(:title => 'Caso Urdangarín', :content => 'Blah blah', :author => admin, :published => true)
+Post.create(:title => 'La próxima gran historia', :content => 'Caliente caliente', :author => admin, :published => false)
