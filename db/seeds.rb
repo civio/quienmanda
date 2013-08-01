@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Entity.create(name: 'Emilio Botín', description: 'El banquero de España', category: :person, priority: :high)
-Entity.create(name: 'Juan Carlos I', description: 'Rey de España', category: :person, priority: :high)
+Entity.create(name: 'Emilio Botín', description: 'El banquero de España', person: true, priority: :high)
+Entity.create(name: 'Juan Carlos I', description: 'Rey de España', person: true, priority: :high)
 
 admin = User.create(:name => 'Admin', 
                     :email => 'admin@quienmanda.es', 

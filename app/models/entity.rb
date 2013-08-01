@@ -1,6 +1,5 @@
 class Entity < ActiveRecord::Base
   extend Enumerize
-  enumerize :category, in: [:person, :company, :public_body]
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
 
   acts_as_url :name, url_attribute: :slug
@@ -8,13 +7,13 @@ class Entity < ActiveRecord::Base
     slug
   end
 
-  scope :people, -> { where(category: :person) }
+  scope :people, -> { where(person: true) }
 
   # RailsAdmin configuration
   rails_admin do
-    configure :category do 
+    configure :person do 
       optional false 
-      default_value :person
+      default_value true
     end
     configure :priority do 
       optional false 
@@ -26,7 +25,7 @@ class Entity < ActiveRecord::Base
 
     group :basic_info do
       label "Basic info"
-      field :category
+      field :person
       field :name
       field :short_name
       field :description
