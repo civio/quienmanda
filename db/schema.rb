@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801015852) do
+ActiveRecord::Schema.define(version: 20130801190415) do
 
   create_table "entities", force: true do |t|
-    t.string   "name",           null: false
-    t.string   "description"
+    t.string   "name",                      null: false
+    t.string   "description",    limit: 90
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",       null: false
-    t.integer  "priority",       null: false
+    t.string   "category",                  null: false
+    t.integer  "priority",                  null: false
     t.string   "short_name"
     t.string   "twitter_handle"
     t.string   "wikipedia_page"
