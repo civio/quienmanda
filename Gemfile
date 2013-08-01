@@ -39,6 +39,7 @@ end
 
 # QuienManda app
 gem 'devise'
+gem 'cancan'
 gem 'rails_admin'
 gem 'enumerize'
 
