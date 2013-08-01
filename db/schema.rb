@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801001555) do
+ActiveRecord::Schema.define(version: 20130801002620) do
 
   create_table "entities", force: true do |t|
     t.string   "name",           null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20130801001555) do
     t.boolean  "published",  default: false, null: false
     t.text     "notes"
   end
+
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
