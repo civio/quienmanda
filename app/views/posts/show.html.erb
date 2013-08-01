@@ -10,9 +10,10 @@
   <%= @post.author.name %>
 </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @post.content %>
-</p>
+<hr>
+
+<%= raw(@post.content) %>
+
+<hr>
 
 <%= link_to 'Back', posts_path %>
