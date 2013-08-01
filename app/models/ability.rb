@@ -8,7 +8,10 @@ class Ability
       can :dashboard              # grant access to the dashboard
       can :manage, :all           # access all models
     else
-      can :read, Post
+      # Note that allowing access only to published posts doesn't mean the
+      # non-published ones disappear from the Post list automatically.
+      # Additional work is needed in the controller.
+      can :read, Post, published: true
       can :read, Entity
     end
     

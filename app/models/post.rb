@@ -1,7 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
 
-  # TODO: Should define CanCan attributes for these type of stuff, to be sure
   scope :published, -> { where(published: true) }
 
   # RailsAdmin configuration
