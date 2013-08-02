@@ -6,5 +6,5 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
 before_script:
-  - psql -c 'create role qm with createdb' -U postgres
+  - psql -c 'create user qm with createdb' -U postgres
   - psql -c 'create database qm_test owner qm' -U postgres

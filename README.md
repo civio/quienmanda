@@ -1,6 +1,8 @@
 quienmanda.es
 =============
 
+[![Build Status](https://travis-ci.org/dcabo/quienmanda.es.png)](https://travis-ci.org/dcabo/quienmanda.es)
+
 ### Install locally
 
 Rails 2.0 needed. You can install it using RVM:
