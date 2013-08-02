@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Entity.people
+    @people = Entity.published.people
   end
 
   # GET /people/1
@@ -17,6 +17,6 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Entity.people.find_by_slug(params[:id])
+      @person = Entity.published.people.find_by_slug(params[:id])
     end
 end

@@ -7,6 +7,7 @@ class Entity < ActiveRecord::Base
     slug
   end
 
+  scope :published, -> { where(published: true) }
   scope :people, -> { where(person: true) }
 
   # RailsAdmin configuration
@@ -18,6 +19,9 @@ class Entity < ActiveRecord::Base
     configure :priority do 
       optional false 
       default_value :medium
+    end
+    configure :published do
+      optional false
     end
     configure :name do 
       optional false 
@@ -39,7 +43,9 @@ class Entity < ActiveRecord::Base
       field :flickr_page
       field :linkedin_page
     end
-    group :notes do
+    group :internal do
+      label "Internal"
+      field :published
       field :notes
     end
   end

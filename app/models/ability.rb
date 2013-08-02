@@ -12,7 +12,7 @@ class Ability
       # non-published ones disappear from the Post list automatically.
       # Additional work is needed in the controller.
       can :read, Post, published: true
-      can :read, Entity
+      can :read, Entity, published: true
       can :read, Photo, published: true
     end
     

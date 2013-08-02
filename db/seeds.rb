@@ -6,23 +6,39 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Entity.create(name: 'Emilio Botín', description: 'El banquero de España', person: true, priority: :high)
-Entity.create(name: 'Juan Carlos I', description: 'Rey de España', person: true, priority: :high)
+Entity.create(name: 'Emilio Botín', 
+              description: 'El banquero de España', 
+              person: true, 
+              priority: :high,
+              published: true)
 
-admin = User.create(:name => 'Admin', 
-                    :email => 'admin@quienmanda.es', 
-                    :password => 'password', 
-                    :password_confirmation => 'password',
-                    :admin => true)
+Entity.create(name: 'Juan Carlos I', 
+              description: 'Rey de España', 
+              person: true, 
+              priority: :high,
+              published: true)
 
-user = User.create( :name => 'A user', 
-                    :email => 'user@example.com', 
-                    :password => 'password', 
-                    :password_confirmation => 'password',
-                    :admin => false)
+admin = User.create(name: 'Admin', 
+                    email: 'admin@quienmanda.es', 
+                    password: 'password', 
+                    password_confirmation: 'password',
+                    admin: true)
 
-Post.create(:title => 'Caso Urdangarín', :content => 'Blah blah', :author => admin, :published => true)
-Post.create(:title => 'La próxima gran historia', :content => 'Caliente caliente', :author => admin, :published => false)
+user = User.create( name: 'A user', 
+                    email: 'user@example.com', 
+                    password: 'password', 
+                    password_confirmation: 'password',
+                    admin: false)
+
+Post.create(title: 'Caso Urdangarín', 
+            content: 'Blah blah', 
+            author: admin, 
+            published: true)
+
+Post.create(title: 'La próxima gran historia', 
+            content: 'Caliente caliente', 
+            author: admin, 
+            published: false)
 
 # Add photo seeds
 # See http://stackoverflow.com/questions/3910162/seeding-file-uploads-with-carrierwave-rails-3
