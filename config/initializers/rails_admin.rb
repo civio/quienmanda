@@ -19,6 +19,18 @@ RailsAdmin.config do |config|
     config.authorize_with :cancan
   end
 
+  # Extra actions:
+  #  - toggle: to toggle booleans from index view, see rails_admin_toggleable
+  config.actions do
+    dashboard
+    index
+    new
+    show
+    edit
+    delete
+    toggle
+  end
+
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 

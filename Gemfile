@@ -41,6 +41,7 @@ end
 gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
+gem 'rails_admin_toggleable'
 gem 'enumerize'
 gem 'stringex'
 gem 'ckeditor_rails'
