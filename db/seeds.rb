@@ -23,3 +23,6 @@ user = User.create( :name => 'A user',
 
 Post.create(:title => 'Caso Urdangarín', :content => 'Blah blah', :author => admin, :published => true)
 Post.create(:title => 'La próxima gran historia', :content => 'Caliente caliente', :author => admin, :published => false)
+
+# Add photo seeds
+# See http://stackoverflow.com/questions/3910162/seeding-file-uploads-with-carrierwave-rails-3

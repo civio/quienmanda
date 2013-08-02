@@ -44,6 +44,7 @@ gem 'rails_admin'
 gem 'enumerize'
 gem 'stringex'
 gem 'ckeditor_rails'
+gem 'carrierwave'
 
 
 # Use ActiveModel has_secure_password
