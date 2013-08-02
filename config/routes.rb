@@ -9,6 +9,8 @@ Quienmanda::Application.routes.draw do
 
   resources :people, only: [:index, :show]
 
+  resources :photos, only: [:index, :show]
+
   root 'welcome#index'
 
   # Example of regular route:

@@ -1,0 +1,20 @@
+<h1>Listing photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title:</th>
+      <th>Thumbnail:</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td><%= link_to photo.title, photo %></td>
+        <td><%= link_to image_tag(photo.file, class: 'thumbnail'), photo %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
