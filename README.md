@@ -38,3 +38,27 @@ There is a nice guide [here][1], but basically:
     $ heroku apps:open
     
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
+
+To back up the Heroku database contents, [see][2]:
+
+    $ heroku addons:add pgbackups
+    $ heroku pgbackups:capture
+    $ heroku pgbackups                          # show backups done
+    
+Set up a daily auto-backup by enabling the add-on:
+
+    $ heroku addons:add pgbackups:auto-month
+
+[2]: https://devcenter.heroku.com/articles/pgbackups
+
+### Tools used
+
+ * Ruby 2.0
+ * Rails 4.0
+ * Devise: authentication
+ * CanCan: authorization
+ * StringEx: friendly URLs
+ * RailsAdmin: the admin panel
+ * Carrierwave: imageuploads
+ * CKEditor: rich-content editor
+ 
