@@ -3,7 +3,11 @@
 one:
   name: MyString
   description: MyString
+  person: true
+  priority: 1
 
 two:
   name: MyString
   description: MyString
+  person: false
+  priority: 2
