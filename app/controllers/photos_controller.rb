@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  load_and_authorize_resource find_by: :slug
+
   before_action :set_photo, only: [:show]
 
   # GET /photos
@@ -15,6 +17,6 @@ class PhotosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
-      @photo = Photo.published.find(params[:id])
+      @photo = Photo.published.find_by_slug(params[:id])
     end
 end

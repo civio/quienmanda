@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130802002415) do
+ActiveRecord::Schema.define(version: 20130802013534) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                     null: false
@@ -28,21 +28,25 @@ ActiveRecord::Schema.define(version: 20130802002415) do
     t.text     "notes"
     t.text     "slug"
     t.boolean  "person",                    default: true, null: false
+    t.boolean  "published"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
+  add_index "entities", ["published"], name: "index_entities_on_published", using: :btree
   add_index "entities", ["slug"], name: "index_entities_on_slug", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "file"
-    t.string   "title"
+    t.string   "title",                      null: false
     t.string   "copyright"
     t.boolean  "published",  default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
+  add_index "photos", ["slug"], name: "index_photos_on_slug", using: :btree
 
   create_table "posts", force: true do |t|
     t.text     "content"
