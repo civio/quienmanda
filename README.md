@@ -3,6 +3,7 @@ quienmanda.es
 
 [![Build Status](https://travis-ci.org/dcabo/quienmanda.es.png)](https://travis-ci.org/dcabo/quienmanda.es)
 [![Coverage Status](https://coveralls.io/repos/dcabo/quienmanda.es/badge.png?branch=master)](https://coveralls.io/r/dcabo/quienmanda.es?branch=master)
+[![Code Climate](https://codeclimate.com/github/dcabo/quienmanda.es.png)](https://codeclimate.com/github/dcabo/quienmanda.es)
 
 ### Install locally
 
