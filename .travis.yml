@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 2.0.0
+env:
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+before_script:
+  - psql -c 'create database qm_test' -U postgres
