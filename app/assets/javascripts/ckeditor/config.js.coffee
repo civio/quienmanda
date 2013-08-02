@@ -1,7 +1,6 @@
 
 CKEDITOR.editorConfig = (config) ->
   config.language = 'en'
-#  config.width = '725'
   config.height = '450'
   config.toolbar_Pure = [
     { name: 'document',    items: [ 'Source','-','Save','Preview','-','Templates' ] },
