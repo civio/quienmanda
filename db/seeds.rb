@@ -41,4 +41,6 @@ Post.create(title: 'La próxima gran historia',
             published: false)
 
 # Add photo seeds
-# See http://stackoverflow.com/questions/3910162/seeding-file-uploads-with-carrierwave-rails-3
+photo = Photo.create!(title: 'Marichalar de compras', copyright: 'Desconocido', published: true)
+photo.file.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'Marichalar.jpeg')))
+photo.save!
