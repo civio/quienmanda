@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+public:
+  title: A public post
+  slug: a-public-post
+  content: MyText
+  published: true
+
+private:
+  title: A private post
+  slug: a-private-post
+  content: MyText
+  published: false

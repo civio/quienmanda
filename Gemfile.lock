@@ -50,11 +50,17 @@ GEM
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
+    diff-lcs (1.2.4)
     enumerize (0.6.1)
       activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     font-awesome-rails (3.2.1.2)
       railties (>= 3.2, < 5.0)
     haml (4.0.3)
@@ -131,6 +137,17 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     remotipart (1.2.1)
+    rspec-core (2.14.4)
+    rspec-expectations (2.14.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.2)
+    rspec-rails (2.14.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
     safe_yaml (0.9.4)
     sass (3.2.10)
     sass-rails (4.0.0)
@@ -176,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   enumerize
+  factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
   pg
@@ -183,6 +201,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin
   rails_admin_toggleable
+  rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
   stringex
