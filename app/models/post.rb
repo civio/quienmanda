@@ -17,25 +17,21 @@ class Post < ActiveRecord::Base
     end
 
     edit do
-      configure :published do 
-        optional false 
-      end
-      configure :title do 
-        optional false 
-      end
-      configure :author do
-        inverse_of :posts
-      end
-
       group :basic_info do
         label "Content"
-        field :title
+        field :title do
+          optional false
+        end
         field :content, :ck_editor
-        field :author
+        field :author do
+          inverse_of :posts
+        end
       end
       group :internal do
         label "Internal"
-        field :published
+        field :published do 
+          optional false 
+        end
         field :notes
       end
     end

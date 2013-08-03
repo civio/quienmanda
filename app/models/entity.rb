@@ -21,28 +21,21 @@ class Entity < ActiveRecord::Base
     end
 
     edit do
-      configure :person do 
-        optional false 
-        default_value true
-      end
-      configure :priority do 
-        optional false 
-        default_value :medium
-      end
-      configure :published do
-        optional false
-      end
-      configure :name do 
-        optional false 
-      end
-
       group :basic_info do
         label "Basic info"
-        field :person
-        field :name
+        field :person do
+          optional false
+          default_value true
+        end
+        field :name do 
+          optional false 
+        end
         field :short_name
         field :description
-        field :priority
+        field :priority do
+          optional false
+          default_value :medium
+        end
       end
       group :test do
         label "Social media"
@@ -54,7 +47,9 @@ class Entity < ActiveRecord::Base
       end
       group :internal do
         label "Internal"
-        field :published
+        field :published do
+          optional false
+        end
         field :notes
       end
     end

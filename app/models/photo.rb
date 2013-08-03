@@ -17,19 +17,16 @@ class Photo < ActiveRecord::Base
     end
 
     edit do
-      configure :published do 
-        optional false 
-      end
-      configure :title do 
-        optional false 
-      end
-
       group :basic_info do
         label "Content"
-        field :title
+        field :title do
+          optional false
+        end
         field :file
         field :copyright
-        field :published
+        field :published do
+          optional false
+        end
       end
     end
   end
