@@ -1,8 +1,12 @@
 
 CKEDITOR.editorConfig = (config) ->
-  config.language = 'en'
-  config.allowedContent = true
   config.height = '500'
+  config.allowedContent = true
+  
+  config.language = 'es'
+  config.scayt_sLang = 'es_ES'
+  config.scayt_autoStartup = true
+
   config.toolbar_Pure = [
     { name: 'document',    items: [ 'Source','-','Save','Preview','-','Templates' ] },
     { name: 'clipboard',   items: [ 'Undo','Redo' ] },
@@ -17,4 +21,6 @@ CKEDITOR.editorConfig = (config) ->
     { name: 'colors',      items: [ 'TextColor','BGColor' ] },
   ]
   config.toolbar = 'Pure'
+  config.toolbarCanCollapse = true
+  config.toolbarStartupExpanded = false
   true
