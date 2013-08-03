@@ -2,7 +2,7 @@
 CKEDITOR.editorConfig = (config) ->
   config.language = 'en'
   config.allowedContent = true
-  config.height = '450'
+  config.height = '500'
   config.toolbar_Pure = [
     { name: 'document',    items: [ 'Source','-','Save','Preview','-','Templates' ] },
     { name: 'clipboard',   items: [ 'Undo','Redo' ] },
