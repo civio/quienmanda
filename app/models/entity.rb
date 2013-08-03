@@ -2,7 +2,7 @@ class Entity < ActiveRecord::Base
   extend Enumerize
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
 
-  acts_as_url :name, url_attribute: :slug
+  acts_as_url :name, url_attribute: :slug, only_when_blank: true
   def to_param
     slug
   end
@@ -49,6 +49,9 @@ class Entity < ActiveRecord::Base
         label "Internal"
         field :published do
           optional false
+        end
+        field :slug do
+          help 'Leave blank for the URL slug to be auto-generated'
         end
         field :notes
       end

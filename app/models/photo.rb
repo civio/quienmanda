@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   mount_uploader :file, PhotoUploader
 
-  acts_as_url :title, url_attribute: :slug
+  acts_as_url :title, url_attribute: :slug, only_when_blank: true
   def to_param
     slug
   end
@@ -24,8 +24,13 @@ class Photo < ActiveRecord::Base
         end
         field :file
         field :copyright
+      end
+      group :internal do
         field :published do
           optional false
+        end
+        field :slug do
+          help 'Leave blank for the URL slug to be auto-generated'
         end
       end
     end
