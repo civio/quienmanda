@@ -44,7 +44,7 @@ gem 'rails_admin'
 gem 'rails_admin_toggleable'
 gem 'enumerize'
 gem 'stringex'
-gem 'ckeditor_rails'
+gem 'ckeditor_rails', :git => 'git@github.com:dcabo/ckeditor-rails.git'
 gem 'carrierwave'
 
 # Testing
