@@ -13,7 +13,7 @@
     <% @photos.each do |photo| %>
       <tr>
         <td><%= link_to photo.title, photo %></td>
-        <td><%= link_to image_tag(photo.file, class: 'thumbnail'), photo %></td>
+        <td><%= link_to image_tag(photo.file.url(:thumb), class: 'thumbnail'), photo %></td>
       </tr>
     <% end %>
   </tbody>

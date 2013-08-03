@@ -5,7 +5,7 @@
   <%= @photo.title %>
 </p>
 
-<%= link_to image_tag(@photo.file, class: 'photo'), @photo.file.url %>
+<%= link_to image_tag(@photo.file.url(:full), class: 'photo'), @photo.file.url %>
 
 <hr>
 
