@@ -7,6 +7,10 @@ class Entity < ActiveRecord::Base
     slug
   end
 
+  validates :name, presence: true, uniqueness: true
+  validates :priority, presence: true
+  validates :description, length: { maximum: 90 }
+
   scope :published, -> { where(published: true) }
   scope :people, -> { where(person: true) }
 
@@ -24,16 +28,12 @@ class Entity < ActiveRecord::Base
       group :basic_info do
         label "Basic info"
         field :person do
-          optional false
           default_value true
         end
-        field :name do 
-          optional false 
-        end
+        field :name
         field :short_name
         field :description
         field :priority do
-          optional false
           default_value :medium
         end
       end
@@ -47,9 +47,7 @@ class Entity < ActiveRecord::Base
       end
       group :internal do
         label "Internal"
-        field :published do
-          optional false
-        end
+        field :published
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
         end

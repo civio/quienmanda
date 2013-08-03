@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
     slug
   end
 
+  validates :title, presence: true, uniqueness: true
+
   scope :published, -> { where(published: true) }
 
   # RailsAdmin configuration
@@ -19,9 +21,7 @@ class Post < ActiveRecord::Base
     edit do
       group :basic_info do
         label "Content"
-        field :title do
-          optional false
-        end
+        field :title
         field :content, :ck_editor
         field :author do
           inverse_of :posts
@@ -29,9 +29,7 @@ class Post < ActiveRecord::Base
       end
       group :internal do
         label "Internal"
-        field :published do 
-          optional false 
-        end
+        field :published
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
         end
