@@ -2,7 +2,7 @@
 CKEDITOR.editorConfig = (config) ->
   config.height = '500'
   config.allowedContent = true
-  
+
   config.language = 'es'
   config.scayt_sLang = 'es_ES'
   config.scayt_autoStartup = true
@@ -24,3 +24,6 @@ CKEDITOR.editorConfig = (config) ->
   config.toolbarCanCollapse = true
   config.toolbarStartupExpanded = false
   true
+
+CKEDITOR.on "dialogDefinition", (ev) ->
+  ev.data.definition.getContents("target").get("linkTargetType")["default"] = "_blank"  if ev.data.name is "link"
