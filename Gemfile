@@ -37,26 +37,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# QuienManda app
-gem 'devise'
-gem 'cancan'
-gem 'figaro'
-gem 'rails_admin'
-gem 'rails_admin_toggleable'
-gem 'enumerize'
-gem 'stringex'
-gem 'ckeditor_rails', :git => 'https://github.com/dcabo/ckeditor-rails.git'
-gem 'mini_magick'
-gem 'carrierwave'
-gem 'fog'
-
-# Testing
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'coveralls', require: false
-end
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -68,3 +48,29 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+# QuienManda app
+gem 'devise'
+gem 'cancan'
+gem 'figaro'
+gem 'stringex'
+
+# Admin interface
+gem 'rails_admin'
+gem 'rails_admin_toggleable'
+gem 'ckeditor_rails', :git => 'https://github.com/dcabo/ckeditor-rails.git'
+gem 'enumerize'
+
+# Picture upload and handling
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'fog'
+
+# Testing
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'coveralls', require: false
+end
+
