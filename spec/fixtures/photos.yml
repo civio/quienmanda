@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+public_photo:
+  title: A public photo
+  slug: a-public-photo
+  published: true
+
+private_photo:
+  title: A private photo
+  slug: a-private-photo
+  published: false
