@@ -40,12 +40,15 @@ end
 # QuienManda app
 gem 'devise'
 gem 'cancan'
+gem 'figaro'
 gem 'rails_admin'
 gem 'rails_admin_toggleable'
 gem 'enumerize'
 gem 'stringex'
 gem 'ckeditor_rails', :git => 'https://github.com/dcabo/ckeditor-rails.git'
+gem 'mini_magick'
 gem 'carrierwave'
+gem 'fog'
 
 # Testing
 group :development, :test do

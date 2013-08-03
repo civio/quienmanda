@@ -38,10 +38,12 @@ There is a nice guide [here][1], but basically:
  
     $ heroku apps:create
     $ git push heroku master
-    $ heroku run rake db:migrate
+    $ heroku run rake db:setup
     $ heroku apps:open
-    
+
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
+
+In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. So, make a copy of `config/application.yml-example` into `config/application.yml` and fill it with your actual details. Then, run `rake figaro:heroku` to set the env variables in Heroku.
 
 To back up the Heroku database contents, [see][2]:
 
@@ -57,12 +59,11 @@ Set up a daily auto-backup by enabling the add-on:
 
 ### Tools used
 
- * Ruby 2.0
- * Rails 4.0
+ * Ruby 2.0 / Rails 4.0 / Rspec
  * Devise: authentication
  * CanCan: authorization
  * StringEx: friendly URLs
  * RailsAdmin: the admin panel
- * Carrierwave: imageuploads
+ * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
  
