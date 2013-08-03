@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+public_person:
+  person: true
+  name: A public person
+  slug: a-public-person
+  published: true
+  priority: 1
+
+private_person:
+  person: true
+  name: A private person
+  slug: a-private-person
+  published: false
+  priority: 1
