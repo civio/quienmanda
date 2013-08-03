@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:dcabo/ckeditor-rails.git
+  remote: https://github.com/dcabo/ckeditor-rails.git
   revision: d4ba0b01f2a51ca4cffca347564d8235350b1d5c
   specs:
     ckeditor_rails (4.1.3)
