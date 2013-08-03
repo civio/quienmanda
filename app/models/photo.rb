@@ -6,14 +6,17 @@ class Photo < ActiveRecord::Base
     slug
   end
 
+  acts_as_taggable
+
   scope :published, -> { where(published: true) }
 
   # RailsAdmin configuration
   rails_admin do
     list do
-      field :published, :toggle
+      field :published
       field :title
       field :file
+      field :tag_list
     end
 
     edit do
@@ -31,6 +34,10 @@ class Photo < ActiveRecord::Base
         end
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
+        end
+        field :tag_list do
+          label "Tags"
+          partial 'tag_list_with_suggestions'
         end
       end
     end

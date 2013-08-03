@@ -66,4 +66,4 @@ Set up a daily auto-backup by enabling the add-on:
  * RailsAdmin: the admin panel
  * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
- 
+ * ActsAsTaggableOn: tags

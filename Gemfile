@@ -55,10 +55,12 @@ gem 'devise'
 gem 'cancan'
 gem 'figaro'
 gem 'stringex'
+gem 'acts-as-taggable-on'
 
 # Admin interface
 gem 'rails_admin'
 gem 'rails_admin_toggleable'
+gem 'rails_admin_tag_list'
 gem 'ckeditor_rails', :git => 'https://github.com/dcabo/ckeditor-rails.git'
 gem 'enumerize'
 
