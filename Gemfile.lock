@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dcabo/ckeditor-rails.git
-  revision: d4ba0b01f2a51ca4cffca347564d8235350b1d5c
+  revision: 7a67fa9adf04463d4e09e81690a6e088e32dc0ac
   specs:
     ckeditor_rails (4.1.3)
       railties (>= 3.0)
