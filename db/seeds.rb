@@ -10,7 +10,7 @@ Entity.create(name: 'Emilio Botín',
               description: 'El banquero de España', 
               person: true, 
               priority: :high,
-              published: true)
+              published: false)
 
 Entity.create(name: 'Juan Carlos I', 
               description: 'Rey de España', 

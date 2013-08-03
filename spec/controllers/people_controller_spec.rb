@@ -35,10 +35,23 @@ describe PeopleController do
   end
 
   context "an admin" do
-    it "sees an unpublished person" do
+    let(:public_person) { entities(:public_person) }
+    let(:private_person) { entities(:private_person) }
+
+    before do
       sign_in create(:admin)
+    end
+
+    it "sees the list of all people (even unpublished)" do
+      get :index
+      assert_template :index
+      assigns(:people).should =~ [public_person, private_person]
+    end
+
+    it "sees an unpublished person" do
       get :show, id: 'a-private-person'
       assert_template :show
+      assigns(:person).should == private_person
     end
   end
 end

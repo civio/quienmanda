@@ -35,10 +35,23 @@ describe PhotosController do
   end
 
   context "an admin" do
-    it "sees an unpublished photo" do
+    let(:public_photo) { photos(:public_photo) }
+    let(:private_photo) { photos(:private_photo) }
+
+    before do
       sign_in create(:admin)
+    end
+
+    it "sees the list of all photos (even unpublished)" do
+      get :index
+      assert_template :index
+      assigns(:photos).should =~ [public_photo, private_photo]
+    end
+
+    it "sees an unpublished photo" do
       get :show, id: 'a-private-photo'
       assert_template :show
+      assigns(:photo).should == private_photo
     end
   end
 end
