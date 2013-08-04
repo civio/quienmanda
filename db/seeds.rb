@@ -10,13 +10,13 @@ emilio_botin = Entity.create( name: 'Emilio Botín',
                               description: 'El banquero de España', 
                               person: true, 
                               priority: :high,
-                              published: false)
+                              published: true)
 
 rey_juan_carlos = Entity.create(name: 'Juan Carlos I', 
                                 description: 'Rey de España', 
                                 person: true, 
                                 priority: :high,
-                                published: true)
+                                published: false)
 
 bilderberg = Entity.create( name: 'Grupo Bilderberg', 
                             person: false, 
@@ -32,6 +32,12 @@ Relation.create(source: emilio_botin,
                 target: banco_santander,
                 published: true,
                 relation: 'president of',
+                at: "2013-08-04")
+
+Relation.create(source: emilio_botin,
+                target: bilderberg,
+                published: false,
+                relation: 'member of',
                 at: "2013-08-04")
 
 admin = User.create(name: 'Admin', 

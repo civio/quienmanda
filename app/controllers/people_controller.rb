@@ -11,6 +11,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     authorize! :read, @person
+    @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
   end
 
   private

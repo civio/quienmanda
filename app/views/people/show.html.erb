@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @person.name %>
-</p>
-
+<h2>Persona: <%= @person.name %></h2>
 <p>
   <strong>Short name:</strong>
   <%= @person.short_name %>
 </p>
+
+<h3>Relaciones</h3>
+<%= render "shared/entities_list", :list => @relations %>
 
 <%= link_to 'Back', people_path %>

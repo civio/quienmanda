@@ -1,0 +1,25 @@
+<% if !list.nil? and list.size > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Sujeto</th>
+      <th>Verbo</th>
+      <th>Predicado</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% list.each do |relation| %>
+      <tr>
+        <td><%= 
+          link_to relation.source.name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
+        %></td>
+        <td><%= relation.relation %></td>
+        <td><%= 
+          link_to relation.target.name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
+        %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

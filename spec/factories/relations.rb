@@ -2,9 +2,7 @@
 
 FactoryGirl.define do
   factory :relation do
-    source nil
     relation "is owner of"
-    target nil
     via "http://www.google.es"
     published false
     # from "2013-08-04"

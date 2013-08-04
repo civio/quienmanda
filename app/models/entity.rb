@@ -18,6 +18,12 @@ class Entity < ActiveRecord::Base
   scope :people, -> { where(person: true) }
   scope :organizations, -> { where(person: false) }
 
+  # Returns all the relations an entity is involved in.
+  #   This is cleaner than prefetching relations_as_source, adding to relations_as_source...
+  def relations
+    Relation.where('source_id = ? or target_id = ?', self, self)
+  end
+
   # RailsAdmin configuration
   rails_admin do
     list do

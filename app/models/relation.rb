@@ -5,6 +5,8 @@ class Relation < ActiveRecord::Base
   validates :source, :target, presence: true
   validates :relation, presence: true
 
+  scope :published, -> { where(published: true) }
+
   def to_human
     "#{source && source.name} -> #{relation} -> #{target && target.name}"
   end
