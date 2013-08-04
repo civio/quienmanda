@@ -1,14 +1,18 @@
 FactoryGirl.define do
-  factory :user do
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
+  factory :user, aliases: [:author] do
     name "Pedro"
-    email "foobar@example.com"
+    email
     password "foobar123"
     admin false
   end
 
   factory :admin, class: User do
     name "Admin"
-    email "foobaradmin@example.com"
+    email
     password "foobar123"
     admin true
   end

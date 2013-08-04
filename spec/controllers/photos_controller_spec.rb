@@ -1,21 +1,21 @@
 require 'spec_helper'
 
 describe PhotosController do
-  fixtures :photos
-
   context "an anon user" do
-    let(:public_photo) { photos(:public_photo) }
+    before do
+      @public_photo = create(:public_photo)
+    end
 
     it "sees the list of published people" do
       get :index
       assert_template :index
-      assigns(:photos).should == [public_photo]
+      assigns(:photos).should == [@public_photo]
     end
 
     it "sees a published photo" do
       get :show, id: 'a-public-photo'
       assert_template :show
-      assigns(:photo).should == public_photo
+      assigns(:photo).should == @public_photo
     end
 
     it "doesn't see an unpublished photo" do
@@ -35,23 +35,23 @@ describe PhotosController do
   end
 
   context "an admin" do
-    let(:public_photo) { photos(:public_photo) }
-    let(:private_photo) { photos(:private_photo) }
-
     before do
+      @public_photo = create(:public_photo)
+      @private_photo = create(:private_photo)
+
       sign_in create(:admin)
     end
 
     it "sees the list of all photos (even unpublished)" do
       get :index
       assert_template :index
-      assigns(:photos).should =~ [public_photo, private_photo]
+      assigns(:photos).should =~ [@public_photo, @private_photo]
     end
 
     it "sees an unpublished photo" do
       get :show, id: 'a-private-photo'
       assert_template :show
-      assigns(:photo).should == private_photo
+      assigns(:photo).should == @private_photo
     end
   end
 end

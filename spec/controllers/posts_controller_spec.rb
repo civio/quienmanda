@@ -1,21 +1,21 @@
 require 'spec_helper'
 
 describe PostsController do
-  fixtures :posts
-
   context "an anon user" do
-    let(:public_post) { posts(:public_post) }
+    before do
+      @public_post = create(:public_post)
+    end
 
     it "sees the list of published posts" do
       get :index
       assert_template :index
-      assigns(:posts).should =~ [public_post]
+      assigns(:posts).should =~ [@public_post]
     end
 
     it "sees a published post" do
       get :show, id: 'a-public-post'
       assert_template :show
-      assigns(:post).should == public_post
+      assigns(:post).should == @public_post
     end
 
     it "doesn't see an unpublished post" do
@@ -35,23 +35,23 @@ describe PostsController do
   end
 
   context "an admin" do
-    let(:public_post) { posts(:public_post) }
-    let(:private_post) { posts(:private_post) }
-
     before do
+      @public_post = create(:public_post)
+      @private_post = create(:private_post)
+
       sign_in create(:admin)
     end
 
     it "sees the list of all posts (even unpublished)" do
       get :index
       assert_template :index
-      assigns(:posts).should =~ [public_post, private_post]
+      assigns(:posts).should =~ [@public_post, @private_post]
     end
 
     it "sees an unpublished post" do
       get :show, id: 'a-private-post'
       assert_template :show
-      assigns(:post).should == private_post
+      assigns(:post).should == @private_post
     end
   end
 end

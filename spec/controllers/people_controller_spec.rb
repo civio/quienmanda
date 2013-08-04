@@ -1,21 +1,21 @@
 require 'spec_helper'
 
 describe PeopleController do
-  fixtures :entities
-
   context "an anon user" do
-    let(:public_person) { entities(:public_person) }
+    before do
+      @public_person = create(:public_person)
+    end
 
     it "sees the list of published people" do
       get :index
       assert_template :index
-      assigns(:people).should == [public_person]
+      assigns(:people).should == [@public_person]
     end
 
     it "sees a published person" do
       get :show, id: 'a-public-person'
       assert_template :show
-      assigns(:person).should == public_person
+      assigns(:person).should == @public_person
     end
 
     it "doesn't see an unpublished person" do
@@ -35,23 +35,23 @@ describe PeopleController do
   end
 
   context "an admin" do
-    let(:public_person) { entities(:public_person) }
-    let(:private_person) { entities(:private_person) }
-
     before do
+      @public_person = create(:public_person)
+      @private_person = create(:private_person)
+
       sign_in create(:admin)
     end
 
     it "sees the list of all people (even unpublished)" do
       get :index
       assert_template :index
-      assigns(:people).should =~ [public_person, private_person]
+      assigns(:people).should =~ [@public_person, @private_person]
     end
 
     it "sees an unpublished person" do
       get :show, id: 'a-private-person'
       assert_template :show
-      assigns(:person).should == private_person
+      assigns(:person).should == @private_person
     end
   end
 end
