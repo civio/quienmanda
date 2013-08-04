@@ -1,6 +1,4 @@
 class PeopleController < ApplicationController
-  load_and_authorize_resource :entity, parent: false, find_by: :slug
-
   before_action :set_person, only: [:show]
 
   # GET /people
@@ -12,6 +10,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    authorize! :read, @person
   end
 
   private

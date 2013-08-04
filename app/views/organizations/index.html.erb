@@ -1,0 +1,23 @@
+<h1>Listing organizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.name, organization_path(organization) %></td>
+        <td><%= link_to (organization.short_name || ''), organization_path(organization) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

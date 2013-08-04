@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   end
 
   validates :title, presence: true, uniqueness: true
+  validates :author, presence: true
 
   scope :published, -> { where(published: true) }
 

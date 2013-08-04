@@ -16,6 +16,7 @@ class Entity < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
   scope :people, -> { where(person: true) }
+  scope :organizations, -> { where(person: false) }
 
   # RailsAdmin configuration
   rails_admin do

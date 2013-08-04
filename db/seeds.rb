@@ -18,6 +18,11 @@ rey_juan_carlos = Entity.create(name: 'Juan Carlos I',
                                 priority: :high,
                                 published: true)
 
+bilderberg = Entity.create( name: 'Grupo Bilderberg', 
+                            person: false, 
+                            priority: :low,
+                            published: false)
+
 banco_santander = Entity.create(name: 'Banco Santander', 
                                 person: false, 
                                 priority: :high,
