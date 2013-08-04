@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
         label "Content"
         field :title
         field :content, :ck_editor do 
-          help 'Puedes insertar códigos como: [documentcloud url="..."] [quienmanda url="..." width="..."]'
+          help 'Puedes insertar códigos como: [documentcloud url="..."] [quienmanda url="..." text="..."]'
         end
         field :author do
           inverse_of :posts

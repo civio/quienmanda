@@ -4,13 +4,17 @@ module Shortcodes
   class QuienManda < Handler
 
     def url
-      url = shortcode.attributes.fetch('url')
+      shortcode.attributes.fetch('url')
+    end
+
+    def text
+      fallback = URI(url).path.split('/').last
+      shortcode.attributes.fetch('text', fallback)
     end
 
     def render
-    # TODO: Implement this!
       <<TEMPLATE
-  <a href="#{url}" target="_blank">Esto es un enlace QuienManda (TO DO)</a>
+  <a href="#{url}" target="_blank">#{text}</a>
 TEMPLATE
     end
 
