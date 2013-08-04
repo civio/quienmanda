@@ -1,0 +1,14 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :relation do
+    source nil
+    relation "is owner of"
+    target nil
+    via "http://www.google.es"
+    published false
+    # from "2013-08-04"
+    # to "2013-08-04"
+    # at "2013-08-04"
+  end
+end

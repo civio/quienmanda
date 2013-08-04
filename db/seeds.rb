@@ -6,17 +6,28 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Entity.create(name: 'Emilio Botín', 
-              description: 'El banquero de España', 
-              person: true, 
-              priority: :high,
-              published: false)
+emilio_botin = Entity.create( name: 'Emilio Botín', 
+                              description: 'El banquero de España', 
+                              person: true, 
+                              priority: :high,
+                              published: false)
 
-Entity.create(name: 'Juan Carlos I', 
-              description: 'Rey de España', 
-              person: true, 
-              priority: :high,
-              published: true)
+rey_juan_carlos = Entity.create(name: 'Juan Carlos I', 
+                                description: 'Rey de España', 
+                                person: true, 
+                                priority: :high,
+                                published: true)
+
+banco_santander = Entity.create(name: 'Banco Santander', 
+                                person: false, 
+                                priority: :high,
+                                published: true)
+
+Relation.create(source: emilio_botin,
+                target: banco_santander,
+                published: true,
+                relation: 'president of',
+                at: "2013-08-04")
 
 admin = User.create(name: 'Admin', 
                     email: 'admin@quienmanda.es', 

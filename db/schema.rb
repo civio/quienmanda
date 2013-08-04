@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130803192941) do
+ActiveRecord::Schema.define(version: 20130804133443) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -74,6 +74,23 @@ ActiveRecord::Schema.define(version: 20130803192941) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "relations", force: true do |t|
+    t.integer  "source_id",  null: false
+    t.string   "relation",   null: false
+    t.integer  "target_id",  null: false
+    t.string   "via"
+    t.date     "from"
+    t.date     "to"
+    t.date     "at"
+    t.boolean  "published"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relations", ["source_id"], name: "index_relations_on_source_id", using: :btree
+  add_index "relations", ["target_id"], name: "index_relations_on_target_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
