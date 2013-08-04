@@ -56,6 +56,7 @@ gem 'cancan'
 gem 'figaro'
 gem 'stringex'
 gem 'acts-as-taggable-on'
+gem 'shortcodes'
 
 # Admin interface
 gem 'rails_admin'

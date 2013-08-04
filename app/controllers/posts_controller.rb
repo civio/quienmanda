@@ -1,3 +1,5 @@
+require 'shortcodes/all'  # Needed (for now) to handle the built-in shortcodes
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
@@ -11,6 +13,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     authorize! :read, @post
+    @content = Shortcodes.shortcode(@post.content)
   end
 
   private
