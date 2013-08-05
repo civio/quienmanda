@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804233134) do
+ActiveRecord::Schema.define(version: 20130805235129) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20130804233134) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "relation_type_id", null: false
+    t.string   "via2"
+    t.string   "via3"
   end
 
   add_index "relations", ["source_id"], name: "index_relations_on_source_id", using: :btree

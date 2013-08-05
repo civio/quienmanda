@@ -27,6 +27,8 @@ class Relation < ActiveRecord::Base
         field :relation_type
         field :target
         field :via
+        field :via2
+        field :via3
       end
       group :timeline do
         field :from
