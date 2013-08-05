@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :relation do
-    relation "is owner of"
+    relation_type
     via "http://www.google.es"
     published false
     # from "2013-08-04"

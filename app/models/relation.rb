@@ -1,14 +1,14 @@
 class Relation < ActiveRecord::Base
   belongs_to :source, foreign_key: :source_id, class_name: Entity, inverse_of: :relations_as_source
   belongs_to :target, foreign_key: :target_id, class_name: Entity, inverse_of: :relations_as_target
+  belongs_to :relation_type, inverse_of: :relations
 
-  validates :source, :target, presence: true
-  validates :relation, presence: true
+  validates :source, :target, :relation_type, presence: true
 
   scope :published, -> { where(published: true) }
 
   def to_human
-    "#{source && source.name} -> #{relation} -> #{target && target.name}"
+    "#{source && source.name} -> #{relation_type && relation_type.description} -> #{target && target.name}"
   end
 
   # RailsAdmin configuration
@@ -16,7 +16,7 @@ class Relation < ActiveRecord::Base
     list do
       field :published, :toggle
       field :source
-      field :relation
+      field :relation_type
       field :target
       field :via
     end
@@ -24,7 +24,7 @@ class Relation < ActiveRecord::Base
     edit do
       group :basic_info do
         field :source
-        field :relation
+        field :relation_type
         field :target
         field :via
       end
@@ -34,7 +34,9 @@ class Relation < ActiveRecord::Base
         field :at
       end
       group :internal do
-        field :published
+        field :published do
+          default_value true
+        end
         field :notes
       end
     end

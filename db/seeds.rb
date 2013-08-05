@@ -28,16 +28,21 @@ banco_santander = Entity.create(name: 'Banco Santander',
                                 priority: :high,
                                 published: true)
 
+father_of = RelationType.create(description: 'father of')
+owner_of = RelationType.create(description: 'owner of')
+president_of = RelationType.create(description: 'president of')
+member_of = RelationType.create(description: 'member of')
+
 Relation.create(source: emilio_botin,
                 target: banco_santander,
                 published: true,
-                relation: 'president of',
+                relation_type: president_of,
                 at: "2013-08-04")
 
 Relation.create(source: emilio_botin,
                 target: bilderberg,
                 published: false,
-                relation: 'member of',
+                relation_type: member_of,
                 at: "2013-08-04")
 
 admin = User.create(name: 'Admin', 

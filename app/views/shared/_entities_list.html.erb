@@ -14,7 +14,7 @@
         <td><%= 
           link_to relation.source.name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
         %></td>
-        <td><%= relation.relation %></td>
+        <td><%= relation.relation_type.description %></td>
         <td><%= 
           link_to relation.target.name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
         %></td>
