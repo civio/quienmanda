@@ -9,6 +9,7 @@ class Photo < ActiveRecord::Base
   rails_admin do
     list do
       field :published, :toggle
+      field :needs_work
       field :file
       field :footer
       field :tag_list

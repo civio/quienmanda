@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   rails_admin do
     list do
       field :published, :toggle
+      field :needs_work
       field :title
       field :author
     end

@@ -15,6 +15,7 @@ class Relation < ActiveRecord::Base
   rails_admin do
     list do
       field :published, :toggle
+      field :needs_work
       field :source
       field :relation_type
       field :target

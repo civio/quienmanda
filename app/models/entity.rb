@@ -30,6 +30,7 @@ class Entity < ActiveRecord::Base
   rails_admin do
     list do
       field :published, :toggle
+      field :needs_work
       field :priority
       field :name
       field :short_name
