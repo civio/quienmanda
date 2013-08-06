@@ -19,13 +19,15 @@ CarrierWave.configure do |config|
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}   # optional, defaults to {}
 
   # For testing, upload files to local `tmp` folder.
-  if Rails.env.test? || Rails.env.cucumber? || Rails.env.dev?
+  if Rails.env.test? || Rails.env.cucumber?
     config.storage = :file
     config.root = "#{Rails.root}/tmp"
+    config.enable_processing = false
+  elsif Rails.env.development?
+    config.storage = :file
   else
     config.storage = :fog
   end
-  config.enable_processing = false if Rails.env.test? || Rails.env.cucumber?
    
   config.cache_dir = "#{Rails.root}/tmp/uploads" # To let CarrierWave work on heroku
 end
