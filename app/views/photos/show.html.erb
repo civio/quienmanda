@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @photo.title %>
-</p>
-
 <%= link_to image_tag(@photo.file.url(:full), class: 'photo'), @photo.file.url %>
+
+<p>
+  <strong>Footer:</strong>
+  <%= @photo.footer %>
+</p>
 
 <hr>
 

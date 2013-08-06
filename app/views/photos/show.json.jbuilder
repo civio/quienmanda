@@ -1,1 +1,1 @@
-json.extract! @photo, :title, :file
+json.extract! @photo, :footer, :file

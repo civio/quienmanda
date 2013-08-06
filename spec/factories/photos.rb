@@ -2,14 +2,12 @@
 
 FactoryGirl.define do
   factory :public_photo, class: Photo do
-    title "A public photo"
-    slug "a-public-photo"
+    footer "A public photo"
     published true
   end
 
   factory :private_photo, class: Photo do
-    title "A private photo"
-    slug "a-private-photo"
+    footer "A private photo"
     published false
   end
 end

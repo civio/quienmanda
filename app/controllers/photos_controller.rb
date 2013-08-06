@@ -16,6 +16,6 @@ class PhotosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
-      @photo = Photo.find_by_slug(params[:id])
+      @photo = Photo.find(params[:id])
     end
 end
