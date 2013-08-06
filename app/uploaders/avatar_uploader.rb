@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PhotoUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
@@ -11,13 +11,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [200, 200]
-  end
-  version :full do
-    # Unlimited height to let the picture flow freely in height
-    process :resize_to_limit => [600, 10000]
-  end
+  process :resize_to_fill => [200, 200]
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

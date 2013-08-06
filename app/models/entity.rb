@@ -2,6 +2,8 @@ class Entity < ActiveRecord::Base
   extend Enumerize
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many :relations_as_source, foreign_key: :source_id, class_name: Relation, inverse_of: :source
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
 
@@ -46,6 +48,7 @@ class Entity < ActiveRecord::Base
         field :priority do
           default_value :medium
         end
+        field :avatar
       end
       group :social_media do
         label "Social media"

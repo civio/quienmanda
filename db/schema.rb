@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130806001150) do
+ActiveRecord::Schema.define(version: 20130806003054) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20130806001150) do
     t.boolean  "person",                    default: true,  null: false
     t.boolean  "published",                 default: false, null: false
     t.boolean  "needs_work",                default: true,  null: false
+    t.string   "avatar"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
