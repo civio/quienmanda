@@ -68,6 +68,6 @@ Post.create(title: 'La próxima gran historia',
             published: false)
 
 # Add photo seeds
-photo = Photo.create!(title: 'Marichalar de compras', copyright: 'Desconocido', published: true)
+photo = Photo.create!(footer: 'Marichalar de compras', copyright: 'Desconocido', published: true)
 photo.file.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'Marichalar.jpeg')))
 photo.save!
