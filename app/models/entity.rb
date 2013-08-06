@@ -69,7 +69,12 @@ class Entity < ActiveRecord::Base
       end
       group :internal do
         label "Internal"
-        field :published
+        field :published do
+          default_value false
+        end
+        field :needs_work do
+          default_value true
+        end
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
         end

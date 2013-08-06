@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130805235129) do
+ActiveRecord::Schema.define(version: 20130805235454) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20130805235129) do
     t.string   "slug"
     t.boolean  "person",                    default: true,  null: false
     t.boolean  "published",                 default: false, null: false
+    t.boolean  "needs_work",                default: true,  null: false
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20130805235129) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.boolean  "needs_work", default: true,  null: false
   end
 
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 20130805235129) do
     t.boolean  "published",  default: false, null: false
     t.text     "notes"
     t.string   "slug"
+    t.boolean  "needs_work", default: true,  null: false
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
@@ -82,8 +85,8 @@ ActiveRecord::Schema.define(version: 20130805235129) do
   end
 
   create_table "relations", force: true do |t|
-    t.integer  "source_id",        null: false
-    t.integer  "target_id",        null: false
+    t.integer  "source_id",                        null: false
+    t.integer  "target_id",                        null: false
     t.string   "via"
     t.date     "from"
     t.date     "to"
@@ -92,9 +95,10 @@ ActiveRecord::Schema.define(version: 20130805235129) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "relation_type_id", null: false
+    t.integer  "relation_type_id",                 null: false
     t.string   "via2"
     t.string   "via3"
+    t.boolean  "needs_work",       default: false, null: false
   end
 
   add_index "relations", ["source_id"], name: "index_relations_on_source_id", using: :btree

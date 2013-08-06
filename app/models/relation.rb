@@ -39,6 +39,9 @@ class Relation < ActiveRecord::Base
         field :published do
           default_value true
         end
+        field :needs_work do
+          default_value false
+        end
         field :notes
       end
     end
