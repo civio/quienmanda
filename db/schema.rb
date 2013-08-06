@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130805235454) do
+ActiveRecord::Schema.define(version: 20130806001150) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -38,17 +38,15 @@ ActiveRecord::Schema.define(version: 20130805235454) do
 
   create_table "photos", force: true do |t|
     t.string   "file"
-    t.string   "title",                      null: false
     t.string   "copyright"
     t.boolean  "published",  default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
     t.boolean  "needs_work", default: true,  null: false
+    t.string   "footer"
   end
 
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
-  add_index "photos", ["slug"], name: "index_photos_on_slug", using: :btree
 
   create_table "posts", force: true do |t|
     t.text     "content"
