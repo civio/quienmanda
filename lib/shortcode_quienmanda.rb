@@ -18,6 +18,7 @@ module Shortcodes
 TEMPLATE
     end
 
+    Shortcodes.register_shortcode('qm', self)
     Shortcodes.register_shortcode('quienmanda', self)
   end
 end

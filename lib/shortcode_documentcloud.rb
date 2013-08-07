@@ -47,6 +47,7 @@ module Shortcodes
 TEMPLATE
     end
 
+    Shortcodes.register_shortcode('dc', self)
     Shortcodes.register_shortcode('documentcloud', self)
   end
 end
