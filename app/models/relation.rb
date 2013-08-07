@@ -32,9 +32,15 @@ class Relation < ActiveRecord::Base
         field :via3
       end
       group :timeline do
-        field :from
-        field :to
-        field :at
+        field :from do
+          strftime_format "%d/%m/%Y"
+        end
+        field :to do
+          strftime_format "%d/%m/%Y"
+        end
+        field :at do
+          strftime_format "%d/%m/%Y"
+        end
       end
       group :internal do
         field :published do
