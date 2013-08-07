@@ -32,6 +32,7 @@ class Entity < ActiveRecord::Base
       field :published, :toggle
       field :needs_work
       field :priority
+      field :person
       field :name
       field :short_name
       field :description
