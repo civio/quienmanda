@@ -1,20 +1,34 @@
-<h1>Listing posts</h1>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th></th>
-    </tr>
-  </thead>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post %></td>
-        <td><%= link_to post.author.name, post %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="span8 separate">
+
+      <h2>Listing posts</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.title, post %></td>
+              <td><%= link_to post.author.name, post %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

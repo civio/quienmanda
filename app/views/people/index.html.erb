@@ -1,23 +1,36 @@
-<h1>Listing people</h1>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Short name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-  <tbody>
-    <% @people.each do |person| %>
-      <tr>
-        <td><%= link_to person.name, person_path(person) %></td>
-        <td><%= link_to (person.short_name || ''), person_path(person) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="span8 separate">
 
+      <h2>Listing people</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Short name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @people.each do |person| %>
+            <tr>
+              <td><%= link_to person.name, person_path(person) %></td>
+              <td><%= link_to (person.short_name || ''), person_path(person) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

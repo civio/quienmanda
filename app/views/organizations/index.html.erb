@@ -1,23 +1,36 @@
-<h1>Listing organizations</h1>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Short name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to organization.name, organization_path(organization) %></td>
-        <td><%= link_to (organization.short_name || ''), organization_path(organization) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="span8 separate">
 
+      <h2>Listing organizations</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Short name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @organizations.each do |organization| %>
+            <tr>
+              <td><%= link_to organization.name, organization_path(organization) %></td>
+              <td><%= link_to (organization.short_name || ''), organization_path(organization) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

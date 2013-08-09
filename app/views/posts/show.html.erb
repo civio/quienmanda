@@ -1,19 +1,31 @@
-<p id="notice"><%= notice %></p>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-<p>
-  <strong>Author:</strong>
-  <%= @post.author.name %>
-</p>
+    <div class="span8 separate">
 
-<hr>
+      <p>
+        <strong>Title:</strong>
+        <%= @post.title %>
+      </p>
 
-<%= raw(@content) %>
+      <p>
+        <strong>Author:</strong>
+        <%= @post.author.name %>
+      </p>
 
-<hr>
+      <hr>
 
-<%= link_to 'Back', posts_path %>
+      <%= raw(@content) %>
+
+      <hr>
+
+      <%= link_to 'Back', posts_path %>
+
+    </div>
+
+  </div>
+
+</div>

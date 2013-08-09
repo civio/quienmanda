@@ -1,12 +1,24 @@
-<p id="notice"><%= notice %></p>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<h2>Persona: <%= @person.name %></h2>
-<p>
-  <strong>Short name:</strong>
-  <%= @person.short_name %>
-</p>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-<h3>Relaciones</h3>
-<%= render "shared/entities_list", :list => @relations %>
+    <div class="span8 separate">
 
-<%= link_to 'Back', people_path %>
+      <h2>Persona: <%= @person.name %></h2>
+      <p>
+        <strong>Short name:</strong>
+        <%= @person.short_name %>
+      </p>
+
+      <h3>Relaciones</h3>
+      <%= render "shared/entities_list", :list => @relations %>
+
+      <%= link_to 'Back', people_path %>
+
+    </div>
+
+  </div>
+
+</div>

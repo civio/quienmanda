@@ -1,12 +1,24 @@
-<p id="notice"><%= notice %></p>
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
 
-<%= link_to image_tag(@photo.file.url(:full), class: 'photo'), @photo.file.url %>
+  <!--start: Row -->
+  <div class="row-fluid">
 
-<p>
-  <strong>Footer:</strong>
-  <%= @photo.footer %>
-</p>
+    <div class="span8 separate">
 
-<hr>
+      <%= link_to image_tag(@photo.file.url(:full), class: 'photo'), @photo.file.url %>
 
-<%= link_to 'Back', photos_path %>
+      <p>
+        <strong>Footer:</strong>
+        <%= @photo.footer %>
+      </p>
+
+      <hr>
+
+      <%= link_to 'Back', photos_path %>
+
+    </div>
+
+  </div>
+
+</div>
