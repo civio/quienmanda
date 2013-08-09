@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe OrganizationsController do
-  context "an anon user" do
-    before do
-      @public_organization = create(:public_organization)
-    end
+  before do
+    @public_organization = create(:public_organization)
+    @private_organization = create(:private_organization)
+  end
 
+  context "an anon user" do
     it "sees the list of published organizations" do
       get :index
       assert_template :index
@@ -36,9 +37,6 @@ describe OrganizationsController do
 
   context "an admin" do
     before do
-      @public_organization = create(:public_organization)
-      @private_organization = create(:private_organization)
-
       sign_in create(:admin)
     end
 

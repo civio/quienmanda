@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe PeopleController do
-  context "an anon user" do
-    before do
-      @public_person = create(:public_person)
-    end
+  before do
+    @public_person = create(:public_person)
+    @private_person = create(:private_person)
+  end
 
+  context "an anon user" do
     it "sees the list of published people" do
       get :index
       assert_template :index
@@ -36,9 +37,6 @@ describe PeopleController do
 
   context "an admin" do
     before do
-      @public_person = create(:public_person)
-      @private_person = create(:private_person)
-
       sign_in create(:admin)
     end
 
