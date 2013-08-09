@@ -11,6 +11,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     authorize! :read, @organization
+    @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
   end
 
   private

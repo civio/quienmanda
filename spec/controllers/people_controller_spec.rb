@@ -4,6 +4,9 @@ describe PeopleController do
   before do
     @public_person = create(:public_person)
     @private_person = create(:private_person)
+
+    @public_relation = create(:relation, source: @public_person, target: @private_person, published: true)
+    @private_relation = create(:relation, source: @public_person, target: @private_person, published: false)
   end
 
   context "an anon user" do
@@ -17,6 +20,11 @@ describe PeopleController do
       get :show, id: 'a-public-person'
       assert_template :show
       assigns(:person).should == @public_person
+    end
+
+    it "sees only the published relations for a given person" do
+      get :show, id: 'a-public-person'
+      assigns(:relations).should == [@public_relation]
     end
 
     it "doesn't see an unpublished person" do
@@ -50,6 +58,11 @@ describe PeopleController do
       get :show, id: 'a-private-person'
       assert_template :show
       assigns(:person).should == @private_person
+    end
+
+    it "sees all the relations for a given person" do
+      get :show, id: 'a-public-person'
+      assigns(:relations).should =~ [@public_relation, @private_relation]
     end
   end
 end

@@ -4,6 +4,9 @@ describe OrganizationsController do
   before do
     @public_organization = create(:public_organization)
     @private_organization = create(:private_organization)
+
+    @public_relation = create(:relation, source: @public_organization, target: @private_organization, published: true)
+    @private_relation = create(:relation, source: @public_organization, target: @private_organization, published: false)
   end
 
   context "an anon user" do
@@ -17,6 +20,11 @@ describe OrganizationsController do
       get :show, id: 'a-public-organization'
       assert_template :show
       assigns(:organization).should == @public_organization
+    end
+
+    it "sees only the published relations for a given organization" do
+      get :show, id: 'a-public-organization'
+      assigns(:relations).should == [@public_relation]
     end
 
     it "doesn't see an unpublished organization" do
@@ -50,6 +58,11 @@ describe OrganizationsController do
       get :show, id: 'a-private-organization'
       assert_template :show
       assigns(:organization).should == @private_organization
+    end
+
+    it "sees all the relations for a given organization" do
+      get :show, id: 'a-public-organization'
+      assigns(:relations).should =~ [@public_relation, @private_relation]
     end
   end
 end
