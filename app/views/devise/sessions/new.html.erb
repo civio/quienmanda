@@ -1,17 +1,84 @@
-<h2>Sign in</h2>
+<!-- start: Page Title -->
+<div class="row-fluid">
+<div id="page-title" class="span6 offset3">
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <h2>Log in to your account</h2>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+</div>
+</div>
+<!-- end: Page Title -->
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+<!--start: Wrapper-->
+<div class="row-fluid">
+<div id="wrapper" class="full lr-page span4 offset4">
+  
+  <!-- start: Row -->
+  <div class="row-fluid">
+    
+    <div id="login-form" class="span12">
+      
+      <div class="page-title-small">
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+        <h3>use your account</h3>
 
-<%= render "devise/shared/links" %>
+      </div>
+
+      <a href="" class="facebook_connect">
+        <div class="img"><i class="icon-facebook"></i></div>
+        <div class="text">Login with Facebook</div>
+      </a>
+      <a href="" class="twitter_connect">
+        <div class="img"><i class="icon-twitter"></i></div>
+        <div class="text">Login with Twitter</div>
+      </a>
+      
+      <div class="page-title-small">
+
+        <h3 style="background:#f0f0f0">or</h3>
+
+      </div>
+      
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+        <div class="row-fluid">
+            
+          <%= f.email_field :email, :autofocus => true, :class => 'span12', :placeholder => 'email' %>
+            
+          <%= f.password_field :password, :class => 'span12', :placeholder => 'password' %>
+                          
+        </div>
+        
+        <div class="row-fluid">
+            
+          <% if devise_mapping.rememberable? -%>
+          <div class="remember">
+            <%= f.check_box :remember_me, :value => '1' %> Remember me
+          </div>
+          <% end -%>
+
+          <%- if devise_mapping.recoverable? %>
+          <div class="forgot">
+            <%= link_to "Forgot password?", new_password_path(resource_name) %>
+          </div>
+          <% end -%>
+                          
+        </div>  
+
+        <div class="actions">
+          
+          <%= f.submit "Sign in", :class => 'btn span12' %>
+
+          <!-- <%= render "devise/shared/links" %> -->
+          
+        </div>
+
+      <% end %>
+    
+    </div>
+    
+  </div>
+  <!-- end: Row --> 
+
+</div>
+<!-- end: Wrapper  -->      
+</div>
