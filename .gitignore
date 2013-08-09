@@ -16,3 +16,4 @@ rerun.txt
 pickle-email-*.html
 # Ignore application configuration
 /config/application.yml
+/app/tabula_v1_0_2_html/
