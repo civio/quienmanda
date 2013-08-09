@@ -36,16 +36,10 @@
   <%= render 'shared/header' %>
 
   <div class="container">
-    <div id="page-title">
-      <h2>[Page title]</h2>
-    </div>
-
-    <div id="wrapper">
-      <!-- TODO: Move these into pages -->
-      <p class="alert-info"><%= notice %></p>
-      <p class="alert-info"><%= alert %></p>
-      <%= yield %>
-    </div>
+    <!-- TODO: Move these into pages -->
+    <p class="alert-info"><%= notice %></p>
+    <p class="alert-info"><%= alert %></p>
+    <%= yield %>
   </div>
 
   <%= render 'shared/footer' %>

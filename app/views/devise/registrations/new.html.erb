@@ -1,21 +1,73 @@
-<h2>Sign up</h2>
+<!-- start: Page Title -->
+<div class="row-fluid">
+<div id="page-title" class="span6 offset3">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <h2>Create your account</h2>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name, :autofocus => true %></div>
+</div>
+</div>
+<!-- end: Page Title -->
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<!--start: Wrapper-->
+<div class="row-fluid">
+<div id="wrapper" class="lr-page full span4 offset4">
+  
+  <!-- start: Row -->
+  <div class="row-fluid">
+    
+    <div id="login-form" class="span12">
+      
+      <div class="page-title-small">
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+        <h3>use your account</h3>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <a href="" class="facebook_connect">
+        <div class="img"><i class="icon-facebook"></i></div>
+        <div class="text">Register with Facebook</div>
+      </a>
+      <a href="" class="twitter_connect">
+        <div class="img"><i class="icon-twitter"></i></div>
+        <div class="text">Register with Twitter</div>
+      </a>
+      
+      <div class="page-title-small">
 
-<%= render "devise/shared/links" %>
+        <h3 style="background:#f0f0f0">or</h3>
+
+      </div>
+      
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        
+        <div class="row-fluid">
+
+          <%= f.text_field :name, :autofocus => true, :placeholder => 'name', :class => 'span12' %>
+            
+          <%= f.email_field :email, :placeholder => 'email', :class => 'span12' %>
+            
+          <%= f.password_field :password, :placeholder => 'password', :class => 'span12' %>
+          
+          <%= f.password_field :password_confirmation, :placeholder => 'confirm password', :class => 'span12' %>
+       
+        </div>
+
+        <%= render "devise/shared/links" %>
+
+        <div class="actions">
+          
+          <%= f.submit "Create account!", :class => 'btn span12' %>
+          
+        </div>
+
+      <% end %>
+    
+    </div>
+    
+  </div>
+  <!-- end: Row --> 
+
+</div>
+<!-- end: Wrapper  -->  
+</div>
