@@ -5,6 +5,9 @@
       <th>Sujeto</th>
       <th>Verbo</th>
       <th>Predicado</th>
+      <th>Desde</th>
+      <th>Hasta</th>
+      <th>En</th>
     </tr>
   </thead>
 
@@ -18,6 +21,9 @@
         <td><%= 
           link_to relation.target.name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
         %></td>
+        <td><%= relation.from %></td>
+        <td><%= relation.to %></td>
+        <td><%= relation.at %></td>
       </tr>
     <% end %>
   </tbody>
