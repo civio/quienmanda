@@ -59,7 +59,7 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
-    devise (3.0.1)
+    devise (3.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -89,7 +89,7 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
       ruby-hmac
-    font-awesome-rails (3.2.1.2)
+    font-awesome-rails (3.2.1.3)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     haml (4.0.3)
@@ -180,9 +180,9 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-core (2.14.4)
-    rspec-expectations (2.14.0)
+    rspec-expectations (2.14.1)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.2)
+    rspec-mocks (2.14.3)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -202,7 +202,7 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    shortcodes (0.0.2)
+    shortcodes (0.0.3)
       activesupport
       nokogiri
       sanitize
