@@ -1,34 +1,23 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
-  <!--start: Row -->
-  <div class="row-fluid">
-
-    <div class="span8 separate">
-
-      <h2>Listing photos</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Footer:</th>
-            <th>Thumbnail:</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @photos.each do |photo| %>
-            <tr>
-              <td><%= link_to photo.footer, photo %></td>
-              <td><%= link_to image_tag(photo.file.url(:thumb), class: 'thumbnail'), photo %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
-
-  </div>
+  <h2>Portfolio</h2>
 
 </div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid">
+            
+    <% @photos.each do |photo| %>
+      <%= render 'show_photo', :photo => photo %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+  
+</div>
+<!-- end: Wrapper  -->
