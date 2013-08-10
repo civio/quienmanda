@@ -13,11 +13,11 @@ module Shortcodes
     end
 
     def height
-      attributes.fetch('height', 700)
+      attributes.fetch('height', 550)
     end
 
     def width
-      attributes.fetch('width', 500)
+      attributes.fetch('width', 400)
     end
 
     def document_name
