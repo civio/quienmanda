@@ -252,6 +252,7 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   fog
+  font-awesome-rails
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks

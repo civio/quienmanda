@@ -58,6 +58,7 @@ gem 'figaro'
 gem 'stringex'
 gem 'acts-as-taggable-on'
 gem 'shortcodes'
+gem 'font-awesome-rails'
 
 # Admin interface
 gem 'rails_admin'
