@@ -1,23 +1,23 @@
 require 'shortcodes/handler'
 
 module Shortcodes
-  class DocumentCloud < Handler
+  class GoogleDocs < Handler
 
     def url
       url = shortcode.attributes.fetch('url')
     end
 
-    def height
-      attributes.fetch('height', 700)
+    def width
+      attributes.fetch('width', 550)
     end
 
-    def width
-      attributes.fetch('width', 500)
+    def height
+      attributes.fetch('height', 500)
     end
 
     def render
       <<TEMPLATE
-<iframe width='500' height='300' frameborder='0' src='#{url}'></iframe>
+<iframe width='#{width}' height='#{height}' frameborder='0' src='#{url}'></iframe>
 TEMPLATE
     end
 
