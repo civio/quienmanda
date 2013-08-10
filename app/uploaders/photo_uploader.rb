@@ -11,8 +11,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [200, 200]
+  version :small do
+    process :resize_to_limit => [300, 10000]
   end
   version :full do
     # Unlimited height to let the picture flow freely in height
