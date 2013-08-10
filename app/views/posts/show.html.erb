@@ -1,31 +1,97 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
-  <!--start: Row -->
-  <div class="row-fluid">
-
-    <div class="span8 separate">
-
-      <p>
-        <strong>Title:</strong>
-        <%= @post.title %>
-      </p>
-
-      <p>
-        <strong>Author:</strong>
-        <%= @post.author.name %>
-      </p>
-
-      <hr>
-
-      <%= raw(@content) %>
-
-      <hr>
-
-      <%= link_to 'Back', posts_path %>
-
-    </div>
-
-  </div>
+  <h2><%= @post.title %></h2>
 
 </div>
+<!-- end: Page Title -->
+    
+<!--start: Wrapper-->
+<div id="wrapper">
+      
+  <!--start: Row -->
+  <div class="row-fluid">
+  
+    <div class="posts span8">
+
+      <!-- start: Post -->
+      <div class="post first last">
+          
+        <div class="post-img picture">
+          <img src="img/heaven.jpg" alt="" />
+        </div>
+        <div class="info">
+          <span class="post-date">
+            <span class="day">1</span>
+            <span class="month-year">June, 2012</span>
+          </span>
+          <span class="post-icon standard"><i class="icon-camera-retro"></i></span>
+        </div>
+        <div class="post-content">
+          <div class="post-title">
+            <h2><%= @post.title %></h2>
+          </div>
+          <div class="post-meta">
+            <span><i class="icon-user"></i>By <a href="#"><%= @post.author.name %></a></span> 
+            <span><i class="icon-comments-alt"></i>With <a href="#">89 comments</a></span>
+          </div>
+          <div class="post-description">
+            <%= raw(@content) %>
+          </div>
+    
+        </div>
+      
+      </div>
+      <!-- end: Post -->
+      
+      <hr>
+    
+      <strong><%= link_to 'Más historias', posts_path %></strong>
+
+    </div>  
+
+    <!-- start: Sidebar -->
+
+    <div class="span4 sidebar hidden-phone">
+
+      <!-- start: Sidebar Menu -->
+      <div class="widget">
+        <h3>Menu</h3>
+        <ul class="links-list-alt">
+          <li><a href="full_width.html">Full Width</a></li>
+          <li><a href="sidebar.html">Sidebar</a></li>
+          <li><a href="post.html">Single Post</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="pricing_tables.html">Pricing Tables</a></li>
+        </ul>
+      </div>
+      <!-- end: Sidebar Menu -->
+
+      <!-- start: Tags -->
+      <div class="widget last">
+        <h3>Tags</h3>
+        <div class="tags">
+          <a href="#">Tag1</a>
+          <a href="#">Tag2</a>
+          <a href="#">Tag3</a>
+          <a href="#">Tag4</a>
+          <a href="#">Tag5</a>
+          <a href="#">Tag6</a>
+          <a href="#">Tag7</a>
+          <a href="#">Tag8</a>
+          <a href="#">Tag9</a>
+          <a href="#">Tag10</a>
+          <a href="#">Tag11</a>
+          <a href="#">Tag12</a>
+        </div>
+      </div>
+      <!-- end: Tags -->
+
+    </div>
+    <!-- end: Sidebar -->
+  
+  </div>
+  <!--start: Row -->
+
+</div>
+<!-- end: Wrapper  -->
