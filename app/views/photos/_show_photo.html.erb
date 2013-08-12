@@ -3,7 +3,7 @@
     <%= link_to image_tag(photo.file.url(:small)), photo, class: 'image' %>
     <div class="description">
       <p>
-        <%= photo.footer %>
+        <%= link_to photo.footer, photo %>
       </p>
       <p>
         &copy; <%= link_to photo.copyright, photo.source %>
