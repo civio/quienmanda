@@ -20,6 +20,11 @@ class Entity < ActiveRecord::Base
   scope :people, -> { where(person: true) }
   scope :organizations, -> { where(person: false) }
 
+  # Returns the short name if present, the long one otherwise
+  def short_or_long_name
+    (short_name.nil? || short_name.blank?) ? name : short_name
+  end
+
   # Returns all the relations an entity is involved in.
   #   This is cleaner than prefetching relations_as_source, adding to relations_as_source...
   def relations
@@ -85,6 +90,10 @@ class Entity < ActiveRecord::Base
         end
         field :notes
       end
+    end
+
+    object_label_method do
+      :short_or_long_name
     end
   end
 end

@@ -8,7 +8,7 @@ class Relation < ActiveRecord::Base
   scope :published, -> { where(published: true) }
 
   def to_human
-    "#{source && source.name} -> #{relation_type && relation_type.description} -> #{target && target.name}"
+    "#{source && source.short_or_long_name} -> #{relation_type && relation_type.description} -> #{target && target.short_or_long_name}"
   end
 
   # RailsAdmin configuration
