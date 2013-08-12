@@ -19,8 +19,9 @@ class Photo < ActiveRecord::Base
       group :basic_info do
         label "Content"
         field :file
-        field :copyright
         field :footer
+        field :copyright
+        field :source
       end
       group :internal do
         field :published do
