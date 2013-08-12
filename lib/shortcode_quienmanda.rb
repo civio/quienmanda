@@ -13,9 +13,10 @@ module Shortcodes
     end
 
     def render
-      <<TEMPLATE
+      template = <<TEMPLATE
   <a href="#{url}" target="_blank">#{text}</a>
 TEMPLATE
+      template.strip
     end
 
     Shortcodes.register_shortcode('qm', self)
