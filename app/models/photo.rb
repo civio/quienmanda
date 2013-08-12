@@ -22,6 +22,9 @@ class Photo < ActiveRecord::Base
         field :footer
         field :copyright
         field :source
+        field :date do
+          strftime_format "%d/%m/%Y"
+        end
       end
       group :internal do
         field :published do
@@ -34,6 +37,7 @@ class Photo < ActiveRecord::Base
           label "Tags"
           partial 'tag_list_with_suggestions'
         end
+        field :notes
       end
     end
   end
