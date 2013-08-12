@@ -7,7 +7,7 @@ class Entity < ActiveRecord::Base
   has_many :relations_as_source, foreign_key: :source_id, class_name: Relation, inverse_of: :source
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
 
-  acts_as_url :name, url_attribute: :slug, only_when_blank: true
+  acts_as_url :short_or_long_name, url_attribute: :slug, only_when_blank: true, sync_url:  true
   def to_param
     slug
   end
