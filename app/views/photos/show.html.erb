@@ -12,6 +12,13 @@
         <strong>Footer:</strong><%= @photo.footer %>
       </p>
 
+      <p>
+        Personas relacionadas:
+        <% @photo.related_entities.each do |entity| %>
+          <%= link_to entity.short_or_long_name, entity_path(entity) %>
+        <% end %>
+      </p>
+
       <% if can? :manage, @photo %>
       <p>
         Tags: 

@@ -15,7 +15,14 @@
       <h3>Relaciones</h3>
       <%= render "shared/entities_list", :list => @relations %>
 
-      <%= link_to 'Back', people_path %>
+      <h3>Fotos</h3>
+      <% @person.related_photos.each do |photo| %>
+        <%= render 'shared/show_photo', :photo => photo %>
+      <% end %>
+
+      <div style="clear:both">
+        <%= link_to 'Back', people_path %>
+      </div>
 
     </div>
 

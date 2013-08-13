@@ -4,6 +4,9 @@ class Entity < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :entity_photo_associations, dependent: :delete_all
+  has_many :related_photos, through: :entity_photo_associations, source: :photo
+
   has_many :relations_as_source, foreign_key: :source_id, class_name: Relation, inverse_of: :source
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
 
@@ -75,6 +78,10 @@ class Entity < ActiveRecord::Base
         field :relations_as_target do
           read_only true
           inverse_of :target
+        end
+        field :related_photos do
+          read_only true
+          inverse_of :related_entities
         end
       end
       group :internal do

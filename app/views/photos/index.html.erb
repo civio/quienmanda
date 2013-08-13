@@ -13,7 +13,7 @@
   <div id="wall" class="row-fluid">
             
     <% @photos.each do |photo| %>
-      <%= render 'show_photo', :photo => photo %>
+      <%= render 'shared/show_photo', :photo => photo %>
     <% end %>
 
   </div>

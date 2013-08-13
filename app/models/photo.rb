@@ -1,4 +1,7 @@
 class Photo < ActiveRecord::Base
+  has_many :entity_photo_associations, dependent: :delete_all
+  has_many :related_entities, through: :entity_photo_associations, source: :entity
+
   mount_uploader :file, PhotoUploader
 
   acts_as_taggable
@@ -25,6 +28,9 @@ class Photo < ActiveRecord::Base
         field :date do
           strftime_format "%d/%m/%Y"
         end
+      end
+      group :relations do
+        field :related_entities
       end
       group :internal do
         field :published do
