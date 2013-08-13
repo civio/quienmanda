@@ -10,10 +10,10 @@
         <%= link_to 'Quien Manda', root_path, class: 'brand' %>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><%= link_to 'Posts', posts_path %></li>
-            <li ><%= link_to 'Personas', people_path %></li>
-            <li ><%= link_to 'Organizaciones', organizations_path %></li>
-            <li ><%= link_to 'Fotos', photos_path %></li>
+            <li class="<%= 'active' if controller.controller_name == 'posts' %>"><%= link_to 'Posts', posts_path %></li>
+            <li class="<%= 'active' if controller.controller_name == 'people' %>"><%= link_to 'Personas', people_path %></li>
+            <li class="<%= 'active' if controller.controller_name == 'organizations' %>"><%= link_to 'Organizaciones', organizations_path %></li>
+            <li class="<%= 'active' if controller.controller_name == 'photos' %>"><%= link_to 'Fotos', photos_path %></li>
 
             <%= render 'devise/menu/registration_items' %>
             <%= render 'devise/menu/login_items' %>
