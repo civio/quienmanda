@@ -3,7 +3,7 @@
     <%= link_to image_tag(entity.avatar.url), person_path(entity), class: 'image' %>
     <div class="description">
       <p>
-        <%= link_to entity.name, person_path(entity) %>
+        <%= link_to entity.name, organization_path(entity) %>
         <% if !entity.short_name.nil? && !entity.short_name.blank? %>
         (<%= link_to entity.short_name, organization_path(entity) %>)
         <% end %>
