@@ -5,6 +5,8 @@ class RelationType < ActiveRecord::Base
   
   # RailsAdmin configuration
   rails_admin do
+    parent Relation
+
     list do
       field :description
     end
