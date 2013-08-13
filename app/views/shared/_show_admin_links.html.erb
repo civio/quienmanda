@@ -1,0 +1,5 @@
+<% if can? :manage, item.class %>
+<p>
+  <%= link_to '[Edit]', rails_admin.edit_path(id: item.id, model_name: item.class.name), target: '_blank' %>
+</p>
+<% end %>

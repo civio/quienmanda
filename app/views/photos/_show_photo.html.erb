@@ -8,6 +8,8 @@
       <p>
         &copy; <%= link_to photo.copyright, photo.source %>
       </p>
+
+      <%= render 'shared/show_admin_links', :item => photo %>
     </div>
   </div>  
 </div>
