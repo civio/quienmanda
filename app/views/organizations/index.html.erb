@@ -1,36 +1,23 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
-  <!--start: Row -->
-  <div class="row-fluid">
-
-    <div class="span8 separate">
-
-      <h2>Listing organizations</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Short name</th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @organizations.each do |organization| %>
-            <tr>
-              <td><%= link_to organization.name, organization_path(organization) %></td>
-              <td><%= link_to (organization.short_name || ''), organization_path(organization) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
-
-  </div>
+  <h2>Organizaciones</h2>
 
 </div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid">
+            
+    <% @organizations.each do |organization| %>
+      <%= render 'show_organization', :entity => organization %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+  
+</div>
+<!-- end: Wrapper  -->
