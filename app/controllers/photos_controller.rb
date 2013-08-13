@@ -13,6 +13,14 @@ class PhotosController < ApplicationController
     authorize! :read, @photo
   end
 
+  # GET /photos/tagged/juicy
+  # Note: admin only (for now at least)
+  def tagged
+    authorize! :manage, Photo
+    @photos = Photo.tagged_with(params[:tag_name])
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo

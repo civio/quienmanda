@@ -11,7 +11,11 @@ Quienmanda::Application.routes.draw do
 
   resources :organizations, only: [:index, :show]
 
-  resources :photos, only: [:index, :show]
+  resources :photos, only: [:index, :show] do
+    collection do
+      get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
+    end
+  end
 
   # We add this route just so ShowInApp works in Rails Admin
   resources :entities, only: [:show]
