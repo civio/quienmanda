@@ -27,6 +27,7 @@ RailsAdmin.config do |config|
     new
     show
     edit
+    show_in_app
     delete
     toggle
   end

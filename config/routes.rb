@@ -13,6 +13,9 @@ Quienmanda::Application.routes.draw do
 
   resources :photos, only: [:index, :show]
 
+  # We add this route just so ShowInApp works in Rails Admin
+  resources :entities, only: [:show]
+
   root 'welcome#index'
 
   # Example of regular route:
