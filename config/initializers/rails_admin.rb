@@ -32,6 +32,12 @@ RailsAdmin.config do |config|
     toggle
   end
 
+  # Add our own custom admin stuff
+  config.navigation_static_label = "Extra Admin"
+  config.navigation_static_links = {
+    'Import' => '/admin/import'
+  }
+
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 

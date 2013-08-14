@@ -3,6 +3,8 @@
 Quienmanda::Application.routes.draw do
   devise_for :users
 
+  get '/admin/import' => 'import#index'
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :posts, only: [:index, :show]
