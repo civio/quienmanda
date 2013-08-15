@@ -1,0 +1,35 @@
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>Relation Types</h3>
+      <ul class="check_list">
+        <% @found_relation_types.each do |relation_type| %>
+        <li><%= "#{relation_type[0]} (#{relation_type[1]})" %></li>
+        <% end %>
+      </ul>
+      <ul class="cross_list">
+        <% @missing_relation_types.each do |relation_type| %>
+        <li><%= "#{relation_type[0]} (#{relation_type[1]})" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>Entities</h3>
+      <ul class="check_list">
+        <% @found_entities.each do |entity| %>
+        <li><%= "#{entity[0]} (#{entity[1]})" %></li>
+        <% end %>
+      </ul>
+      <ul class="cross_list">
+        <% @missing_entities.each do |entity| %>
+        <li><%= "#{entity[0]} (#{entity[1]})" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
