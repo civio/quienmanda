@@ -1,17 +1,40 @@
 <div id="wrapper" class="full">       
   <div class="row-fluid">
     <div class="span12">
+      <div class="btn-group" data-toggle="buttons-radio">
+        <button id="show-all-button" class="btn active">Show all</button>
+        <button id="show-matches-button" class="btn">Show matches</button>
+        <button id="show-non-matches-button" class="btn">Show non-matches</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+    <div class="span12">
       <h3>Relation Types</h3>
-      <ul class="check_list">
-        <% @found_relation_types.each do |relation_type| %>
-        <li><%= "#{relation_type[0]} (#{relation_type[1]})" %></li>
-        <% end %>
-      </ul>
-      <ul class="cross_list">
-        <% @missing_relation_types.each do |relation_type| %>
-        <li><%= "#{relation_type[0]} (#{relation_type[1]})" %></li>
-        <% end %>
-      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th><i class="icon-exchange"></i></th>
+            <th>Imported data</th>
+            <th>Match data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @relation_types.each do |data| %>
+          <%   relation_type = data[1][:relation_type] %>
+          <tr class="<%= relation_type ? 'import-match' : 'import-fail' %>">
+            <td><i class="icon-<%= relation_type ? 'ok' : 'remove' %>"></i></td>
+            <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
+            <td><%= relation_type && relation_type.description %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
@@ -20,16 +43,44 @@
   <div class="row-fluid">
     <div class="span12">
       <h3>Entities</h3>
-      <ul class="check_list">
-        <% @found_entities.each do |entity| %>
-        <li><%= "#{entity[0]} (#{entity[1]})" %></li>
-        <% end %>
-      </ul>
-      <ul class="cross_list">
-        <% @missing_entities.each do |entity| %>
-        <li><%= "#{entity[0]} (#{entity[1]})" %></li>
-        <% end %>
-      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th><i class="icon-exchange"></i></th>
+            <th>Imported data</th>
+            <th>Match data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @entities.each do |data| %>
+          <%   entity = data[1][:entity] %>
+          <tr class="<%= entity ? 'import-match' : 'import-fail' %>">
+            <td><i class="icon-<%= entity ? 'ok' : 'remove' %>"></i></td>
+            <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
+            <td><%= entity && entity.short_or_long_name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
+
+<script>
+$(function() {
+  $('#show-all-button').click(function() {
+    $(".import-match").show();
+    $(".import-fail").show();
+  });
+  $('#show-matches-button').click(function() { 
+    $(".import-match").show();
+    $(".import-fail").hide();
+  });
+  $('#show-non-matches-button').click(function() { 
+    $(".import-match").hide();
+    $(".import-fail").show();
+  });
+});
+</script>
