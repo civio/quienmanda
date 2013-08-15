@@ -3,6 +3,8 @@ class Relation < ActiveRecord::Base
   belongs_to :target, foreign_key: :target_id, class_name: Entity, inverse_of: :relations_as_target
   belongs_to :relation_type, inverse_of: :relations
 
+  has_many :facts
+
   validates :source, :target, :relation_type, presence: true
 
   scope :published, -> { where(published: true) }
@@ -48,6 +50,9 @@ class Relation < ActiveRecord::Base
         end
         field :needs_work do
           default_value false
+        end
+        field :facts do
+          read_only true
         end
         field :notes
       end

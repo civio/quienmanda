@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814000607) do
+ActiveRecord::Schema.define(version: 20130815093338) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
@@ -46,11 +46,13 @@ ActiveRecord::Schema.define(version: 20130814000607) do
   add_index "entity_photo_associations", ["photo_id"], name: "index_entity_photo_associations_on_photo_id", using: :btree
 
   create_table "facts", force: true do |t|
-    t.string "importer"
-    t.hstore "properties"
+    t.string  "importer"
+    t.hstore  "properties"
+    t.integer "relation_id"
   end
 
   add_index "facts", ["properties"], name: "index_facts_on_properties", using: :btree
+  add_index "facts", ["relation_id"], name: "index_facts_on_relation_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "file"
