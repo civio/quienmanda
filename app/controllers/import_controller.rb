@@ -6,44 +6,12 @@ class ImportController < ApplicationController
   # TODO: For now we'll just try importing all the data. Should pick only a 
   # certain job, and filter those records already imported successfully.
   def index
-    @entities = {}
-    @relation_types = {}
-    Fact.all.each do |fact|
-      # Check whether we've seen this datum before
-      role = fact.properties['Cargo']
-      if @relation_types[role]
-        @relation_types[role][:count] += 1
+    @importer = Importer.new
+    Fact.all.each {|fact| @importer.match(fact) }
 
-      else  # Try to find an existing RelationType matching the imported data
-        relation_type = RelationType.find_by(["lower(description) = ?", role.downcase])
-        @relation_types[role] = { count: 1, relation_type: relation_type }
-      end
-
-
-      # Check whether we've seen this datum before
-      source = fact.properties['Nombre']
-      if @entities[source]
-        @entities[source][:count] += 1
-
-      else  # Try to find an existing Entity matching the imported data
-        relation_type = Entity.find_by(["lower(name) = ?", source.downcase])
-        @entities[source] = { count: 1, relation_type: relation_type }
-      end
-
-
-      # Check whether we've seen this datum before
-      target = fact.properties['Empresa']
-      if @entities[target]
-        @entities[target][:count] += 1
-
-      else  # Try to find an existing Entity matching the imported data
-        relation_type = Entity.find_by(["lower(name) = ?", target.downcase])
-        @entities[target] = { count: 1, relation_type: relation_type }
-      end
-    end
-
-    @entities = @entities.to_a.sort_by {|e| -e[1][:count]}
-    @relation_types = @relation_types.to_a.sort_by {|e| -e[1][:count]}
+    # Return a sorted version of the results for convenience
+    @entities = @importer.entities.to_a.sort_by {|e| -e[1][:count]}
+    @relation_types = @importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
   end
 
   private
