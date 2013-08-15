@@ -63,7 +63,7 @@ jQuery(document).ready(function($){
 
   $(':button').each(function(){
 
-    if($(this).hasClass('btn')) {
+    if($(this).hasClass('btn-tabula')) {
 
       $(this).wrap('<div class="btn-overlay" />');
 
