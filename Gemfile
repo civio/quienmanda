@@ -74,6 +74,7 @@ gem 'fog'
 
 # Testing
 group :development, :test do
+  gem 'pry-rails', :group => :development
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
