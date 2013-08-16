@@ -14,7 +14,7 @@ class Importer
 
     else  # Try to find an existing RelationType matching the imported data
       relation_type = RelationType.find_by(["lower(description) = ?", role.downcase])
-      @relation_types[role] = { count: 1, relation_type: relation_type }
+      @relation_types[role] = { count: 1, object: relation_type }
     end
 
 
@@ -25,7 +25,7 @@ class Importer
 
     else  # Try to find an existing Entity matching the imported data
       relation_type = Entity.find_by(["lower(name) = ?", source.downcase])
-      @entities[source] = { count: 1, relation_type: relation_type }
+      @entities[source] = { count: 1, object: relation_type }
     end
 
 
@@ -36,7 +36,14 @@ class Importer
 
     else  # Try to find an existing Entity matching the imported data
       relation_type = Entity.find_by(["lower(name) = ?", target.downcase])
-      @entities[target] = { count: 1, relation_type: relation_type }
+      @entities[target] = { count: 1, object: relation_type }
     end
+
+    # Return matched data
+    {
+      source: @entities[source][:object],
+      target: @entities[target][:object],
+      relation_type: @relation_types[role][:object]
+    }
   end
 end

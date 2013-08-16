@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           <% @relation_types.each do |data| %>
-          <%   relation_type = data[1][:relation_type] %>
+          <%   relation_type = data[1][:object] %>
           <tr class="<%= relation_type ? 'import-match' : 'import-fail' %>">
             <td><i class="icon-<%= relation_type ? 'ok' : 'remove' %>"></i></td>
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
           <% @entities.each do |data| %>
-          <%   entity = data[1][:entity] %>
+          <%   entity = data[1][:object] %>
           <tr class="<%= entity ? 'import-match' : 'import-fail' %>">
             <td><i class="icon-<%= entity ? 'ok' : 'remove' %>"></i></td>
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
