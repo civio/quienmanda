@@ -23,6 +23,33 @@ describe Importer do
     end
   end
 
+  context 'when using a preprocessor' do
+    before do
+      @husband = create(:public_person, name: 'Adam')
+      @relation = create(:relation_type, description: 'is married to')
+      @wife = create(:public_person, name: 'Eve')
+      @importer = Importer.new
+    end
+
+    it 'applies the preprocessing before matching' do
+      # Add a spellchecker as a preprocessor
+      spellchecker = ->(fact) { fact.properties[:role] = "is married to"; fact }
+      @importer.preprocessor = spellchecker
+
+      match = @importer.match( [create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')] )
+      match.first.should == { source: @husband, relation_type: @relation, target: @wife }
+    end
+
+    it 'the preprocessor can delete facts' do
+      # Add a filter as a preprocessor, return nil to ignore a fact
+      filter = ->(fact) { nil }
+      @importer.preprocessor = filter
+
+      match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')] )
+      match.should == []
+    end
+  end
+
   context 'after importing a fact' do
     before do
       @that_obama_guy = create(:public_person, name: 'Obama')

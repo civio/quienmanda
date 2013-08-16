@@ -1,9 +1,11 @@
 class Importer
-  attr_accessor :entities, :relation_types
+  attr_reader :entities, :relation_types
+  attr_accessor :preprocessor
 
   def initialize(source_name: :source, role_name: :role, target_name: :target)
     @entities = {}
     @relation_types = {}
+    @preprocessor = nil
 
     @source_name = source_name
     @role_name = role_name
@@ -13,7 +15,10 @@ class Importer
   def match(facts)
     results = []
     facts.each do |fact|
-      results << match_fact(fact)
+      if preprocessor
+        fact = preprocessor.call(fact)
+      end
+      results << match_fact(fact) if fact
     end
     results
   end
