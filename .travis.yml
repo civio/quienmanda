@@ -7,4 +7,5 @@ script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate spec
 before_script:
   - psql -c 'create user qm with superuser' -U postgres
+  - psql -d template0 -c 'create extension hstore;'
   - psql -c 'create database qm_test owner qm' -U postgres
