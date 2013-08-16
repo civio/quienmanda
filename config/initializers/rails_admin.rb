@@ -75,50 +75,243 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
+  config.model 'Entity' do
+    list do
+      field :published, :toggle
+      field :needs_work
+      field :priority
+      field :person
+      field :name
+      field :short_name
+      field :description
+    end
 
-  ###  Entity  ###
+    edit do
+      group :basic_info do
+        label "Basic info"
+        field :person do
+          default_value true
+        end
+        field :name
+        field :short_name
+        field :description
+        field :priority do
+          default_value :medium
+        end
+        field :avatar
+      end
+      group :social_media do
+        label "Social media"
+        field :twitter_handle
+        field :wikipedia_page
+        field :facebook_page
+        field :flickr_page
+        field :linkedin_page
+      end
+      group :relations do
+        # Editing the relations through the default RailsAdmin control (moving across
+        # two columns) is very confusing. So disable for now.
+        field :relations_as_source do
+          read_only true
+          inverse_of :source
+        end
+        field :relations_as_target do
+          read_only true
+          inverse_of :target
+        end
+        field :related_photos do
+          read_only true
+          inverse_of :related_entities
+        end
+      end
+      group :internal do
+        label "Internal"
+        field :published do
+          default_value false
+        end
+        field :needs_work do
+          default_value true
+        end
+        field :slug do
+          help 'Leave blank for the URL slug to be auto-generated'
+        end
+        field :notes
+      end
+    end
 
-  # config.model 'Entity' do
+    object_label_method do
+      :short_or_long_name
+    end
+  end
 
-  #   # You can copy this to a 'rails_admin do ... end' block inside your entity.rb model definition
+  config.model 'EntityPhotoAssociation' do
+    visible false
+  end
 
-  #   # Found associations:
+  config.model 'Fact' do
+    list do
+      field :importer
+      field :relation
+      field :summary
+    end
 
+    edit do
+      field :importer
+      field :relation do
+        read_only true
+      end
+      field :summary do
+        read_only true
+      end
+    end
+  end  
 
+  config.model 'Photo' do
+    list do
+      field :published, :toggle
+      field :needs_work
+      field :file
+      field :footer
+      field :tag_list
+    end
 
-  #   # Found columns:
+    edit do
+      group :basic_info do
+        label "Content"
+        field :file
+        field :footer
+        field :copyright
+        field :source
+        field :date do
+          strftime_format "%d/%m/%Y"
+        end
+      end
+      group :relations do
+        field :related_entities
+      end
+      group :internal do
+        field :published do
+          default_value false
+        end
+        field :needs_work do
+          default_value true
+        end
+        field :tag_list do
+          label "Tags"
+          partial 'tag_list_with_suggestions'
+        end
+        field :notes
+      end
+    end
+  end
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :description, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  # RailsAdmin configuration
+  config.model 'Post' do
+    list do
+      field :published, :toggle
+      field :needs_work
+      field :title
+      field :author
+    end
 
-  #   # Cross-section configuration:
+    edit do
+      group :basic_info do
+        label "Content"
+        field :title
+        field :content, :ck_editor do 
+          help 'Puedes insertar códigos como: [dc url="..."] [qm url="..." text="..."] [gdocs url="..."]'
+        end
+        field :author do
+          inverse_of :posts
+        end
+      end
+      group :internal do
+        label "Internal"
+        field :published do
+          default_value false
+        end
+        field :needs_work do
+          default_value true
+        end
+        field :slug do
+          help 'Leave blank for the URL slug to be auto-generated'
+        end
+        field :notes
+      end
+    end
+  end
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+  config.model 'Relation' do
+    list do
+      field :published, :toggle
+      field :needs_work
+      field :source
+      field :relation_type
+      field :target
+      field :via
+    end
 
-  #   # Section specific configuration:
+    edit do
+      group :basic_info do
+        field :source
+        field :relation_type
+        field :target
+        field :via
+        field :via2
+        field :via3
+      end
+      group :timeline do
+        field :from do
+          strftime_format "%d/%m/%Y"
+        end
+        field :to do
+          strftime_format "%d/%m/%Y"
+        end
+        field :at do
+          strftime_format "%d/%m/%Y"
+        end
+      end
+      group :internal do
+        field :published do
+          default_value true
+        end
+        field :needs_work do
+          default_value false
+        end
+        field :facts do
+          read_only true
+        end
+        field :notes
+      end
+    end
 
-  #     list do
-  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
-  #       # items_per_page 100    # Override default_items_per_page
-  #       # sort_by :id           # Sort column (default is primary key)
-  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
-  #     end
-  #     show do; end
-  #     edit do; end
-  #     export do; end
-  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
-  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
-  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+    object_label_method do
+      :to_human
+    end
+  end
 
+  config.model 'RelationType' do
+    parent Relation
+
+    list do
+      field :description
+    end
+
+    edit do
+      field :description
+      field :relations do
+        read_only true
+      end
+    end
+
+    object_label_method do
+      :description
+    end
+  end
+
+  config.model 'User' do  
+    object_label_method :name
+  end
 
   ###  User  ###
 
