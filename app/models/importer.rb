@@ -10,7 +10,17 @@ class Importer
     @target_name = target_name
   end
 
-  def match(fact)
+  def match(facts)
+    results = []
+    facts.each do |fact|
+      results << match_fact(fact)
+    end
+    results
+  end
+
+  private
+
+  def match_fact(fact)
     # Check whether we've seen this datum before
     role = fact.properties[@role_name]
     if @relation_types[role]

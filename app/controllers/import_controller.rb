@@ -7,7 +7,7 @@ class ImportController < ApplicationController
   # certain job, and filter those records already imported successfully.
   def index
     @importer = Importer.new(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
-    Fact.all.each {|fact| @importer.match(fact) }
+    @importer.match(Fact.all)
 
     # Return a sorted version of the results for convenience
     @entities = @importer.entities.to_a.sort_by {|e| -e[1][:count]}
