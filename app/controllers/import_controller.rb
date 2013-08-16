@@ -6,7 +6,7 @@ class ImportController < ApplicationController
   # TODO: For now we'll just try importing all the data. Should pick only a 
   # certain job, and filter those records already imported successfully.
   def index
-    @importer = Importer.new(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
+    @importer = CnmvImporter.new
     @importer.match(Fact.all)
 
     # Return a sorted version of the results for convenience
