@@ -1,14 +1,18 @@
 class Importer
   attr_accessor :entities, :relation_types
 
-  def initialize
+  def initialize(source_name: :source, role_name: :role, target_name: :target)
     @entities = {}
     @relation_types = {}
+
+    @source_name = source_name
+    @role_name = role_name
+    @target_name = target_name
   end
 
   def match(fact)
     # Check whether we've seen this datum before
-    role = fact.properties['Cargo']
+    role = fact.properties[@role_name]
     if @relation_types[role]
       @relation_types[role][:count] += 1
 
@@ -19,7 +23,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    source = fact.properties['Nombre']
+    source = fact.properties[@source_name]
     if @entities[source]
       @entities[source][:count] += 1
 
@@ -30,7 +34,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    target = fact.properties['Empresa']
+    target = fact.properties[@target_name]
     if @entities[target]
       @entities[target][:count] += 1
 

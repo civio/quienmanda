@@ -3,11 +3,11 @@
 FactoryGirl.define do
   factory :fact do
     ignore do
-      role 'A role'
       source 'A source entity'
+      role 'A role'
       target 'A target entity'
     end
     importer "An importer"
-    properties {{ 'Nombre' => source, 'Cargo' => role, 'Empresa' => target }}
+    properties {{ :source => source, :role => role, :target => target }}
   end
 end
