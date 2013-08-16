@@ -70,14 +70,14 @@ class Importer
   end
 
   def match_relation_type(relation_type)
-    RelationType.find_by(["lower(description) = ?", relation_type.downcase])
+    relation_type && RelationType.find_by(["lower(description) = ?", relation_type.downcase])
   end
 
   def match_source_entity(source)
-    Entity.find_by(["lower(name) = ?", source.downcase])
+    source && Entity.find_by(["lower(name) = ?", source.downcase])
   end
 
   def match_target_entity(target)
-    Entity.find_by(["lower(name) = ?", target.downcase])
+    target && Entity.find_by(["lower(name) = ?", target.downcase])
   end
 end
