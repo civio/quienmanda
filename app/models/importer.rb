@@ -18,7 +18,10 @@ class Importer
       if preprocessor
         fact = preprocessor.call(fact)
       end
-      results << match_fact(fact) if fact
+
+      # This is a bit convoluted because the preprocessor can return one or many items
+      fact = [fact] unless fact.respond_to?(:each)
+      fact.each {|f| results << match_fact(f) }
     end
     results
   end

@@ -26,7 +26,8 @@ describe Importer do
   context 'when using a preprocessor' do
     before do
       @husband = create(:public_person, name: 'Adam')
-      @relation = create(:relation_type, description: 'is married to')
+      @married = create(:relation_type, description: 'is married to')
+      @friends = create(:relation_type, description: 'is friends with')
       @wife = create(:public_person, name: 'Eve')
       @importer = Importer.new
     end
@@ -37,16 +38,30 @@ describe Importer do
       @importer.preprocessor = spellchecker
 
       match = @importer.match( [create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')] )
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife }
+      match.first.should == { source: @husband, relation_type: @married, target: @wife }
     end
 
     it 'the preprocessor can delete facts' do
-      # Add a filter as a preprocessor, return nil to ignore a fact
-      filter = ->(fact) { nil }
+      # Add a filter as a preprocessor, return an empty array to ignore a fact
+      filter = ->(fact) { [] }
       @importer.preprocessor = filter
 
       match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')] )
       match.should == []
+    end
+
+    it 'the preprocessor can add facts' do
+      # Add a filter as a preprocessor, return nil to ignore a fact
+      splitter = ->(fact) do
+        another_fact = create(:fact, source: 'Adam', role: 'is friends with', target: 'Eve')
+        fact.properties[:role] = 'is married to'
+        [fact, another_fact]
+      end
+      @importer.preprocessor = splitter
+
+      match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to / is friends with', target: 'Eve')] )
+      match.should =~ [ { source: @husband, relation_type: @married, target: @wife },
+                        { source: @husband, relation_type: @friends, target: @wife } ] 
     end
   end
 
