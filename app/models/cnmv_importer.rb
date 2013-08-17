@@ -1,17 +1,7 @@
 class CnmvImporter < Importer
   def initialize()
     super(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
-    @preprocessor = ->(fact) { split_multiple_roles(fact) }
-  end
-
-  def split_multiple_roles(fact)
-    if fact.properties[@role_name].index('-')
-      first_role, second_role = fact.properties[@role_name].split('-')
-      new_fact = fact.dup.tap {|f| f.properties[@role_name] = second_role.strip }
-      fact.properties[@role_name] = first_role.strip
-      return [fact, new_fact]
-    end
-    fact
+    @preprocessor = ->(fact) { _split_multiple_roles(_canonical_person_name(fact)) }
   end
 
   def match_relation_type(relation_type)
@@ -32,5 +22,27 @@ class CnmvImporter < Importer
       return object if not object.nil?
     end
     nil
+  end
+
+  private
+
+  # Convert fact names of the type "Surname, Name" into "Name Surname"
+  def _canonical_person_name(fact)
+    if fact.properties[@source_name] && fact.properties[@source_name].index(',')
+      surname, name = fact.properties[@source_name].split(',')
+      fact.properties[@source_name] = "#{name.strip} #{surname.strip}"
+    end
+    fact
+  end
+
+  # Split facts with relations of the type "roleA - roleB"
+  def _split_multiple_roles(fact)
+    if fact.properties[@role_name] && fact.properties[@role_name].index('-')
+      first_role, second_role = fact.properties[@role_name].split('-')
+      new_fact = fact.dup.tap {|f| f.properties[@role_name] = second_role.strip }
+      fact.properties[@role_name] = first_role.strip
+      return [fact, new_fact]
+    end
+    fact
   end
 end

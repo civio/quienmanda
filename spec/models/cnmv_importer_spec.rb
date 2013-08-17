@@ -32,4 +32,16 @@ describe Importer do
       match.last[:relation_type].should == @president
     end
   end
+
+  context 'when importing a person' do
+    before do
+      @importer = CnmvImporter.new
+    end
+
+    it 'converts incoming data to name-surname format before matching' do
+      @person = create(:public_person, name: 'Abel Matutes Juan')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'MATUTES JUAN, ABEL'}) ] )
+      match.first[:source].should == @person
+    end
+  end
 end
