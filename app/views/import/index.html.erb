@@ -6,11 +6,16 @@
         <button id="show-matches-button" class="btn">Show matches</button>
         <button id="show-non-matches-button" class="btn">Show non-matches</button>
       </div>
+
+      <div class="btn-group" data-toggle="buttons-radio">
+        <button id="show-record-results-button" class="btn active">Show results per-record</button>
+        <button id="show-type-results-button" class="btn">Show results per-type</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full record-results">       
   <div class="row-fluid">
     <div class="span12">
       <h3>Match results</h3>
@@ -52,7 +57,7 @@
   </div>
 </div>
 
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full type-results">       
   <div class="row-fluid">
     <div class="span12">
       <h3>Relation Types</h3>
@@ -68,7 +73,7 @@
         <tbody>
           <% @relation_types.each do |data| %>
           <%   relation_type = data[1][:object] %>
-          <tr class="<%= relation_type ? 'import-match' : 'import-fail' %>">
+          <tr class="<%= relation_type ? 'import-match field-match' : 'import-fail field-match-fail' %>">
             <td><i class="icon-<%= relation_type ? 'ok' : 'remove' %>"></i></td>
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
             <td><%= relation_type && relation_type.description %></td>
@@ -81,7 +86,7 @@
   </div>
 </div>
 
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full type-results">       
   <div class="row-fluid">
     <div class="span12">
       <h3>Entities</h3>
@@ -97,7 +102,7 @@
         <tbody>
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
-          <tr class="<%= entity ? 'import-match' : 'import-fail' %>">
+          <tr class="<%= entity ? 'import-match field-match' : 'import-fail field-match-fail' %>">
             <td><i class="icon-<%= entity ? 'ok' : 'remove' %>"></i></td>
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
             <td><%= entity && entity.short_or_long_name %></td>
@@ -112,6 +117,15 @@
 
 <script>
 $(function() {
+  $('#show-record-results-button').click(function() {
+    $(".record-results").show();
+    $(".type-results").hide();
+  }).click();
+  $('#show-type-results-button').click(function() {
+    $(".record-results").hide();
+    $(".type-results").show();
+  });
+
   $('#show-all-button').click(function() {
     $(".import-match").show();
     $(".import-fail").show();
