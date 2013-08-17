@@ -57,7 +57,7 @@ class Importer
       @entities[target][:count] += 1
 
     else  # Try to find an existing Entity matching the imported data
-      relation_type = Entity.find_by(["lower(name) = ?", target.downcase])
+      relation_type = match_target_entity(target)
       @entities[target] = { count: 1, object: relation_type }
     end
 
