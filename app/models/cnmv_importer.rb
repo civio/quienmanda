@@ -1,6 +1,17 @@
 class CnmvImporter < Importer
   def initialize()
     super(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
+    @preprocessor = ->(fact) { split_multiple_roles(fact) }
+  end
+
+  def split_multiple_roles(fact)
+    if fact.properties[@role_name].index('-')
+      first_role, second_role = fact.properties[@role_name].split('-')
+      new_fact = fact.dup.tap {|f| f.properties[@role_name] = second_role.strip }
+      fact.properties[@role_name] = first_role.strip
+      return [fact, new_fact]
+    end
+    fact
   end
 
   def match_relation_type(relation_type)

@@ -23,5 +23,13 @@ describe Importer do
       match = @importer.match( [ Fact.new(properties: {'Cargo' => 'VicePresidente 3º'}) ] )
       match.first[:relation_type].should == @relation
     end
+
+    it 'splits multiple roles' do
+      @board_member = create(:relation_type, description: 'consejero/a')
+      @president = create(:relation_type, description: 'presidente/a')
+      match = @importer.match( [ Fact.new(properties: {'Cargo' => 'Consejero - Presidente'}) ] )
+      match.first[:relation_type].should == @board_member
+      match.last[:relation_type].should == @president
+    end
   end
 end
