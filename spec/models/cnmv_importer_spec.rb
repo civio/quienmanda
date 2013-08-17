@@ -44,6 +44,12 @@ describe Importer do
       match.first[:source].should == @person
     end
 
+    it 'respects commas in company names' do
+      @person = create(:public_person, name: 'Holding, S.A.')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'Holding, S.A.'}) ] )
+      match.first[:source].should == @person
+    end
+
     it 'checks short name' do
       @person = create(:public_person, name: 'Abel Matutes Juan', short_name: 'Abel Matutes')
       match = @importer.match( [ Fact.new(properties: {'Nombre' => 'MATUTES , ABEL'}) ] )

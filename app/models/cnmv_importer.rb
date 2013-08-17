@@ -42,8 +42,11 @@ class CnmvImporter < Importer
   # Convert fact names of the type "Surname, Name" into "Name Surname"
   def _canonical_person_name(fact)
     if fact.properties[@source_name] && fact.properties[@source_name].index(',')
-      surname, name = fact.properties[@source_name].split(',')
-      fact.properties[@source_name] = "#{name.strip} #{surname.strip}"
+      # Careful with company names as board members though (trailing S.A., S.L., ...)
+      if fact.properties[@source_name].index(' S.') == nil
+        surname, name = fact.properties[@source_name].split(',')
+        fact.properties[@source_name] = "#{name.strip} #{surname.strip}"
+      end
     end
     fact
   end
