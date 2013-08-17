@@ -29,7 +29,9 @@ class CnmvImporter < Importer
     name = source.downcase
 
     tries = [ ["lower(name) = ?", name], 
-              ["lower(short_name) = ?", name] ]
+              ["lower(short_name) = ?", name],
+              ["lower(unaccent(name)) = ?", name],
+              ["lower(unaccent(short_name)) = ?", name] ]
     tries.each do |try|
       object = Entity.find_by(try)
       return object if not object.nil?

@@ -55,5 +55,11 @@ describe Importer do
       match = @importer.match( [ Fact.new(properties: {'Nombre' => 'MATUTES , ABEL'}) ] )
       match.first[:source].should == @person
     end
+
+    it 'ignores accents' do
+      @person = create(:public_person, name: 'Emilio Botín')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTIN , EMILIO'}) ] )
+      match.first[:source].should == @person
+    end
   end
 end

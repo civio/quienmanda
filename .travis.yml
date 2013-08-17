@@ -8,4 +8,5 @@ script:
 before_script:
   - psql -c 'create user qm with superuser' -U postgres
   - psql -d template1 -c 'create extension hstore;'
+  - psql -d template1 -c 'create extension unaccent;'
   - psql -c 'create database qm_test owner qm' -U postgres

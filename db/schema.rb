@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815093338) do
+ActiveRecord::Schema.define(version: 20130817120229) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                      null: false
