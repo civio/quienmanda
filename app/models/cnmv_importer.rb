@@ -24,6 +24,19 @@ class CnmvImporter < Importer
     nil
   end
 
+  def match_source_entity(source)
+    return nil if source.nil?
+    name = source.downcase
+
+    tries = [ ["lower(name) = ?", name], 
+              ["lower(short_name) = ?", name] ]
+    tries.each do |try|
+      object = Entity.find_by(try)
+      return object if not object.nil?
+    end
+    nil
+  end
+
   private
 
   # Convert fact names of the type "Surname, Name" into "Name Surname"

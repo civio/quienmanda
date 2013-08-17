@@ -43,5 +43,11 @@ describe Importer do
       match = @importer.match( [ Fact.new(properties: {'Nombre' => 'MATUTES JUAN, ABEL'}) ] )
       match.first[:source].should == @person
     end
+
+    it 'checks short name' do
+      @person = create(:public_person, name: 'Abel Matutes Juan', short_name: 'Abel Matutes')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'MATUTES , ABEL'}) ] )
+      match.first[:source].should == @person
+    end
   end
 end
