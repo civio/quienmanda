@@ -42,25 +42,25 @@ class CnmvImporter < Importer
   private
 
   # Convert fact names of the type "Surname, Name" into "Name Surname"
-  def _canonical_person_name(fact)
-    if fact.properties[@source_name] && fact.properties[@source_name].index(',')
+  def _canonical_person_name(properties)
+    if properties[@source_name] && properties[@source_name].index(',')
       # Careful with company names as board members though (trailing S.A., S.L., ...)
-      if fact.properties[@source_name].index(' S.') == nil
-        surname, name = fact.properties[@source_name].split(',')
-        fact.properties[@source_name] = "#{name.strip} #{surname.strip}"
+      if properties[@source_name].index(' S.') == nil
+        surname, name = properties[@source_name].split(',')
+        return properties.clone.tap {|props| props[@source_name] = "#{name.strip} #{surname.strip}"}
       end
     end
-    fact
+    properties
   end
 
   # Split facts with relations of the type "roleA - roleB"
-  def _split_multiple_roles(fact)
-    if fact.properties[@role_name] && fact.properties[@role_name].index('-')
-      first_role, second_role = fact.properties[@role_name].split('-')
-      new_fact = fact.dup.tap {|f| f.properties[@role_name] = second_role.strip }
-      fact.properties[@role_name] = first_role.strip
-      return [fact, new_fact]
+  def _split_multiple_roles(properties)
+    if properties[@role_name] && properties[@role_name].index('-')
+      first_role, second_role = properties[@role_name].split('-')
+      new_properties = properties.clone.tap {|p| p[@role_name] = second_role.strip }
+      ammended_properties = properties.clone.tap {|p| p[@role_name] = first_role.strip }
+      return [ammended_properties, new_properties]
     end
-    fact
+    properties
   end
 end

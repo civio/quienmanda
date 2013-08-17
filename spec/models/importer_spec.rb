@@ -41,7 +41,7 @@ describe Importer do
 
     it 'applies the preprocessing before matching' do
       # Add a spellchecker as a preprocessor
-      spellchecker = ->(fact) { fact.properties[:role] = "is married to"; fact }
+      spellchecker = ->(properties) { properties[:role] = "is married to"; properties }
       @importer.preprocessor = spellchecker
 
       fact = create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')
@@ -51,7 +51,7 @@ describe Importer do
 
     it 'the preprocessor can delete facts' do
       # Add a filter as a preprocessor, return an empty array to ignore a fact
-      filter = ->(fact) { [] }
+      filter = ->(properties) { [] }
       @importer.preprocessor = filter
 
       match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')] )
@@ -60,10 +60,10 @@ describe Importer do
 
     it 'the preprocessor can add facts' do
       # Add a filter as a preprocessor, return nil to ignore a fact
-      splitter = ->(fact) do
-        another_fact = create(:fact, source: 'Adam', role: 'is friends with', target: 'Eve')
-        fact.properties[:role] = 'is married to'
-        [fact, another_fact]
+      splitter = ->(properties) do
+        another_fact_properties = { source: 'Adam', role: 'is friends with', target: 'Eve' }
+        properties[:role] = 'is married to'
+        [properties, another_fact_properties]
       end
       @importer.preprocessor = splitter
 

@@ -17,15 +17,14 @@ class Importer
     facts.each do |fact|
       # Process all records, and add a reference to the original input Fact
       if preprocessor
-        new_facts = preprocessor.call(fact)
+        processed_props = preprocessor.call(fact.properties)
         # This is a bit convoluted because the preprocessor can return one or many items
-        new_facts = [new_facts] unless new_facts.respond_to?(:each)
-        new_facts.each do |f| 
-          results << match_fact(f).merge(fact: fact)
-          f.reload unless f.new_record? # Undo potential changes done by the preprocessor
+        processed_props = [processed_props] unless processed_props.kind_of?(Array)
+        processed_props.each do |props| 
+          results << match_fact_properties(props).merge(fact: fact)
         end
       else
-        results << match_fact(fact).merge(fact: fact)
+        results << match_fact_properties(fact.properties).merge(fact: fact)
       end
     end
     results
@@ -33,9 +32,9 @@ class Importer
 
   private
 
-  def match_fact(fact)
+  def match_fact_properties(properties)
     # Check whether we've seen this datum before
-    role = fact.properties[@role_name]
+    role = properties[@role_name]
     if @relation_types[role]
       @relation_types[role][:count] += 1
 
@@ -46,7 +45,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    source = fact.properties[@source_name]
+    source = properties[@source_name]
     if @entities[source]
       @entities[source][:count] += 1
 
@@ -57,7 +56,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    target = fact.properties[@target_name]
+    target = properties[@target_name]
     if @entities[target]
       @entities[target][:count] += 1
 

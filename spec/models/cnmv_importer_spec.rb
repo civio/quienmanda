@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Importer do
+describe CnmvImporter do
   context 'when importing a relation type' do
     before do
       @importer = CnmvImporter.new
@@ -60,6 +60,15 @@ describe Importer do
       @person = create(:public_person, name: 'Emilio Botín')
       match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTIN , EMILIO'}) ] )
       match.first[:source].should == @person
+    end
+
+    it 'preprocesses the name on splitted facts' do
+      @person = create(:public_person, name: 'Emilio Botín')
+      # 'Presidente-Jefe' will be split by the preprocessor in two roles
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTIN , EMILIO', 'Cargo' => 'presidente-jefe'}) ] )
+      match.size.should == 2
+      match.first[:source].should == @person
+      match.last[:source].should == @person
     end
   end
 end
