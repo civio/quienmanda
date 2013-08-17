@@ -9,17 +9,24 @@ describe Importer do
       @importer = Importer.new
     end
 
+    it 'the result includes a reference to the input fact' do
+      fact = create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')
+      match = @importer.match( [fact] )
+      match.first[:fact].should == fact
+    end
+
     it 'returns matched attributes' do
-      match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')] )
+      fact = create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')
+      match = @importer.match( [fact] )
       match.size.should == 1
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife }
+      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
     end
 
     it 'property names are configurable' do
       custom_importer = Importer.new(source_name: 'Who', role_name: 'What', target_name: 'To whom')
       custom_fact = Fact.new(properties: { 'Who' => 'Adam', 'What' => 'is married to', 'To whom' => 'Eve'})
       match = custom_importer.match([custom_fact])
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife }
+      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: custom_fact }
     end
   end
 
@@ -37,8 +44,9 @@ describe Importer do
       spellchecker = ->(fact) { fact.properties[:role] = "is married to"; fact }
       @importer.preprocessor = spellchecker
 
-      match = @importer.match( [create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')] )
-      match.first.should == { source: @husband, relation_type: @married, target: @wife }
+      fact = create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')
+      match = @importer.match( [fact] )
+      match.first.should == { source: @husband, relation_type: @married, target: @wife, fact: fact }
     end
 
     it 'the preprocessor can delete facts' do
@@ -59,9 +67,10 @@ describe Importer do
       end
       @importer.preprocessor = splitter
 
-      match = @importer.match( [create(:fact, source: 'Adam', role: 'is married to / is friends with', target: 'Eve')] )
-      match.should =~ [ { source: @husband, relation_type: @married, target: @wife },
-                        { source: @husband, relation_type: @friends, target: @wife } ] 
+      fact = create(:fact, source: 'Adam', role: 'is married to / is friends with', target: 'Eve')
+      match = @importer.match( [fact] )
+      match.should =~ [ { source: @husband, relation_type: @married, target: @wife, fact: fact },
+                        { source: @husband, relation_type: @friends, target: @wife, fact: fact } ] 
     end
   end
 

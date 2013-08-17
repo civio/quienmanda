@@ -6,12 +6,12 @@ class ImportController < ApplicationController
   # TODO: For now we'll just try importing all the data. Should pick only a 
   # certain job, and filter those records already imported successfully.
   def index
-    @importer = CnmvImporter.new
-    @importer.match(Fact.all)
+    importer = CnmvImporter.new
+    @results = importer.match(Fact.all)
 
     # Return a sorted version of the results for convenience
-    @entities = @importer.entities.to_a.sort_by {|e| -e[1][:count]}
-    @relation_types = @importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
+    @entities = importer.entities.to_a.sort_by {|e| -e[1][:count]}
+    @relation_types = importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
   end
 
   private

@@ -15,13 +15,18 @@ class Importer
   def match(facts)
     results = []
     facts.each do |fact|
+      # Process all records, and add a reference to the original input Fact
       if preprocessor
-        fact = preprocessor.call(fact)
+        new_facts = preprocessor.call(fact)
+        # This is a bit convoluted because the preprocessor can return one or many items
+        new_facts = [new_facts] unless new_facts.respond_to?(:each)
+        new_facts.each do |f| 
+          results << match_fact(f).merge(fact: fact)
+          f.reload unless f.new_record? # Undo potential changes done by the preprocessor
+        end
+      else
+        results << match_fact(fact).merge(fact: fact)
       end
-
-      # This is a bit convoluted because the preprocessor can return one or many items
-      fact = [fact] unless fact.respond_to?(:each)
-      fact.each {|f| results << match_fact(f) }
     end
     results
   end

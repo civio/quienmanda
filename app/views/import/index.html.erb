@@ -13,6 +13,48 @@
 <div id="wrapper" class="full">       
   <div class="row-fluid">
     <div class="span12">
+      <h3>Match results</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th><i class="icon-exchange"></i></th>
+            <th>Source</th>
+            <th>Role</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+            @results.each do |result|
+              source = result[:source]
+              relation_type = result[:relation_type]
+              target = result[:target]
+              matched = !source.nil? && !relation_type.nil? && !target.nil?
+           %>
+          <tr class="<%= matched ? 'import-match' : 'import-fail' %>">
+            <td><i class="icon-<%= matched ? 'ok' : 'remove' %>"></i></td>
+            <td class="<%= source ? 'field-match' : 'field-match-fail' %>">
+              <%= "#{source && source.short_or_long_name} (#{result[:fact].properties['Nombre']})" %>
+            </td>
+            <td class="<%= relation_type ? 'field-match' : 'field-match-fail' %>">
+              <%= "#{relation_type && relation_type.description} (#{result[:fact].properties['Cargo']})" %></td>
+            </td>
+            <td class="<%= target ? 'field-match' : 'field-match-fail' %>">
+              <%= "#{target && target.short_or_long_name} (#{result[:fact].properties['Empresa']})" %></td>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+    <div class="span12">
       <h3>Relation Types</h3>
 
       <table>
