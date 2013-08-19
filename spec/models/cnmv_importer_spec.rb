@@ -56,9 +56,21 @@ describe CnmvImporter do
       match.first[:source].should == @person
     end
 
-    it 'ignores accents' do
+    it 'ignores missing accents in the imported data' do
       @person = create(:public_person, name: 'Emilio Botín')
       match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTIN , EMILIO'}) ] )
+      match.first[:source].should == @person
+    end
+
+    it 'ignores missing accents in the existing data' do
+      @person = create(:public_person, name: 'Emilio Botin')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTÍN , EMILIO'}) ] )
+      match.first[:source].should == @person
+    end
+
+    it 'matches Ñ correctly' do
+      @person = create(:public_person, name: 'Supermaño')
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'SUPERMAÑO'}) ] )
       match.first[:source].should == @person
     end
 
