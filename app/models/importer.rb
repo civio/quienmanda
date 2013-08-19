@@ -1,19 +1,18 @@
 class Importer
-  attr_reader :entities, :relation_types
+  attr_reader :entities, :relation_types, :results
   attr_accessor :preprocessor
 
   def initialize(source_name: :source, role_name: :role, target_name: :target)
-    @entities = {}
-    @relation_types = {}
     @preprocessor = nil
-
     @source_name = source_name
     @role_name = role_name
     @target_name = target_name
   end
 
   def match(facts)
-    results = []
+    @results = []
+    @entities = {}
+    @relation_types = {}
     facts.each do |fact|
       # Process all records, and add a reference to the original input Fact
       if preprocessor
@@ -21,13 +20,13 @@ class Importer
         # This is a bit convoluted because the preprocessor can return one or many items
         processed_props = [processed_props] unless processed_props.kind_of?(Array)
         processed_props.each do |props| 
-          results << match_fact_properties(props).merge(fact: fact)
+          @results << match_fact_properties(props).merge(fact: fact)
         end
       else
-        results << match_fact_properties(fact.properties).merge(fact: fact)
+        @results << match_fact_properties(fact.properties).merge(fact: fact)
       end
     end
-    results
+    @results
   end
 
   private
