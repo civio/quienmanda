@@ -166,5 +166,18 @@ describe CnmvImporter do
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
     end
+
+    it 'imports the relation start date if available' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.',
+                                        'Fecha Nombramiento' => '1/11/1989'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+      fact.relations.first.from.should == Date.new(1989,11,1)
+    end
   end
 end

@@ -34,22 +34,33 @@ class CnmvImporter < Importer
 
   # TODO: Send back some type of report so it can be displayed back to the user
   def create_missing_objects
+    # For each matched fact result
     @results.each do |result|
+      fact = result[:fact]
+
       # Do nothing if the relation type is unknown
       next if result[:relation_type].nil?
 
       # Do nothing if this fact has already been imported, i.e. already has relations
-      next unless result[:fact].relations.empty?
+      next unless fact.relations.empty?
 
       # FIXME: Check for existing relations
       # FIXME: Create entities if needed
-      # TODO: Add 'from' field
       # TODO: Add 'via' field
-
       # FIXME: Should handle facts with existing relations
-      result[:fact].relations.create!(source: result[:source], 
-                                      relation_type: result[:relation_type],
-                                      target: result[:target] )
+
+      # Get basic relation data
+      attributes = {source: result[:source], 
+                    relation_type: result[:relation_type],
+                    target: result[:target]}
+
+      # Add additional information, if available
+      if from_date = fact.properties['Fecha Nombramiento']
+        attributes[:from] = Date.strptime(from_date, '%d/%m/%Y')
+      end
+
+      # Create the relation associated to the fact
+      fact.relations.create!(attributes)
     end
   end
 
