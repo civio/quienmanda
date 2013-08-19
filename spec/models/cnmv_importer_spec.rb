@@ -83,4 +83,40 @@ describe CnmvImporter do
       match.last[:source].should == @person
     end
   end
+
+  context 'when importing a company' do
+    before do
+      @importer = CnmvImporter.new
+    end
+
+    it 'checks name' do
+      @organization = create(:public_organization, name: 'Banco Santander, S.A.')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'BANCO SANTANDER, S.A.'}) ] )
+      match.first[:target].should == @organization
+    end
+
+    it 'checks short name' do
+      @organization = create(:public_organization, name: 'Banco Santander, S.A.', short_name: 'Banco Santander')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'BANCO SANTANDER'}) ] )
+      match.first[:target].should == @organization
+    end
+
+    it 'ignores missing accents in the imported data' do
+      @organization = create(:public_organization, name: 'Telefónica, S.A.')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'TELEFONICA, S.A.'}) ] )
+      match.first[:target].should == @organization
+    end
+
+    it 'ignores missing accents in the existing data' do
+      @organization = create(:public_organization, name: 'Telefonica, S.A.')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'Telefónica, S.A.'}) ] )
+      match.first[:target].should == @organization
+    end
+
+    it 'matches Ñ correctly' do
+      @organization = create(:public_organization, name: 'Banco de España')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'BANCO DE ESPAÑA'}) ] )
+      match.first[:target].should == @organization
+    end
+  end
 end

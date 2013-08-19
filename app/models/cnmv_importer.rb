@@ -25,20 +25,11 @@ class CnmvImporter < Importer
   end
 
   def match_source_entity(source)
-    return nil if source.nil?
-    # Downcasing here won't handle accented character correctly, but we
-    # don't want to lose the accent data (using Stringex to_ascii) just yet
-    name = source.downcase
+    _match_entity(source)
+  end
 
-    tries = [ ["lower(name) = ?", name], 
-              ["lower(short_name) = ?", name],
-              ["lower(unaccent(name)) = ?", name.to_ascii.downcase],
-              ["lower(unaccent(short_name)) = ?", name.to_ascii.downcase] ]
-    tries.each do |try|
-      object = Entity.find_by(try)
-      return object if not object.nil?
-    end
-    nil
+  def match_target_entity(target)
+    _match_entity(target)
   end
 
   private
@@ -64,5 +55,22 @@ class CnmvImporter < Importer
       return [ammended_properties, new_properties]
     end
     properties
+  end
+
+  def _match_entity(entity)
+    return nil if entity.nil?
+    # Downcasing here won't handle accented character correctly, but we
+    # don't want to lose the accent data (using Stringex to_ascii) just yet
+    name = entity.downcase
+
+    tries = [ ["lower(name) = ?", name], 
+              ["lower(short_name) = ?", name],
+              ["lower(unaccent(name)) = ?", name.to_ascii.downcase],
+              ["lower(unaccent(short_name)) = ?", name.to_ascii.downcase] ]
+    tries.each do |try|
+      object = Entity.find_by(try)
+      return object if not object.nil?
+    end
+    nil
   end
 end
