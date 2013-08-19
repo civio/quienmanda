@@ -38,6 +38,9 @@ class CnmvImporter < Importer
       # Do nothing if the relation type is unknown
       next if result[:relation_type].nil?
 
+      # Do nothing if this fact has already been imported, i.e. already has relations
+      next unless result[:fact].relations.empty?
+
       # FIXME: Check for existing relations
       # FIXME: Create entities if needed
       # TODO: Add 'from' field

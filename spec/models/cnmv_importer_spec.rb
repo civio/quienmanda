@@ -154,5 +154,17 @@ describe CnmvImporter do
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
     end
+
+    it 'does not import the same fact twice' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+      @importer.create_missing_objects  # Twice
+
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+    end
   end
 end
