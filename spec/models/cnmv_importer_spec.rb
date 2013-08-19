@@ -126,7 +126,7 @@ describe CnmvImporter do
     end
   end
 
-  context 'when creating a missing relation' do
+  context 'when creating missing objects' do
     before do
       @importer = CnmvImporter.new
       @person = create(:public_person, name: 'Emilio Botín')
@@ -144,7 +144,7 @@ describe CnmvImporter do
       fact.relations.size.should == 0
     end
 
-    it 'creates the missing imported relations' do
+    it 'creates the missing imported relations if all info available' do
       fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
