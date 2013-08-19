@@ -74,6 +74,12 @@ describe CnmvImporter do
       match.first[:source].should == @person
     end
 
+    it 'matches funny apostrophes' do
+      @person = create(:public_person, name: "Ana Patricia Botín-Sanz Sautola O'Shea")
+      match = @importer.match( [ Fact.new(properties: {'Nombre' => 'BOTIN-SANZ SAUTOLA O´SHEA, ANA PATRICIA'}) ] )
+      match.first[:source].should == @person
+    end
+
     it 'preprocesses the name on splitted facts' do
       @person = create(:public_person, name: 'Emilio Botín')
       # 'Presidente-Jefe' will be split by the preprocessor in two roles
