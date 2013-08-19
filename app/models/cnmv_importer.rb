@@ -42,14 +42,11 @@ class CnmvImporter < Importer
       # FIXME: Create entities if needed
       # TODO: Add 'from' field
       # TODO: Add 'via' field
-      relation = Relation.create!(source: result[:source], 
-                                  relation_type: result[:relation_type],
-                                  target: result[:target] )
 
-      fact = result[:fact]
       # FIXME: Should handle facts with existing relations
-      fact.relations << relation
-      fact.save!
+      result[:fact].relations.create!(source: result[:source], 
+                                      relation_type: result[:relation_type],
+                                      target: result[:target] )
     end
   end
 
