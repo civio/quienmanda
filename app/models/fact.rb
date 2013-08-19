@@ -1,5 +1,5 @@
 class Fact < ActiveRecord::Base
-  belongs_to :relation
+  has_and_belongs_to_many :relations
 
   def summary
     properties.to_s

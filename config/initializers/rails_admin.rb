@@ -151,13 +151,13 @@ RailsAdmin.config do |config|
   config.model 'Fact' do
     list do
       field :importer
-      field :relation
+      field :relations
       field :summary
     end
 
     edit do
       field :importer
-      field :relation do
+      field :relations do
         read_only true
       end
       field :summary do
