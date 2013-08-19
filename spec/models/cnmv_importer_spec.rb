@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CnmvImporter do
-  context 'when importing a relation type' do
+  context 'when matching a relation type' do
     before do
       @importer = CnmvImporter.new
     end
@@ -33,7 +33,7 @@ describe CnmvImporter do
     end
   end
 
-  context 'when importing a person' do
+  context 'when matching a person' do
     before do
       @importer = CnmvImporter.new
     end
@@ -90,7 +90,7 @@ describe CnmvImporter do
     end
   end
 
-  context 'when importing a company' do
+  context 'when matching a company' do
     before do
       @importer = CnmvImporter.new
     end
@@ -126,7 +126,7 @@ describe CnmvImporter do
     end
   end
 
-  context 'when creating missing objects' do
+  context 'when importing relations' do
     before do
       @importer = CnmvImporter.new
       @person = create(:public_person, name: 'Emilio Botín')
@@ -179,5 +179,33 @@ describe CnmvImporter do
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
       fact.relations.first.from.should == Date.new(1989,11,1)
     end
+
+    it 'enriches an existing relation if it exists, instead of duplicating it' do
+      # The relation has been created manually before the import
+      create(:relation, 
+              source: @person, 
+              relation_type: @relation, 
+              target: @organization,
+              via: 'http://www.bancosantander.es')
+
+      # And now we import it, adding extra data (like 'from') to existing object
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.',
+                                        'Fecha Nombramiento' => '1/11/1989'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+      fact.relations.first.from.should == Date.new(1989,11,1) # Imported field
+      fact.relations.first.via.should == 'http://www.bancosantander.es' # Manually entered field      
+    end
+
+    pending "send back some type of report so it can be displayed back to the user" # TODO
+  end
+
+  context 'when importing relations' do
+    pending "create missing entities if needed" # FIXME
   end
 end
