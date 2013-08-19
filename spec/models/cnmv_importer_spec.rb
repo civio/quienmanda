@@ -134,6 +134,16 @@ describe CnmvImporter do
       @relation = create(:relation_type, description: 'presidente/a')
     end
 
+    it 'does not create a relation if the role is unknown' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'propietario',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 0
+    end
+
     it 'creates the missing imported relations' do
       fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
                                         'Cargo' => 'presidente',

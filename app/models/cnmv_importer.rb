@@ -32,10 +32,14 @@ class CnmvImporter < Importer
     _match_entity(target)
   end
 
+  # TODO: Send back some type of report so it can be displayed back to the user
   def create_missing_objects
     @results.each do |result|
+      # Do nothing if the relation type is unknown
+      next if result[:relation_type].nil?
+
       # FIXME: Check for existing relations
-      # FIXME: Do only if the three elements are matched
+      # FIXME: Create entities if needed
       # TODO: Add 'from' field
       # TODO: Add 'via' field
       relation = Relation.create!(source: result[:source], 
