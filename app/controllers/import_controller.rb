@@ -5,6 +5,7 @@ class ImportController < ApplicationController
 
   # FIXME: For now we'll just try importing all the data. Should pick only a 
   # certain job, and filter those records already imported successfully.
+  # Something like this probably http://stackoverflow.com/questions/7032194/rails-habtm-and-finding-record-with-no-association?rq=1
   def index
     importer = CnmvImporter.new
     @results = importer.match(Fact.all)
