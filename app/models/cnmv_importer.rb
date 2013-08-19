@@ -32,6 +32,23 @@ class CnmvImporter < Importer
     _match_entity(target)
   end
 
+  def create_missing_objects
+    @results.each do |result|
+      # FIXME: Check for existing relations
+      # FIXME: Do only if the three elements are matched
+      # TODO: Add 'from' field
+      # TODO: Add 'via' field
+      relation = Relation.create!(source: result[:source], 
+                                  relation_type: result[:relation_type],
+                                  target: result[:target] )
+
+      fact = result[:fact]
+      # FIXME: Should handle facts with existing relations
+      fact.relations << relation
+      fact.save!
+    end
+  end
+
   private
 
   # Convert fact names of the type "Surname, Name" into "Name Surname"

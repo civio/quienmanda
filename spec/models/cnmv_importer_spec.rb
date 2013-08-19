@@ -125,4 +125,24 @@ describe CnmvImporter do
       match.first[:target].should == @organization
     end
   end
+
+  context 'when creating a missing relation' do
+    before do
+      @importer = CnmvImporter.new
+      @person = create(:public_person, name: 'Emilio Botín')
+      @organization = create(:public_organization, name: 'Banco Santander, S.A.', short_name: 'Banco Santander')
+      @relation = create(:relation_type, description: 'presidente/a')
+    end
+
+    it 'creates the missing imported relations' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+    end
+  end
 end

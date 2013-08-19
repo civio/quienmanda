@@ -286,7 +286,7 @@ RailsAdmin.config do |config|
     end
 
     object_label_method do
-      :to_human
+      :to_s
     end
   end
 

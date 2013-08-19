@@ -9,7 +9,7 @@ class Relation < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
 
-  def to_human
+  def to_s
     "#{source && source.short_or_long_name} -> #{relation_type && relation_type.description} -> #{target && target.short_or_long_name}"
   end
 end

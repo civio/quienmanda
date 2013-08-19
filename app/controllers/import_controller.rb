@@ -3,7 +3,7 @@ class ImportController < ApplicationController
 
   before_filter :check_admin
 
-  # TODO: For now we'll just try importing all the data. Should pick only a 
+  # FIXME: For now we'll just try importing all the data. Should pick only a 
   # certain job, and filter those records already imported successfully.
   def index
     importer = CnmvImporter.new
