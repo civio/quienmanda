@@ -50,6 +50,13 @@ class CnmvImporter < Importer
         next
       end
 
+      # Do nothing if entities are not found (FIXME: shuold create them)
+      if result[:source].nil? or result[:target].nil?
+        warn(result, "Unknown entity '#{fact.properties[SOURCE_NAME]}'. Skipping...") if result[:source].nil?
+        warn(result, "Unknown entity '#{fact.properties[TARGET_NAME]}'. Skipping...") if result[:target].nil?
+        next
+      end
+
       # Do nothing if this fact has already been imported, i.e. already has relations
       if not fact.relations.empty?
         warn(result, "Fact ##{fact.id} already has relations. Skipping...")
@@ -64,7 +71,6 @@ class CnmvImporter < Importer
       # If needed, create the relation associated to the fact. Otherwise, edit existing one
       if relation = Relation.where(attributes).first
         # Reusing an existing relation, make sure it points to the current fact
-        # TODO: Info message, reusing relation
         fact.relations << relation
         fact.save!
       else

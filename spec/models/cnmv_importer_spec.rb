@@ -222,10 +222,49 @@ describe CnmvImporter do
       end
     end
 
-    pending "send back some type of report so it can be displayed back to the user" # TODO
+    pending "check event log when reusing a relation" # TODO
   end
 
-  context 'when importing relations' do
+  context 'when importing entities' do
+    before do
+      @importer = CnmvImporter.new
+      @person = create(:public_person, name: 'Emilio Botín')
+      @organization = create(:public_organization, name: 'Banco Santander, S.A.', short_name: 'Banco Santander')
+      @relation = create(:relation_type, description: 'presidente/a')
+    end
+
+    it 'warns if source entity is not found' do
+      fact = create(:fact, properties: {'Nombre' => 'Random guy',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 0
+
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Unknown entity \'Random guy\'. Skipping...'
+      end
+    end
+
+    it 'warns if target entity is not found' do
+      fact = create(:fact, properties: {'Nombre' => 'Emilio Botin',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'A random company'})
+      @importer.match( [ fact ] )
+      @importer.create_missing_objects
+
+      fact.relations.size.should == 0
+
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Unknown entity \'A random company\'. Skipping...'
+      end
+    end
+
     pending "create missing entities if needed" # FIXME
   end
 end
