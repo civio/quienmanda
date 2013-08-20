@@ -73,6 +73,7 @@ class CnmvImporter < Importer
         # Reusing an existing relation, make sure it points to the current fact
         fact.relations << relation
         fact.save!
+        info(result, "Updating relation: #{relation.to_s}")
       else
         # Create a new relation from scratch
         relation = fact.relations.create!(attributes)

@@ -220,9 +220,13 @@ describe CnmvImporter do
         relation.from.should == Date.new(1989,11,1) # Imported field
         relation.via.should == 'http://www.bancosantander.es' # Manually entered field
       end
-    end
 
-    pending "check event log when reusing a relation" # TODO
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :info
+        log.first[:message].should == "Updating relation: Emilio Botín -> presidente/a -> Banco Santander"
+      end
+    end
   end
 
   context 'when importing entities' do
