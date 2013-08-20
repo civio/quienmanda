@@ -153,8 +153,14 @@ class CnmvImporter < Importer
 
     # Create the entity with values when specified (and with defaults otherwise)
     is_a_person = attributes[:person] || is_a_person(name)
-    # FIXME: Overrideable defaults: person: false, needs_work: true, priority: 2, published: false
-    Entity.create!(name: name, priority: 2, person: is_a_person)
+    priority = attributes[:priority] || :medium
+    needs_work = attributes[:needs_work].nil? ? true : attributes[:needs_work]
+    published = attributes[:published].nil? ? false : attributes[:published]
+    Entity.create!( name: name, 
+                    priority: priority, 
+                    person: is_a_person,
+                    needs_work: needs_work,
+                    published: published)
   end
 
   # TODO: Move this to base class
