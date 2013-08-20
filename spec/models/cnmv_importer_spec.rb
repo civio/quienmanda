@@ -132,6 +132,7 @@ describe CnmvImporter do
       @person = create(:public_person, name: 'Emilio Botín')
       @organization = create(:public_organization, name: 'Banco Santander, S.A.', short_name: 'Banco Santander')
       @relation = create(:relation_type, description: 'presidente/a')
+      @another_relation = create(:relation_type, description: 'accionista')
     end
 
     it 'does not create a relation if the role is unknown' do
@@ -181,20 +182,50 @@ describe CnmvImporter do
       end
     end
 
-    it 'does not import the same fact twice' do
+    it 'does not duplicate relations if the same fact is imported twice' do
       fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-      @importer.match( [ fact ] ) # Twice
-
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
-
       @importer.event_log.tap do |log|
         log.size.should == 1
-        log.first[:severity].should == :warning
-        log.first[:message].should == "Skipping fact ##{fact.id}, already has relations..."
+        log.first[:severity].should == :info
+        log.first[:message].should == "Created relation: Emilio Botín -> presidente/a -> Banco Santander"
+      end
+
+      # Note: I used to check in the code that the fact hadn't been imported by checking 
+      # whether it had already associated relations, and returning a warning if so. 
+      # That filtering belongs in the controller. But most importantly, since a preprocessor 
+      # can "split" a fact and produce multiple relations, it does happen that we add relations 
+      # to facts which already have associations.
+      @importer.match( [ fact ] ) # Again...
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :info
+        log.first[:message].should == "Updating relation: Emilio Botín -> presidente/a -> Banco Santander"
+      end
+    end
+
+    it 'creates multiple relations if the preprocessor splits the fact in multiple pieces' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente-accionista',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+
+      fact.relations.size.should == 2
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+      fact.relations.last.to_s.should == 'Emilio Botín -> accionista -> Banco Santander'
+
+      @importer.event_log.tap do |log|
+        log.size.should == 2
+        log.first[:severity].should == :info
+        log.first[:message].should == "Created relation: Emilio Botín -> presidente/a -> Banco Santander"
+        log.last[:severity].should == :info
+        log.last[:message].should == "Created relation: Emilio Botín -> accionista -> Banco Santander"
       end
     end
 

@@ -52,12 +52,6 @@ class CnmvImporter < Importer
       return
     end
 
-    # Do nothing if this fact has already been imported, i.e. already has relations
-    if not fact.relations.empty?
-      warn(fact, "Skipping fact ##{fact.id}, already has relations...")
-      return
-    end
-
     # FIXME: Add test + warning
     return if match_result[:source].nil? or match_result[:target].nil?
 
@@ -69,8 +63,7 @@ class CnmvImporter < Importer
     # If needed, create the relation associated to the fact. Otherwise, edit existing one
     if relation = Relation.where(attributes).first
       # Reusing an existing relation, make sure it points to the current fact
-      fact.relations << relation
-      fact.save!
+      fact.relations << relation unless fact.relations.exists?(id: relation.id)
       info(fact, "Updating relation: #{relation.to_s}")
     else
       # Create a new relation from scratch
