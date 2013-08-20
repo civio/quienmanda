@@ -4,3 +4,5 @@ S3_KEY: put-your-key-here
 S3_SECRET: put-your-secret-here
 S3_REGION: eu-west-1
 S3_BUCKET_NAME: quienmanda
+
+NEW_RELIC_KEY: put-your-new-relic-key-here

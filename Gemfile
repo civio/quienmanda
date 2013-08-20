@@ -73,6 +73,9 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog'
 
+# Performance
+gem 'newrelic_rpm'
+
 # Testing
 group :development, :test do
   gem 'pry-rails', :group => :development

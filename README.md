@@ -72,6 +72,7 @@ Set up a daily auto-backup by enabling the add-on:
  * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
  * ActsAsTaggableOn: tags
+ * NewRelic: performance monitoring
  
 ### Transferring database from production to local
 
