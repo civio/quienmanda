@@ -50,17 +50,21 @@ class CnmvImporter < Importer
         next
       end
 
-      # Do nothing if entities are not found (FIXME: shuold create them)
-      if result[:source].nil? or result[:target].nil?
-        warn(result, "Skipping unknown entity '#{fact.properties[SOURCE_NAME]}'...") if result[:source].nil?
-        warn(result, "Skipping unknown entity '#{fact.properties[TARGET_NAME]}'...") if result[:target].nil?
-        next
-      end
-
       # Do nothing if this fact has already been imported, i.e. already has relations
       if not fact.relations.empty?
         warn(result, "Skipping fact ##{fact.id}, already has relations...")
         next
+      end
+
+      # Create source/target entities if needed
+      if result[:source].nil?
+        result[:source] = create_entity(name: fact.properties[SOURCE_NAME], person: true)
+        info(result, "Created person '#{result[:source].name}'")
+      end
+      if result[:target].nil?
+        # FIXME: Will keep creating the entity again and again
+        result[:target] = create_entity(name: fact.properties[TARGET_NAME], person: false)
+        info(result, "Created organization '#{result[:target].name}'")
       end
 
       # Get basic relation data
@@ -129,6 +133,15 @@ class CnmvImporter < Importer
       return object if not object.nil?
     end
     nil
+  end
+
+  # TODO: Probably move this to base class
+  def create_entity(attributes)
+    # FIXME: Detect entity type looking for s.a. s.l. n.v.
+    # FIXME: Replace `. See Aigües de Sabadell
+    name = UnicodeUtils.titlecase(attributes[:name])
+    # FIXME: Overrideable defaults: person: false, needs_work: true, priority: 2, published: false
+    Entity.create!(name: name, priority: 2, person: attributes[:person])
   end
 
   # TODO: Move this to base class

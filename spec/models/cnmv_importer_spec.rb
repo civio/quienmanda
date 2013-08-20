@@ -244,31 +244,41 @@ describe CnmvImporter do
       @importer.match( [ fact ] )
       @importer.create_missing_objects
 
-      fact.relations.size.should == 0
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Random Guy -> presidente/a -> Banco Santander'
 
       @importer.event_log.tap do |log|
-        log.size.should == 1
-        log.first[:severity].should == :warning
-        log.first[:message].should == 'Skipping unknown entity \'Random guy\'...'
+        log.size.should == 2
+        log.first[:severity].should == :info
+        log.first[:message].should == 'Created person \'Random Guy\''
+        log.last[:severity].should == :info
+        log.last[:message].should == 'Created relation: Random Guy -> presidente/a -> Banco Santander'
       end
     end
 
-    it 'warns if target entity is not found' do
+    it 'create target entity if not found' do
       fact = create(:fact, properties: {'Nombre' => 'Emilio Botin',
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'A random company'})
       @importer.match( [ fact ] )
       @importer.create_missing_objects
 
-      fact.relations.size.should == 0
+      fact.relations.size.should == 1
+      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> A Random Company'
 
       @importer.event_log.tap do |log|
-        log.size.should == 1
-        log.first[:severity].should == :warning
-        log.first[:message].should == 'Skipping unknown entity \'A random company\'...'
+        log.size.should == 2
+        log.first[:severity].should == :info
+        log.first[:message].should == 'Created organization \'A Random Company\''
+        log.last[:severity].should == :info
+        log.last[:message].should == 'Created relation: Emilio Botín -> presidente/a -> A Random Company'
       end
     end
-
-    pending "create missing entities if needed" # FIXME
   end
+
+  # context 'when creating entities' do
+  #   it 'create target entity if not found' do
+  #     CnmvImporter.new.send(:create_entity, {}).should == 42
+  #   end
+  # end
 end

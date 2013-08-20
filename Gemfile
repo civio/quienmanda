@@ -59,6 +59,7 @@ gem 'stringex'
 gem 'acts-as-taggable-on'
 gem 'shortcodes'
 gem 'font-awesome-rails'
+gem 'unicode_utils'
 
 # Admin interface
 gem 'rails_admin'
