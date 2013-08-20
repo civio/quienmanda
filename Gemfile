@@ -73,9 +73,6 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog'
 
-# Performance
-gem 'newrelic_rpm'
-
 # Testing
 group :development, :test do
   gem 'pry-rails', :group => :development
@@ -84,3 +81,8 @@ group :development, :test do
   gem 'coveralls', require: false
 end
 
+# Performance and profiling
+gem 'newrelic_rpm'
+group :profile do
+  gem 'ruby-prof'
+end

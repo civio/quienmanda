@@ -200,6 +200,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
+    ruby-prof (0.13.0)
     safe_yaml (0.9.5)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
@@ -277,6 +278,7 @@ DEPENDENCIES
   rails_admin_tag_list
   rails_admin_toggleable
   rspec-rails
+  ruby-prof
   sass-rails (~> 4.0.0)
   sdoc
   shortcodes
