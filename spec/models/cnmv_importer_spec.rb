@@ -316,5 +316,7 @@ describe CnmvImporter do
       entity = create_entity({name: 'COMPANYIA D´AIGÜES DE SABADELL, S.A.'})
       entity.name.should == 'Companyia D\'Aigües De Sabadell, S.A.'
     end
+
+    pending 'creates person entities with canonical name'
   end
 end
