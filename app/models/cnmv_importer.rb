@@ -51,7 +51,10 @@ class CnmvImporter < Importer
       end
 
       # Do nothing if this fact has already been imported, i.e. already has relations
-      next unless fact.relations.empty?   # TODO: Warning
+      if not fact.relations.empty?
+        warn(result, "Fact ##{fact.id} already has relations. Skipping...")
+        next
+      end
 
       # Get basic relation data
       attributes = {source: result[:source], 
@@ -61,11 +64,13 @@ class CnmvImporter < Importer
       # If needed, create the relation associated to the fact. Otherwise, edit existing one
       if relation = Relation.where(attributes).first
         # Reusing an existing relation, make sure it points to the current fact
+        # TODO: Info message, reusing relation
         fact.relations << relation
         fact.save!
       else
         # Create a new relation from scratch
         relation = fact.relations.create!(attributes)
+        info(result, "Created relation: #{relation.to_s}")
       end
 
       # Add additional information, if available

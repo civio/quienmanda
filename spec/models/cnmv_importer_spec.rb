@@ -159,6 +159,12 @@ describe CnmvImporter do
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :info
+        log.first[:message].should == 'Created relation: Emilio Botín -> presidente/a -> Banco Santander'
+      end
     end
 
     it 'does not import the same fact twice' do
@@ -171,6 +177,12 @@ describe CnmvImporter do
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == "Fact ##{fact.id} already has relations. Skipping..."
+      end
     end
 
     it 'imports the relation start date if available' do
