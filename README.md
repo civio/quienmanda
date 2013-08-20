@@ -72,3 +72,13 @@ Set up a daily auto-backup by enabling the add-on:
  * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
  * ActsAsTaggableOn: tags
+ 
+### Transferring database from production to local
+
+Following [Heroku instructions][3]:
+
+    $ heroku pgbackups:capture
+    $ curl -o latest.dump `heroku pgbackups:url`
+    $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -U qm -d qm_development latest.dump 
+ 
+[3]: https://devcenter.heroku.com/articles/heroku-postgres-import-export
