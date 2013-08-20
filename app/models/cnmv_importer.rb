@@ -131,7 +131,10 @@ class CnmvImporter < Importer
   # TODO: Probably move the entity-creation-related code to base class
   def create_entity(attributes)
     name = attributes[:name].strip
-    return nil if name.blank? # FIXME: Add test + warning
+    if name.blank?
+      warn(nil, "Skipping entity with blank name...")
+      return nil
+    end
 
     # Clean up the entity name a bit
     name = UnicodeUtils.titlecase(name) # Titlecase respecting accented characters

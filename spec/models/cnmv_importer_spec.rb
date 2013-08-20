@@ -350,6 +350,16 @@ describe CnmvImporter do
       @importer.is_a_person('EADS, n.v.').should == false
     end
 
+    # This happens once in CNMV data (La Seda de Barcelona)
+    it 'skips and alerts if name is blank' do
+      entity = create_entity({name: ''})
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Skipping entity with blank name...'
+      end
+    end
+
     # Note: having entities in the database with ´ will break future imports,
     # because PostgreSQL lets them through unaccent() but Stringex.to_ascii
     # converts them to single quotes. Hence they need to be single quotes in DB.
@@ -357,7 +367,5 @@ describe CnmvImporter do
       entity = create_entity({name: 'COMPANYIA D´AIGÜES DE SABADELL, S.A.'})
       entity.name.should == 'Companyia D\'Aigües De Sabadell, S.A.'
     end
-
-    pending 'creates person entities with canonical name' # FIXME
   end
 end
