@@ -3,14 +3,12 @@ class ImportController < ApplicationController
 
   before_filter :check_admin
 
-  # FIXME: For now we'll just try importing all the data. Should pick only a 
-  # certain job, and filter those records already imported successfully.
-  # Something like this probably http://stackoverflow.com/questions/7032194/rails-habtm-and-finding-record-with-no-association?rq=1
   def index
     # Matching the incoming data with the one already in the database,
     # and create the missing entities/relations
     @importer = CnmvImporter.new(create_missing_entities: true)
-    @results = @importer.match(Fact.all, dry_run: true)
+    facts = Fact.unprocessed_facts
+    @results = @importer.match(facts, dry_run: true)
 
     # Return a sorted version of the results for convenience
     @entities = @importer.matched_entities.to_a.sort_by {|e| -e[1][:count]}
