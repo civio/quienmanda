@@ -58,7 +58,7 @@ class CnmvImporter < Importer
 
       # Create source/target entities if needed
       if result[:source].nil?
-        result[:source] = create_entity(name: fact.properties[SOURCE_NAME], person: true)
+        result[:source] = create_entity(name: fact.properties[SOURCE_NAME])
         info(result, "Created person '#{result[:source].name}'")
       end
       if result[:target].nil?
@@ -91,6 +91,13 @@ class CnmvImporter < Importer
         relation.save!
       end
     end
+  end
+
+  # Guess whether a given name relates to a company or a person
+  def is_a_person(name)
+    return false if name =~ /s\.[al]\./i  # Check for S.A. or S.L.
+    return false if name =~ /n\.v\.$/i    # Check for trailing N.V. (dutch)
+    true
   end
 
   private
@@ -135,13 +142,13 @@ class CnmvImporter < Importer
     nil
   end
 
-  # TODO: Probably move this to base class
+  # TODO: Probably move the entity-creation-related code to base class
   def create_entity(attributes)
-    # FIXME: Detect entity type looking for s.a. s.l. n.v.
     # FIXME: Replace `. See Aigües de Sabadell
     name = UnicodeUtils.titlecase(attributes[:name])
+    is_a_person = attributes[:person] || is_a_person(name)
     # FIXME: Overrideable defaults: person: false, needs_work: true, priority: 2, published: false
-    Entity.create!(name: name, priority: 2, person: attributes[:person])
+    Entity.create!(name: name, priority: 2, person: is_a_person)
   end
 
   # TODO: Move this to base class

@@ -276,9 +276,31 @@ describe CnmvImporter do
     end
   end
 
-  # context 'when creating entities' do
-  #   it 'create target entity if not found' do
-  #     CnmvImporter.new.send(:create_entity, {}).should == 42
-  #   end
-  # end
+  context 'when creating entities' do
+    before do
+      @importer = CnmvImporter.new
+    end
+
+    # Convenience method to call private :create_entity
+    def create_entity(attributes); @importer.send(:create_entity, attributes); end
+
+    it 'create entity as specified' do
+      entity = create_entity({name: 'foobar', person: true})
+      entity.name.should == 'Foobar'
+      entity.person.should == true
+    end
+
+    it 'guess entity type if not specified' do
+      entity = create_entity({name: 'foobar'})
+      entity.name.should == 'Foobar'
+      entity.person.should == true
+    end
+
+    it 'guess person/organization type based on name' do
+      @importer.is_a_person('foobar').should == true
+      @importer.is_a_person('Banco Santander, s.a.').should == false
+      @importer.is_a_person('PYME, S.l.').should == false
+      @importer.is_a_person('EADS, n.v.').should == false
+    end
+  end
 end
