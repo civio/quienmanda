@@ -143,9 +143,11 @@ describe CnmvImporter do
 
       fact.relations.size.should == 0
 
-      @importer.event_log.size.should == 1
-      @importer.event_log.first[:severity].should == :warning
-      @importer.event_log.first[:message].should == 'Unknown relation type \'propietario\'. Skipping...'
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Unknown relation type \'propietario\'. Skipping...'
+      end
     end
 
     it 'creates the missing imported relations if all info available' do
@@ -201,9 +203,11 @@ describe CnmvImporter do
       @importer.create_missing_objects
 
       fact.relations.size.should == 1
-      fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
-      fact.relations.first.from.should == Date.new(1989,11,1) # Imported field
-      fact.relations.first.via.should == 'http://www.bancosantander.es' # Manually entered field      
+      fact.relations.first.tap do |relation|
+        relation.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
+        relation.from.should == Date.new(1989,11,1) # Imported field
+        relation.via.should == 'http://www.bancosantander.es' # Manually entered field
+      end
     end
 
     pending "send back some type of report so it can be displayed back to the user" # TODO
