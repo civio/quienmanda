@@ -7,12 +7,16 @@ class ImportController < ApplicationController
   # certain job, and filter those records already imported successfully.
   # Something like this probably http://stackoverflow.com/questions/7032194/rails-habtm-and-finding-record-with-no-association?rq=1
   def index
-    importer = CnmvImporter.new
-    @results = importer.match(Fact.all)
+    # Start by matching incoming data with the one already in the database
+    @importer = CnmvImporter.new
+    @results = @importer.match(Fact.all)
 
     # Return a sorted version of the results for convenience
-    @entities = importer.entities.to_a.sort_by {|e| -e[1][:count]}
-    @relation_types = importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
+    @entities = @importer.entities.to_a.sort_by {|e| -e[1][:count]}
+    @relation_types = @importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
+
+    # Do the actual import
+    @importer.create_missing_objects
   end
 
   private

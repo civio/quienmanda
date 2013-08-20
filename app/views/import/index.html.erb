@@ -8,9 +8,40 @@
       </div>
 
       <div class="btn-group" data-toggle="buttons-radio">
-        <button id="show-record-results-button" class="btn active">Show results per-record</button>
-        <button id="show-type-results-button" class="btn">Show results per-type</button>
+        <button id="show-execution-log-button" class="btn active">Show execution log</button>
+        <button id="show-record-matches-button" class="btn">Show matches per record</button>
+        <button id="show-type-matches-button" class="btn">Show matches per type</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper" class="full execution-log">       
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>Execution log</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th><i class="icon-exchange"></i></th>
+            <th>Message</th>
+            <th>Fact #</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @importer.event_log.each do |event| %>
+          <tr class="<%= event[:severity]==:info ? 'import-match' : 'import-fail' %>">
+            <td><i class="icon-<%= event[:severity]==:info ? 'ok' : 'remove' %>"></i></td>
+            <td class="<%= event[:severity]==:info ? 'field-match' : 'field-match-warning' %>">
+              <%= event[:message] %>
+            </td>
+            <td><%= event[:result][:fact].id %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
@@ -117,11 +148,18 @@
 
 <script>
 $(function() {
-  $('#show-record-results-button').click(function() {
-    $(".record-results").show();
+  $('#show-execution-log-button').click(function() {
+    $(".execution-log").show();
+    $(".record-results").hide();
     $(".type-results").hide();
   }).click();
-  $('#show-type-results-button').click(function() {
+  $('#show-record-matches-button').click(function() {
+    $(".execution-log").hide();
+    $(".record-results").show();
+    $(".type-results").hide();
+  });
+  $('#show-type-matches-button').click(function() {
+    $(".execution-log").hide();
     $(".record-results").hide();
     $(".type-results").show();
   });

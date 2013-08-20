@@ -2,6 +2,10 @@
   color: green;
 }
 
+.field-match-warning {
+  color: orange;
+}
+
 .field-match-fail {
   color: red;
 }
