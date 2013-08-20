@@ -1,5 +1,5 @@
 class Importer
-  attr_reader :entities, :relation_types, :results, :event_log
+  attr_reader :matched_entities, :matched_relation_types, :results, :event_log
   attr_accessor :preprocessor
 
   def initialize(source_name: :source, role_name: :role, target_name: :target)
@@ -11,9 +11,9 @@ class Importer
 
   def match(facts)
     @event_log = []
-    @results = []
-    @entities = {}
-    @relation_types = {}
+    @match_results = []
+    @matched_entities = {}
+    @matched_relation_types = {}
     facts.each do |fact|
       # Process all records, and add a reference to the original input Fact
       if preprocessor
@@ -21,13 +21,13 @@ class Importer
         # This is a bit convoluted because the preprocessor can return one or many items
         processed_props = [processed_props] unless processed_props.kind_of?(Array)
         processed_props.each do |props| 
-          @results << process_match_result(fact, match_properties(props))
+          @match_results << process_match_result(fact, match_properties(props))
         end
       else
-        @results << process_match_result(fact, match_properties(fact.properties))
+        @match_results << process_match_result(fact, match_properties(fact.properties))
       end
     end
-    @results
+    @match_results
   end
 
   private
@@ -44,41 +44,41 @@ class Importer
   def match_properties(properties)
     # Check whether we've seen this datum before
     role = properties[@role_name]
-    if @relation_types[role]
-      @relation_types[role][:count] += 1
+    if @matched_relation_types[role]
+      @matched_relation_types[role][:count] += 1
 
     else  # Try to find an existing RelationType matching the imported data
       relation_type = match_relation_type(role)
-      @relation_types[role] = { count: 1, object: relation_type }
+      @matched_relation_types[role] = { count: 1, object: relation_type }
     end
 
 
     # Check whether we've seen this datum before
     source = properties[@source_name]
-    if @entities[source]
-      @entities[source][:count] += 1
+    if @matched_entities[source]
+      @matched_entities[source][:count] += 1
 
     else  # Try to find an existing Entity matching the imported data
       relation_type = match_source_entity(source)
-      @entities[source] = { count: 1, object: relation_type }
+      @matched_entities[source] = { count: 1, object: relation_type }
     end
 
 
     # Check whether we've seen this datum before
     target = properties[@target_name]
-    if @entities[target]
-      @entities[target][:count] += 1
+    if @matched_entities[target]
+      @matched_entities[target][:count] += 1
 
     else  # Try to find an existing Entity matching the imported data
       relation_type = match_target_entity(target)
-      @entities[target] = { count: 1, object: relation_type }
+      @matched_entities[target] = { count: 1, object: relation_type }
     end
 
     # Return matched data
     {
-      source: @entities[source][:object],
-      target: @entities[target][:object],
-      relation_type: @relation_types[role][:object]
+      source: @matched_entities[source][:object],
+      target: @matched_entities[target][:object],
+      relation_type: @matched_relation_types[role][:object]
     }
   end
 

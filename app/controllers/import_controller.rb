@@ -14,8 +14,8 @@ class ImportController < ApplicationController
     @results = @importer.match(Fact.all)
 
     # Return a sorted version of the results for convenience
-    @entities = @importer.entities.to_a.sort_by {|e| -e[1][:count]}
-    @relation_types = @importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
+    @entities = @importer.matched_entities.to_a.sort_by {|e| -e[1][:count]}
+    @relation_types = @importer.matched_relation_types.to_a.sort_by {|e| -e[1][:count]}
   end
 
   private
