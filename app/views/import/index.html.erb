@@ -36,7 +36,7 @@
             <td class="<%= event[:severity]==:info ? 'field-match' : 'field-match-warning' %>">
               <%= event[:message] %>
             </td>
-            <td><%= event[:result][:fact].id %></td>
+            <td><%= event[:fact] && event[:fact].id %></td>
           </tr>
           <% end %>
         </tbody>

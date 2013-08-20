@@ -126,7 +126,7 @@ describe CnmvImporter do
     end
   end
 
-  context 'when importing relations' do
+  context 'when importing relations on existing entities' do
     before do
       @importer = CnmvImporter.new
       @person = create(:public_person, name: 'Emilio Botín')
@@ -139,7 +139,6 @@ describe CnmvImporter do
                                         'Cargo' => 'propietario',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 0
 
@@ -155,7 +154,6 @@ describe CnmvImporter do
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
@@ -172,8 +170,7 @@ describe CnmvImporter do
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
-      @importer.create_missing_objects  # Twice
+      @importer.match( [ fact ] ) # Twice
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
@@ -191,7 +188,6 @@ describe CnmvImporter do
                                         'Empresa' => 'BANCO SANTANDER, S.A.',
                                         'Fecha Nombramiento' => '1/11/1989'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> Banco Santander'
@@ -212,7 +208,6 @@ describe CnmvImporter do
                                         'Empresa' => 'BANCO SANTANDER, S.A.',
                                         'Fecha Nombramiento' => '1/11/1989'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 1
       fact.relations.first.tap do |relation|
@@ -229,9 +224,9 @@ describe CnmvImporter do
     end
   end
 
-  context 'when importing entities' do
+  context 'when importing relations and creating missing entities' do
     before do
-      @importer = CnmvImporter.new
+      @importer = CnmvImporter.new(create_missing_entities: true)
       @person = create(:public_person, name: 'Emilio Botín')
       @organization = create(:public_organization, name: 'Banco Santander, S.A.', short_name: 'Banco Santander')
       @relation = create(:relation_type, description: 'presidente/a')
@@ -242,7 +237,6 @@ describe CnmvImporter do
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Random Guy -> presidente/a -> Banco Santander'
@@ -261,7 +255,6 @@ describe CnmvImporter do
                                         'Cargo' => 'presidente',
                                         'Empresa' => 'A random company'})
       @importer.match( [ fact ] )
-      @importer.create_missing_objects
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente/a -> A Random Company'
@@ -279,6 +272,7 @@ describe CnmvImporter do
   context 'when creating entities' do
     before do
       @importer = CnmvImporter.new
+      @importer.match([])  # Call match to set up event log
     end
 
     # Convenience method to call private :create_entity
@@ -317,6 +311,6 @@ describe CnmvImporter do
       entity.name.should == 'Companyia D\'Aigües De Sabadell, S.A.'
     end
 
-    pending 'creates person entities with canonical name'
+    pending 'creates person entities with canonical name' # FIXME
   end
 end

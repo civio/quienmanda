@@ -1,5 +1,5 @@
 class Importer
-  attr_reader :entities, :relation_types, :results
+  attr_reader :entities, :relation_types, :results, :event_log
   attr_accessor :preprocessor
 
   def initialize(source_name: :source, role_name: :role, target_name: :target)
@@ -10,6 +10,7 @@ class Importer
   end
 
   def match(facts)
+    @event_log = []
     @results = []
     @entities = {}
     @relation_types = {}
@@ -20,10 +21,10 @@ class Importer
         # This is a bit convoluted because the preprocessor can return one or many items
         processed_props = [processed_props] unless processed_props.kind_of?(Array)
         processed_props.each do |props| 
-          @results << match_fact_properties(props).merge(fact: fact)
+          @results << process_match_result(fact, match_properties(props))
         end
       else
-        @results << match_fact_properties(fact.properties).merge(fact: fact)
+        @results << process_match_result(fact, match_properties(fact.properties))
       end
     end
     @results
@@ -31,7 +32,16 @@ class Importer
 
   private
 
-  def match_fact_properties(properties)
+  def process_match_result(fact, match_result)
+    create_relation(fact, match_result)
+    match_result.merge(fact: fact)
+  end
+
+  def create_relation(fact, match_result)
+    # TODO: Move basic/reusable code from CNMV importer here. Do nothing for now
+  end
+
+  def match_properties(properties)
     # Check whether we've seen this datum before
     role = properties[@role_name]
     if @relation_types[role]
@@ -82,5 +92,14 @@ class Importer
 
   def match_target_entity(target)
     target && Entity.find_by(["lower(name) = ?", target.downcase])
+  end
+
+  # Event logging convenience methods
+  def info(fact, message)
+    @event_log << { severity: :info, fact: fact, message: message }
+  end
+
+  def warn(fact, message)
+    @event_log << { severity: :warning, fact: fact, message: message }
   end
 end
