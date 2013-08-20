@@ -46,20 +46,20 @@ class CnmvImporter < Importer
 
       # Do nothing if the relation type is unknown
       if result[:relation_type].nil?
-        warn(result, "Unknown relation type '#{fact.properties[ROLE_NAME]}'. Skipping...")
+        warn(result, "Skipping unknown relation type '#{fact.properties[ROLE_NAME]}'...")
         next
       end
 
       # Do nothing if entities are not found (FIXME: shuold create them)
       if result[:source].nil? or result[:target].nil?
-        warn(result, "Unknown entity '#{fact.properties[SOURCE_NAME]}'. Skipping...") if result[:source].nil?
-        warn(result, "Unknown entity '#{fact.properties[TARGET_NAME]}'. Skipping...") if result[:target].nil?
+        warn(result, "Skipping unknown entity '#{fact.properties[SOURCE_NAME]}'...") if result[:source].nil?
+        warn(result, "Skipping unknown entity '#{fact.properties[TARGET_NAME]}'...") if result[:target].nil?
         next
       end
 
       # Do nothing if this fact has already been imported, i.e. already has relations
       if not fact.relations.empty?
-        warn(result, "Fact ##{fact.id} already has relations. Skipping...")
+        warn(result, "Skipping fact ##{fact.id}, already has relations...")
         next
       end
 

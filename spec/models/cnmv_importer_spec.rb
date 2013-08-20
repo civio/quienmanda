@@ -146,7 +146,7 @@ describe CnmvImporter do
       @importer.event_log.tap do |log|
         log.size.should == 1
         log.first[:severity].should == :warning
-        log.first[:message].should == 'Unknown relation type \'propietario\'. Skipping...'
+        log.first[:message].should == 'Skipping unknown relation type \'propietario\'...'
       end
     end
 
@@ -181,7 +181,7 @@ describe CnmvImporter do
       @importer.event_log.tap do |log|
         log.size.should == 1
         log.first[:severity].should == :warning
-        log.first[:message].should == "Fact ##{fact.id} already has relations. Skipping..."
+        log.first[:message].should == "Skipping fact ##{fact.id}, already has relations..."
       end
     end
 
@@ -249,7 +249,7 @@ describe CnmvImporter do
       @importer.event_log.tap do |log|
         log.size.should == 1
         log.first[:severity].should == :warning
-        log.first[:message].should == 'Unknown entity \'Random guy\'. Skipping...'
+        log.first[:message].should == 'Skipping unknown entity \'Random guy\'...'
       end
     end
 
@@ -265,7 +265,7 @@ describe CnmvImporter do
       @importer.event_log.tap do |log|
         log.size.should == 1
         log.first[:severity].should == :warning
-        log.first[:message].should == 'Unknown entity \'A random company\'. Skipping...'
+        log.first[:message].should == 'Skipping unknown entity \'A random company\'...'
       end
     end
 
