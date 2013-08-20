@@ -16,6 +16,7 @@ class ImportController < ApplicationController
     @relation_types = @importer.relation_types.to_a.sort_by {|e| -e[1][:count]}
 
     # Do the actual import
+    # FIXME: Do a dry run by default
     @importer.create_missing_objects
   end
 
