@@ -9,23 +9,26 @@ class Importer
     @target_name = target_name
   end
 
-  def match(facts)
+  def match(facts, dry_run: false)
     @event_log = []
     @match_results = []
     @matched_entities = {}
     @matched_relation_types = {}
-    facts.each do |fact|
-      # Process all records, and add a reference to the original input Fact
-      if preprocessor
-        processed_props = preprocessor.call(fact.properties)
-        # This is a bit convoluted because the preprocessor can return one or many items
-        processed_props = [processed_props] unless processed_props.kind_of?(Array)
-        processed_props.each do |props| 
-          @match_results << process_match_result(fact, match_properties(props))
+    Fact.transaction do
+      facts.each do |fact|
+        # Process all records, and add a reference to the original input Fact
+        if preprocessor
+          processed_props = preprocessor.call(fact.properties)
+          # This is a bit convoluted because the preprocessor can return one or many items
+          processed_props = [processed_props] unless processed_props.kind_of?(Array)
+          processed_props.each do |props| 
+            @match_results << process_match_result(fact, match_properties(props))
+          end
+        else
+          @match_results << process_match_result(fact, match_properties(fact.properties))
         end
-      else
-        @match_results << process_match_result(fact, match_properties(fact.properties))
       end
+      raise ActiveRecord::Rollback if dry_run
     end
     @match_results
   end

@@ -165,6 +165,22 @@ describe CnmvImporter do
       end
     end
 
+    it 'does not creates any relation if it is a dry run, but there is an event log' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ], dry_run: true )
+
+      fact.reload
+      fact.relations.size.should == 0 # Nothing is done
+
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :info
+        log.first[:message].should == 'Created relation: Emilio Botín -> presidente/a -> Banco Santander'
+      end
+    end
+
     it 'does not import the same fact twice' do
       fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
                                         'Cargo' => 'presidente',
