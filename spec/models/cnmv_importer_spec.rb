@@ -302,5 +302,13 @@ describe CnmvImporter do
       @importer.is_a_person('PYME, S.l.').should == false
       @importer.is_a_person('EADS, n.v.').should == false
     end
+
+    # Note: having entities in the database with ´ will break future imports,
+    # because PostgreSQL lets them through unaccent() but Stringex.to_ascii
+    # converts them to single quotes. Hence they need to be single quotes in DB.
+    it 'replaces annoying apostrophes with simple quotes' do
+      entity = create_entity({name: 'COMPANYIA D´AIGÜES DE SABADELL, S.A.'})
+      entity.name.should == 'Companyia D\'Aigües De Sabadell, S.A.'
+    end
   end
 end

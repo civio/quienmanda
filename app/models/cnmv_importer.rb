@@ -144,8 +144,14 @@ class CnmvImporter < Importer
 
   # TODO: Probably move the entity-creation-related code to base class
   def create_entity(attributes)
-    # FIXME: Replace `. See Aigües de Sabadell
-    name = UnicodeUtils.titlecase(attributes[:name])
+    # Clean up the entity name a bit
+    name = UnicodeUtils.titlecase(attributes[:name])  # Titlecase respecting accented characters
+    name.gsub!('S.a.', 'S.A.')                        # Cosmetic: uppercase trailing S.A.
+    name.gsub!('S.l.', 'S.L.')                        # Cosmetic: uppercase trailing S.L.
+    name.gsub!('N.v.', 'N.V.')                        # Cosmetic: uppercase trailing N.V.
+    name.gsub!('´', '\'')                             # Get rid of ´, see note in test
+
+    # Create the entity with values when specified (and with defaults otherwise)
     is_a_person = attributes[:person] || is_a_person(name)
     # FIXME: Overrideable defaults: person: false, needs_work: true, priority: 2, published: false
     Entity.create!(name: name, priority: 2, person: is_a_person)
