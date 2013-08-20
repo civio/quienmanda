@@ -142,6 +142,10 @@ describe CnmvImporter do
       @importer.create_missing_objects
 
       fact.relations.size.should == 0
+
+      @importer.event_log.size.should == 1
+      @importer.event_log.first[:severity].should == :warning
+      @importer.event_log.first[:message].should == 'Unknown relation type \'propietario\'. Skipping...'
     end
 
     it 'creates the missing imported relations if all info available' do

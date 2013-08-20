@@ -1,6 +1,12 @@
 class CnmvImporter < Importer
+  attr_reader :event_log  # TODO: Move this to base class
+
+  SOURCE_NAME = 'Nombre'
+  ROLE_NAME = 'Cargo'
+  TARGET_NAME = 'Empresa'
+
   def initialize()
-    super(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
+    super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
     @preprocessor = ->(fact) { _split_multiple_roles(_canonical_person_name(fact)) }
   end
 
@@ -33,12 +39,16 @@ class CnmvImporter < Importer
   end
 
   def create_missing_objects
+    clear_event_log
     # For each matched fact result
     @results.each do |result|
       fact = result[:fact]
 
       # Do nothing if the relation type is unknown
-      next if result[:relation_type].nil? # TODO: Warning
+      if result[:relation_type].nil?
+        warn(result, "Unknown relation type '#{fact.properties[ROLE_NAME]}'. Skipping...")
+        next
+      end
 
       # Do nothing if this fact has already been imported, i.e. already has relations
       next unless fact.relations.empty?   # TODO: Warning
@@ -107,5 +117,18 @@ class CnmvImporter < Importer
       return object if not object.nil?
     end
     nil
+  end
+
+  # TODO: Move this to base class
+  def clear_event_log
+    @event_log = []
+  end
+
+  def info(result, message)
+    @event_log << { severity: :info, result: result, message: message }
+  end
+
+  def warn(result, message)
+    @event_log << { severity: :warning, result: result, message: message }
   end
 end
