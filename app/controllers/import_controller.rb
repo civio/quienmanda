@@ -8,7 +8,7 @@ class ImportController < ApplicationController
     # and create the missing entities/relations
     @importer = CnmvImporter.new(create_missing_entities: true)
     # Limit number of facts to import to avoid timeouts in Heroku
-    facts = Fact.unprocessed_facts.limit(500)
+    facts = Fact.unprocessed_facts.limit(params[:import_size] || 300)
     @results = @importer.match(facts, dry_run: true)
 
     # Return a sorted version of the results for convenience
