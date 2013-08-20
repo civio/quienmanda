@@ -46,14 +46,19 @@ class CnmvImporter < Importer
   end
 
   def create_relation(fact, match_result)
-    # Do nothing if the relation type is unknown
+    # Do nothing if the we miss one of the basic elements of a relation
     if match_result[:relation_type].nil?
-      warn(fact, "Skipping unknown relation type '#{fact.properties[ROLE_NAME]}'...")
+      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[ROLE_NAME]}'...")
       return
     end
-
-    # FIXME: Add test + warning
-    return if match_result[:source].nil? or match_result[:target].nil?
+    if match_result[:source].nil?
+      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[SOURCE_NAME]}'...")
+      return
+    end
+    if match_result[:target].nil?
+      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[TARGET_NAME]}'...")
+      return
+    end
 
     # Get basic relation data
     attributes = {source: match_result[:source], 

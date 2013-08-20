@@ -140,13 +140,37 @@ describe CnmvImporter do
                                         'Cargo' => 'propietario',
                                         'Empresa' => 'BANCO SANTANDER, S.A.'})
       @importer.match( [ fact ] )
-
       fact.relations.size.should == 0
-
       @importer.event_log.tap do |log|
         log.size.should == 1
         log.first[:severity].should == :warning
-        log.first[:message].should == 'Skipping unknown relation type \'propietario\'...'
+        log.first[:message].should == 'Skipping fact, unknown relation type \'propietario\'...'
+      end
+    end
+
+    it 'does not create a relation if the source entity is unknown' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'BANCO SANTANDER, S.A.'})
+      @importer.match( [ fact ] )
+      fact.relations.size.should == 0
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Skipping fact, unknown source entity \'EMILIO\'...'
+      end
+    end
+
+    it 'does not create a relation if the target entity is unknown' do
+      fact = create(:fact, properties: {'Nombre' => 'EMILIO BOTIN',
+                                        'Cargo' => 'presidente',
+                                        'Empresa' => 'Un banco'})
+      @importer.match( [ fact ] )
+      fact.relations.size.should == 0
+      @importer.event_log.tap do |log|
+        log.size.should == 1
+        log.first[:severity].should == :warning
+        log.first[:message].should == 'Skipping fact, unknown target entity \'Un banco\'...'
       end
     end
 
