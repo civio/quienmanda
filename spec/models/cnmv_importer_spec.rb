@@ -374,6 +374,12 @@ describe CnmvImporter do
       @importer.is_a_person('EADS, n.v.').should == false
     end
 
+    it 'creates a cleaner short name for typical company names' do
+      entity = create_entity({name: 'Inditex, S.A.'})
+      entity.name.should == 'Inditex, S.A.'
+      entity.short_name.should == 'Inditex'
+    end
+
     # This happens once in CNMV data (La Seda de Barcelona)
     it 'skips and alerts if name is blank' do
       entity = create_entity({name: ''})

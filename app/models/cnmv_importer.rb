@@ -3,6 +3,8 @@ class CnmvImporter < Importer
   ROLE_NAME = 'Cargo'
   TARGET_NAME = 'Empresa'
 
+  COMPANY_ENDINGS = [/(, S\.A\.)/i, /(, S\.L\.)/i, /(, N\.V\.)/i]
+
   def initialize(create_missing_entities: false)
     super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
     @preprocessor = ->(fact) { _split_multiple_roles(_canonical_person_name(fact)) }
@@ -86,8 +88,7 @@ class CnmvImporter < Importer
 
   # Guess whether a given name relates to a company or a person
   def is_a_person(name)
-    return false if name =~ /s\.[al]\./i  # Check for S.A. or S.L.
-    return false if name =~ /n\.v\.$/i    # Check for trailing N.V. (dutch)
+    COMPANY_ENDINGS.each {|regex| return false if name =~ regex }
     true
   end
 
@@ -142,11 +143,17 @@ class CnmvImporter < Importer
     end
 
     # Clean up the entity name a bit
+    short_name = nil
     name = UnicodeUtils.titlecase(name) # Titlecase respecting accented characters
-    name.gsub!('S.a.', 'S.A.')          # Cosmetic: uppercase trailing S.A.
-    name.gsub!('S.l.', 'S.L.')          # Cosmetic: uppercase trailing S.L.
-    name.gsub!('N.v.', 'N.V.')          # Cosmetic: uppercase trailing N.V.
     name.gsub!('´', '\'')               # Get rid of ´, see note in test
+    COMPANY_ENDINGS.each do |regex|     # Uppercase trailing S.A., S.L...
+      if name =~ regex
+        match = $1
+        short_name = name.gsub(match, '')
+        name.gsub!(match, match.upcase)
+        break
+      end
+    end
 
     # Create the entity with values when specified (and with defaults otherwise)
     # TODO: It probably makes more sense to clone the original Hash and fill it in
@@ -155,12 +162,13 @@ class CnmvImporter < Importer
     needs_work = attributes[:needs_work].nil? ? true : attributes[:needs_work]
     published = attributes[:published].nil? ? false : attributes[:published]
     entity = Entity.create!(name: name, 
+                            short_name: short_name,
                             priority: priority, 
                             person: is_a_person,
                             needs_work: needs_work,
                             published: published)
     # TODO: Missing fact here
-    info(nil, "Created #{is_a_person ? 'person' : 'organization'} '#{entity.name}'")
+    info(nil, "Created #{is_a_person ? 'person' : 'organization'} '#{entity.short_or_long_name}'")
     entity
   end
 end
