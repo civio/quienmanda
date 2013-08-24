@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819163130) do
+ActiveRecord::Schema.define(version: 20130824174905) do
 
   create_table "entities", force: true do |t|
-    t.string   "name",                                      null: false
-    t.string   "description",    limit: 90
+    t.string   "name",                                            null: false
+    t.string   "description",          limit: 90
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "priority",       limit: 1,                  null: false
+    t.string   "priority",             limit: 1,                  null: false
     t.string   "short_name"
     t.string   "twitter_handle"
     t.string   "wikipedia_page"
@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20130819163130) do
     t.string   "linkedin_page"
     t.text     "notes"
     t.string   "slug"
-    t.boolean  "person",                    default: true,  null: false
-    t.boolean  "published",                 default: false, null: false
-    t.boolean  "needs_work",                default: true,  null: false
+    t.boolean  "person",                          default: true,  null: false
+    t.boolean  "published",                       default: false, null: false
+    t.boolean  "needs_work",                      default: true,  null: false
     t.string   "avatar"
+    t.string   "web_page"
+    t.string   "open_corporates_page"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree

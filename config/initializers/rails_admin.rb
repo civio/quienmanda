@@ -101,10 +101,12 @@ RailsAdmin.config do |config|
         field :avatar
       end
       group :social_media do
-        label "Social media"
+        label "Social media / web"
+        field :web_page
         field :twitter_handle
         field :wikipedia_page
         field :facebook_page
+        field :open_corporates_page
         field :flickr_page
         field :linkedin_page
       end
