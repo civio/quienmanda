@@ -6,6 +6,12 @@ describe CnmvImporter do
       @importer = CnmvImporter.new
     end
 
+    it 'ignores accents' do
+      @relation = create(:relation_type, description: 'Administrador Único')
+      match = @importer.match( [ Fact.new(properties: {'Cargo' => 'ADMINISTRADOR UNICO'}) ] )
+      match.first[:relation_type].should == @relation
+    end
+
     it 'checks male/female variants' do
       @relation = create(:relation_type, description: 'presidente/a')
       match = @importer.match( [ Fact.new(properties: {'Cargo' => 'Presidente'}) ] )

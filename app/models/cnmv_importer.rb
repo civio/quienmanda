@@ -13,6 +13,8 @@ class CnmvImporter < Importer
 
   def match_relation_type(relation_type)
     return nil if relation_type.nil?
+    # Downcasing here won't handle accented character correctly, but we
+    # don't want to lose the accent data (using Stringex to_ascii) just yet
     description = relation_type.downcase
 
     # Remove some useless additional detail
@@ -22,6 +24,7 @@ class CnmvImporter < Importer
 
     # Try to find the relation type in the database
     tries = [ ["lower(description) = ?", description], 
+              ["lower(unaccent(description)) = ?", description.to_ascii.downcase],
               ["lower(description) = ?", "#{description} de"],
               ["lower(description) = ?", "#{description}/a"],
               ["lower(description) = ?", "#{description}/a de"] ]
