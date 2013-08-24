@@ -7,7 +7,7 @@ class CnmvImporter < Importer
 
   def initialize(create_missing_entities: false)
     super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
-    @preprocessor = ->(fact) { _split_multiple_roles(_canonical_person_name(fact)) }
+    @preprocessor = ->(fact) { _split_multiple_roles(_canonical_entity_name(fact)) }
     @create_missing_entities = create_missing_entities
   end
 
@@ -98,6 +98,10 @@ class CnmvImporter < Importer
 
   private
 
+  def _canonical_entity_name(properties)
+    _canonical_company_name(_canonical_person_name(properties))
+  end
+
   # Convert fact names of the type "Surname, Name" into "Name Surname"
   def _canonical_person_name(properties)
     if properties[@source_name] && properties[@source_name].index(',')
@@ -106,6 +110,14 @@ class CnmvImporter < Importer
         surname, name = properties[@source_name].split(',')
         return properties.clone.tap {|props| props[@source_name] = "#{name.strip} #{surname.strip}"}
       end
+    end
+    properties
+  end
+
+  # Clean up the trailing S.A., sometimes incomplete in CNMV listings
+  def _canonical_company_name(properties)
+    if properties[@target_name] =~ /S\.A$/i # Could be more flexible, but will do for now
+      return properties.clone.tap {|props| props[@target_name] += '.' }
     end
     properties
   end

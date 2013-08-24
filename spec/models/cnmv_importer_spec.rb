@@ -136,6 +136,13 @@ describe CnmvImporter do
       match = @importer.match( [ Fact.new(properties: {'Empresa' => 'BANCO DE ESPAÑA'}) ] )
       match.first[:target].should == @organization
     end
+
+    # Clumsy CNMV
+    it 'adds the missing trailing dot at end of company names if needed' do
+      @organization = create(:public_organization, name: 'Bankia, S.A.')
+      match = @importer.match( [ Fact.new(properties: {'Empresa' => 'BANKIA, S.A'}) ] )
+      match.first[:target].should == @organization
+    end
   end
 
   context 'when importing relations on existing entities' do
