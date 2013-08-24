@@ -1,6 +1,7 @@
 <div class="span3 item nature people">
   <div class="picture">
-    <%= link_to image_tag(entity.avatar.url), organization_path(entity), class: 'image' %>
+    <%= link_to image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png'), 
+                organization_path(entity), class: 'image' %>
     <div class="description">
       <p>
         <%= link_to entity.name, organization_path(entity) %>
