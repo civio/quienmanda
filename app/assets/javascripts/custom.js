@@ -125,7 +125,7 @@ jQuery(document).ready(function($) {
           when using Turbolinks (only in Firefox, maybe). See discussion at
           https://github.com/rails/turbolinks/issues/159 */
 
-jQuery(document).load(function () {
+jQuery(document).on('page:load', function () {
   
   $('#wall').imagesLoaded(function() {
     
