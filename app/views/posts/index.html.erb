@@ -4,7 +4,7 @@
   <!--start: Row -->
   <div class="row-fluid">
 
-    <div class="span8 separate">
+    <div class="span12">
 
       <h2>Listing posts</h2>
 
@@ -13,7 +13,7 @@
           <tr>
             <th>Title</th>
             <th>Author</th>
-            <th></th>
+            <th>Date</th>
           </tr>
         </thead>
 
@@ -22,6 +22,7 @@
             <tr>
               <td><%= link_to post.title, post %></td>
               <td><%= link_to post.author.name, post %></td>
+              <td><%= link_to post.updated_at, post %></td>
             </tr>
           <% end %>
         </tbody>

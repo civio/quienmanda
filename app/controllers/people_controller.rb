@@ -5,6 +5,7 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
+    @people = @people.order("updated_at DESC")
   end
 
   # GET /people/1

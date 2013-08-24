@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = (can? :manage, Post) ? Post.all : Post.published
+    @posts = @posts.order("updated_at DESC")
   end
 
   # GET /posts/1
