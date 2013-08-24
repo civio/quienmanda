@@ -18,6 +18,12 @@ describe CnmvImporter do
       match.first[:relation_type].should == @relation
     end
 
+    it "ignores trailing 'de' without female variants" do
+      @relation = create(:relation_type, description: 'presidente de')
+      match = @importer.match( [ Fact.new(properties: {'Cargo' => 'Presidente'}) ] )
+      match.first[:relation_type].should == @relation
+    end
+
     it "ignores trailing vicepresident type" do
       @relation = create(:relation_type, description: 'vicepresidente/a de')
       match = @importer.match( [ Fact.new(properties: {'Cargo' => 'VicePresidente 3º'}) ] )

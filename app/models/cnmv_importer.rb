@@ -22,6 +22,7 @@ class CnmvImporter < Importer
 
     # Try to find the relation type in the database
     tries = [ ["lower(description) = ?", description], 
+              ["lower(description) = ?", "#{description} de"],
               ["lower(description) = ?", "#{description}/a"],
               ["lower(description) = ?", "#{description}/a de"] ]
     tries.each do |try|
