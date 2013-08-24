@@ -192,6 +192,9 @@ RailsAdmin.config do |config|
         field :related_entities
       end
       group :internal do
+        field :extra_wide do
+          default_value false
+        end
         field :published do
           default_value false
         end

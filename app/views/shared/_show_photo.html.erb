@@ -1,6 +1,6 @@
-<div class="span3 item">
+<div class="<%= photo.extra_wide? ? 'span6': 'span3' %> item">
   <div class="picture">
-    <%= link_to image_tag(photo.file.url(:small)), photo, class: 'image' %>
+    <%= link_to image_tag(photo.file.url(photo.extra_wide ? :full : :small)), photo, class: 'image' %>
     <div class="description">
       <p>
         <%= link_to photo.footer, photo %>
