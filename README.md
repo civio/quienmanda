@@ -69,6 +69,7 @@ Set up a daily auto-backup by enabling the add-on:
  * CanCan: authorization
  * StringEx: friendly URLs
  * RailsAdmin: the admin panel
+ * Kaminari: pagination
  * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
  * ActsAsTaggableOn: tags

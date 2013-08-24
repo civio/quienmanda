@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
-    @organizations = @organizations.order("updated_at DESC")
+    @organizations = @organizations.order("updated_at DESC").page params[:page]
   end
 
   # GET /organizations/1
