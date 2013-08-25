@@ -123,9 +123,11 @@ jQuery(document).ready(function($) {
 /* -------------------- Isotope --------------------- */
 /* dcabo: This was called on ready() in the original template, but images overlapped
           when using Turbolinks (only in Firefox, maybe). See discussion at
-          https://github.com/rails/turbolinks/issues/159 */
+          https://github.com/rails/turbolinks/issues/159 
+/* dcabo: Nah, undo, didn't fix it but broke the search page for some reason. Will
+          try something else. */
 
-jQuery(document).on('page:load', function () {
+jQuery(document).ready(function () {
   
   $('#wall').imagesLoaded(function() {
     
