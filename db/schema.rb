@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825161615) do
+ActiveRecord::Schema.define(version: 20130825173929) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -91,11 +91,13 @@ ActiveRecord::Schema.define(version: 20130825161615) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
-    t.string   "title",                      null: false
-    t.boolean  "published",  default: false, null: false
+    t.string   "title",                                null: false
+    t.boolean  "published",            default: false, null: false
     t.text     "notes"
     t.string   "slug"
-    t.boolean  "needs_work", default: true,  null: false
+    t.boolean  "needs_work",           default: true,  null: false
+    t.string   "photo"
+    t.boolean  "show_photo_as_header", default: false
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree

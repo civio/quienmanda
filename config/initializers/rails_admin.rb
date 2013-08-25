@@ -232,6 +232,10 @@ RailsAdmin.config do |config|
       end
       group :internal do
         label "Internal"
+        field :photo
+        field :show_photo_as_header do
+          default_value false
+        end
         field :published do
           default_value false
         end

@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
 
+  mount_uploader :photo, PhotoUploader
+
   include PgSearch
   multisearchable :against => [:title, :content], :if => :published?
 

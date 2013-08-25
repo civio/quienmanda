@@ -16,10 +16,12 @@
 
       <!-- start: Post -->
       <div class="post first last">
-          
+      
+        <% if @post.show_photo_as_header and !@post.photo.url.blank? %>
         <div class="post-img picture">
-          <!-- TODO <img src="img/heaven.jpg" alt="" /> -->
+          <%= image_tag(@post.photo.url(:full), class: 'image') %>
         </div>
+        <% end %>
         <div class="info">
           <span class="post-date">
             <span class="day"><%= @post.updated_at.day %></span>
