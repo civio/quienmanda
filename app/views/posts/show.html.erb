@@ -22,18 +22,17 @@
         </div>
         <div class="info">
           <span class="post-date">
-            <span class="day">1</span>
-            <span class="month-year">June, 2012</span>
+            <span class="day"><%= @post.updated_at.day %></span>
+            <span class="month-year"><%= @post.updated_at.strftime("%B %Y") %></span>
           </span>
-          <span class="post-icon standard"><i class="icon-camera-retro"></i></span>
         </div>
         <div class="post-content">
           <div class="post-title">
             <h2><%= @post.title %></h2>
           </div>
           <div class="post-meta">
-            <span><i class="icon-user"></i>By <a href="#"><%= @post.author.name %></a></span> 
-            <span><i class="icon-comments-alt"></i>With <a href="#">89 comments</a></span>
+            <span><i class="icon-user"></i>Por <a href="#"><%= @post.author.name %></a></span> 
+            <span><i class="icon-comments-alt"></i><a href="#">89 comentarios</a></span>
           </div>
           <div class="post-description">
             <%= raw(@content) %>
