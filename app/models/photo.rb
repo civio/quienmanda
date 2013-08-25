@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   has_many :related_entities, through: :entity_photo_associations, source: :entity
 
   include PgSearch
-  multisearchable :against => [:footer]
+  multisearchable :against => [:footer], :if => :published?
 
   mount_uploader :file, PhotoUploader
 

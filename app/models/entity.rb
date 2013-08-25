@@ -6,7 +6,7 @@ class Entity < ActiveRecord::Base
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
 
   include PgSearch
-  multisearchable :against => [:name, :short_name, :description]
+  multisearchable :against => [:name, :short_name, :description], :if => :published?
 
   extend Enumerize
   enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
