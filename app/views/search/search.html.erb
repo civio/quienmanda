@@ -1,0 +1,21 @@
+<!--start: Wrapper-->
+<div id="wrapper" class="full">       
+
+  <!--start: Row -->
+  <div class="row-fluid">
+
+    <div class="span8 separate">
+    <h3>Resultados para '<%= @query %>'</h3>
+
+    <ul>
+    <% @results.each do |result| %>
+      <li><%= result.searchable.name %></li>
+    <% end %>
+    </ul>
+
+    <%= paginate @results %>    
+    </div>
+
+  </div>
+
+</div>

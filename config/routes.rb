@@ -5,7 +5,6 @@ Quienmanda::Application.routes.draw do
 
   get '/admin/import' => 'import#import'
   post '/admin/commit' => 'import#commit'
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :posts, only: [:index, :show]
@@ -19,6 +18,9 @@ Quienmanda::Application.routes.draw do
       get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
     end
   end
+
+  # Global search
+  get '/search' => 'search#search', :as => 'search'
 
   # We add this route just so ShowInApp works in Rails Admin
   resources :entities, only: [:show]

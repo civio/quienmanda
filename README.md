@@ -70,6 +70,7 @@ Set up a daily auto-backup by enabling the add-on:
  * StringEx: friendly URLs
  * RailsAdmin: the admin panel
  * Kaminari: pagination
+ * pg_search: full text search (Postgres)
  * Carrierwave + Fog: imageuploads
  * CKEditor: rich-content editor
  * ActsAsTaggableOn: tags

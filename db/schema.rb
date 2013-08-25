@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824205902) do
+ActiveRecord::Schema.define(version: 20130825102612) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20130824205902) do
 
   add_index "facts_relations", ["fact_id"], name: "index_facts_relations_on_fact_id", using: :btree
   add_index "facts_relations", ["relation_id"], name: "index_facts_relations_on_relation_id", using: :btree
+
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "file"

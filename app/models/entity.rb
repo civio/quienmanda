@@ -1,14 +1,17 @@
 class Entity < ActiveRecord::Base
-  extend Enumerize
-  enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
-
-  mount_uploader :avatar, AvatarUploader
-
   has_many :entity_photo_associations, dependent: :delete_all
   has_many :related_photos, through: :entity_photo_associations, source: :photo
 
   has_many :relations_as_source, foreign_key: :source_id, class_name: Relation, inverse_of: :source
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
+
+  include PgSearch
+  multisearchable :against => [:name, :short_name, :description]
+
+  extend Enumerize
+  enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
+
+  mount_uploader :avatar, AvatarUploader
 
   # Note: sync_url=true won't work here, because we are using a function (short_or_long_name),
   # so acts_as_url (Stringex) can't detect when the attribute has changed. Bug or feature?
