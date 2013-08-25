@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825102612) do
+ActiveRecord::Schema.define(version: 20130825161615) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20130825102612) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "needs_work", default: true,  null: false
-    t.string   "footer"
+    t.text     "footer"
     t.string   "source"
     t.date     "date"
     t.text     "notes"
