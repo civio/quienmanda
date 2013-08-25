@@ -1,5 +1,6 @@
 <div class="span3 item">
   <div class="picture">
+    <%= link_to image_tag(item.photo.url(:small)), item, class: 'image' %>
     <div class="description">
       <p>
         <%= link_to item.title, post_path(item) %>

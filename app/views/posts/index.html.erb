@@ -1,37 +1,25 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
-  <!--start: Row -->
-  <div class="row-fluid">
-
-    <div class="span12">
-
-      <h2>Listing posts</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= link_to post.title, post %></td>
-              <td><%= link_to post.author.name, post %></td>
-              <td><%= link_to post.updated_at, post %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
-
-    <%= paginate @posts %>
-
-  </div>
+  <h2>Artículos</h2>
 
 </div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid">
+            
+    <% @posts.each do |post| %>
+      <%= render '/shared/show_post', :item => post %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+  
+  <%= paginate @posts %>
+
+</div>
+<!-- end: Wrapper  -->
