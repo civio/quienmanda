@@ -1,0 +1,10 @@
+<div class="span3 item">
+  <div class="picture">
+    <div class="description">
+      <p>
+        <%= link_to item.title, post_path(item) %>
+      </p>
+      <%= render 'shared/show_admin_links', :item => item %>
+    </div>
+  </div>  
+</div>

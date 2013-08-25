@@ -1,15 +1,15 @@
-<div class="<%= photo.extra_wide? ? 'span6': 'span3' %> item">
+<div class="<%= item.extra_wide? ? 'span6': 'span3' %> item">
   <div class="picture">
-    <%= link_to image_tag(photo.file.url(photo.extra_wide ? :full : :small)), photo, class: 'image' %>
+    <%= link_to image_tag(item.file.url(item.extra_wide ? :full : :small)), item, class: 'image' %>
     <div class="description">
       <p>
-        <%= link_to photo.footer, photo %>
+        <%= link_to item.footer, item %>
       </p>
       <p>
-        &copy; <%= link_to photo.copyright, photo.source %>
+        &copy; <%= link_to item.copyright, item.source %>
       </p>
 
-      <%= render 'shared/show_admin_links', :item => photo %>
+      <%= render 'shared/show_admin_links', :item => item %>
     </div>
   </div>  
 </div>

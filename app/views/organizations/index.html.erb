@@ -13,7 +13,7 @@
   <div id="wall" class="row-fluid">
             
     <% @organizations.each do |organization| %>
-      <%= render 'show_organization', :entity => organization %>
+      <%= render '/shared/show_organization', :item => organization %>
     <% end %>
 
   </div>

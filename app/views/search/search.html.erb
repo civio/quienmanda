@@ -1,21 +1,25 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
-  <!--start: Row -->
-  <div class="row-fluid">
-
-    <div class="span8 separate">
-    <h3>Resultados para '<%= @query %>'</h3>
-
-    <ul>
-    <% @results.each do |result| %>
-      <li><%= result.searchable.name %></li>
-    <% end %>
-    </ul>
-
-    <%= paginate @results %>    
-    </div>
-
-  </div>
+  <h2>Resultados para '<%= @query %>'</h2>
 
 </div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid">
+            
+    <% @results.each do |result| %>
+      <%= render partial_name(result.searchable), :item => result.searchable %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+
+  <%= paginate @results %>
+  
+</div>
+<!-- end: Wrapper  -->

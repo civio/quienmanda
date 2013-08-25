@@ -1,0 +1,16 @@
+<div class="span3 item">
+  <div class="picture">
+    <%= link_to image_tag(item.avatar.url ? item.avatar.url : 'avatar.png'), 
+                person_path(item), class: 'image' %>
+    <div class="description">
+      <p>
+        <%= link_to item.short_or_long_name, person_path(item) %>
+      </p>
+      <p>
+        <%= item.description %>
+      </p>
+
+      <%= render 'shared/show_admin_links', :item => item %>
+    </div>
+  </div>  
+</div>
