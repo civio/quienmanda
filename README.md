@@ -65,15 +65,15 @@ Set up a daily auto-backup by enabling the add-on:
 ### Tools used
 
  * Ruby 2.0 / Rails 4.0 / Rspec
- * Devise: authentication
- * CanCan: authorization
- * StringEx: friendly URLs
- * RailsAdmin: the admin panel
- * Kaminari: pagination
- * pg_search: full text search (Postgres)
- * Carrierwave + Fog: imageuploads
- * CKEditor: rich-content editor
- * ActsAsTaggableOn: tags
+ * [Devise](https://github.com/plataformatec/devise): authentication
+ * [CanCan](https://github.com/ryanb/cancan): authorization
+ * [StringEx](https://github.com/rsl/stringex): friendly URLs
+ * [RailsAdmin](https://github.com/sferik/rails_admin): the admin panel
+ * [Kaminari](https://github.com/amatsuda/kaminari): pagination
+ * [pg_search](https://github.com/casecommons/pg_search): full text search (Postgres)
+ * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) + [Fog](https://github.com/fog/fog): imageuploads
+ * [CKEditor](https://github.com/tsechingho/ckeditor-rails): rich-content editor
+ * [ActsAsTaggableOn](https://github.com/mbleigh/acts-as-taggable-on): tags
  * NewRelic: performance monitoring
  
 ### Transferring database from production to local
