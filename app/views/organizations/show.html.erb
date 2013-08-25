@@ -12,6 +12,8 @@
       <%= @organization.short_name %>
     </p>
 
+    <%= render '/shared/needs_work' %>
+
     <h3>Relaciones</h3>
     <%= render "shared/entities_list", :list => @relations %>
 
