@@ -23,7 +23,7 @@
         <div class="info">
           <span class="post-date">
             <span class="day"><%= @post.updated_at.day %></span>
-            <span class="month-year"><%= @post.updated_at.strftime("%B %Y") %></span>
+            <span class="month-year"><%= I18n.localize(@post.updated_at, :format => "%B %Y") %></span>
           </span>
         </div>
         <div class="post-content">

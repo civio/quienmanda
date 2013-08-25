@@ -62,6 +62,7 @@ gem 'acts-as-taggable-on'
 gem 'shortcodes'
 gem 'font-awesome-rails'
 gem 'unicode_utils'
+gem 'rails-i18n', '~> 4.0.0.pre'
 
 # Admin interface
 gem 'rails_admin'
