@@ -3,7 +3,7 @@
     <%= link_to image_tag(item.file.url(item.extra_wide ? :full : :small)), item, class: 'image' %>
     <div class="description">
       <p>
-        <%= link_to item.footer, item %>
+        <%= link_to raw(item.footer), item %>
       </p>
       <p>
         <% if !item.source.blank? %>
