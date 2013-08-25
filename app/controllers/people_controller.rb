@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
-    @people = @people.order("updated_at DESC").page(params[:page]).per(15)
+    @people = @people.order("updated_at DESC").page(params[:page]).per(16)
   end
 
   # GET /people/1
