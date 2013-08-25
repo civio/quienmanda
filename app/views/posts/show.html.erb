@@ -28,13 +28,12 @@
             <span class="month-year"><%= I18n.localize(@post.updated_at, :format => "%B %Y") %></span>
           </span>
         </div>
+        <div class="post-title clearfix">
+          <h2><%= @post.lead %></h2>
+        </div>
         <div class="post-content">
-          <div class="post-title">
-            <h2><%= @post.title %></h2>
-          </div>
           <div class="post-meta">
             <span><i class="icon-user"></i>Por <a href="#"><%= @post.author.name %></a></span> 
-            <span><i class="icon-comments-alt"></i><a href="#">89 comentarios</a></span>
           </div>
           <div class="post-description">
             <%= raw(@content) %>

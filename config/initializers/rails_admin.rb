@@ -223,6 +223,7 @@ RailsAdmin.config do |config|
       group :basic_info do
         label "Content"
         field :title
+        field :lead
         field :content, :ck_editor do 
           help 'Puedes insertar códigos como: [dc url="..."] [qm url="..." text="..."] [gdocs url="..."]'
         end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825173929) do
+ActiveRecord::Schema.define(version: 20130825181909) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20130825173929) do
     t.boolean  "needs_work",           default: true,  null: false
     t.string   "photo"
     t.boolean  "show_photo_as_header", default: false
+    t.text     "lead"
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
