@@ -31,7 +31,7 @@ body {
   font-weight: 400;
   background: #ccc;
   color: #000;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .noMargin {
@@ -603,7 +603,7 @@ header {
   margin: 0 auto;
   background: #ccc;
   font-family: 'Economica', Arial, sans-serif !important;
-  color: rgba(180,180,180,.8);
+  color: #444;
   text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
   font-size: 30px;
 }
@@ -736,6 +736,7 @@ header {
   border-bottom: 1px solid rgba(0,0,0,.08);
   margin: 0 -20px;
   padding: 20px 20px;
+  text-align: justify;
 }
 
 #wrapper .posts .post.first {
@@ -822,6 +823,11 @@ header {
   margin-top: 0px;
 }
 
+.post-title h2 {
+  line-height: 30px;
+  margin: 10px 0 20px 0;
+}
+
 .post .post-date {
   display: block;
   background: transparent;
@@ -863,7 +869,7 @@ header {
 
 .post .post-meta {
   color: #666;
-  margin: -10px 0px 0px 90px;
+  margin: -10px 0px 0px 0px;
   padding: 10px 0px;  
 }
 
