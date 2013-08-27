@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825181909) do
+ActiveRecord::Schema.define(version: 20130827173728) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130825181909) do
     t.string   "avatar"
     t.string   "web_page"
     t.string   "open_corporates_page"
+    t.string   "youtube_page"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree

@@ -108,6 +108,7 @@ RailsAdmin.config do |config|
         field :facebook_page
         field :open_corporates_page
         field :flickr_page
+        field :youtube_page
         field :linkedin_page
       end
       group :relations do
