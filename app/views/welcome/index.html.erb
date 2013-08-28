@@ -1,13 +1,26 @@
 <!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full">
+  
+  <!-- start: Flexslider -->
+  <div class="slider">
+    <div id="flex1" class="flexslider home">
+      <ul class="slides">
 
-  <!--start: Row -->
-  <div class="row-fluid">
+        <% @frontpage.each do |post| %>
+        <li>
+          <%= link_to post, class: 'image' do %>
+          <%= image_tag(post.photo.url()) %>
+          <div class="slide-caption n">
+            <h3><%= post.title %></h3>
+          </div>
+          <% end %>
+        </li>
+        <% end %>
 
-    <div class="span8 separate">
-    Hola Mundo
+      </ul>
     </div>
-
   </div>
+  <!-- end: Flexslider -->
 
 </div>
+<!-- end: Wrapper  -->  
