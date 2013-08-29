@@ -19,7 +19,7 @@
 
       <h3>Fotos</h3>
       <% @person.related_photos.each do |photo| %>
-        <%= render 'shared/show_photo', :photo => photo %>
+        <%= render 'shared/show_photo', :item => photo %>
       <% end %>
 
       <div style="clear:both">
