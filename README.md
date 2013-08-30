@@ -43,10 +43,11 @@ There is a nice guide [here][1], but basically:
     $ heroku run rake db:setup
     $ heroku apps:open
     
-The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise.
+The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c].)
 
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
 [1b]: https://github.com/mbleigh/acts-as-taggable-on/issues/192
+[1c]: https://github.com/mbleigh/acts-as-taggable-on/issues/192#issuecomment-23538713
 
 In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. So, make a copy of `config/application.yml-example` into `config/application.yml` and fill it with your actual details. Then, run `rake figaro:heroku` to set the env variables in Heroku.
 
