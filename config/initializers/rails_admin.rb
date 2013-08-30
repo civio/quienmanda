@@ -98,7 +98,7 @@ RailsAdmin.config do |config|
         field :short_name
         field :description
         field :priority do
-          default_value :medium
+          default_value Entity::PRIORITY_MEDIUM
         end
         field :avatar
       end
