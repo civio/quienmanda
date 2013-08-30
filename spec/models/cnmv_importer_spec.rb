@@ -369,10 +369,10 @@ describe CnmvImporter do
     def create_entity(attributes); @importer.send(:create_entity, attributes); end
 
     it 'create entity as specified' do
-      entity = create_entity({name: 'foobar', person: true, priority: :high, needs_work: false, published: true})
+      entity = create_entity({name: 'foobar', person: true, priority: '1', needs_work: false, published: true})
       entity.name.should == 'Foobar'
       entity.person.should == true
-      entity.priority.should == 'high'
+      entity.priority.should == Entity::PRIORITY_HIGH
       entity.needs_work.should == false
       entity.published.should == true
     end
@@ -381,7 +381,7 @@ describe CnmvImporter do
       entity = create_entity({name: 'foobar'})
       entity.name.should == 'Foobar'
       entity.person.should == true
-      entity.priority.should == 'medium'
+      entity.priority.should == Entity::PRIORITY_MEDIUM
       entity.needs_work.should == true
       entity.published.should == false
     end

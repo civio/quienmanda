@@ -70,8 +70,6 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
-    enumerize (0.7.0)
-      activesupport (>= 3.2)
     erubis (2.7.0)
     excon (0.25.3)
     execjs (2.0.1)
@@ -270,7 +268,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   coveralls
   devise
-  enumerize
   factory_girl_rails
   figaro
   fog

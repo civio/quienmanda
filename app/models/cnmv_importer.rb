@@ -174,7 +174,7 @@ class CnmvImporter < Importer
     # Create the entity with values when specified (and with defaults otherwise)
     # TODO: It probably makes more sense to clone the original Hash and fill it in
     is_a_person = attributes[:person].nil? ? is_a_person(name) : attributes[:person]
-    priority = attributes[:priority] || :medium
+    priority = attributes[:priority] || Entity::PRIORITY_MEDIUM
     needs_work = attributes[:needs_work].nil? ? true : attributes[:needs_work]
     published = attributes[:published].nil? ? false : attributes[:published]
     entity = Entity.create!(name: name, 

@@ -6,7 +6,7 @@ FactoryGirl.define do
     name "A public person"
     slug "a-public-person"
     published true
-    priority 1
+    priority '1'
   end
 
   factory :private_person, class: Entity do
@@ -14,7 +14,7 @@ FactoryGirl.define do
     name "A private person"
     slug "a-private-person"
     published false
-    priority 1
+    priority '1'
   end
 
   factory :public_organization, class: Entity do
@@ -22,7 +22,7 @@ FactoryGirl.define do
     name "A public organization"
     slug "a-public-organization"
     published true
-    priority 1
+    priority '1'
   end
 
   factory :private_organization, class: Entity do
@@ -30,7 +30,7 @@ FactoryGirl.define do
     name "A private organization"
     slug "a-private-organization"
     published false
-    priority 1
+    priority '1'
   end
 end
 

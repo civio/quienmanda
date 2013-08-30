@@ -10,9 +10,6 @@ class Entity < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:name, :short_name, :description], :if => :published?
 
-  extend Enumerize
-  enumerize :priority, in: {:high => 1, :medium => 2, :low => 3}
-
   mount_uploader :avatar, AvatarUploader
 
   # Note: sync_url=true won't work here, because we are using a function (short_or_long_name),
@@ -22,8 +19,14 @@ class Entity < ActiveRecord::Base
     slug
   end
 
+  # Priorities
+  PRIORITIES = [PRIORITY_HIGH = '1', PRIORITY_MEDIUM = '2', PRIORITY_LOW = '3']
+  def priority_enum
+    [ [ 'High', PRIORITY_HIGH ], [ 'Medium', PRIORITY_MEDIUM ], [ 'Low', PRIORITY_LOW ] ]
+  end
+
   validates :name, presence: true, uniqueness: true
-  validates :priority, presence: true
+  validates :priority, inclusion: {in: PRIORITIES}
   validates :description, length: { maximum: 90 }
 
   scope :published, -> { where(published: true) }
