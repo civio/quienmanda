@@ -25,11 +25,13 @@ RailsAdmin.config do |config|
     dashboard
     index
     new
+    history_index
     show
     edit
-    show_in_app
     delete
+    history_show
     toggle
+    show_in_app
   end
 
   # Add our own custom admin stuff
@@ -42,7 +44,7 @@ RailsAdmin.config do |config|
   # config.audit_with :history, 'User'
 
   # Or with a PaperTrail: (you need to install it first)
-  # config.audit_with :paper_trail, 'User'
+  config.audit_with :paper_trail, 'User'
 
   # Display empty fields in show views:
   # config.compact_show_view = false

@@ -73,6 +73,7 @@ Set up a daily auto-backup by enabling the add-on:
  * [Kaminari](https://github.com/amatsuda/kaminari): pagination
  * [pg_search](https://github.com/casecommons/pg_search): full text search (Postgres)
  * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) + [Fog](https://github.com/fog/fog): imageuploads
+ * [PaperTrail](https://github.com/airblade/paper_trail): version control
  * [CKEditor](https://github.com/tsechingho/ckeditor-rails): rich-content editor
  * [ActsAsTaggableOn](https://github.com/mbleigh/acts-as-taggable-on): tags
  * NewRelic: performance monitoring

@@ -69,6 +69,7 @@ gem 'rails_admin'
 gem 'rails_admin_toggleable'
 gem 'rails_admin_tag_list'
 gem 'ckeditor_rails', :git => 'https://github.com/dcabo/ckeditor-rails.git'
+gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 gem 'enumerize'
 
 # Picture upload and handling

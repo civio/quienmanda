@@ -3,6 +3,8 @@ class Relation < ActiveRecord::Base
   belongs_to :target, foreign_key: :target_id, class_name: Entity, inverse_of: :relations_as_target
   belongs_to :relation_type, inverse_of: :relations
 
+  has_paper_trail
+
   has_and_belongs_to_many :facts
 
   validates :source, :target, :relation_type, presence: true

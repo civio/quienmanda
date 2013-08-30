@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
 
+  has_paper_trail
+
   mount_uploader :photo, PhotoUploader
 
   include PgSearch
