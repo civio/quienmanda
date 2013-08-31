@@ -70,5 +70,13 @@ describe Post do
       references.size.should == 0
       post.content.should == 'He is just a <a href="http://qm.es/people/random-guy" class="broken-link">random guy</a>'
     end
+
+    it 'marks links that reference things we know nothing about' do
+      content = 'He is just <a href="http://qm.es/stuff/weird">weird</a>'
+      post = create(:public_post, content: content)
+      references = post.extract_references('qm.es', @extractors)
+      references.size.should == 0
+      post.content.should == 'He is just <a href="http://qm.es/stuff/weird" class="unknown-link">weird</a>'
+    end
   end
 end

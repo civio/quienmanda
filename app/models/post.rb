@@ -23,10 +23,20 @@ class Post < ActiveRecord::Base
     references = []
     doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
     doc.css('a').each do |link|                       # Check all links
+      result = lookup_link(domain_name, extractors, link)
+      references << result unless result.nil?         # Keep the related object, if found
+    end
+    self.content = doc.to_html                        # Save changes and...
+    references                                        # return found references
+  end
+
+  private
+
+    def lookup_link(domain_name, extractors, link)
       begin
         uri = URI(link['href'])
         uri.host =~ /(^|\.)#{domain_name}$/           # Allow subdomains too
-        next unless $~
+        return nil unless $~
 
         extractors.each do |extractor|                # If any extractor matches...
           uri.path =~ extractor[:regex]
@@ -35,17 +45,15 @@ class Post < ActiveRecord::Base
           ref = extractor[:method].call($1)           # Try to find related object
           if !ref.nil?
             link['target'] = '_blank'                 # Add a _blank target
-            references << ref                         # Keep the related object, if found
           else
             link['class'] = 'broken-link'             # Mark the link as broken for display
           end
-          break # extractor loop
+          return ref
         end
       rescue URI::InvalidURIError
         # Nothing to see here, move along (we just ignore invalid links)
       end
+      link['class'] = 'unknown-link'                  # Mark the link as unknown for display
+      nil
     end
-    self.content = doc.to_html                        # Save changes and...
-    references                                        # return found references
-  end
 end
