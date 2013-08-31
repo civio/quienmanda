@@ -62,5 +62,13 @@ describe Post do
       post.content.should ==  'He is a <a href="http://www.qm.es/people/big-shot" target="_blank">' + 
         'big shot</a> at a <a href="http://www.qm.es/orgs/big-company" target="_blank">big company</a>.'
     end
+
+    it 'marks references to non existent entities' do
+      content = 'He is just a <a href="http://qm.es/people/random-guy">random guy</a>'
+      post = create(:public_post, content: content)
+      references = post.extract_references('qm.es', @extractors)
+      references.size.should == 0
+      post.content.should == 'He is just a <a href="http://qm.es/people/random-guy" class="broken-link">random guy</a>'
+    end
   end
 end

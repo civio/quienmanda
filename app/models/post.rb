@@ -25,11 +25,16 @@ class Post < ActiveRecord::Base
     doc.css('a').each do |link|                         # Check all links
       begin
         uri = URI(link['href'])
-        if uri.host =~ /(^|\.)#{domain_name}$/            # Allow subdomains too
-          extractors.each do |extractor|                  # If any extractor matches...
+        if uri.host =~ /(^|\.)#{domain_name}$/          # Allow subdomains too
+          extractors.each do |extractor|                # If any extractor matches...
             if uri.path =~ extractor[:regex] 
-              link['target'] = '_blank'                   # Add a _blank target
-              references << extractor[:method].call($1)   # Keep the related object
+              ref = extractor[:method].call($1)         # Try to find related object
+              if !ref.nil?
+                link['target'] = '_blank'               # Add a _blank target
+                references << ref                       # Keep the related object, if found
+              else
+                link['class'] = 'broken-link'           # Mark the link as broken for display
+              end
               break # extractor loop
             end
           end

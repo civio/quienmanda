@@ -1,0 +1,5 @@
+/* For internal use, detect automatically internal broken links in posts and highlight */
+.broken-link {
+  background-color: red;
+  text-shadow: none;
+}

@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     authorize! :read, @post
-    @content = Shortcodes.shortcode(@post.content)
 
     # FIXME: Remove hardcoded stuff
     extractors = [
@@ -22,6 +21,9 @@ class PostsController < ApplicationController
       { regex: /^\/organizations\/(.*)$/, method: ->(slug) { Entity.find_by_slug(slug) } }
     ]
     @related_entities = @post.extract_references('qmqm.herokuapp.com', extractors)
+
+    # Parse shortcodes (do this after we've parsed the post looking for QM references)
+    @content = Shortcodes.shortcode(@post.content)
   end
 
   private
