@@ -3,3 +3,54 @@
   background-color: red;
   text-shadow: none;
 }
+
+/* Import page */
+.field-match {
+  color: green;
+}
+
+.field-match-warning {
+  color: orange;
+}
+
+.field-match-fail {
+  color: red;
+}
+
+/* Search box */
+/* Taken from http://bootsnipp.com/snipps/stylish-search-form */
+#custom-search-form {
+  margin:0;
+  margin-top: 10px;
+  padding: 0;
+}
+
+#custom-search-form .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#custom-search-form button {
+  border: 0;
+  background: none;
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.search-query:focus + button {
+  z-index: 3;
+}
