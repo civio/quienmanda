@@ -22,28 +22,30 @@ class Post < ActiveRecord::Base
   def extract_references(domain_name, extractors)
     references = []
     doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
-    doc.css('a').each do |link|                         # Check all links
+    doc.css('a').each do |link|                       # Check all links
       begin
         uri = URI(link['href'])
-        if uri.host =~ /(^|\.)#{domain_name}$/          # Allow subdomains too
-          extractors.each do |extractor|                # If any extractor matches...
-            if uri.path =~ extractor[:regex] 
-              ref = extractor[:method].call($1)         # Try to find related object
-              if !ref.nil?
-                link['target'] = '_blank'               # Add a _blank target
-                references << ref                       # Keep the related object, if found
-              else
-                link['class'] = 'broken-link'           # Mark the link as broken for display
-              end
-              break # extractor loop
-            end
+        uri.host =~ /(^|\.)#{domain_name}$/           # Allow subdomains too
+        next unless $~
+
+        extractors.each do |extractor|                # If any extractor matches...
+          uri.path =~ extractor[:regex]
+          next unless $~
+
+          ref = extractor[:method].call($1)           # Try to find related object
+          if !ref.nil?
+            link['target'] = '_blank'                 # Add a _blank target
+            references << ref                         # Keep the related object, if found
+          else
+            link['class'] = 'broken-link'             # Mark the link as broken for display
           end
+          break # extractor loop
         end
       rescue URI::InvalidURIError
-        # Nothing to see here, move along
+        # Nothing to see here, move along (we just ignore invalid links)
       end
     end
-    self.content = doc.to_html                          # Save changes and...
-    references                                          # return found references
+    self.content = doc.to_html                        # Save changes and...
+    references                                        # return found references
   end
 end
