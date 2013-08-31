@@ -77,6 +77,7 @@ Set up a daily auto-backup by enabling the add-on:
  * [CKEditor](https://github.com/tsechingho/ckeditor-rails): rich-content editor
  * [ActsAsTaggableOn](https://github.com/mbleigh/acts-as-taggable-on): tags
  * NewRelic: performance monitoring
+ * [Shortcode](https://github.com/carnesmedia/shortcodes)
  
 ### Transferring database from production to local
 
