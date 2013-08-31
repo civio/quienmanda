@@ -23,15 +23,19 @@ class Post < ActiveRecord::Base
     references = []
     doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
     doc.css('a').each do |link|                         # Check all links
-      uri = URI(link['href'])
-      if uri.host =~ /(^|\.)#{domain_name}$/            # Allow subdomains too
-        extractors.each do |extractor|                  # If any extractor matches...
-          if uri.path =~ extractor[:regex] 
-            link['target'] = '_blank'                   # Add a _blank target
-            references << extractor[:method].call($1)   # Keep the related object
-            break # extractor loop
+      begin
+        uri = URI(link['href'])
+        if uri.host =~ /(^|\.)#{domain_name}$/            # Allow subdomains too
+          extractors.each do |extractor|                  # If any extractor matches...
+            if uri.path =~ extractor[:regex] 
+              link['target'] = '_blank'                   # Add a _blank target
+              references << extractor[:method].call($1)   # Keep the related object
+              break # extractor loop
+            end
           end
         end
+      rescue URI::InvalidURIError
+        # Nothing to see here, move along
       end
     end
     self.content = doc.to_html                          # Save changes and...

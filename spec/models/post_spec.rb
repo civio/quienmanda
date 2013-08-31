@@ -20,6 +20,13 @@ describe Post do
       post.content.should == content
     end
 
+    it 'does not break if an invalid url is found' do
+      content = 'Hello <a href="crap:foobár">world</a>'
+      post = create(:public_post, content: content)
+      references = post.extract_references('qm.es', @extractors)
+      references.should == []
+    end
+
     it 'returns list of referenced people' do
       content = 'He is a <a href="http://qm.es/people/big-shot">big shot</a>'
       post = create(:public_post, content: content)
