@@ -1,3 +1,13 @@
+/* Post page */
+.post-description a {
+  border-bottom: 1px black dotted;
+}
+
+.post-description a:hover {
+  text-decoration: none;
+  border-bottom: 1px black solid;
+}
+
 /* For internal use, detect automatically internal broken links in posts and highlight */
 .broken-link {
   background-color: red;
