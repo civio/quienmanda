@@ -56,13 +56,15 @@
 
       <!-- start: Sidebar Menu -->
       <div class="widget">
-        <h3>Menu</h3>
+        <h3>Entidades</h3>
         <ul class="links-list-alt">
-          <li><a href="full_width.html">Full Width</a></li>
-          <li><a href="sidebar.html">Sidebar</a></li>
-          <li><a href="post.html">Single Post</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="pricing_tables.html">Pricing Tables</a></li>
+
+          <% @related_entities.each do |entity| %>
+          <li>
+            <%= link_to entity.name, entity_path(entity) %>
+          </li>
+          <% end %>
+
         </ul>
       </div>
       <!-- end: Sidebar Menu -->
