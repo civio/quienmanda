@@ -14,16 +14,6 @@
 /* Import Section
 =================================================================== */
 
-/* TODO: Go through these and move to application.css if really needed
-  import url("social-icons.css"); -> DONE
-  import url("font-awesome.css"); -> DONE
-  import url("font-awesome-ie7.css"); -> NAH
-  
-  import url("fancybox.css");
-  import url("glyphicons.css");
-  import url("halflings.css");
-*/
-
 html { -webkit-font-smoothing: antialiased; }
 
 body {
