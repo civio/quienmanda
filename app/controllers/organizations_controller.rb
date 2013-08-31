@@ -16,7 +16,6 @@ class OrganizationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Entity.organizations.find_by_slug(params[:id])
     end
