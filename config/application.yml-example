@@ -6,3 +6,6 @@ S3_REGION: eu-west-1
 S3_BUCKET_NAME: quienmanda
 
 NEW_RELIC_KEY: put-your-new-relic-key-here
+
+# Optional. Used to extract references from post contents
+DOMAIN_NAME: quienmanda.es

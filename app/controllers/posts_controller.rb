@@ -16,12 +16,11 @@ class PostsController < ApplicationController
     authorize! :read, @post
 
     Rails.application.routes.url_helpers.tap do |router|
-      # FIXME: Remove hardcoded stuff
       extractors = [
         { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
         { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } }
       ]
-      @related_entities = @post.extract_references('qmqm.herokuapp.com', extractors)
+      @related_entities = @post.extract_references(get_domain_name, extractors)
     end
 
     # Parse shortcodes (do this after we've parsed the post looking for QM references)
@@ -31,5 +30,9 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find_by_slug(params[:id])
+    end
+
+    def get_domain_name
+      ENV['DOMAIN_NAME'].blank? ? request.domain : ENV['DOMAIN_NAME']
     end
 end
