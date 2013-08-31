@@ -278,6 +278,7 @@ DEPENDENCIES
   kaminari
   mini_magick
   newrelic_rpm
+  nokogiri
   paper_trail!
   pg
   pg_search

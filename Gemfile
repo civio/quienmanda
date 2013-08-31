@@ -63,6 +63,7 @@ gem 'shortcodes'
 gem 'font-awesome-rails'
 gem 'unicode_utils'
 gem 'rails-i18n', '~> 4.0.0.pre'
+gem 'nokogiri'
 
 # Admin interface
 gem 'rails_admin'
