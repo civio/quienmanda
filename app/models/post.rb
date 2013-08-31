@@ -21,17 +21,20 @@ class Post < ActiveRecord::Base
   # Extract references to other entities from content
   def extract_references(domain_name, extractors)
     references = []
-    Nokogiri::HTML(content).css('a').each do |link|
+    doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
+    doc.css('a').each do |link|                         # Check all links
       uri = URI(link['href'])
-      if uri.host =~ /(^|\.)#{domain_name}$/  # Allow subdomains too
-        extractors.each do |extractor|
+      if uri.host =~ /(^|\.)#{domain_name}$/            # Allow subdomains too
+        extractors.each do |extractor|                  # If any extractor matches...
           if uri.path =~ extractor[:regex] 
-            references << extractor[:method].call($1)
+            link['target'] = '_blank'                   # Add a _blank target
+            references << extractor[:method].call($1)   # Keep the related object
             break # extractor loop
           end
         end
       end
     end
-    references
+    self.content = doc.to_html                          # Save changes and...
+    references                                          # return found references
   end
 end
