@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
         return nil unless $~
 
         extractors.each do |extractor|                # If any extractor matches...
-          uri.path =~ extractor[:regex]
+          uri.path =~ /^#{extractor[:prefix]}\/(.*)$/
           next unless $~
 
           ref = extractor[:method].call($1)           # Try to find related object

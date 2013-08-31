@@ -15,12 +15,14 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
 
-    # FIXME: Remove hardcoded stuff
-    extractors = [
-      { regex: /^\/people\/(.*)$/, method: ->(slug) { Entity.find_by_slug(slug) } },
-      { regex: /^\/organizations\/(.*)$/, method: ->(slug) { Entity.find_by_slug(slug) } }
-    ]
-    @related_entities = @post.extract_references('qmqm.herokuapp.com', extractors)
+    Rails.application.routes.url_helpers.tap do |router|
+      # FIXME: Remove hardcoded stuff
+      extractors = [
+        { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
+        { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } }
+      ]
+      @related_entities = @post.extract_references('qmqm.herokuapp.com', extractors)
+    end
 
     # Parse shortcodes (do this after we've parsed the post looking for QM references)
     @content = Shortcodes.shortcode(@post.content)

@@ -7,8 +7,8 @@ describe Post do
       @public_organization = create(:public_organization, name: "Big company", slug: "big-company")
 
       @extractors = [
-        { regex: /^\/people\/(.*)$/, method: ->(slug) { Entity.find_by_slug(slug) } },
-        { regex: /^\/orgs\/(.*)$/, method: ->(slug) { Entity.find_by_slug(slug) } }
+        { prefix: '/people', method: ->(slug) { Entity.find_by_slug(slug) } },
+        { prefix: '/orgs', method: ->(slug) { Entity.find_by_slug(slug) } }
       ]
     end
 
