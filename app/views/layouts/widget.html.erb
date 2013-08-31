@@ -1,0 +1,40 @@
+<html>
+<head>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <style>
+    body {
+      color: #242424;
+      font-size: 14px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    .picture {
+      border: 3px;
+      padding: 10px 10px 0px 10px;
+    }
+    a {
+      text-decoration: none;
+      color: #242424;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="span6 item">
+    <div class="picture">
+      <%= link_to image_tag(@photo.file.url(:full), width: '100%'), @photo, target: '_blank', class: 'image' %>
+
+      <div class="description">
+        <p>
+          <%= link_to raw(@photo.footer), @photo, target: '_blank' %>
+        </p>
+        <p>
+          <i class="icon-external-link-sign"></i>
+          <%= link_to @photo.copyright, @photo.source, target: '_blank' %>
+        </p>
+      </div>
+    </div>  
+  </div>
+</body>
+</html>

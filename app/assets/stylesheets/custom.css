@@ -8,6 +8,10 @@
   border-bottom: 1px black solid;
 }
 
+div.quienmanda-embed-wrapper {
+  margin-left: 20px;
+}
+
 /* For internal use, detect automatically internal broken links in posts and highlight */
 .broken-link {
   background-color: red;

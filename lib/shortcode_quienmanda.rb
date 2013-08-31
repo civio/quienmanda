@@ -7,16 +7,25 @@ module Shortcodes
       shortcode.attributes.fetch('url')
     end
 
-    def text
-      fallback = URI(url).path.split('/').last
-      shortcode.attributes.fetch('text', fallback)
+    def width
+      attributes.fetch('width', 500)
     end
 
     def render
       template = <<TEMPLATE
-  <a href="#{url}" target="_blank">#{text}</a>
+<div class="quienmanda-embed-wrapper">
+<script>
+  function resizeIframe(iframe) {
+    iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+  }  
+</script>
+<iframe class="quienmanda-embed" onload="resizeIframe(this)" frameborder="0" width="#{width}"
+  style="display: block; border-style: solid; border-color: #FAFAFA; border-radius: 4px 4px 4px 4px; border-right: 1px solid #FAFAFA; border-width: 2px 1px 1px; margin: 10px 0px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), 0 3px 1px rgba(0, 0, 0, 0.05);"
+  height="0" scrolling="no" src="#{url}?widget=1">
+</iframe>
+</div>
 TEMPLATE
-      template.strip
+      template
     end
 
     Shortcodes.register_shortcode('qm', self)

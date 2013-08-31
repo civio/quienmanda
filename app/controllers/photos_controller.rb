@@ -1,6 +1,8 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show]
 
+  layout proc { |controller| controller.request.params[:widget].blank? ? 'application' : 'widget' }
+
   # GET /photos
   # GET /photos.json
   def index
