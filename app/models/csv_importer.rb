@@ -1,13 +1,9 @@
 # FIXME: Lots of duplication with CNMVImporter, need to make that extend this
 class CsvImporter < Importer
-  SOURCE_NAME = 'source'
-  ROLE_NAME = 'role'
-  TARGET_NAME = 'target'
-
   COMPANY_ENDINGS = [/(, S\.A\.)/i, /(, S\.L\.)/i, /(, N\.V\.)/i]
 
-  def initialize(create_missing_entities: false)
-    super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
+  def initialize(source_name: 'source', role_name: 'role', target_name: 'target', create_missing_entities: false)
+    super(source_name: source_name, role_name: role_name, target_name: target_name)
     @create_missing_entities = create_missing_entities
   end
 
@@ -30,15 +26,15 @@ class CsvImporter < Importer
   def create_relation(fact, match_result)
     # Do nothing if the we miss one of the basic elements of a relation
     if match_result[:relation_type].nil?
-      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[ROLE_NAME]}'...")
+      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[role_name]}'...")
       return
     end
     if match_result[:source].nil?
-      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[SOURCE_NAME]}'...")
+      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[source_name]}'...")
       return
     end
     if match_result[:target].nil?
-      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[TARGET_NAME]}'...")
+      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[target_name]}'...")
       return
     end
 

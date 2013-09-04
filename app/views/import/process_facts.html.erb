@@ -84,19 +84,17 @@
               relation_type = result[:relation_type]
               target = result[:target]
               matched = !source.nil? && !relation_type.nil? && !target.nil?
-
-              # FIXME: Hardcoded CNMV column names below
            %>
           <tr class="<%= matched ? 'import-match' : 'import-fail' %>">
             <td><i class="icon-<%= matched ? 'ok' : 'remove' %>"></i></td>
             <td class="<%= source ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{source && source.short_or_long_name} (#{result[:fact].properties['Nombre']})" %>
+              <%= "#{source && source.short_or_long_name} (#{result[:fact].properties[@importer.source_name]})" %>
             </td>
             <td class="<%= relation_type ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{relation_type && relation_type.description} (#{result[:fact].properties['Cargo']})" %></td>
+              <%= "#{relation_type && relation_type.description} (#{result[:fact].properties[@importer.role_name]})" %></td>
             </td>
             <td class="<%= target ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{target && target.short_or_long_name} (#{result[:fact].properties['Empresa']})" %></td>
+              <%= "#{target && target.short_or_long_name} (#{result[:fact].properties[@importer.target_name]})" %></td>
             </td>
           </tr>
           <% end %>

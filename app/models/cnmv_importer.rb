@@ -1,12 +1,8 @@
 class CnmvImporter < Importer
-  SOURCE_NAME = 'Nombre'
-  ROLE_NAME = 'Cargo'
-  TARGET_NAME = 'Empresa'
-
   COMPANY_ENDINGS = [/(, S\.A\.)/i, /(, S\.L\.)/i, /(, N\.V\.)/i]
 
   def initialize(create_missing_entities: false)
-    super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
+    super(source_name: 'Nombre', role_name: 'Cargo', target_name: 'Empresa')
     @preprocessor = ->(fact) { _split_multiple_roles(_canonical_entity_name(fact)) }
     @create_missing_entities = create_missing_entities
   end
@@ -54,15 +50,15 @@ class CnmvImporter < Importer
   def create_relation(fact, match_result)
     # Do nothing if the we miss one of the basic elements of a relation
     if match_result[:relation_type].nil?
-      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[ROLE_NAME]}'...")
+      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[role_name]}'...")
       return
     end
     if match_result[:source].nil?
-      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[SOURCE_NAME]}'...")
+      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[source_name]}'...")
       return
     end
     if match_result[:target].nil?
-      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[TARGET_NAME]}'...")
+      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[target_name]}'...")
       return
     end
 
@@ -83,7 +79,7 @@ class CnmvImporter < Importer
     end
 
     # Add additional information, if available
-    # FIXME: The only CNMV specific bit in this method (plus warning above)
+    # FIXME: The only CNMV specific bit in this method
     if from_date = fact.properties['Fecha Nombramiento']
       # TODO: Do not overwrite manually entered stuff? + Warning
       relation.from = Date.strptime(from_date, '%d/%m/%Y')

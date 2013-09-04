@@ -1,4 +1,5 @@
 class Importer
+  attr_reader :source_name, :role_name, :target_name
   attr_reader :matched_entities, :matched_relation_types, :results, :event_log
   attr_accessor :preprocessor
 
