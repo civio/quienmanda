@@ -5,7 +5,7 @@ Quienmanda::Application.routes.draw do
 
   get '/admin/import' => 'import#index', :as => 'import_index'
   post '/admin/import/upload' => 'import#upload', :as => 'import_upload'
-  get '/admin/import/import' => 'import#import', :as => 'import_import'
+  get '/admin/import/process' => 'import#process_facts', :as => 'import_process'
 
   post '/admin/commit' => 'import#commit'
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

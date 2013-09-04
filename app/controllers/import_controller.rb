@@ -25,7 +25,7 @@ class ImportController < ApplicationController
 
   # Matching the incoming data with the one already in the database,
   # and create the missing entities/relations
-  def import(dry_run: true)
+  def process_facts(dry_run: true)
     # Not the most elegant solution, should use reflection probably, but will do for now...
     if params[:importer] == 'CNMV'
       @importer = CnmvImporter.new(create_missing_entities: true)
@@ -46,8 +46,8 @@ class ImportController < ApplicationController
   def commit
     # TODO: I should check here that we're not posting the same form twice.
     #       Add f.ex. an argument with the first fact ID, and check it fits with the DB
-    import(dry_run: false)
-    render :import
+    process_facts(dry_run: false)
+    render :process_facts
   end
 
   private
