@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+# Some of the tests below are duplicated in the CSVImporter parent class spec 
+# (the CNMV importer came first, the CSV one later). I could remove some of the 
+# duplicated tests below, but I guess additional tests won't hurt.
 describe CnmvImporter do
   context 'when matching a relation type' do
     before do
