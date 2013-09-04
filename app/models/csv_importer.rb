@@ -1,6 +1,6 @@
 # FIXME: Lots of duplication with CNMVImporter, need to make that extend this
 class CsvImporter < Importer
-  COMPANY_ENDINGS = [/(, S\.A\.)/i, /(, S\.L\.)/i, /(, N\.V\.)/i]
+  COMPANY_ENDINGS = [/(, ?S\.A\.)$/i, /(,? S\.L\.)$/i, /(,? N\.V\.)$/i]
 
   def initialize(source_name: 'source', role_name: 'role', target_name: 'target', create_missing_entities: false)
     super(source_name: source_name, role_name: role_name, target_name: target_name)
@@ -18,7 +18,7 @@ class CsvImporter < Importer
   def match_target_entity(target)
     entity = _match_entity(target)
     if entity.nil? and @create_missing_entities # Create entity if needed
-      entity = create_entity(name: target, person: false)
+      entity = create_entity(name: target)
     end
     entity
   end
@@ -53,6 +53,12 @@ class CsvImporter < Importer
       relation = fact.relations.create!(attributes)
       info(fact, "Created relation: #{relation.to_s}")
     end
+
+    populate_extra_relation_attributes(relation, fact)
+  end
+
+  # Placeholder for children classes to override
+  def populate_extra_relation_attributes(relation, fact)
   end
 
   # Guess whether a given name relates to a company or a person

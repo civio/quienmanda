@@ -223,7 +223,7 @@ describe CsvImporter do
     it 'create target entity if not found' do
       fact = create(:fact, properties: {'source' => 'Emilio Botin',
                                         'role' => 'presidente',
-                                        'target' => 'A random company'})
+                                        'target' => 'A random company S.L.'})
       @importer.match( [ fact ] )
 
       fact.relations.size.should == 1
