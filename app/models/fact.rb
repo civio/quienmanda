@@ -14,4 +14,8 @@ class Fact < ActiveRecord::Base
   def summary
     properties.to_s
   end
+
+  def to_s
+    "#{importer} [#{summary}]"
+  end
 end
