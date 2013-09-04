@@ -1,6 +1,8 @@
 class Fact < ActiveRecord::Base
   has_and_belongs_to_many :relations
 
+  scope :importer, ->(importer) { where(importer: importer) }
+
   # Return those facts that have not been processed yet, i.e. have no associated relations,
   # ordered by fact id (to avoid surprises when reviewing a dry-run import and then doing it)
   def Fact.unprocessed_facts

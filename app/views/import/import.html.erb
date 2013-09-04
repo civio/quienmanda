@@ -34,7 +34,7 @@
       <% else %>
       <div class="alert alert-success">
         <strong>Success!</strong> The following changes have been committed to the database.
-        <%= link_to 'Want to import more data?', admin_import_path(import_size: params[:import_size]) %>
+        <%= link_to 'Want to import more data?', import_import_path(import_size: params[:import_size]) %>
       </div>
       <% end %>
 
@@ -84,6 +84,8 @@
               relation_type = result[:relation_type]
               target = result[:target]
               matched = !source.nil? && !relation_type.nil? && !target.nil?
+
+              # FIXME: Hardcoded CNMV column names below
            %>
           <tr class="<%= matched ? 'import-match' : 'import-fail' %>">
             <td><i class="icon-<%= matched ? 'ok' : 'remove' %>"></i></td>

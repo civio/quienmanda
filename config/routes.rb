@@ -3,7 +3,10 @@
 Quienmanda::Application.routes.draw do
   devise_for :users
 
-  get '/admin/import' => 'import#import'
+  get '/admin/import' => 'import#index', :as => 'import_index'
+  post '/admin/import/upload' => 'import#upload', :as => 'import_upload'
+  get '/admin/import/import' => 'import#import', :as => 'import_import'
+
   post '/admin/commit' => 'import#commit'
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

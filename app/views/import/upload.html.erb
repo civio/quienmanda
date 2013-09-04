@@ -1,0 +1,28 @@
+<div id="page-title">
+  <h2>Upload</h2>
+</div>
+
+<!--start: Wrapper-->
+<div id="wrapper" class="full">
+  <div class="row-fluid">
+
+    <p>
+      Imported <%= @count %> facts.
+    </p>
+
+    <p>
+      <ul>
+      <% @results.each do |result| %>
+        <li><%= result %></li>
+      <% end %>
+      </ul>
+    </p>
+
+    <p>
+      You can now <%= link_to 'process it', import_import_path(importer: 'CSV') %>.
+    </p>
+
+  </div>
+</div>
+<!-- end: Wrapper  -->
+

@@ -1,38 +1,14 @@
-class CnmvImporter < Importer
-  SOURCE_NAME = 'Nombre'
-  ROLE_NAME = 'Cargo'
-  TARGET_NAME = 'Empresa'
+# FIXME: Lots of duplication with CNMVImporter, need to make that extend this
+class CsvImporter < Importer
+  SOURCE_NAME = 'source'
+  ROLE_NAME = 'role'
+  TARGET_NAME = 'target'
 
   COMPANY_ENDINGS = [/(, S\.A\.)/i, /(, S\.L\.)/i, /(, N\.V\.)/i]
 
   def initialize(create_missing_entities: false)
     super(source_name: SOURCE_NAME, role_name: ROLE_NAME, target_name: TARGET_NAME)
-    @preprocessor = ->(fact) { _split_multiple_roles(_canonical_entity_name(fact)) }
     @create_missing_entities = create_missing_entities
-  end
-
-  def match_relation_type(relation_type)
-    return nil if relation_type.nil?
-    # Downcasing here won't handle accented character correctly, but we
-    # don't want to lose the accent data (using Stringex to_ascii) just yet
-    description = relation_type.downcase
-
-    # Remove some useless additional detail
-    description.gsub!(/vicepresidente .+/, 'vicepresidente')
-    description.gsub!(/(vice)?secretario consejero/, 'consejero')
-    description.gsub!(/copresidente/, 'presidente')
-
-    # Try to find the relation type in the database
-    tries = [ ["lower(description) = ?", description], 
-              ["lower(unaccent(description)) = ?", description.to_ascii.downcase],
-              ["lower(description) = ?", "#{description} de"],
-              ["lower(description) = ?", "#{description}/a"],
-              ["lower(description) = ?", "#{description}/a de"] ]
-    tries.each do |try|
-      object = RelationType.find_by(try)
-      return object if not object.nil?
-    end
-    nil
   end
 
   def match_source_entity(source)
@@ -81,14 +57,6 @@ class CnmvImporter < Importer
       relation = fact.relations.create!(attributes)
       info(fact, "Created relation: #{relation.to_s}")
     end
-
-    # Add additional information, if available
-    # FIXME: The only CNMV specific bit in this method (plus warning above)
-    if from_date = fact.properties['Fecha Nombramiento']
-      # TODO: Do not overwrite manually entered stuff? + Warning
-      relation.from = Date.strptime(from_date, '%d/%m/%Y')
-      relation.save!
-    end
   end
 
   # Guess whether a given name relates to a company or a person
@@ -98,41 +66,6 @@ class CnmvImporter < Importer
   end
 
   private
-
-  def _canonical_entity_name(properties)
-    _canonical_company_name(_canonical_person_name(properties))
-  end
-
-  # Convert fact names of the type "Surname, Name" into "Name Surname"
-  def _canonical_person_name(properties)
-    if properties[@source_name] && properties[@source_name].index(',')
-      # Careful with company names as board members though (trailing S.A., S.L., ...)
-      if properties[@source_name].index(' S.') == nil
-        surname, name = properties[@source_name].split(',')
-        return properties.clone.tap {|props| props[@source_name] = "#{name.strip} #{surname.strip}"}
-      end
-    end
-    properties
-  end
-
-  # Clean up the trailing S.A., sometimes incomplete in CNMV listings
-  def _canonical_company_name(properties)
-    if properties[@target_name] =~ /S\.A$/i # Could be more flexible, but will do for now
-      return properties.clone.tap {|props| props[@target_name] += '.' }
-    end
-    properties
-  end
-
-  # Split facts with relations of the type "roleA - roleB"
-  def _split_multiple_roles(properties)
-    if properties[@role_name] && properties[@role_name].index('-')
-      first_role, second_role = properties[@role_name].split('-')
-      new_properties = properties.clone.tap {|p| p[@role_name] = second_role.strip }
-      ammended_properties = properties.clone.tap {|p| p[@role_name] = first_role.strip }
-      return [ammended_properties, new_properties]
-    end
-    properties
-  end
 
   def _match_entity(entity)
     return nil if entity.nil?
