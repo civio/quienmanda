@@ -7,19 +7,34 @@
   <div class="row-fluid">
 
     <p>
-      Imported <%= @count %> facts.
+      Uploaded <%= @facts.size %> facts:
     </p>
 
     <p>
-      <ul>
-      <% @results.each do |result| %>
-        <li><%= result %></li>
-      <% end %>
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Role</th>
+            <th>Target</th>
+            <th>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @facts.each do |fact| %>
+          <tr>
+            <td><%= fact.properties['source'] %></td>
+            <td><%= fact.properties['role'] %></td>
+            <td><%= fact.properties['target'] %></td>
+            <td><%= fact.properties.reject {|k, v| ['source', 'role', 'target'].include? k } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table> 
     </p>
 
     <p>
-      You can now <%= link_to 'process it', import_process_path(importer: 'CSV') %>.
+      You can now <%= link_to 'process them', import_process_path(importer: 'CSV') %>.
     </p>
 
   </div>

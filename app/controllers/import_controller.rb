@@ -9,17 +9,14 @@ class ImportController < ApplicationController
 
   # Handle upload of a new CSV file
   def upload
-    @results = []
-    @count = 0
+    @facts = []
     CSV.foreach(params[:file].path, headers: true) do |row|
       next if row.size == 0  # Skip empty lines
 
       # We just import the whole thing into the database, hstore can handle it
       # FIXME: This is very bad, it will duplicate facts on each import!
       fact = Fact.create(importer: 'CSV', properties: row.to_hash)
-      @count += 1
-
-      @results << "Uploaded Fact #{fact}"
+      @facts << fact
     end
   end
 
