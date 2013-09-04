@@ -9,14 +9,28 @@ class ImportController < ApplicationController
 
   # Handle upload of a new CSV file
   def upload
-    @facts = []
+    @results = []
     CSV.foreach(params[:file].path, headers: true) do |row|
       next if row.size == 0  # Skip empty lines
 
-      # We just import the whole thing into the database, hstore can handle it
-      # FIXME: This is very bad, it will duplicate facts on each import!
-      fact = Fact.create(importer: 'CSV', properties: row.to_hash)
-      @facts << fact
+      # Check if the fact to be imported already exists.
+      # We use the composite primary key source-role-target as a rough solution
+      # for now, but there could be situations where this is not perfect: someone
+      # has the same relation to the same org twice in her life for example. We may
+      # need to add some deambiguation field at some point (maybe the date?), but
+      # this will do for now.
+      fact = Fact.where(importer: 'CSV')
+                  .where("properties->'source' = ?", row['source'])
+                  .where("properties->'role' = ?", row['role'])
+                  .where("properties->'target' = ?", row['target']).first
+      if fact
+        # Do something
+        @results << { fact: fact, imported: false }
+      else
+        # We just import the whole thing into the database, hstore can handle it
+        fact = Fact.create!(importer: 'CSV', properties: row.to_hash)
+        @results << { fact: fact, imported: true }
+      end
     end
   end
 

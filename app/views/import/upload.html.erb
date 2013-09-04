@@ -7,11 +7,12 @@
   <div class="row-fluid">
 
     <p>
-      Uploaded <%= @facts.size %> facts:
+      Uploaded <%= @results.size %> facts 
+      (out of which <span class="field-match-warning"><%= @results.select{|r| r[:imported]==false}.size %> ignored</span>):
     </p>
 
     <p>
-      <table>
+      <table class='table'>
         <thead>
           <tr>
             <th>Source</th>
@@ -21,12 +22,12 @@
           </tr>
         </thead>
         <tbody>
-          <% @facts.each do |fact| %>
-          <tr>
-            <td><%= fact.properties['source'] %></td>
-            <td><%= fact.properties['role'] %></td>
-            <td><%= fact.properties['target'] %></td>
-            <td><%= fact.properties.reject {|k, v| ['source', 'role', 'target'].include? k } %></td>
+          <% @results.each do |result| %>
+          <tr class=<%= result[:imported] ? 'field-match' : 'field-match-warning' %>>
+            <td><%= result[:fact].properties['source'] %></td>
+            <td><%= result[:fact].properties['role'] %></td>
+            <td><%= result[:fact].properties['target'] %></td>
+            <td><%= result[:fact].properties.reject {|k, v| ['source', 'role', 'target'].include? k } %></td>
           </tr>
           <% end %>
         </tbody>
