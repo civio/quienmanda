@@ -1,4 +1,3 @@
-# FIXME: Lots of duplication with CNMVImporter, need to make that extend this
 class CsvImporter < Importer
   COMPANY_ENDINGS = [/(, ?S\.A\.)$/i, /(,? S\.L\.)$/i, /(,? N\.V\.)$/i]
 
