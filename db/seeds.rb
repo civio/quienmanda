@@ -9,23 +9,23 @@
 emilio_botin = Entity.create( name: 'Emilio Botín', 
                               description: 'El banquero de España', 
                               person: true, 
-                              priority: :high,
+                              priority: '1',
                               published: true)
 
 rey_juan_carlos = Entity.create(name: 'Juan Carlos I', 
                                 description: 'Rey de España', 
                                 person: true, 
-                                priority: :high,
+                                priority: '1',
                                 published: false)
 
 bilderberg = Entity.create( name: 'Grupo Bilderberg', 
                             person: false, 
-                            priority: :low,
+                            priority: '3',
                             published: false)
 
 banco_santander = Entity.create(name: 'Banco Santander', 
                                 person: false, 
-                                priority: :high,
+                                priority: '1',
                                 published: true)
 
 father_of = RelationType.create(description: 'father of')
@@ -33,14 +33,14 @@ owner_of = RelationType.create(description: 'owner of')
 president_of = RelationType.create(description: 'president of')
 member_of = RelationType.create(description: 'member of')
 
-Relation.create(source: emilio_botin,
-                target: banco_santander,
+Relation.create(source_id: emilio_botin,
+                target_id: banco_santander,
                 published: true,
                 relation_type: president_of,
                 at: "2013-08-04")
 
-Relation.create(source: emilio_botin,
-                target: bilderberg,
+Relation.create(source_id: emilio_botin,
+                target_id: bilderberg,
                 published: false,
                 relation_type: member_of,
                 at: "2013-08-04")
