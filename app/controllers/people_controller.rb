@@ -13,7 +13,7 @@ class PeopleController < ApplicationController
   def show
     authorize! :read, @person
     @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
-    @graph_data = generate_graph_data(@relations)
+    @graph_data = generate_graph_data(@person, @relations)
   end
 
   private
@@ -21,22 +21,34 @@ class PeopleController < ApplicationController
       @person = Entity.people.find_by_slug(params[:id])
     end
 
-    # Very early times for this. Will eventually be refactored somewhere else
-    def generate_graph_data(relations)
+    # Network graph visualization
+    def add_node_if_needed(nodes, entity, root: false)
+      if nodes[entity.id].nil?
+        nodes[entity.id] = { 
+          name: entity.name, 
+          group: entity.person? ? 1 : 2, 
+          node_id: nodes.size,
+          root: root  # Should the node be fixed to the center of the screen?
+        }
+      end
+    end
+
+    # TODO: Very early times for this. Will eventually be refactored somewhere else
+    def generate_graph_data(root_entity, relations)
       nodes = {}
       links = []
-      relations.each do |relation|
-        if nodes[relation.source.id].nil?
-          nodes[relation.source.id] = { name: relation.source.name, group: 1, node_id: nodes.size }
-        end
-        if nodes[relation.target.id].nil?
-          nodes[relation.target.id] = { name: relation.target.name, group: 1, node_id: nodes.size }
-        end
 
+      # Add the root node in advance, to make sure it's marked as fixed
+      add_node_if_needed(nodes, root_entity, root: true)
+
+      # Add all the given relations to the network graph
+      relations.each do |relation|
+        add_node_if_needed(nodes, relation.source)
+        add_node_if_needed(nodes, relation.target)
         links << { 
           source: nodes[relation.source.id][:node_id],
           target: nodes[relation.target.id][:node_id],
-          value: 9
+          value: 9  # Nice thick link
         }
       end
       { nodes: nodes.values, links: links }

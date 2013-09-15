@@ -2,12 +2,14 @@ function NetworkGraph() {
 
   /* TODO: Clean hardcoded dimensions below */
   var width = 960,
-      height = 500;
+      height = 500,
+      center_x = width / 2,
+      center_y = height / 2;
 
   var color = d3.scale.category20();
 
   var force = d3.layout.force()
-      .charge(-400)
+      .charge(-500)
       .linkDistance(120)
       .size([width, height]);
 
@@ -16,6 +18,22 @@ function NetworkGraph() {
       .attr("height", height);
 
   this.display = function(graph) {
+    // Pre-position the root node in the middle of the screen (and mark it as fixed
+    // for the D3.js layout). Put the non-root nodes randomly in a circle around it
+    // to avoid the dizzying start where all the nodes fly around
+    $.each(graph.nodes, function(key, value) {
+      if (value['root']) {
+        value['fixed'] = true;
+        value['x'] = center_x;
+        value['y'] = center_y;
+      } else {
+        var angle = 2 * Math.PI * Math.random();
+        value['x'] = center_x + height / 2 * Math.sin(angle);
+        value['y'] = center_y + height / 2 * Math.cos(angle);
+      }
+    });
+
+    // Create force layout
     force
         .nodes(graph.nodes)
         .links(graph.links)
