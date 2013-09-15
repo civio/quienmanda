@@ -1,11 +1,7 @@
-<!--start: Wrapper-->
 <div id="wrapper" class="full">       
-
-  <!--start: Row -->
   <div class="row-fluid">
 
     <div class="span8 separate">
-
       <h2>Persona: <%= @person.name %></h2>
       <p>
         <strong>Short name:</strong>
@@ -13,10 +9,23 @@
       </p>
 
       <%= render '/shared/needs_work' %>
+    </div>
+
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
 
       <h3>Relaciones</h3>
+      <div id="viz-container"></div>
       <%= render "shared/entities_list", :list => @relations %>
 
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
       <h3>Fotos</h3>
       <% @person.related_photos.each do |photo| %>
         <%= render 'shared/show_photo', :item => photo %>
@@ -29,5 +38,15 @@
     </div>
 
   </div>
-
 </div>
+
+
+<script>
+$(function () {
+
+  var data = <%= raw(@graph_data.to_json()) %>;
+  var network_graph = new NetworkGraph();
+  network_graph.display(data);
+
+});
+</script>
