@@ -8,3 +8,13 @@
   stroke: #999;
   stroke-opacity: .6;
 }
+
+path.link {
+  fill: none;
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+marker {
+  fill: #999;
+}
