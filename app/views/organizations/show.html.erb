@@ -1,26 +1,51 @@
-<!--start: Wrapper-->
 <div id="wrapper" class="full">       
-
-  <!--start: Row -->
   <div class="row-fluid">
 
     <div class="span8 separate">
+      <h2>Organización: <%= @organization.name %></h2>
+      <p>
+        <strong>Short name:</strong>
+        <%= @organization.short_name %>
+      </p>
 
-    <h2>Organización: <%= @organization.name %></h2>
-    <p>
-      <strong>Short name:</strong>
-      <%= @organization.short_name %>
-    </p>
+      <%= render '/shared/needs_work' %>
+    </div>
 
-    <%= render '/shared/needs_work' %>
+  </div>
+</div>
 
-    <h3>Relaciones</h3>
-    <%= render "shared/entities_list", :list => @relations %>
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
 
-    <%= link_to 'Back', organizations_path %>
+      <h3>Relaciones</h3>
+      <div id="viz-container"></div>
+      <%= render "shared/entities_list", :list => @relations %>
+
+  </div>
+</div>
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+      <h3>Fotos</h3>
+      <% @organization.related_photos.each do |photo| %>
+        <%= render 'shared/show_photo', :item => photo %>
+      <% end %>
+
+      <div style="clear:both">
+        <%= link_to 'Back', organizations_path %>
+      </div>
 
     </div>
 
   </div>
-
 </div>
+
+<script>
+$(function () {
+
+  var data = <%= raw(@graph_data.to_json()) %>;
+  var network_graph = new NetworkGraph("#viz-container");
+  network_graph.display(data);
+
+});
+</script>

@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
   def show
     authorize! :read, @organization
     @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
+    @graph_data = generate_graph_data(@organization, @relations)
   end
 
   private
