@@ -45,7 +45,7 @@
 $(function () {
 
   var data = <%= raw(@graph_data.to_json()) %>;
-  var network_graph = new NetworkGraph();
+  var network_graph = new NetworkGraph("#viz-container");
   network_graph.display(data);
 
 });

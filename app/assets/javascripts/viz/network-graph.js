@@ -1,8 +1,8 @@
-function NetworkGraph() {
+function NetworkGraph(selector) {
 
   /* TODO: Clean hardcoded dimensions below */
-  var width = 960,
-      height = 500,
+  var width = $(selector).width(),
+      height = width * .5,
       center_x = width / 2,
       center_y = height / 2;
 
@@ -10,33 +10,33 @@ function NetworkGraph() {
 
   var force = d3.layout.force()
       .charge(-500)
-      .linkDistance(120)
+      .linkDistance(height * .4)
       .size([width, height]);
 
-  var svg = d3.select("#viz-container").append("svg")
+  var svg = d3.select(selector).append("svg")
       .attr("width", width)
       .attr("height", height);
 
-  this.display = function(graph) {
+  this.display = function(data) {
     // Pre-position the root node in the middle of the screen (and mark it as fixed
     // for the D3.js layout). Put the non-root nodes randomly in a circle around it
     // to avoid the dizzying start where all the nodes fly around
-    $.each(graph.nodes, function(key, value) {
+    $.each(data.nodes, function(key, value) {
       if (value['root']) {
         value['fixed'] = true;
         value['x'] = center_x;
         value['y'] = center_y;
       } else {
         var angle = 2 * Math.PI * Math.random();
-        value['x'] = center_x + height / 2 * Math.sin(angle);
-        value['y'] = center_y + height / 2 * Math.cos(angle);
+        value['x'] = center_x + (height * .4) * Math.sin(angle);
+        value['y'] = center_y + (height * .4) * Math.cos(angle);
       }
     });
 
     // Create force layout
     force
-        .nodes(graph.nodes)
-        .links(graph.links)
+        .nodes(data.nodes)
+        .links(data.links)
         .start();
 
     // Arrow marker
@@ -60,7 +60,7 @@ function NetworkGraph() {
         .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
     var node = svg.selectAll(".node")
-        .data(graph.nodes)
+        .data(data.nodes)
       .enter().append("circle")
         .attr("class", "node")
         .attr("r", 13)
