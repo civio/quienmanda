@@ -13,7 +13,6 @@ class PeopleController < ApplicationController
   def show
     authorize! :read, @person
     @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
-    @graph_data = generate_graph_data(@person, @relations)
   end
 
   private

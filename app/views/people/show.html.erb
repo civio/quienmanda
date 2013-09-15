@@ -44,9 +44,10 @@
 <script>
 $(function () {
 
-  var data = <%= raw(@graph_data.to_json()) %>;
-  var network_graph = new NetworkGraph("#viz-container");
-  network_graph.display(data);
+  $.getJSON( '<%= entity_path(@person, format: :json) %>', function(data) {
+    var network_graph = new NetworkGraph("#viz-container");
+    network_graph.display(data);
+  });
 
 });
 </script>
