@@ -25,7 +25,6 @@ class EntitiesController < ApplicationController
       nodes[entity.id] = { 
         name: entity.name, 
         group: entity.person? ? 1 : 2, 
-        node_id: nodes.size,
         url: entity_path(entity, format: :json)
       }
       # Should the node be fixed to the center of the screen?
@@ -37,7 +36,7 @@ class EntitiesController < ApplicationController
     nodes = {}
     links = []
 
-    # Add the root node in advance, to make sure it's marked as fixed
+    # Add the root node in advance, to mark it as fixed
     add_node_if_needed(nodes, root_entity, root: true)
 
     # Add all the given relations to the network graph
@@ -45,8 +44,9 @@ class EntitiesController < ApplicationController
       add_node_if_needed(nodes, relation.source)
       add_node_if_needed(nodes, relation.target)
       links << { 
-        source: nodes[relation.source.id][:node_id],
-        target: nodes[relation.target.id][:node_id],
+        source: entity_path(relation.source, format: :json),
+        target: entity_path(relation.target, format: :json),
+        id: relation.id,
         value: 9  # Nice thick link
       }
     end
