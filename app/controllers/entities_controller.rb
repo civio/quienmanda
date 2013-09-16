@@ -23,7 +23,7 @@ class EntitiesController < ApplicationController
   def add_node_if_needed(nodes, entity, root: false)
     if nodes[entity.id].nil?
       nodes[entity.id] = { 
-        name: entity.name, 
+        name: entity.short_or_long_name, 
         group: entity.person? ? 1 : 2, 
         url: entity_path(entity, format: :json)
       }

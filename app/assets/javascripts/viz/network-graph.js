@@ -21,6 +21,7 @@ function NetworkGraph(selector) {
   var force = d3.layout.force()
       .on("tick", tick)
       .charge(-linkDistance * 5)
+      .gravity(0.05)
       .linkDistance(linkDistance)
       .size([width, height]);
 
@@ -78,27 +79,18 @@ function NetworkGraph(selector) {
 
     // Nodes
     node = svg.select("#nodesContainer").selectAll(".node")
-        .data(d3.values(nodes), function(d) { return d.url; })
+        .data(force.nodes(), function(d) { return d.url; })
 
     var that = this;
-    node.enter().append("circle")
+    node.enter().append("g")
+      .call(drag)
+      .call(createNode)
         .attr("class", "node")
-        .attr("r", 13)
-        .style("fill", function(d) { return color(d.group); })
         .on('dblclick', function(d) { that.loadNode(d.url); })
-        .call(force.drag);
-
-    // FIXME: Put back titles until I get labels fixed!
-    node.append("title")
-      .text(function(d) { return d.name; });
-    // Labels
-    // text = svg.append("svg:g").selectAll("g")
-    //     .data(force.nodes())
-    //   .enter().append("svg:g")
-    //     .append("svg:text")
-    //     .attr("x", 18)
-    //     .attr("y", ".31em")
-    //     .text(function(d) { return d.name; });
+      .append("text")
+        .attr("dx", 15)
+        .attr("dy", ".35em")
+        .text(function(d) { return d.name });
   };
 
   this.loadNode = function(url) {
@@ -128,6 +120,12 @@ function NetworkGraph(selector) {
 
   /* PRIVATE */
 
+  function createNode(node) {
+    node.append("circle")
+      .attr("r", 13)
+      .style("fill", function(d) { return color(d.group); });
+  }
+
   // When creating a new, pre-position the root node in the middle of the screen 
   // (and mark it as fixed for the D3.js layout). Put the non-root nodes randomly 
   // in a circle around it to avoid the dizzying start where all the nodes fly around
@@ -152,12 +150,9 @@ function NetworkGraph(selector) {
       return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     });
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-
-    // text.attr("transform", function(d) {
-    //   return "translate(" + d.x + "," + d.y + ")";
-    // });
+    node.attr("transform", function(d) {
+      return "translate(" + d.x + "," + d.y + ")";
+    });
   };
 
   // Zoom handler

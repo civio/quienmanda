@@ -13,3 +13,7 @@ path.link {
 marker {
   fill: #999;
 }
+
+text {
+  pointer-events: none;
+}
