@@ -25,7 +25,8 @@ class EntitiesController < ApplicationController
       nodes[entity.id] = { 
         name: entity.name, 
         group: entity.person? ? 1 : 2, 
-        node_id: nodes.size
+        node_id: nodes.size,
+        url: entity_path(entity, format: :json)
       }
       # Should the node be fixed to the center of the screen?
       nodes[entity.id][:root] = true if root
