@@ -36,6 +36,13 @@ function NetworkGraph(selector) {
     .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
 
+  // Create two separate containers for links and nodes, to make sure
+  // nodes come always after nodes, even when loading data dynamically
+  svg.append("g")
+    .attr("id", "linksContainer");
+  svg.append("g")
+    .attr("id", "nodesContainer");
+
   this.display = function() {
     // Create force layout
     force
@@ -44,7 +51,7 @@ function NetworkGraph(selector) {
         .start();
 
     // Relations
-    path = svg.selectAll(".link")
+    path = svg.select("#linksContainer").selectAll(".link")
         .data(force.links(), function(d) { return d.id; })
 
     path.enter().append("svg:path")
@@ -53,7 +60,7 @@ function NetworkGraph(selector) {
         .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
     // Nodes
-    node = svg.selectAll(".node")
+    node = svg.select("#nodesContainer").selectAll(".node")
         .data(d3.values(nodes), function(d) { return d.url; })
 
     var that = this;
