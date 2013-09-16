@@ -11,7 +11,11 @@ function NetworkGraph(selector) {
 
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .call(d3.behavior.zoom().scaleExtent([.50, 1])
+        .on("zoom", rescale))
+        .on("dblclick.zoom", null)
+      .append("g");   // Removing this breaks zooming/panning
 
   // Force layout configuration
   var force = d3.layout.force()
@@ -21,6 +25,7 @@ function NetworkGraph(selector) {
       .size([width, height]);
 
   var drag = force.drag()
+      .on("dragstart", dragstart)
       .on("dragend", dragend);
 
   // Visualization data
@@ -155,8 +160,16 @@ function NetworkGraph(selector) {
     // });
   };
 
-  // Drag handler: toggle fixed attribute after dragging is completed
+  // Zoom handler
+  function rescale() {
+    svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  }
+
+  // Drag handlers
+  function dragstart(d) {
+    d3.event.sourceEvent.stopPropagation(); // silence other listeners
+  }
   function dragend(d) {
-    d.fixed = !d.fixed;
+    d.fixed = !d.fixed; // toggle fixed attribute after dragging is completed
   };
 };
