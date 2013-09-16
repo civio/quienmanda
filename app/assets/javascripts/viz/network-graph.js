@@ -65,7 +65,8 @@ function NetworkGraph(selector) {
         .attr("class", "node")
         .attr("r", 13)
         .style("fill", function(d) { return color(d.group); })
-        .call(force.drag);
+        .call(force.drag)
+        .on('click', loadNode);
 
     var text = svg.append("svg:g").selectAll("g")
         .data(force.nodes())
@@ -91,6 +92,10 @@ function NetworkGraph(selector) {
       });
 
     });
+  };
+
+  function loadNode(obj) {
+    // Do nothing for now
   };
 
 };
