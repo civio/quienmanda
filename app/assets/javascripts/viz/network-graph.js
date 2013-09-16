@@ -1,5 +1,6 @@
 function NetworkGraph(selector) {
 
+  // Basic D3.js SVG container setup
   var width = $(selector).width(),
       height = width * .5,
       centerx = width / 2,
@@ -8,24 +9,31 @@ function NetworkGraph(selector) {
 
   var color = d3.scale.category20();
 
+  var svg = d3.select(selector).append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  // Force layout configuration
   var force = d3.layout.force()
       .on("tick", tick)
       .charge(-linkDistance * 5)
       .linkDistance(linkDistance)
       .size([width, height]);
 
-  var svg = d3.select(selector).append("svg")
-      .attr("width", width)
-      .attr("height", height);
+  var drag = force.drag()
+      .on("dragend", dragend);
 
+  // Visualization data
+  var nodes = {};
+  var links = {};
+
+  // D3.js selectors, available for tick() method
   var node,
       path,
       text;
 
-  var nodes = {};
-  var links = {};
-
-  svg.append("svg:defs")    // Arrow marker
+  // Arrow marker
+  svg.append("svg:defs")
     .append("svg:marker")
       .attr("id", 'relation')
       .attr("viewBox", "0 -5 15 10")
@@ -43,6 +51,9 @@ function NetworkGraph(selector) {
     .attr("id", "linksContainer");
   svg.append("g")
     .attr("id", "nodesContainer");
+
+
+  /* PUBLIC interface */
 
   this.display = function() {
     // Create force layout
@@ -127,6 +138,7 @@ function NetworkGraph(selector) {
     }
   };
 
+  // Force layout iteration
   function tick() {
     path.attr("d", function(d) {
       var dx = d.target.x - d.source.x,
@@ -143,4 +155,8 @@ function NetworkGraph(selector) {
     // });
   };
 
+  // Drag handler: toggle fixed attribute after dragging is completed
+  function dragend(d) {
+    d.fixed = !d.fixed;
+  };
 };
