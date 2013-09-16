@@ -2,15 +2,16 @@ function NetworkGraph(selector) {
 
   var width = $(selector).width(),
       height = width * .5,
-      center_x = width / 2,
-      center_y = height / 2;
+      centerx = width / 2,
+      centery = height / 2,
+      linkDistance = height * .2;
 
   var color = d3.scale.category20();
 
   var force = d3.layout.force()
       .on("tick", tick)
-      .charge(-500)
-      .linkDistance(height * .2)
+      .charge(-linkDistance * 5)
+      .linkDistance(linkDistance)
       .size([width, height]);
 
   var svg = d3.select(selector).append("svg")
@@ -117,12 +118,12 @@ function NetworkGraph(selector) {
   function presetFirstNodes(node) {
     if (node['root']) {
       node['fixed'] = true;
-      node['x'] = center_x;
-      node['y'] = center_y;
+      node['x'] = centerx;
+      node['y'] = centery;
     } else {
       var angle = 2 * Math.PI * Math.random();
-      node['x'] = center_x + (height * .4) * Math.sin(angle);
-      node['y'] = center_y + (height * .4) * Math.cos(angle);
+      node['x'] = centerx + linkDistance * Math.sin(angle);
+      node['y'] = centery + linkDistance * Math.cos(angle);
     }
   };
 
