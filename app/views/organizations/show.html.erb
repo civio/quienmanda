@@ -43,8 +43,7 @@
 <script>
 $(function () {
 
-  var network_graph = new NetworkGraph("#viz-container");
-  network_graph.loadNode('<%= entity_path(@organization, format: :json) %>');
+  new NetworkGraph("#viz-container").loadNode('<%= entity_path(@organization, format: :json) %>');
 
 });
 </script>
