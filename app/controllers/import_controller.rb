@@ -9,8 +9,13 @@ class ImportController < ApplicationController
 
   # Handle upload of a new CSV file
   def upload
+    # We can't rely on the file encoding being correct, so find out which one we got...
+    content = File.read(params[:file].path)
+    detection = CharlockHolmes::EncodingDetector.detect(content)
+
+    # Parse the uploaded content, using the right encoding
     @results = []
-    CSV.foreach(params[:file].path, headers: true) do |row|
+    CSV.foreach(params[:file].path, headers: true, encoding: detection[:encoding]) do |row|
       next if row.size == 0  # Skip empty lines
 
       # Check if the fact to be imported already exists.

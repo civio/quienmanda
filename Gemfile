@@ -71,6 +71,7 @@ gem 'rails_admin_toggleable'
 gem 'rails_admin_tag_list'
 gem 'ckeditor_rails'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
+gem 'charlock_holmes'
 
 # Picture upload and handling
 gem 'mini_magick'

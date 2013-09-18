@@ -47,6 +47,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    charlock_holmes (0.6.9.4)
     ckeditor_rails (4.2)
       railties (>= 3.0)
     coderay (1.0.9)
@@ -264,6 +265,7 @@ DEPENDENCIES
   acts-as-taggable-on
   cancan
   carrierwave
+  charlock_holmes
   ckeditor_rails
   coffee-rails (~> 4.0.0)
   coveralls
