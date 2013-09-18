@@ -1,3 +1,5 @@
+require 'charlock_holmes'
+
 class ImportController < ApplicationController
   layout "admin"
 
