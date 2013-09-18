@@ -1,5 +1,7 @@
 # Add application configuration variables here, as shown below.
 #
+DEVISE_SECRET: put-your-secret-here
+
 S3_KEY: put-your-key-here
 S3_SECRET: put-your-secret-here
 S3_REGION: eu-west-1
