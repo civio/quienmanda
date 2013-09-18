@@ -14,10 +14,11 @@ class ImportController < ApplicationController
     # We can't rely on the file encoding being correct, so find out which one we got...
     content = File.read(params[:file].path)
     detection = CharlockHolmes::EncodingDetector.detect(content)
+    utf8_encoded_content = CharlockHolmes::Converter.convert content, detection[:encoding], 'UTF-8'
 
-    # Parse the uploaded content, using the right encoding
+    # Parse the uploaded content, once converted to UTF8
     @results = []
-    CSV.foreach(params[:file].path, headers: true, encoding: detection[:encoding]) do |row|
+    CSV.parse(utf8_encoded_content, headers: true) do |row|
       next if row.size == 0  # Skip empty lines
 
       # Check if the fact to be imported already exists.
