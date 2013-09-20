@@ -91,14 +91,18 @@
            %>
           <tr class="<%= matched ? 'import-match' : 'import-fail' %>">
             <td><i class="icon-<%= matched ? 'ok' : 'remove' %>"></i></td>
-            <td class="<%= source ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{source && source.short_or_long_name} (#{result[:fact].properties[@importer.source_name]})" %>
+            <td class="<%= source ? 
+                            (source.created_by_import ? 'field-match-warning' : 'field-match') : 
+                            'field-match-fail' %>">
+              <%= "#{source && source.short_or_long_name} (#{result[:fact].properties[@importer.source_field]})" %>
             </td>
             <td class="<%= relation_type ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{relation_type && relation_type.description} (#{result[:fact].properties[@importer.role_name]})" %></td>
+              <%= "#{relation_type && relation_type.description} (#{result[:fact].properties[@importer.role_field]})" %></td>
             </td>
-            <td class="<%= target ? 'field-match' : 'field-match-fail' %>">
-              <%= "#{target && target.short_or_long_name} (#{result[:fact].properties[@importer.target_name]})" %></td>
+            <td class="<%= target ? 
+                            (target.created_by_import ? 'field-match-warning' : 'field-match') : 
+                            'field-match-fail' %>">
+              <%= "#{target && target.short_or_long_name} (#{result[:fact].properties[@importer.target_field]})" %></td>
             </td>
           </tr>
           <% end %>
@@ -119,7 +123,7 @@
           <tr>
             <th><i class="icon-exchange"></i></th>
             <th>Imported data</th>
-            <th>Match data</th>
+            <th>Matched records</th>
           </tr>
         </thead>
         <tbody>
@@ -148,16 +152,22 @@
           <tr>
             <th><i class="icon-exchange"></i></th>
             <th>Imported data</th>
-            <th>Match data</th>
+            <th>Matched records</th>
           </tr>
         </thead>
         <tbody>
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
-          <tr class="<%= entity ? 'import-match field-match' : 'import-fail field-match-fail' %>">
+          <tr>
             <td><i class="icon-<%= entity ? 'ok' : 'remove' %>"></i></td>
-            <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
-            <td><%= entity && entity.short_or_long_name %></td>
+            <td class="<%= entity ? 
+                          (entity.created_by_import ? 'import-match field-match-warning' : 'import-match field-match') : 
+                          'import-fail field-match-fail' %>">
+              <%= "#{data[0]} (#{data[1][:count]})" %>
+            </td>
+            <td>
+              <%= entity.created_by_import ? '' : (entity && entity.short_or_long_name) %>
+            </td>
           </tr>
           <% end %>
         </tbody>

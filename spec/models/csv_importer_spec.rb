@@ -257,6 +257,11 @@ describe CsvImporter do
       entity.published.should == true
     end
 
+    it 'marks created entities with a non-persistent attribute (used in view)' do
+      entity = create_entity({name: 'foobar', person: true, priority: '1', needs_work: false, published: true})
+      entity.created_by_import.should == true
+    end
+
     it 'guess entity type if not specified, and use defaults in other fields' do
       entity = create_entity({name: 'foobar'})
       entity.name.should == 'Foobar'
