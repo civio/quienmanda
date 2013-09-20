@@ -1,8 +1,8 @@
 class CnmvImporter < CsvImporter
   def initialize(create_missing_entities: false)
-    super(source_name: 'Nombre', 
-          role_name: 'Cargo', 
-          target_name: 'Empresa',
+    super(source_field: 'Nombre', 
+          role_field: 'Cargo', 
+          target_field: 'Empresa',
           create_missing_entities: create_missing_entities)
     @preprocessor = ->(fact) { _split_multiple_roles(_canonical_entity_name(fact)) }
   end
@@ -57,11 +57,11 @@ class CnmvImporter < CsvImporter
 
   # Convert fact names of the type "Surname, Name" into "Name Surname"
   def _canonical_person_name(properties)
-    if properties[@source_name] && properties[@source_name].index(',')
+    if properties[@source_field] && properties[@source_field].index(',')
       # Careful with company names as board members though (trailing S.A., S.L., ...)
-      if properties[@source_name].index(' S.') == nil
-        surname, name = properties[@source_name].split(',')
-        return properties.clone.tap {|props| props[@source_name] = "#{name.strip} #{surname.strip}"}
+      if properties[@source_field].index(' S.') == nil
+        surname, name = properties[@source_field].split(',')
+        return properties.clone.tap {|props| props[@source_field] = "#{name.strip} #{surname.strip}"}
       end
     end
     properties
@@ -69,18 +69,18 @@ class CnmvImporter < CsvImporter
 
   # Clean up the trailing S.A., sometimes incomplete in CNMV listings
   def _canonical_company_name(properties)
-    if properties[@target_name] =~ /S\.A$/i # Could be more flexible, but will do for now
-      return properties.clone.tap {|props| props[@target_name] += '.' }
+    if properties[@target_field] =~ /S\.A$/i # Could be more flexible, but will do for now
+      return properties.clone.tap {|props| props[@target_field] += '.' }
     end
     properties
   end
 
   # Split facts with relations of the type "roleA - roleB"
   def _split_multiple_roles(properties)
-    if properties[@role_name] && properties[@role_name].index('-')
-      first_role, second_role = properties[@role_name].split('-')
-      new_properties = properties.clone.tap {|p| p[@role_name] = second_role.strip }
-      ammended_properties = properties.clone.tap {|p| p[@role_name] = first_role.strip }
+    if properties[@role_field] && properties[@role_field].index('-')
+      first_role, second_role = properties[@role_field].split('-')
+      new_properties = properties.clone.tap {|p| p[@role_field] = second_role.strip }
+      ammended_properties = properties.clone.tap {|p| p[@role_field] = first_role.strip }
       return [ammended_properties, new_properties]
     end
     properties

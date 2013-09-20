@@ -23,7 +23,7 @@ describe Importer do
     end
 
     it 'property names are configurable' do
-      custom_importer = Importer.new(source_name: 'Who', role_name: 'What', target_name: 'To whom')
+      custom_importer = Importer.new(source_field: 'Who', role_field: 'What', target_field: 'To whom')
       custom_fact = Fact.new(properties: { 'Who' => 'Adam', 'What' => 'is married to', 'To whom' => 'Eve'})
       match = custom_importer.match([custom_fact])
       match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: custom_fact }

@@ -1,13 +1,13 @@
 class Importer
-  attr_reader :source_name, :role_name, :target_name
+  attr_reader :source_field, :role_field, :target_field
   attr_reader :matched_entities, :matched_relation_types, :results, :event_log
   attr_accessor :preprocessor
 
-  def initialize(source_name: :source, role_name: :role, target_name: :target)
+  def initialize(source_field: :source, role_field: :role, target_field: :target)
     @preprocessor = nil
-    @source_name = source_name
-    @role_name = role_name
-    @target_name = target_name
+    @source_field = source_field
+    @role_field = role_field
+    @target_field = target_field
   end
 
   def match(facts, dry_run: false)
@@ -47,7 +47,7 @@ class Importer
 
   def match_properties(properties)
     # Check whether we've seen this datum before
-    role = properties[@role_name]
+    role = properties[@role_field]
     if @matched_relation_types[role]
       @matched_relation_types[role][:count] += 1
 
@@ -58,7 +58,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    source = properties[@source_name]
+    source = properties[@source_field]
     if @matched_entities[source]
       @matched_entities[source][:count] += 1
 
@@ -69,7 +69,7 @@ class Importer
 
 
     # Check whether we've seen this datum before
-    target = properties[@target_name]
+    target = properties[@target_field]
     if @matched_entities[target]
       @matched_entities[target][:count] += 1
 

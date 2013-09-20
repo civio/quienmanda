@@ -1,8 +1,8 @@
 class CsvImporter < Importer
   COMPANY_ENDINGS = [/(, ?S\.A\.)$/i, /(,? S\.L\.)$/i, /(,? N\.V\.)$/i]
 
-  def initialize(source_name: 'source', role_name: 'role', target_name: 'target', create_missing_entities: false)
-    super(source_name: source_name, role_name: role_name, target_name: target_name)
+  def initialize(source_field: 'source', role_field: 'role', target_field: 'target', create_missing_entities: false)
+    super(source_field: source_field, role_field: role_field, target_field: target_field)
     @create_missing_entities = create_missing_entities
   end
 
@@ -25,15 +25,15 @@ class CsvImporter < Importer
   def create_relation(fact, match_result)
     # Do nothing if the we miss one of the basic elements of a relation
     if match_result[:relation_type].nil?
-      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[role_name]}'...")
+      warn(fact, "Skipping fact, unknown relation type '#{fact.properties[role_field]}'...")
       return
     end
     if match_result[:source].nil?
-      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[source_name]}'...")
+      warn(fact, "Skipping fact, unknown source entity '#{fact.properties[source_field]}'...")
       return
     end
     if match_result[:target].nil?
-      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[target_name]}'...")
+      warn(fact, "Skipping fact, unknown target entity '#{fact.properties[target_field]}'...")
       return
     end
 
