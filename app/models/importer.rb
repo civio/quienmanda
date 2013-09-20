@@ -47,42 +47,42 @@ class Importer
 
   def match_properties(properties)
     # Check whether we've seen this datum before
-    role = properties[@role_field]
-    if @matched_relation_types[role]
-      @matched_relation_types[role][:count] += 1
+    role_name = properties[@role_field]
+    if @matched_relation_types[role_name]
+      @matched_relation_types[role_name][:count] += 1
 
     else  # Try to find an existing RelationType matching the imported data
-      relation_type = match_relation_type(role)
-      @matched_relation_types[role] = { count: 1, object: relation_type }
+      role = match_relation_type(role_name)
+      @matched_relation_types[role_name] = { count: 1, object: role }
     end
 
 
     # Check whether we've seen this datum before
-    source = properties[@source_field]
-    if @matched_entities[source]
-      @matched_entities[source][:count] += 1
+    source_name = properties[@source_field]
+    if @matched_entities[source_name]
+      @matched_entities[source_name][:count] += 1
 
     else  # Try to find an existing Entity matching the imported data
-      relation_type = match_source_entity(source)
-      @matched_entities[source] = { count: 1, object: relation_type }
+      source = match_source_entity(source_name)
+      @matched_entities[source_name] = { count: 1, object: source }
     end
 
 
     # Check whether we've seen this datum before
-    target = properties[@target_field]
-    if @matched_entities[target]
-      @matched_entities[target][:count] += 1
+    target_name = properties[@target_field]
+    if @matched_entities[target_name]
+      @matched_entities[target_name][:count] += 1
 
     else  # Try to find an existing Entity matching the imported data
-      relation_type = match_target_entity(target)
-      @matched_entities[target] = { count: 1, object: relation_type }
+      target = match_target_entity(target_name)
+      @matched_entities[target_name] = { count: 1, object: target }
     end
 
     # Return matched data
     {
-      source: @matched_entities[source][:object],
-      target: @matched_entities[target][:object],
-      relation_type: @matched_relation_types[role][:object]
+      source: @matched_entities[source_name][:object],
+      target: @matched_entities[target_name][:object],
+      relation_type: @matched_relation_types[role_name][:object]
     }
   end
 
