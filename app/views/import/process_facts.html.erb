@@ -85,33 +85,19 @@
               matched = !source.nil? && !relation_type.nil? && !target.nil?
            %>
           <tr class="<%= matched ? 'success' : 'error' %>">
-            <td class="field-match-<%= match_severity(result[:fact].properties[@importer.source_field], source, result[:source_score]) %>">
-              <%= display_imported_entity(result[:fact].properties[@importer.source_field]) %>
-              <br>&nbsp;<i class="icon-angle-right"></i>
-              <%= 
-                if source and result[:source_score]!=-1
-                  link_to source.short_or_long_name, 
-                              rails_admin.edit_path(id: source.id, model_name: source.class.name), 
-                              target: '_blank'
-                end
-              %>
-            </td>
+            <%= render  'match_cell', 
+                        :imported_name => result[:fact].properties[@importer.source_field], 
+                        :matched_entity => source, 
+                        :score => result[:source_score] %>
             <td class="<%= relation_type ? 'field-match-success' : 'field-match-error' %>">
               <%= "#{relation_type && relation_type.description}" %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= "#{result[:fact].properties[@importer.role_field]}" %></td>
             </td>
-            <td class="field-match-<%= match_severity(result[:fact].properties[@importer.target_field], target, result[:target_score]) %>">
-              <%= display_imported_entity(result[:fact].properties[@importer.target_field]) %>
-              <br>&nbsp;<i class="icon-angle-right"></i>
-              <%= 
-                if target and result[:target_score]!=-1
-                  link_to target.short_or_long_name, 
-                              rails_admin.edit_path(id: target.id, model_name: target.class.name), 
-                              target: '_blank'
-                end
-              %>
-            </td>
+            <%= render  'match_cell', 
+                        :imported_name => result[:fact].properties[@importer.target_field], 
+                        :matched_entity => target, 
+                        :score => result[:target_score] %>
           </tr>
           <% end %>
         </tbody>

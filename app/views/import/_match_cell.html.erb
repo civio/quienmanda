@@ -1,0 +1,11 @@
+<td class="field-match-<%= match_severity(imported_name, matched_entity, score) %>">
+  <%= display_imported_entity(imported_name) %>
+  <br>&nbsp;<i class="icon-angle-right"></i>
+  <%= 
+    if matched_entity and score!=-1
+      link_to matched_entity.short_or_long_name, 
+              rails_admin.edit_path(id: matched_entity.id, model_name: matched_entity.class.name), 
+              target: '_blank'
+    end
+  %>
+</td>
