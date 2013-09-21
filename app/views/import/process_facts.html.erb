@@ -122,7 +122,7 @@
         <tbody>
           <% @relation_types.each do |data| %>
           <%   relation_type = data[1][:object] %>
-          <tr class="<%= relation_type ? 'import-match success' : 'import-fail error' %>">
+          <tr class="<%= relation_type ? 'success' : 'error' %>">
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
             <td><%= relation_type && relation_type.description %></td>
           </tr>
@@ -150,8 +150,8 @@
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
           <tr class="<%= entity ? 
-                    (entity.created_by_import ? 'import-match warning' : 'import-match success') : 
-                    'import-fail error' %>">
+                    (entity.created_by_import ? 'warning' : 'success') : 
+                    'error' %>">
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
             <td><%= (entity && entity.created_by_import) ? '' : (entity && entity.short_or_long_name) %></td>
           </tr>
@@ -182,16 +182,19 @@ $(function() {
   });
 
   $('#show-all-button').click(function() {
-    $(".import-match").show();
-    $(".import-fail").show();
+    $(".success").show();
+    $(".warning").show();
+    $(".error").show();
   });
   $('#show-matches-button').click(function() { 
-    $(".import-match").show();
-    $(".import-fail").hide();
+    $(".success").show();
+    $(".warning").show();
+    $(".error").hide();
   });
   $('#show-non-matches-button').click(function() { 
-    $(".import-match").hide();
-    $(".import-fail").show();
+    $(".success").hide();
+    $(".warning").hide();
+    $(".error").show();
   });
 
   $('#commit-button').click(function() {
