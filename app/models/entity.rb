@@ -19,9 +19,6 @@ class Entity < ActiveRecord::Base
     slug
   end
 
-  # Non-persistent attribute used while importing, to highlight import results
-  attr_accessor :created_by_import
-
   # Priorities
   PRIORITIES = [PRIORITY_HIGH = '1', PRIORITY_MEDIUM = '2', PRIORITY_LOW = '3']
   def priority_enum

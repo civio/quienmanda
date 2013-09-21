@@ -106,7 +106,6 @@ class CsvImporter < Importer
                             person: is_a_person,
                             needs_work: needs_work,
                             published: published)
-    entity.created_by_import = true   # Non-persistent, used during import
     # TODO: Missing fact here
     info(nil, "Created #{is_a_person ? 'person' : 'organization'} '#{entity.short_or_long_name}'")
     entity

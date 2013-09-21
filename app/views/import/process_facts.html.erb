@@ -86,12 +86,12 @@
            %>
           <tr class="<%= matched ? 'success' : 'error' %>">
             <td class="<%= source ? 
-                            (source.created_by_import ? 'field-match-warning' : 'field-match') : 
+                            (result[:source_score]==-1 ? 'field-match-warning' : 'field-match') : 
                             'field-match-fail' %>">
               <%= display_imported_entity(result[:fact].properties[@importer.source_field]) %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= 
-                if source and !source.created_by_import
+                if source and result[:source_score]!=-1
                   link_to source.short_or_long_name, 
                               rails_admin.edit_path(id: source.id, model_name: source.class.name), 
                               target: '_blank'
@@ -104,12 +104,12 @@
               <%= "#{result[:fact].properties[@importer.role_field]}" %></td>
             </td>
             <td class="<%= target ? 
-                            (target.created_by_import ? 'field-match-warning' : 'field-match') : 
+                            (result[:target_score]==-1 ? 'field-match-warning' : 'field-match') : 
                             'field-match-fail' %>">
               <%= display_imported_entity(result[:fact].properties[@importer.target_field]) %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= 
-                if target and !target.created_by_import
+                if target and result[:target_score]!=-1
                   link_to target.short_or_long_name, 
                               rails_admin.edit_path(id: target.id, model_name: target.class.name), 
                               target: '_blank'
@@ -162,16 +162,17 @@
       <table class="table">
         <thead>
           <tr>
-            <th style="width: 20%">Count</th>
+            <th style="width: 10%">Count</th>
             <th style="width: 40%">Imported data</th>
             <th style="width: 40%">Matched records</th>
+            <th style="width: 10%">Score</th>
           </tr>
         </thead>
         <tbody>
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
           <tr class="<%= entity ? 
-                    (entity.created_by_import ? 'warning' : 'success') : 
+                    (data[1][:score]==-1 ? 'warning' : 'success') : 
                     'error' %>">
             <td>
               <%= data[1][:count] %>
@@ -181,12 +182,15 @@
             </td>
             <td>
               <%=
-                if entity and !entity.created_by_import
+                if entity and data[1][:score] != -1
                   link_to entity.short_or_long_name, 
                           rails_admin.edit_path(id: entity.id, model_name: entity.class.name), 
                           target: '_blank'
                 end
               %>
+            </td>
+            <td>
+              <%= data[1][:score].round(2) if data[1][:score]!=-1 %>
             </td>
           </tr>
           <% end %>

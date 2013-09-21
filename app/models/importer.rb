@@ -67,8 +67,8 @@ class Importer
     if @matched_relation_types[role_name]
       @matched_relation_types[role_name][:count] += 1
     else  # Try to find an existing RelationType matching the imported data
-      role = match_relation_type(role_name)
-      @matched_relation_types[role_name] = { count: 1, object: role }
+      role, score = match_relation_type(role_name)
+      @matched_relation_types[role_name] = { count: 1, object: role, score: score }
     end
 
     # Check whether we've seen this datum before
@@ -76,8 +76,8 @@ class Importer
     if @matched_entities[source_name]
       @matched_entities[source_name][:count] += 1
     else  # Try to find an existing Entity matching the imported data
-      source = match_source_entity(source_name)
-      @matched_entities[source_name] = { count: 1, object: source }
+      source, score = match_source_entity(source_name)
+      @matched_entities[source_name] = { count: 1, object: source, score: score }
     end
 
     # Check whether we've seen this datum before
@@ -85,14 +85,16 @@ class Importer
     if @matched_entities[target_name]
       @matched_entities[target_name][:count] += 1
     else  # Try to find an existing Entity matching the imported data
-      target = match_target_entity(target_name)
-      @matched_entities[target_name] = { count: 1, object: target }
+      target, score = match_target_entity(target_name)
+      @matched_entities[target_name] = { count: 1, object: target, score: score }
     end
 
     # Return matched data
     {
       source: @matched_entities[source_name][:object],
+      source_score: @matched_entities[source_name][:score],
       target: @matched_entities[target_name][:object],
+      target_score: @matched_entities[target_name][:score],
       relation_type: @matched_relation_types[role_name][:object]
     }
   end
@@ -109,28 +111,27 @@ class Importer
     relation_type && RelationType.find_by(["lower(description) = ?", relation_type.downcase])
   end
 
+  # Returns an entity matching the given name, if exists. Confidence is either 0 or 1.
   def match_entity(entity_name)
-    entity_name && Entity.find_by(["lower(name) = ?", entity_name.downcase])
+    entity = entity_name && Entity.find_by(["lower(name) = ?", entity_name.downcase])
+    [entity, entity.nil? ? 0 : 1]
   end
 
+  # Returns an entity matching the given name, if exists, and a confidence estimate.
+  # There is an instance-level threshold below which no result is returned.
   def fuzzy_match_entity(entity_name)
     result, score = @fuzzy_matcher.find_with_score(entity_name, must_match_at_least_one_word: true)
-    return nil if result.nil? or score < @fuzzy_matching_threshold
-
-    # I'd like to return to make the score data available to controller, 
-    # but cumbersome: storing it as a non-persistent attribute of the entity
-    # is a bad solution, since the same entity can be used a number of times
-    # during an import. I'd need to propagate score all the way up to Importer,
-    # and modify the exact matching functions to return '1' as confidence.
-    result[1]
+    return [nil, 0] if result.nil? or score < @fuzzy_matching_threshold
+    [result[1], score]
   end
 
   def match_or_create_entity(entity_name, create_arguments)
-    entity = @fuzzy_matcher ? fuzzy_match_entity(entity_name) : match_entity(entity_name)
+    entity, score = @fuzzy_matcher ? fuzzy_match_entity(entity_name) : match_entity(entity_name)
     if entity.nil? and @create_missing_entities # Create entity if needed
       entity = create_entity( create_arguments.merge({name: entity_name}) )
+      score = -1  # -1: new record
     end
-    entity
+    [entity, score]
   end
 
   # We keep two separate source/target to allow easier override in child classes
