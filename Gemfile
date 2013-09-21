@@ -72,6 +72,7 @@ gem 'rails_admin_tag_list'
 gem 'ckeditor_rails'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 gem 'charlock_holmes_bundle_icu'
+gem 'fuzzy_match'
 
 # Picture upload and handling
 gem 'mini_magick'

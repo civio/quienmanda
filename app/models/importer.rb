@@ -9,13 +9,19 @@ class Importer
     @role_field = role_field
     @target_field = target_field
     @create_missing_entities = create_missing_entities
+
+    @fuzzy_matcher = nil
   end
 
-  def match(facts, dry_run: false)
+  def match(facts, dry_run: false, fuzzy_matching: false, fuzzy_matching_threshold: 0.6)
     @event_log = []
     @match_results = []
     @matched_entities = {}
     @matched_relation_types = {}
+
+    @fuzzy_matcher = build_fuzzy_matcher if fuzzy_matching
+    @fuzzy_matching_threshold = fuzzy_matching_threshold
+
     Fact.transaction do
       facts.each do |fact|
         # Process all records, and add a reference to the original input Fact
@@ -36,6 +42,18 @@ class Importer
   end
 
   private
+
+  # Creates a Fuzzy Matcher containing the names of all existing entities
+  def build_fuzzy_matcher()
+    # Since entities can have more than one name, and FuzzyMatch expects just one,
+    # we'll use an intermediate mapping table.
+    names = {}
+    Entity.all.each do |entity|
+      names[entity.name] = entity
+      names[entity.short_name] = entity
+    end
+    FuzzyMatch.new names, :read => 0  # 0: first element, i.e. key
+  end
 
   def process_match_result(fact, match_result)
     create_relation(fact, match_result)
@@ -94,8 +112,20 @@ class Importer
     entity_name && Entity.find_by(["lower(name) = ?", entity_name.downcase])
   end
 
+  def fuzzy_match_entity(entity_name)
+    result, score = @fuzzy_matcher.find_with_score(entity_name, must_match_at_least_one_word: true)
+    return nil if result.nil? or score < @fuzzy_matching_threshold
+
+    # I'd like to return to make the score data available to controller, 
+    # but cumbersome: storing it as a non-persistent attribute of the entity
+    # is a bad solution, since the same entity can be used a number of times
+    # during an import. I'd need to propagate score all the way up to Importer,
+    # and modify the exact matching functions to return '1' as confidence.
+    result[1]
+  end
+
   def match_or_create_entity(entity_name, create_arguments)
-    entity = match_entity(entity_name)
+    entity = @fuzzy_matcher ? fuzzy_match_entity(entity_name) : match_entity(entity_name)
     if entity.nil? and @create_missing_entities # Create entity if needed
       entity = create_entity( create_arguments.merge({name: entity_name}) )
     end

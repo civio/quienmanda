@@ -22,6 +22,20 @@ describe Importer do
       match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
     end
 
+    it 'fuzzy matching requires one exact match word' do
+      fact = create(:fact, source: 'Adan', role: 'is married to', target: 'Eva')
+      match = @importer.match( [fact], fuzzy_matching: true, fuzzy_matching_threshold: 0 )
+      match.size.should == 1
+      match.first.should == { source: nil, relation_type: @relation, target: nil, fact: fact }
+    end
+
+    it 'supports fuzzy matching entities when one word matches exactly' do
+      fact = create(:fact, source: 'Adam the-guy', role: 'is married to', target: 'Eve the-girl')
+      match = @importer.match( [fact], fuzzy_matching: true, fuzzy_matching_threshold: 0 )
+      match.size.should == 1
+      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
+    end
+
     it 'property names are configurable' do
       custom_importer = Importer.new(source_field: 'Who', role_field: 'What', target_field: 'To whom')
       custom_fact = Fact.new(properties: { 'Who' => 'Adam', 'What' => 'is married to', 'To whom' => 'Eve'})

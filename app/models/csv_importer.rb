@@ -54,6 +54,8 @@ class CsvImporter < Importer
 
   private
 
+  # Exact matching method aware of accented characters. This may not be
+  # needed anymore if fuzzy matching is reliable enough and becomes standard.
   def match_entity(entity)
     return nil if entity.nil?
     # Downcasing here won't handle accented character correctly, but we
