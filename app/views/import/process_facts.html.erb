@@ -153,7 +153,7 @@
                     (entity.created_by_import ? 'import-match warning' : 'import-match success') : 
                     'import-fail error' %>">
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
-            <td><%= entity.created_by_import ? '' : (entity && entity.short_or_long_name) %></td>
+            <td><%= (entity && entity.created_by_import) ? '' : (entity && entity.short_or_long_name) %></td>
           </tr>
           <% end %>
         </tbody>
