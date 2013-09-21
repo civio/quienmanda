@@ -7,7 +7,7 @@ class CsvImporter < Importer
   end
 
   def match_source_entity(source)
-    entity = _match_entity(source)
+    entity = match_entity(source)
     if entity.nil? and @create_missing_entities # Create entity if needed
       entity = create_entity(name: source)
     end
@@ -15,7 +15,7 @@ class CsvImporter < Importer
   end
 
   def match_target_entity(target)
-    entity = _match_entity(target)
+    entity = match_entity(target)
     if entity.nil? and @create_missing_entities # Create entity if needed
       entity = create_entity(name: target)
     end
@@ -68,7 +68,7 @@ class CsvImporter < Importer
 
   private
 
-  def _match_entity(entity)
+  def match_entity(entity)
     return nil if entity.nil?
     # Downcasing here won't handle accented character correctly, but we
     # don't want to lose the accent data (using Stringex to_ascii) just yet

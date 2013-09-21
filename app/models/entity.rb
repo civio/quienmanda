@@ -19,7 +19,7 @@ class Entity < ActiveRecord::Base
     slug
   end
 
-  # Non-persistent attribute used while importing, to highlight new records
+  # Non-persistent attribute used while importing, to highlight import results
   attr_accessor :created_by_import
 
   # Priorities

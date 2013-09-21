@@ -90,12 +90,16 @@ class Importer
     relation_type && RelationType.find_by(["lower(description) = ?", relation_type.downcase])
   end
 
-  def match_source_entity(source)
-    source && Entity.find_by(["lower(name) = ?", source.downcase])
+  def match_entity(entity)
+    entity && Entity.find_by(["lower(name) = ?", entity.downcase])
   end
 
+  # We keep two separate source/target to allow easier override in child classes
+  def match_source_entity(source)
+    match_entity(source)
+  end
   def match_target_entity(target)
-    target && Entity.find_by(["lower(name) = ?", target.downcase])
+    match_entity(target)
   end
 
   # Event logging convenience methods
