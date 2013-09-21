@@ -1,13 +1,14 @@
 class Importer
-  attr_reader :source_field, :role_field, :target_field
+  attr_reader :source_field, :role_field, :target_field, :create_missing_entities
   attr_reader :matched_entities, :matched_relation_types, :results, :event_log
   attr_accessor :preprocessor
 
-  def initialize(source_field: :source, role_field: :role, target_field: :target)
+  def initialize(source_field: :source, role_field: :role, target_field: :target, create_missing_entities: false)
     @preprocessor = nil
     @source_field = source_field
     @role_field = role_field
     @target_field = target_field
+    @create_missing_entities = create_missing_entities
   end
 
   def match(facts, dry_run: false)
@@ -39,10 +40,6 @@ class Importer
   def process_match_result(fact, match_result)
     create_relation(fact, match_result)
     match_result.merge(fact: fact)
-  end
-
-  def create_relation(fact, match_result)
-    # TODO: Move basic/reusable code from CNMV importer here. Do nothing for now
   end
 
   def match_properties(properties)
@@ -86,20 +83,36 @@ class Importer
     }
   end
 
+  def create_entity(attributes)
+    # TODO: Move basic/reusable code from CNMV importer here. Do nothing for now
+  end
+
+  def create_relation(fact, match_result)
+    # TODO: Move basic/reusable code from CNMV importer here. Do nothing for now
+  end
+
   def match_relation_type(relation_type)
     relation_type && RelationType.find_by(["lower(description) = ?", relation_type.downcase])
   end
 
-  def match_entity(entity)
-    entity && Entity.find_by(["lower(name) = ?", entity.downcase])
+  def match_entity(entity_name)
+    entity_name && Entity.find_by(["lower(name) = ?", entity_name.downcase])
+  end
+
+  def match_or_create_entity(entity_name, create_arguments)
+    entity = match_entity(entity_name)
+    if entity.nil? and @create_missing_entities # Create entity if needed
+      entity = create_entity( create_arguments.merge({name: entity_name}) )
+    end
+    entity
   end
 
   # We keep two separate source/target to allow easier override in child classes
   def match_source_entity(source)
-    match_entity(source)
+    match_or_create_entity(source, {})
   end
   def match_target_entity(target)
-    match_entity(target)
+    match_or_create_entity(target, {})
   end
 
   # Event logging convenience methods

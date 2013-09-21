@@ -31,13 +31,9 @@ class CnmvImporter < CsvImporter
     nil
   end
 
+  # Override this method to ensure targets are always companies (we know that)
   def match_target_entity(target)
-    entity = match_entity(target)
-    if entity.nil? and @create_missing_entities # Create entity if needed
-      # Override this method to ensure targets are always companies (we know that)
-      entity = create_entity(name: target, person: false)
-    end
-    entity
+    match_or_create_entity(target, { person: false })
   end
 
   # Add additional information, if available

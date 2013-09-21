@@ -2,24 +2,10 @@ class CsvImporter < Importer
   COMPANY_ENDINGS = [/(, ?S\.A\.)$/i, /(,? S\.L\.)$/i, /(,? N\.V\.)$/i]
 
   def initialize(source_field: 'source', role_field: 'role', target_field: 'target', create_missing_entities: false)
-    super(source_field: source_field, role_field: role_field, target_field: target_field)
-    @create_missing_entities = create_missing_entities
-  end
-
-  def match_source_entity(source)
-    entity = match_entity(source)
-    if entity.nil? and @create_missing_entities # Create entity if needed
-      entity = create_entity(name: source)
-    end
-    entity
-  end
-
-  def match_target_entity(target)
-    entity = match_entity(target)
-    if entity.nil? and @create_missing_entities # Create entity if needed
-      entity = create_entity(name: target)
-    end
-    entity
+    super(source_field: source_field, 
+          role_field: role_field, 
+          target_field: target_field, 
+          create_missing_entities: create_missing_entities)
   end
 
   def create_relation(fact, match_result)
