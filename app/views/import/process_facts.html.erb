@@ -42,21 +42,17 @@
     <div class="span12">
       <h3>Execution log</h3>
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th><i class="icon-exchange"></i></th>
             <th>Message</th>
             <th>Fact #</th>
           </tr>
         </thead>
         <tbody>
           <% @importer.event_log.each do |event| %>
-          <tr class="<%= event[:severity]==:info ? 'import-match' : 'import-fail' %>">
-            <td><i class="icon-<%= event[:severity]==:info ? 'ok' : 'remove' %>"></i></td>
-            <td class="<%= event[:severity]==:info ? 'field-match' : 'field-match-warning' %>">
-              <%= event[:message] %>
-            </td>
+          <tr class="<%= event[:severity]==:info ? 'success' : 'warning' %>">
+            <td><%= event[:message] %></td>
             <td><%= event[:fact] && event[:fact].id %></td>
           </tr>
           <% end %>
@@ -72,10 +68,9 @@
     <div class="span12">
       <h3>Match results</h3>
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th><i class="icon-exchange"></i></th>
             <th>Source</th>
             <th>Role</th>
             <th>Target</th>
@@ -89,8 +84,7 @@
               target = result[:target]
               matched = !source.nil? && !relation_type.nil? && !target.nil?
            %>
-          <tr class="<%= matched ? 'import-match' : 'import-fail' %>">
-            <td><i class="icon-<%= matched ? 'ok' : 'remove' %>"></i></td>
+          <tr class="<%= matched ? 'success' : 'error' %>">
             <td class="<%= source ? 
                             (source.created_by_import ? 'field-match-warning' : 'field-match') : 
                             'field-match-fail' %>">
@@ -118,10 +112,9 @@
     <div class="span12">
       <h3>Relation Types</h3>
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th><i class="icon-exchange"></i></th>
             <th>Imported data</th>
             <th>Matched records</th>
           </tr>
@@ -129,8 +122,7 @@
         <tbody>
           <% @relation_types.each do |data| %>
           <%   relation_type = data[1][:object] %>
-          <tr class="<%= relation_type ? 'import-match field-match' : 'import-fail field-match-fail' %>">
-            <td><i class="icon-<%= relation_type ? 'ok' : 'remove' %>"></i></td>
+          <tr class="<%= relation_type ? 'import-match success' : 'import-fail error' %>">
             <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
             <td><%= relation_type && relation_type.description %></td>
           </tr>
@@ -147,10 +139,9 @@
     <div class="span12">
       <h3>Entities</h3>
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th><i class="icon-exchange"></i></th>
             <th>Imported data</th>
             <th>Matched records</th>
           </tr>
@@ -158,16 +149,11 @@
         <tbody>
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
-          <tr>
-            <td><i class="icon-<%= entity ? 'ok' : 'remove' %>"></i></td>
-            <td class="<%= entity ? 
-                          (entity.created_by_import ? 'import-match field-match-warning' : 'import-match field-match') : 
-                          'import-fail field-match-fail' %>">
-              <%= "#{data[0]} (#{data[1][:count]})" %>
-            </td>
-            <td>
-              <%= entity.created_by_import ? '' : (entity && entity.short_or_long_name) %>
-            </td>
+          <tr class="<%= entity ? 
+                    (entity.created_by_import ? 'import-match warning' : 'import-match success') : 
+                    'import-fail error' %>">
+            <td><%= "#{data[0]} (#{data[1][:count]})" %></td>
+            <td><%= entity.created_by_import ? '' : (entity && entity.short_or_long_name) %></td>
           </tr>
           <% end %>
         </tbody>

@@ -24,16 +24,17 @@ div.quienmanda-embed-wrapper {
 }
 
 /* Import page */
-.field-match {
-  color: green;
+td.field-match {
 }
 
-.field-match-warning {
-  color: orange;
+td.field-match-warning {
+  background-color: #FCF8E3 !important;
+  text-shadow: none;
 }
 
-.field-match-fail {
-  color: red;
+td.field-match-fail {
+  background-color: #F2DEDE !important;
+  text-shadow: none;
 }
 
 /* Search box */
