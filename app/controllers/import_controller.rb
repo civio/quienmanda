@@ -55,7 +55,9 @@ class ImportController < ApplicationController
     end
     @dry_run = dry_run
     # Limit number of facts to import to avoid timeouts in Heroku
-    @results = @importer.match(@facts.limit(params[:import_size]||300), dry_run: @dry_run)
+    @results = @importer.match( @facts.limit(params[:import_size]||300), 
+                                dry_run: @dry_run, 
+                                matching_threshold: 0.6)
 
     # Return a sorted version of the results for convenience
     @entities = @importer.matched_entities.to_a.sort_by {|e| -e[1][:count]}

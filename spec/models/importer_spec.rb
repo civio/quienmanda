@@ -24,14 +24,14 @@ describe Importer do
 
     it 'fuzzy matching requires one exact match word' do
       fact = create(:fact, source: 'Adan', role: 'is married to', target: 'Eva')
-      match = @importer.match( [fact], fuzzy_matching: true, fuzzy_matching_threshold: 0 )
+      match = @importer.match( [fact], matching_threshold: 0.1 )
       match.size.should == 1
       match.first.should == { source: nil, relation_type: @relation, target: nil, fact: fact }
     end
 
     it 'supports fuzzy matching entities when one word matches exactly' do
       fact = create(:fact, source: 'Adam the-guy', role: 'is married to', target: 'Eve the-girl')
-      match = @importer.match( [fact], fuzzy_matching: true, fuzzy_matching_threshold: 0 )
+      match = @importer.match( [fact], matching_threshold: 0.1 )
       match.size.should == 1
       match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
     end

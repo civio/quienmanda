@@ -13,14 +13,15 @@ class Importer
     @fuzzy_matcher = nil
   end
 
-  def match(facts, dry_run: false, fuzzy_matching: false, fuzzy_matching_threshold: 0.6)
+  def match(facts, dry_run: false, matching_threshold: 1)
     @event_log = []
     @match_results = []
     @matched_entities = {}
     @matched_relation_types = {}
 
-    @fuzzy_matcher = build_fuzzy_matcher if fuzzy_matching
-    @fuzzy_matching_threshold = fuzzy_matching_threshold
+    # We take threshold = 1 to be exact matching, fuzzy matching below that
+    @fuzzy_matcher = build_fuzzy_matcher if matching_threshold < 1
+    @fuzzy_matching_threshold = matching_threshold
 
     Fact.transaction do
       facts.each do |fact|
