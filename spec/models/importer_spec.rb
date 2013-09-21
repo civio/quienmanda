@@ -19,28 +19,48 @@ describe Importer do
       fact = create(:fact, source: 'Adam', role: 'is married to', target: 'Eve')
       match = @importer.match( [fact] )
       match.size.should == 1
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
+      match.first.should == { source: @husband, 
+                              source_score: 1,
+                              relation_type: @relation, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: fact }
     end
 
     it 'fuzzy matching requires one exact match word' do
       fact = create(:fact, source: 'Adan', role: 'is married to', target: 'Eva')
       match = @importer.match( [fact], matching_threshold: 0.1 )
       match.size.should == 1
-      match.first.should == { source: nil, relation_type: @relation, target: nil, fact: fact }
+      match.first.should == { source: nil, 
+                              source_score: 0,
+                              relation_type: @relation, 
+                              target: nil, 
+                              target_score: 0,
+                              fact: fact }
     end
 
     it 'supports fuzzy matching entities when one word matches exactly' do
       fact = create(:fact, source: 'Adam the-guy', role: 'is married to', target: 'Eve the-girl')
       match = @importer.match( [fact], matching_threshold: 0.1 )
       match.size.should == 1
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: fact }
+      match.first.should == { source: @husband, 
+                              source_score: 0.5,
+                              relation_type: @relation, 
+                              target: @wife, 
+                              target_score: 0.36363636363636365,
+                              fact: fact }
     end
 
     it 'property names are configurable' do
       custom_importer = Importer.new(source_field: 'Who', role_field: 'What', target_field: 'To whom')
       custom_fact = Fact.new(properties: { 'Who' => 'Adam', 'What' => 'is married to', 'To whom' => 'Eve'})
       match = custom_importer.match([custom_fact])
-      match.first.should == { source: @husband, relation_type: @relation, target: @wife, fact: custom_fact }
+      match.first.should == { source: @husband, 
+                              source_score: 1,
+                              relation_type: @relation, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: custom_fact }
     end
   end
 
@@ -60,7 +80,12 @@ describe Importer do
 
       fact = create(:fact, source: 'Adam', role: 'is maried to', target: 'Eve')
       match = @importer.match( [fact] )
-      match.first.should == { source: @husband, relation_type: @married, target: @wife, fact: fact }
+      match.first.should == { source: @husband, 
+                              source_score: 1,
+                              relation_type: @married, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: fact }
     end
 
     it 'the preprocessor can delete facts' do
@@ -83,8 +108,18 @@ describe Importer do
 
       fact = create(:fact, source: 'Adam', role: 'is married to / is friends with', target: 'Eve')
       match = @importer.match( [fact] )
-      match.should =~ [ { source: @husband, relation_type: @married, target: @wife, fact: fact },
-                        { source: @husband, relation_type: @friends, target: @wife, fact: fact } ] 
+      match.should =~ [ { source: @husband, 
+                              source_score: 1,
+                              relation_type: @married, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: fact },
+                        { source: @husband, 
+                              source_score: 1,
+                              relation_type: @friends, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: fact } ]
     end
   end
 
