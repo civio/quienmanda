@@ -47,29 +47,24 @@ class Importer
     role_name = properties[@role_field]
     if @matched_relation_types[role_name]
       @matched_relation_types[role_name][:count] += 1
-
     else  # Try to find an existing RelationType matching the imported data
       role = match_relation_type(role_name)
       @matched_relation_types[role_name] = { count: 1, object: role }
     end
 
-
     # Check whether we've seen this datum before
     source_name = properties[@source_field]
     if @matched_entities[source_name]
       @matched_entities[source_name][:count] += 1
-
     else  # Try to find an existing Entity matching the imported data
       source = match_source_entity(source_name)
       @matched_entities[source_name] = { count: 1, object: source }
     end
 
-
     # Check whether we've seen this datum before
     target_name = properties[@target_field]
     if @matched_entities[target_name]
       @matched_entities[target_name][:count] += 1
-
     else  # Try to find an existing Entity matching the imported data
       target = match_target_entity(target_name)
       @matched_entities[target_name] = { count: 1, object: target }
