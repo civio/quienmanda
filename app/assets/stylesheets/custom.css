@@ -37,6 +37,15 @@ td.field-match-fail {
   text-shadow: none;
 }
 
+body.admin #wrapper a {
+  border-bottom: 1px black dotted;
+}
+
+body.admin #wrapper a:hover {
+  border-bottom: 1px black solid;
+  text-decoration: none;
+}
+
 /* Search box */
 /* Taken from http://bootsnipp.com/snipps/stylish-search-form */
 #custom-search-form {
