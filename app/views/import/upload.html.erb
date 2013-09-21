@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           <% @results.each do |result| %>
-          <tr class=<%= result[:imported] ? 'field-match' : 'field-match-warning' %>>
+          <tr class=<%= result[:imported] ? 'success' : 'warning' %>>
             <td><%= result[:fact].properties['source'] %></td>
             <td><%= result[:fact].properties['role'] %></td>
             <td><%= result[:fact].properties['target'] %></td>
