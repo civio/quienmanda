@@ -85,9 +85,7 @@
               matched = !source.nil? && !relation_type.nil? && !target.nil?
            %>
           <tr class="<%= matched ? 'success' : 'error' %>">
-            <td class="<%= source ? 
-                            (result[:source_score]==-1 ? 'field-match-warning' : 'field-match') : 
-                            'field-match-fail' %>">
+            <td class="field-match-<%= match_severity(result[:fact].properties[@importer.source_field], source, result[:source_score]) %>">
               <%= display_imported_entity(result[:fact].properties[@importer.source_field]) %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= 
@@ -98,14 +96,12 @@
                 end
               %>
             </td>
-            <td class="<%= relation_type ? 'field-match' : 'field-match-fail' %>">
+            <td class="<%= relation_type ? 'field-match-success' : 'field-match-error' %>">
               <%= "#{relation_type && relation_type.description}" %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= "#{result[:fact].properties[@importer.role_field]}" %></td>
             </td>
-            <td class="<%= target ? 
-                            (result[:target_score]==-1 ? 'field-match-warning' : 'field-match') : 
-                            'field-match-fail' %>">
+            <td class="field-match-<%= match_severity(result[:fact].properties[@importer.target_field], target, result[:target_score]) %>">
               <%= display_imported_entity(result[:fact].properties[@importer.target_field]) %>
               <br>&nbsp;<i class="icon-angle-right"></i>
               <%= 
@@ -171,9 +167,7 @@
         <tbody>
           <% @entities.each do |data| %>
           <%   entity = data[1][:object] %>
-          <tr class="<%= entity ? 
-                    (data[1][:score]==-1 ? 'warning' : 'success') : 
-                    'error' %>">
+          <tr class="<%= match_severity(data[0], entity, data[1][:score]) %>">
             <td>
               <%= data[1][:count] %>
             </td>

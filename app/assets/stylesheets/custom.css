@@ -24,13 +24,13 @@ div.quienmanda-embed-wrapper {
 }
 
 /* Import page */
-td.field-match {
+td.field-match-success {
 }
 td.field-match-warning {
   background-color: #FCF8E3 !important;
   text-shadow: none;
 }
-td.field-match-fail {
+td.field-match-error {
   background-color: #F2DEDE !important;
   text-shadow: none;
 }
