@@ -6,6 +6,6 @@ module ImportHelper
   end
 
   def display_imported_entity(name)
-    "#{name} #{create_entity_button(name)}".html_safe
+    "#{name} <span class='import-actions'>#{create_entity_button(name)}</span>".html_safe
   end
 end

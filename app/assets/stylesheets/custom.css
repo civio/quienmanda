@@ -26,12 +26,10 @@ div.quienmanda-embed-wrapper {
 /* Import page */
 td.field-match {
 }
-
 td.field-match-warning {
   background-color: #FCF8E3 !important;
   text-shadow: none;
 }
-
 td.field-match-fail {
   background-color: #F2DEDE !important;
   text-shadow: none;
@@ -40,10 +38,16 @@ td.field-match-fail {
 body.admin #wrapper a {
   border-bottom: 1px black dotted;
 }
-
 body.admin #wrapper a:hover {
   border-bottom: 1px black solid;
   text-decoration: none;
+}
+
+table.table tr td span.import-actions { 
+  display:none;
+}
+table.table tr:hover td span.import-actions { 
+  display:inline-block;
 }
 
 /* Search box */
