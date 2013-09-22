@@ -24,6 +24,12 @@ describe CsvImporter do
       match.first[:source].should == @person
     end
 
+    it 'ignores beginning/trailing spaces' do
+      @person = create(:public_person, name: 'Abel Matutes Juan', short_name: 'Abel Matutes')
+      match = @importer.match( [ Fact.new(properties: {'source' => ' ABEL MATUTES  '}) ] )
+      match.first[:source].should == @person
+    end
+
     it 'ignores missing accents in the imported data' do
       @person = create(:public_person, name: 'Emilio Botín')
       match = @importer.match( [ Fact.new(properties: {'source' => 'EMILIO BOTIN'}) ] )

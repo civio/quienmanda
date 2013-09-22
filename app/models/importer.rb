@@ -108,12 +108,12 @@ class Importer
   end
 
   def match_relation_type(relation_type)
-    relation_type && RelationType.find_by(["lower(description) = ?", relation_type.downcase])
+    relation_type && RelationType.find_by(["lower(description) = ?", relation_type.strip.downcase])
   end
 
   # Returns an entity matching the given name, if exists. Confidence is either 0 or 1.
   def match_entity(entity_name)
-    entity = entity_name && Entity.find_by(["lower(name) = ?", entity_name.downcase])
+    entity = entity_name && Entity.find_by(["lower(name) = ?", entity_name.strip.downcase])
     [entity, entity.nil? ? 0 : 1]
   end
 

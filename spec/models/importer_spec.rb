@@ -27,6 +27,18 @@ describe Importer do
                               fact: fact }
     end
 
+    it 'ignores beginning/trailing spaces when matching entities or relation types' do
+      fact = create(:fact, source: 'Adam ', role: ' is married to ', target: ' Eve')
+      match = @importer.match( [fact] )
+      match.size.should == 1
+      match.first.should == { source: @husband, 
+                              source_score: 1,
+                              relation_type: @relation, 
+                              target: @wife, 
+                              target_score: 1,
+                              fact: fact }
+    end
+
     it 'fuzzy matching requires one exact match word' do
       fact = create(:fact, source: 'Adan', role: 'is married to', target: 'Eva')
       match = @importer.match( [fact], matching_threshold: 0.1 )

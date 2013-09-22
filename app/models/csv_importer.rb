@@ -60,7 +60,7 @@ class CsvImporter < Importer
     return nil if entity.nil?
     # Downcasing here won't handle accented character correctly, but we
     # don't want to lose the accent data (using Stringex to_ascii) just yet
-    name = entity.downcase
+    name = entity.strip.downcase
 
     tries = [ ["lower(name) = ?", name], 
               ["lower(short_name) = ?", name],
