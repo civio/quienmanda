@@ -203,59 +203,6 @@ jQuery(document).ready(function () {
   
 });
 
-/* ------------------ Tabs ----------------- */
-
-function AutomaticTabsWidhtReset() {
-  
-  $('.nav-tabs').find('li').each(function(){
-
-    $(this).find('a').css('width', 'auto');
-
-  });
-    
-}
-
-function AutomaticTabsWidht() {
-    
-  var containerWidth = $('.tab-content').width();
-  
-  var tabsNavWidth = 0;
-  
-  $('.nav-tabs').find('li').each(function(){
-  
-    var liWidth = $(this).outerWidth();
-    
-    tabsNavWidth = tabsNavWidth + liWidth;
-    
-  });
-    
-    
-  if(tabsNavWidth > containerWidth) {
-    
-    var elements = $(".nav-tabs li").size();
-    
-    var newWidth = containerWidth / elements - 15;
-    
-    $('.nav-tabs').find('li').each(function(){
-
-      $(this).find('a').css('width', newWidth);
-
-    }); 
-    
-  }
-  
-}
-
-
-jQuery(document).ready(function($) {
-  
-  $('#myTab a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-  })
-  
-});
-
 /* -------------------- Width Functions --------------------- */
 
 jQuery(document).ready(function($){
@@ -264,13 +211,9 @@ jQuery(document).ready(function($){
 
 });
 
-
 $(window).bind("resize", widthFunctions);
 
 function widthFunctions(e) {
-  
-  AutomaticTabsWidhtReset();
-  AutomaticTabsWidht();
   
   var winHeight = $(window).height();
   var winWidth = $(window).width();
