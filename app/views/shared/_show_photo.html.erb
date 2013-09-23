@@ -7,7 +7,7 @@
       </p>
       <p>
         <% if !item.source.blank? %>
-        <i class="icon-external-link-sign"></i> <%= link_to item.copyright, item.source %>
+        <i class="icon-external-link-sign"></i> <%= link_to item.copyright, item.source, target: '_blank' %>
         <% end %>
       </p>
 
