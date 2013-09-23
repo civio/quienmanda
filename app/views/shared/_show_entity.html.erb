@@ -1,0 +1,72 @@
+<!-- start: Page Title -->
+<div id="page-title">
+
+  <h2><%= entity.short_or_long_name %></h2>
+
+</div>
+<!-- end: Page Title -->
+
+<div id="wrapper" class="full">       
+  <div class="row-fluid">
+
+    <div class="span4 separate">
+      <%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %>
+    </div>
+
+    <div class="span8">
+      <p>
+        <strong><%= entity.name %></strong><br>
+        <%= entity.description %>
+      </p>
+      <p>
+        <ul class='entity-links clearfix'>
+          <li><%= icon_link entity.web_page, 'link' %></li>
+          <li><%= icon_link entity.wikipedia_page, 'wikipedia' %></li>
+          <li><%= icon_link entity.twitter_handle, 'twitter' %></li>
+          <li><%= icon_link entity.facebook_page, 'facebook' %></li>
+          <li><%= icon_link entity.open_corporates_page, 'link' %></li>
+          <li><%= icon_link entity.flickr_page, 'flickr' %></li>
+          <li><%= icon_link entity.youtube_page, 'youtube' %></li>
+          <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
+        </ul>
+      </p>
+      <%= render '/shared/needs_work' %>
+    </div>
+
+  </div>
+</div>
+
+<div id="wrapper" class="full tight">       
+  <div class="row-fluid">
+
+    <div id="viz-container"></div>
+    <h3>Relaciones</h3>
+    <%= render "shared/entities_list", :list => @relations %>
+
+  </div>
+</div>
+
+<div id="wrapper" class="full tight">       
+  <div class="row-fluid">
+      <h3>Fotos</h3>
+      <% entity.related_photos.each do |photo| %>
+        <%= render 'shared/show_photo', :item => photo %>
+      <% end %>
+
+      <div style="clear:both">
+        <%= is_person ? link_to('Back', people_path) : link_to('Back', organizations_path) %>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+$(function () {
+
+  new NetworkGraph("#viz-container").loadNode('<%= entity_path(entity, format: :json) %>');
+
+});
+</script>
