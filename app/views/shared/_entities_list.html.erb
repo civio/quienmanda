@@ -6,6 +6,9 @@
   <table class="table">
     <thead>
       <tr>
+        <% if can? :manage, Relation %>
+        <th></th>
+        <% end %>
         <th></th>
         <th></th>
         <th></th>
@@ -18,13 +21,22 @@
     <tbody>
       <% list.each do |relation| %>
         <tr>
-          <td><%= 
-            link_to relation.source.short_or_long_name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
-          %></td>
+          <% if can? :manage, Relation %>
+          <td>
+            <%= link_to raw('<span class="label"><i class="icon-edit"></i></span>'),
+                        rails_admin.edit_path(id: relation.id, model_name: relation.class.name), 
+                        target: '_blank' %>
+          </td>
+          <% end %>
+          <td>
+            <%= link_to relation.source.short_or_long_name, 
+                        relation.source.person ? person_path(relation.source) : organization_path(relation.source) %>
+          </td>
           <td><%= relation.relation_type.description %></td>
-          <td><%= 
-            link_to relation.target.short_or_long_name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
-          %></td>
+          <td>
+            <%= link_to relation.target.short_or_long_name, 
+                        relation.target.person ? person_path(relation.target) : organization_path(relation.target) %>
+          </td>
           <td><%= relation.from %></td>
           <td><%= relation.to %></td>
           <td><%= relation.at %></td>
