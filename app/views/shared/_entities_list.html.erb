@@ -1,31 +1,36 @@
 <% if !list.nil? and list.size > 0 %>
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>desde</th>
-      <th>hasta</th>
-      <th>en</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% list.each do |relation| %>
+<span class="label" data-toggle="collapse" data-target="#entities-list">
+  <i class="icon-chevron-right"></i> Mostrar tabla de relaciones...
+</span>
+<div id="entities-list" class="entities-list collapse out">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= 
-          link_to relation.source.short_or_long_name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
-        %></td>
-        <td><%= relation.relation_type.description %></td>
-        <td><%= 
-          link_to relation.target.short_or_long_name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
-        %></td>
-        <td><%= relation.from %></td>
-        <td><%= relation.to %></td>
-        <td><%= relation.at %></td>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>desde</th>
+        <th>hasta</th>
+        <th>en</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% list.each do |relation| %>
+        <tr>
+          <td><%= 
+            link_to relation.source.short_or_long_name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
+          %></td>
+          <td><%= relation.relation_type.description %></td>
+          <td><%= 
+            link_to relation.target.short_or_long_name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
+          %></td>
+          <td><%= relation.from %></td>
+          <td><%= relation.to %></td>
+          <td><%= relation.at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <% end %>
