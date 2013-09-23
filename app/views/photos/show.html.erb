@@ -6,7 +6,7 @@
 
     <div class="span8 separate">
 
-      <%= link_to image_tag(@photo.file.url(:full), class: 'photo'), @photo.file.url %>
+      <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
 
       <p>
         <strong>Footer:</strong> <%= raw(@photo.footer) %>
@@ -26,6 +26,9 @@
           <%= link_to tag, tagged_photos_path(tag_name: tag) %>
         <% end %>
       </p>
+      <p>
+        <%= link_to 'Full-resolution link', @photo.file.url %>
+      </p>
       <% end %>
 
       <hr>
@@ -37,3 +40,35 @@
   </div>
 
 </div>
+
+<!-- FIXME: Annotorious Proof of Concept. Much improvement left -->
+<script>
+$(function() {
+  // Annotorious seems to break the $ jQuery object, which creates havoc with 
+  // other Javascript code, so we load it dynamically after the page is loaded
+  $.getScript('/javascripts/annotorious/annotorious.min.js', function(data, textStatus){
+
+    jQuery.getScript('/javascripts/annotorious/anno-elasticsearch-plugin.js', function(data, textStatus){
+      <% if not can? :manage, @photo %>
+      // Set default properties so the widget doesn't come back after annotations loaded
+      anno.setProperties = { hide_selection_widget: true, hide_annotations: false };
+      // ...and then hide the widget
+      anno.hideSelectionWidget();
+      <% end %>
+
+      // FIXME: Pointing at a demo server, not production ready
+      anno.addPlugin('ElasticSearch', { base_url: 'http://62.218.164.156/annotations/' });
+    });
+
+  });  
+});
+</script>
+<style>
+  /* FIXME: Clumsy and insecure way of disabling edit buttons in pop-up */
+  <% if not can? :manage, @photo %>
+  .annotorious-popup-button-edit,
+  .annotorious-popup-button-delete {
+    display: none;
+  }
+  <% end %>
+</style>
