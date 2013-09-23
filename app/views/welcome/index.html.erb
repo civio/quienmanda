@@ -1,29 +1,53 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">
-  
-  <!-- start: Flexslider -->
-  <div class="slider">
-    <div id="flex1" class="flexslider home">
-      <ul class="slides">
+<!--start: row-fluid -->
+<div class="row-fluid">
 
-        <% @highlights.each do |post| %>
-        <li>
-          <%= link_to post, class: 'image' do %>
-          <%= image_tag(post.photo.url()) %>
-          <div class="slide-caption n">
-            <h3><%= post.title %></h3>
-          </div>
-          <% end %>
-        </li>
-        <% end %>
+  <!--start: Wrapper-->
+  <div id="wrapper" class="full span8">
 
-      </ul>
-    </div>
+      <!-- start: Flexslider -->
+      <div class="slider">
+        <div id="flex1" class="flexslider home">
+          <ul class="slides">
+
+            <% @highlights.each do |post| %>
+            <li>
+              <%= link_to post, class: 'image' do %>
+              <%= image_tag(post.photo.url()) %>
+              <div class="slide-caption n">
+                <h3><%= post.title %></h3>
+              </div>
+              <% end %>
+            </li>
+            <% end %>
+
+          </ul>
+        </div>
+      </div>
+      <!-- end: Flexslider -->
+
   </div>
-  <!-- end: Flexslider -->
+  <!-- end: Wrapper  -->  
+
+  <!--start: Wrapper-->
+  <div id="wrapper" class="full span4">
+
+    <div>
+      <h3>Lorem ipsum</h3>
+      <p>
+        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+      </p>
+      <hr>
+      <h3>Lorem ipsum</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+
+  </div>
+  <!-- end: Wrapper  -->  
 
 </div>
-<!-- end: Wrapper  -->  
+<!--end: row-fluid -->
 
 <!--start: Wrapper-->
 <div id="wrapper">
@@ -47,10 +71,7 @@
 <script>
 $(function () {
 
-  $('#flex1').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
+  $('#flex1').flexslider();
   
 });
 </script>
