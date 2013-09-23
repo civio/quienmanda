@@ -45,7 +45,8 @@
 <script>
 $(function() {
   // Annotorious seems to break the $ jQuery object, which creates havoc with 
-  // other Javascript code, so we load it dynamically after the page is loaded
+  // other Javascript code, so we load it dynamically after the page is loaded.
+  // Interestingly this doesn't happen with the dev (uncompiled) version.
   $.getScript('/javascripts/annotorious/annotorious.min.js', function(data, textStatus){
 
     jQuery.getScript('/javascripts/annotorious/anno-elasticsearch-plugin.js', function(data, textStatus){
