@@ -1,30 +1,52 @@
+<!-- start: Page Title -->
+<div id="page-title">
+
+  <h2><%= @person.short_or_long_name %></h2>
+
+</div>
+<!-- end: Page Title -->
+
 <div id="wrapper" class="full">       
   <div class="row-fluid">
 
-    <div class="span8 separate">
-      <h2>Persona: <%= @person.name %></h2>
-      <p>
-        <strong>Short name:</strong>
-        <%= @person.short_name %>
-      </p>
+    <div class="span4 separate">
+      <%= image_tag(@person.avatar.url ? @person.avatar.url : 'avatar.png', class: 'image') %>
+    </div>
 
+    <div class="span8">
+      <p>
+        <strong><%= @person.name %></strong><br>
+        <%= @person.description %>
+      </p>
+      <p>
+        <ul class='entity-links clearfix'>
+          <li><%= icon_link @person.web_page, 'link' %></li>
+          <li><%= icon_link @person.wikipedia_page, 'wikipedia' %></li>
+          <li><%= icon_link @person.twitter_handle, 'twitter' %></li>
+          <li><%= icon_link @person.facebook_page, 'facebook' %></li>
+          <li><%= icon_link @person.open_corporates_page, 'link' %></li>
+          <li><%= icon_link @person.flickr_page, 'flickr' %></li>
+          <li><%= icon_link @person.youtube_page, 'youtube' %></li>
+          <li><%= icon_link @person.linkedin_page, 'linkedin' %></li>
+        </ul>
+      </p>
       <%= render '/shared/needs_work' %>
     </div>
 
   </div>
 </div>
 
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full tight">       
   <div class="row-fluid">
 
-      <h3>Relaciones</h3>
-      <div id="viz-container"></div>
-      <%= render "shared/entities_list", :list => @relations %>
+    <div id="viz-container"></div>
+    <h3>Relaciones</h3>
+    <%= render "shared/entities_list", :list => @relations %>
 
   </div>
 </div>
 
-<div id="wrapper" class="full">       
+<div id="wrapper" class="full tight">       
   <div class="row-fluid">
       <h3>Fotos</h3>
       <% @person.related_photos.each do |photo| %>

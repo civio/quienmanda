@@ -1,13 +1,13 @@
 <% if !list.nil? and list.size > 0 %>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Sujeto</th>
-      <th>Verbo</th>
-      <th>Predicado</th>
-      <th>Desde</th>
-      <th>Hasta</th>
-      <th>En</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>desde</th>
+      <th>hasta</th>
+      <th>en</th>
     </tr>
   </thead>
 
@@ -15,11 +15,11 @@
     <% list.each do |relation| %>
       <tr>
         <td><%= 
-          link_to relation.source.name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
+          link_to relation.source.short_or_long_name, relation.source.person ? person_path(relation.source) : organization_path(relation.source) 
         %></td>
         <td><%= relation.relation_type.description %></td>
         <td><%= 
-          link_to relation.target.name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
+          link_to relation.target.short_or_long_name, relation.target.person ? person_path(relation.target) : organization_path(relation.target) 
         %></td>
         <td><%= relation.from %></td>
         <td><%= relation.to %></td>

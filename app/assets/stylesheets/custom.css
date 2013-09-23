@@ -23,6 +23,20 @@ div.quienmanda-embed-wrapper {
   text-shadow: none;
 }
 
+/* Entity page */
+#wrapper.tight {
+  margin-top: 20px;
+}
+
+.entity-links li {
+  font-size: 1.5em;
+  float: left;
+}
+.entity-links a:hover {
+  text-decoration: none;
+  color: green;
+}
+
 /* Import page */
 td.field-match-success {
 }
