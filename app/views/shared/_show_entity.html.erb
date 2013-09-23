@@ -45,22 +45,7 @@
   </div>
 </div>
 
-<div id="wrapper" class="full tight">       
-  <div class="row-fluid">
-      <h3>Fotos</h3>
-      <% entity.related_photos.each do |photo| %>
-        <%= render 'shared/show_photo', :item => photo %>
-      <% end %>
-
-      <div style="clear:both">
-        <%= is_person ? link_to('Back', people_path) : link_to('Back', organizations_path) %>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
+<%= render '/shared/show_photo_wall', photos: entity.related_photos, extra_wrapper_css: 'tight' %>
 
 <script>
 $(function () {

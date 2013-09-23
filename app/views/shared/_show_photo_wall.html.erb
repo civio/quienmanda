@@ -1,0 +1,17 @@
+<!--start: Wrapper-->
+<div id="wrapper" class="<%= extra_wrapper_css unless not defined? extra_wrapper_css %>">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid">
+            
+    <% photos.each do |photo| %>
+      <%= render 'shared/show_photo', :item => photo %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+  
+  <%= paginate photos if photos.respond_to? :current_page %>
+
+</div>
+<!-- end: Wrapper  -->
