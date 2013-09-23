@@ -880,14 +880,3 @@
   }  
 
 })(jQuery);
-
-$(window).load(function() {
-    $('#flex1').flexslider();
-});
-
-$(window).load(function() {
-  $('#flex2').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
-});
