@@ -10,4 +10,8 @@ module ApplicationHelper
     end
     nil # Shouldn't happen
   end
+
+  def absolute_url(url)
+    url.start_with?('http') ? url : "http://#{url}"
+  end
 end
