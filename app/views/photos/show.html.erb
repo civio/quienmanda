@@ -26,9 +26,7 @@
           <%= link_to tag, tagged_photos_path(tag_name: tag) %>
         <% end %>
       </p>
-      <p>
-        <%= link_to 'Full-resolution link', @photo.file.url %>
-      </p>
+      <%= render 'shared/show_admin_links', item: @photo %>
       <% end %>
 
       <hr>

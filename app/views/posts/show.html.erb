@@ -35,6 +35,7 @@
           <div class="post-meta">
             <span><i class="icon-user"></i>Por <a href="#"><%= @post.author.name %></a></span> 
           </div>
+          <%= render 'shared/show_admin_links', item: @post %>
           <div class="post-description">
             <%= raw(@content) %>
           </div>
