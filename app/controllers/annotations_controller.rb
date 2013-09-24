@@ -1,4 +1,4 @@
-# JSON only
+# A very basic JSON-only controller, custom built for Annotorious storage
 class AnnotationsController < ApplicationController
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
@@ -59,9 +59,26 @@ class AnnotationsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # TODO: I'm overriding this method to different pre-processing, not the cleanest way.
     def annotation_params
       # Check http://blog.sensible.io/2013/08/17/strong-parameters-by-example.html
       # FIXME params.require(:annotation).permit(:resource_uri, :text)
-      { data: JSON.dump(params[:annotation]) }
+
+      # Put all the incoming Annotorious-specific data in a field, don't care about details
+      processed_params = { 
+        data: JSON.dump(params[:annotation])
+      }
+
+      # Find out which photo we're annotating
+      path = Rails.application.routes.recognize_path(params[:annotation][:context])
+      if path[:controller] == 'photos'
+        processed_params[:photo_id] = path[:id]
+      end
+
+      # Find out which entity the annotation is refering to
+      # FIXME: This is so strict it's almost useless
+      processed_params[:entity] = Entity.find_by_name(params[:annotation][:text]) unless params[:annotation][:text].blank?
+
+      processed_params
     end
 end

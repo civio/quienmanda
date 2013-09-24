@@ -1,6 +1,6 @@
 class Entity < ActiveRecord::Base
-  has_many :entity_photo_associations, dependent: :delete_all
-  has_many :related_photos, through: :entity_photo_associations, source: :photo
+  has_many :annotations, dependent: :delete_all
+  has_many :related_photos, through: :annotations, source: :photo
 
   has_many :relations_as_source, foreign_key: :source_id, class_name: Relation, inverse_of: :source
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target

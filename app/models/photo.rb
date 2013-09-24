@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
-  has_many :entity_photo_associations, dependent: :delete_all
-  has_many :related_entities, through: :entity_photo_associations, source: :entity
+  has_many :annotations, dependent: :delete_all
+  has_many :related_entities, through: :annotations, source: :entity
 
   has_paper_trail
 

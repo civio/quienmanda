@@ -149,10 +149,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'EntityPhotoAssociation' do
-    visible false
-  end
-
   config.model 'Fact' do
     list do
       field :importer

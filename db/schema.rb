@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924145712) do
+ActiveRecord::Schema.define(version: 20130924155419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,12 @@ ActiveRecord::Schema.define(version: 20130924145712) do
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "photo_id"
+    t.integer  "entity_id"
   end
+
+  add_index "annotations", ["entity_id"], name: "index_annotations_on_entity_id", using: :btree
+  add_index "annotations", ["photo_id"], name: "index_annotations_on_photo_id", using: :btree
 
   create_table "entities", force: true do |t|
     t.string   "name",                                            null: false
@@ -50,14 +55,6 @@ ActiveRecord::Schema.define(version: 20130924145712) do
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
   add_index "entities", ["published"], name: "index_entities_on_published", using: :btree
   add_index "entities", ["slug"], name: "index_entities_on_slug", using: :btree
-
-  create_table "entity_photo_associations", force: true do |t|
-    t.integer "photo_id"
-    t.integer "entity_id"
-  end
-
-  add_index "entity_photo_associations", ["entity_id"], name: "index_entity_photo_associations_on_entity_id", using: :btree
-  add_index "entity_photo_associations", ["photo_id"], name: "index_entity_photo_associations_on_photo_id", using: :btree
 
   create_table "facts", force: true do |t|
     t.string "importer"
