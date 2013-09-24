@@ -76,8 +76,11 @@ class AnnotationsController < ApplicationController
       end
 
       # Find out which entity the annotation is refering to
-      # FIXME: This is so strict it's almost useless
-      processed_params[:entity] = Entity.find_by_name(params[:annotation][:text]) unless params[:annotation][:text].blank?
+      unless params[:annotation][:text].blank? 
+        name = params[:annotation][:text]
+        processed_params[:entity] = Entity.find_by_short_name(name) 
+        processed_params[:entity] = Entity.find_by_name(name) if processed_params[:entity].nil?
+      end
 
       processed_params
     end
