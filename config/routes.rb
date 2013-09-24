@@ -22,6 +22,8 @@ Quienmanda::Application.routes.draw do
     end
   end
 
+  resources :annotations
+
   # Global search
   get '/search' => 'search#search', :as => 'search'
 
