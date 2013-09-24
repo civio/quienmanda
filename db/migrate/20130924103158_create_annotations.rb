@@ -1,7 +1,7 @@
 class CreateAnnotations < ActiveRecord::Migration
   def change
     create_table :annotations do |t|
-      t.json :data
+      t.text :data
 
       t.timestamps
     end
