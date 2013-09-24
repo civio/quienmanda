@@ -1,3 +1,4 @@
+(function($) {
 
 /* TODO: This is only part of the original template JS */
 
@@ -267,3 +268,5 @@ function widthFunctions(e) {
   }
   
 }
+
+})(jQuery);
