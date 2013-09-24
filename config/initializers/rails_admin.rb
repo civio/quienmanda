@@ -86,6 +86,7 @@ RailsAdmin.config do |config|
       field :name
       field :short_name
       field :description
+      field :updated_at
     end
 
     edit do
@@ -141,6 +142,7 @@ RailsAdmin.config do |config|
           help 'Leave blank for the URL slug to be auto-generated'
         end
         field :notes
+        field :updated_at
       end
     end
 
@@ -154,6 +156,7 @@ RailsAdmin.config do |config|
       field :importer
       field :relations
       field :summary
+      field :updated_at
     end
 
     edit do
@@ -164,6 +167,7 @@ RailsAdmin.config do |config|
       field :summary do
         read_only true
       end
+      field :updated_at
     end
   end  
 
@@ -174,6 +178,7 @@ RailsAdmin.config do |config|
       field :file
       field :footer
       field :tag_list
+      field :updated_at
     end
 
     edit do
@@ -205,6 +210,7 @@ RailsAdmin.config do |config|
           partial 'tag_list_with_suggestions'
         end
         field :notes
+        field :updated_at
       end
     end
   end
@@ -216,6 +222,7 @@ RailsAdmin.config do |config|
       field :needs_work
       field :title
       field :author
+      field :updated_at
     end
 
     edit do
@@ -246,6 +253,7 @@ RailsAdmin.config do |config|
           help 'Leave blank for the URL slug to be auto-generated'
         end
         field :notes
+        field :updated_at
       end
     end
   end
@@ -258,6 +266,7 @@ RailsAdmin.config do |config|
       field :relation_type
       field :target
       field :via
+      field :updated_at
     end
 
     edit do
@@ -291,6 +300,7 @@ RailsAdmin.config do |config|
           read_only true
         end
         field :notes
+        field :updated_at
       end
     end
 
