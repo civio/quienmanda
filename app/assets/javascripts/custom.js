@@ -214,7 +214,8 @@ jQuery(document).ready(function($){
 $(window).bind("resize", widthFunctions);
 
 function widthFunctions(e) {
-  
+  $=jQuery; /* Strange interactions with Annotorious going on */
+
   var winHeight = $(window).height();
   var winWidth = $(window).width();
 
