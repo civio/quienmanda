@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.0.0
 env:
-  - DATABASE_URL=$(curl http://api.postgression.com) DB=postgresql DEVISE_SECRET=fake-just-for-CI
+  - DB=postgresql DEVISE_SECRET=fake-just-for-CI
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate spec
 before_script:

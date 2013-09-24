@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924103158) do
+ActiveRecord::Schema.define(version: 20130924145712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20130924103158) do
   enable_extension "unaccent"
 
   create_table "annotations", force: true do |t|
-    t.json     "data"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

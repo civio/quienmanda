@@ -1,1 +1,3 @@
-json.extract! @annotation, :id, :data, :created_at, :updated_at
+json.extract! @annotation, :id
+json.set! :data, JSON.parse(@annotation.data)
+json.extract! @annotation, :created_at, :updated_at

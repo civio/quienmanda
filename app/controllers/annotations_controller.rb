@@ -62,6 +62,6 @@ class AnnotationsController < ApplicationController
     def annotation_params
       # Check http://blog.sensible.io/2013/08/17/strong-parameters-by-example.html
       # FIXME params.require(:annotation).permit(:resource_uri, :text)
-      { data: params[:annotation] }
+      { data: JSON.dump(params[:annotation]) }
     end
 end

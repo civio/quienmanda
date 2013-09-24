@@ -13,7 +13,7 @@ Rails 2.0 needed. You can install it using RVM:
     $ rvm get stable
     $ rvm install 2.0.0
     
-Postgres is used for the database. We use the `hstore` and `json` datatypes, so 9.2 is required. If developing in OS X Postgres.app is the easiest way to get Postgres installed. Then create a user `qm` and the database:
+Postgres is used for the database. We use the `hstore` datatypes, so 9.0 is required. If developing in OS X Postgres.app is the easiest way to get Postgres installed. Then create a user `qm` and the database:
  
     $ createuser -s -h localhost qm
     $ createdb -O qm -h localhost qm_development
