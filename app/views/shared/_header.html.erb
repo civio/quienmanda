@@ -15,10 +15,6 @@
             <li class="<%= 'active' if controller.controller_name == 'organizations' %>"><%= link_to 'Organizaciones', organizations_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'photos' %>"><%= link_to 'Fotos', photos_path %></li>
 
-            <%= render 'devise/menu/registration_items' %>
-            <%= render 'devise/menu/login_items' %>
-            <li ><%= link_to 'Admin', rails_admin_path %></li>
-
             <%= form_tag search_path, :id => 'custom-search-form', 
                                       :class => 'form-search form-horizontal pull-right', 
                                       :method => 'get' do %>
