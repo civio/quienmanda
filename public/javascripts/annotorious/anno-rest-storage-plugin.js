@@ -1,12 +1,12 @@
 /**
- * A simple storage connector plugin to the ElasticSearch REST interface.
+ * A simple storage connector plugin to the RESTStorage REST interface.
  *
  * Note: the plugin requires jQuery to be linked into the host page.
  *
  * THIS PLUGIN IS FOR DEMO PURPOSES ONLY - DON'T USE IN A PRODUCTION
  * ENVIRONMENT.
  */
-annotorious.plugin.ElasticSearch = function(opt_config_options) {
+annotorious.plugin.RESTStorage = function(opt_config_options) {
   /** @private **/
   this._STORE_URI = opt_config_options['base_url'];
 
@@ -17,7 +17,7 @@ annotorious.plugin.ElasticSearch = function(opt_config_options) {
   this._loadIndicators = [];
 }
 
-annotorious.plugin.ElasticSearch.prototype.initPlugin = function(anno) {  
+annotorious.plugin.RESTStorage.prototype.initPlugin = function(anno) {  
   var self = this;
   anno.addHandler('onAnnotationCreated', function(annotation) {
     self._create(annotation);
@@ -30,17 +30,17 @@ annotorious.plugin.ElasticSearch.prototype.initPlugin = function(anno) {
   anno.addHandler('onAnnotationRemoved', function(annotation) {
     self._delete(annotation);
   });
-  
+
   self._loadAnnotations(anno);
 }
 
-annotorious.plugin.ElasticSearch.prototype.onInitAnnotator = function(annotator) {
+annotorious.plugin.RESTStorage.prototype.onInitAnnotator = function(annotator) {
   var spinner = this._newLoadIndicator();
   annotator.element.appendChild(spinner);
   this._loadIndicators.push(spinner);
 }
 
-annotorious.plugin.ElasticSearch.prototype._newLoadIndicator = function() { 
+annotorious.plugin.RESTStorage.prototype._newLoadIndicator = function() { 
   var outerDIV = document.createElement('div');
   outerDIV.className = 'annotorious-es-plugin-load-outer';
   
@@ -54,28 +54,29 @@ annotorious.plugin.ElasticSearch.prototype._newLoadIndicator = function() {
 /**
  * @private
  */
-annotorious.plugin.ElasticSearch.prototype._showError = function(error) {
+annotorious.plugin.RESTStorage.prototype._showError = function(error) {
   // TODO proper error handling
-  window.alert('ERROR');
-  console.log(error);
+  console.error("RESTStorage error: "+error);
 }
 
 /**
  * @private
  */
-annotorious.plugin.ElasticSearch.prototype._loadAnnotations = function(anno) {
+annotorious.plugin.RESTStorage.prototype._loadAnnotations = function(anno) {
+
   // TODO need to restrict search to the URL of the annotated
   var self = this;
-  jQuery.getJSON(this._STORE_URI + '_search?query=*:*&size=1000', function(data) {
+  jQuery.getJSON(this._STORE_URI, function(data) {
     try {
-      jQuery.each(data.hits.hits, function(idx, hit) {
-        var annotation = hit['_source'];
-        annotation.id = hit['_id'];
-        
+      jQuery.each(data, function(idx, hit) {
+        var annotation = hit['data'];
+        annotation.id = hit['id'];
+
         if (jQuery.inArray(annotation.id, self._annotations) < 0) {
           self._annotations.push(annotation.id);
-          if (!annotation.shape && annotation.shapes[0].geometry)
+          if (!annotation.shape && annotation.shapes[0].geometry) {
             anno.addAnnotation(annotation);
+          }
         }
       });
     } catch (e) {
@@ -92,33 +93,42 @@ annotorious.plugin.ElasticSearch.prototype._loadAnnotations = function(anno) {
 /**
  * @private
  */
-annotorious.plugin.ElasticSearch.prototype._create = function(annotation) {
+annotorious.plugin.RESTStorage.prototype._create = function(annotation) {
   var self = this;
-  jQuery.post(this._STORE_URI + 'annotation/',  JSON.stringify(annotation), function(response) {
-    // TODO error handling if response status != 201 (CREATED)
-    var id = response['_id'];
-    annotation.id = id;
+  jQuery.ajax({
+    url: this._STORE_URI,  
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({annotation: annotation}), 
+    success: function(response) {
+      annotation.id = response['id'];
+    },
+    error: function (xhRequest, ErrorText, thrownError) {
+      // TODO error handling if response status != 201 (CREATED)
+      self._showError(thrownError);
+    }
   });
 }
 
 /**
  * @private
  */
-annotorious.plugin.ElasticSearch.prototype._update = function(annotation) {
+annotorious.plugin.RESTStorage.prototype._update = function(annotation) {
   var self = this;
   jQuery.ajax({
-    url: this._STORE_URI + 'annotation/' + annotation.id,
+    url: this._STORE_URI + '/' + annotation.id,
     type: 'PUT',
-    data: JSON.stringify(annotation)
+    contentType: 'application/json',
+    data: JSON.stringify({annotation: annotation})
   }); 
 }
 
 /**
  * @private
  */
-annotorious.plugin.ElasticSearch.prototype._delete = function(annotation) {
+annotorious.plugin.RESTStorage.prototype._delete = function(annotation) {
   jQuery.ajax({
-    url: this._STORE_URI + 'annotation/' + annotation.id,
+    url: this._STORE_URI + '/' + annotation.id,
     type: 'DELETE'
   });
 }

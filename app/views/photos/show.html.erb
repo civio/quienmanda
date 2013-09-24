@@ -48,9 +48,8 @@ $(function() {
   // other Javascript code, so we load it dynamically after the page is loaded.
   // Interestingly this doesn't happen with the dev (uncompiled) version.
   jQuery.getScript('/javascripts/annotorious/annotorious.min.js', function(data, textStatus){
-    $ = jQuery;
 
-    jQuery.getScript('/javascripts/annotorious/anno-elasticsearch-plugin.js', function(data, textStatus){
+    jQuery.getScript('/javascripts/annotorious/anno-rest-storage-plugin.js', function(data, textStatus){
       <% if not can? :manage, @photo %>
       // Set default properties so the widget doesn't come back after annotations loaded
       anno.setProperties = { hide_selection_widget: true, hide_annotations: false };
@@ -58,8 +57,7 @@ $(function() {
       anno.hideSelectionWidget();
       <% end %>
 
-      // FIXME: Pointing at a demo server, not production ready
-      // anno.addPlugin('ElasticSearch', { base_url: 'http://62.218.164.156/annotations/' });
+      anno.addPlugin('RESTStorage', { base_url: '/annotations' });
     });
 
   });  
