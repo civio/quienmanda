@@ -44,37 +44,46 @@
       
       </div>
       <!-- end: Post -->
-      
-      <hr>
-    
-      <strong><%= link_to 'Más historias', posts_path %></strong>
 
     </div>  
 
     <!-- start: Sidebar -->
-
     <div class="span4 sidebar hidden-phone">
 
       <!-- start: Sidebar Menu -->
       <div class="widget">
         <h3>Entidades</h3>
-        <ul class="links-list-alt">
+        <p>
+          <ul class="links-list-alt">
 
-          <% @related_entities.each do |entity| %>
-          <li>
-            <%= link_to entity.short_or_long_name, entity_path(entity) %>
-          </li>
-          <% end %>
+            <% @related_entities.each do |entity| %>
+            <li>
+              <%= link_to entity.short_or_long_name, entity_path(entity) %>
+            </li>
+            <% end %>
 
-        </ul>
+          </ul>
+        </p>
       </div>
       <!-- end: Sidebar Menu -->
 
     </div>
     <!-- end: Sidebar -->
-  
+
+    <div id="wrapper" class="span4 sidebar tight">
+      <!-- start: Wall -->
+      <div id="wall">
+        <h3>Otros artículos</h3>
+        <% @related_posts.each do |post| %>
+          <%= render '/shared/show_post', :item => post, :width => 'span12' %>
+        <% end %>
+        </p>
+      </div>
+    </div>
+
   </div>
-  <!--start: Row -->
+  <!--end: Row -->
 
 </div>
 <!-- end: Wrapper  -->
+

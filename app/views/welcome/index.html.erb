@@ -56,7 +56,7 @@
   <div id="wall" class="row-fluid">
             
     <% @posts.each do |post| %>
-      <%= render '/shared/show_post', :item => post, :frontpage => true %>
+      <%= render '/shared/show_post', :item => post, :width => 'span6' %>
     <% end %>
 
   </div>

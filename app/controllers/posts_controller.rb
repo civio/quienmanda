@@ -18,9 +18,18 @@ class PostsController < ApplicationController
     Rails.application.routes.url_helpers.tap do |router|
       extractors = [
         { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
-        { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } }
+        { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } },
+        { prefix: router.posts_path, method: ->(slug) { Post.find_by_slug(slug) } }
       ]
-      @related_entities = @post.extract_references(get_domain_name, extractors)
+      @related_entities = []
+      @related_posts = []
+      @post.extract_references(get_domain_name, extractors).each do |reference|
+        if reference.class.name == 'Entity'
+          @related_entities << reference
+        else
+          @related_posts << reference
+        end
+      end
     end
 
     # Parse shortcodes (do this after we've parsed the post looking for QM references)
