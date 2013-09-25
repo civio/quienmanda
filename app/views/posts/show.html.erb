@@ -50,27 +50,23 @@
     <!-- start: Sidebar -->
     <div class="span4 sidebar hidden-phone">
 
-      <!-- start: Sidebar Menu -->
-      <div class="widget">
-        <h3>Entidades</h3>
-        <p>
-          <ul class="links-list-alt">
-
-            <% @related_entities.each do |entity| %>
-            <li>
-              <%= link_to entity.short_or_long_name, entity_path(entity) %>
-            </li>
-            <% end %>
-
-          </ul>
-        </p>
-      </div>
-      <!-- end: Sidebar Menu -->
+      <h3>Entidades</h3>
+      <p>
+        <ul class="links-list-alt">
+          <% @related_entities.each do |entity| %>
+          <li>
+            <%= link_to entity.short_or_long_name, entity_path(entity) %>
+          </li>
+          <% end %>
+        </ul>
+      </p>
 
     </div>
     <!-- end: Sidebar -->
 
+    <!-- start: Sidebar -->
     <div class="span4 sidebar full">
+
       <!-- start: Wall -->
       <div id="wall">
         <h3>Otros artículos</h3>
@@ -79,7 +75,10 @@
         <% end %>
         </p>
       </div>
+      <!-- end: Wall -->
+
     </div>
+    <!-- end: Sidebar -->
 
   </div>
   <!--end: Row -->

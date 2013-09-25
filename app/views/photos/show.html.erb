@@ -1,39 +1,66 @@
-<!--start: Wrapper-->
-<div id="wrapper" class="full">       
+<!-- start: Page Title -->
+<div id="page-title">
 
+  <h2>El Fotomandón</h2>
+
+</div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+      
   <!--start: Row -->
   <div class="row-fluid">
-
-    <div class="span8 separate">
+  
+    <div class="posts span8 full">
 
       <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
 
       <p>
-        <strong>Footer:</strong> <%= raw(@photo.footer) %>
+        <%= raw(@photo.footer) %>
       </p>
-
       <p>
-        Personas relacionadas:
-        <% @photo.related_entities.each do |entity| %>
-          <%= link_to entity.short_or_long_name, entity_path(entity) %>
+        <% if !@photo.source.blank? %>
+        <i class="icon-external-link-sign"></i> <%= link_to @photo.copyright, absolute_url(@photo.source), target: '_blank' %>
         <% end %>
       </p>
 
-      <% if can? :manage, @photo %>
-      <p>
-        Tags: 
-        <% @photo.tag_list.each do |tag| %>
-          <%= link_to tag, tagged_photos_path(tag_name: tag) %>
-        <% end %>
-      </p>
       <%= render 'shared/show_admin_links', item: @photo %>
-      <% end %>
-
-      <hr>
-
-      <%= link_to 'Back', photos_path %>
 
     </div>
+
+    <% unless @photo.related_entities.empty? %>
+    <!-- start: Sidebar -->
+    <div class="span4 sidebar hidden-phone">
+
+      <p>
+        <ul class="links-list-alt">
+          <% @photo.related_entities.each do |entity| %>
+          <li>
+            <%= link_to entity.short_or_long_name, entity_path(entity) %>
+          </li>
+          <% end %>
+        </ul>
+      </p>
+
+    </div>
+    <!-- end: Sidebar -->
+    <% end %>
+
+    <% if can? :manage, @photo and not @photo.tag_list.empty? %>
+    <!-- start: Sidebar -->
+    <div class="span4 sidebar full">
+
+      <h3>Tags</h3>
+      <div class="tags"> 
+        <% @photo.tag_list.each do |tag| %>
+        <%= link_to tag, tagged_photos_path(tag_name: tag) %>
+        <% end %>
+      </div>
+
+    </div>
+    <!-- end: Sidebar -->
+    <% end %>
 
   </div>
 
