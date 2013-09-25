@@ -8,6 +8,10 @@
   border-bottom: 1px black solid;
 }
 
+.sidebar {
+  margin-bottom: 20px;
+}
+
 div.quienmanda-embed-wrapper {
   margin-left: 20px;
 }
