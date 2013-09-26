@@ -78,8 +78,7 @@
 <script>
 jQuery(function() {
   anno.addPlugin('RESTStorage', { 
-                    base_url: '/annotations', 
-                    resource_id: <%= @photo.id %>,
+                    base_url: '<%= "/photos/#{@photo.id}/annotations" %>',
                     read_only: <%= (can? :manage, @photo) ? 'false' : 'true' %>
                   });
 });

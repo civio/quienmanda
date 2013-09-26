@@ -17,12 +17,11 @@ Quienmanda::Application.routes.draw do
   resources :organizations, only: [:index, :show]
 
   resources :photos, only: [:index, :show] do
+    resources :annotations, :except => [:new, :edit]
     collection do
       get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
     end
   end
-
-  resources :annotations, :except => [:new, :edit]
 
   # Global search
   get '/search' => 'search#search', :as => 'search'

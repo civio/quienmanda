@@ -1,18 +1,11 @@
 # A very basic JSON-only controller, custom built for Annotorious storage
 class AnnotationsController < ApplicationController
+  before_action :set_photo, only: [:index, :create]
   before_action :set_annotation, only: [:show, :update, :destroy]
 
   # GET /annotations.json
   def index
-    # Allow filtering of annotations by supplying the 'id' parameter of the 
-    # photo the annotation refers to. Note the id refers to the photo, not
-    # the annotation, so the route is not 'annotations/id.json'.
-    # TODO: Make annotations a nested resource below a photo 'photo/3/annotations.json'
-    if params[:id]
-      @annotations = Photo.find(params[:id]).annotations
-    else
-      @annotations = Annotation.all
-    end
+    @annotations = @photo.annotations
   end
 
   # GET /annotations/1.json
@@ -25,7 +18,7 @@ class AnnotationsController < ApplicationController
 
     respond_to do |format|
       if @annotation.save
-        format.json { render action: 'show', status: :created, location: @annotation }
+        format.json { render action: 'show', status: :created, location: [@photo, @annotation] }
       else
         format.json { render json: @annotation.errors, status: :unprocessable_entity }
       end
@@ -57,6 +50,10 @@ class AnnotationsController < ApplicationController
       @annotation = Annotation.find(params[:id])
     end
 
+    def set_photo
+      @photo = Photo.find(params[:photo_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     # TODO: I'm overriding this method to different pre-processing, not the cleanest way.
     def annotation_params
@@ -65,14 +62,9 @@ class AnnotationsController < ApplicationController
 
       # Put all the incoming Annotorious-specific data in a field, don't care about details
       processed_params = { 
-        data: JSON.dump(params[:annotation])
+        data: JSON.dump(params[:annotation]),
+        photo_id: params[:photo_id]
       }
-
-      # Find out which photo we're annotating
-      path = Rails.application.routes.recognize_path(params[:annotation][:context])
-      if path[:controller] == 'photos'
-        processed_params[:photo_id] = path[:id]
-      end
 
       # Find out which entity the annotation is refering to
       unless params[:annotation][:text].blank? 
