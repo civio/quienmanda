@@ -1,10 +1,5 @@
 /**
  * A simple storage connector plugin to the RESTStorage REST interface.
- *
- * Note: the plugin requires jQuery to be linked into the host page.
- *
- * THIS PLUGIN IS FOR DEMO PURPOSES ONLY - DON'T USE IN A PRODUCTION
- * ENVIRONMENT.
  */
 annotorious.plugin.RESTStorage = function(opt_config_options) {
   /** @private **/
@@ -15,6 +10,9 @@ annotorious.plugin.RESTStorage = function(opt_config_options) {
   
   /** @private **/
   this._loadIndicators = [];
+
+  /** @private **/
+  this._readOnly = opt_config_options['read_only'];
 }
 
 annotorious.plugin.RESTStorage.prototype.initPlugin = function(anno) {  
@@ -38,6 +36,18 @@ annotorious.plugin.RESTStorage.prototype.onInitAnnotator = function(annotator) {
   var spinner = this._newLoadIndicator();
   annotator.element.appendChild(spinner);
   this._loadIndicators.push(spinner);
+}
+
+annotorious.plugin.RESTStorage.prototype.onLoadComplete = function(annotator) {
+  // Remove all load indicators
+  jQuery.each(this._loadIndicators, function(idx, spinner) {
+    jQuery(spinner).remove();
+  });
+
+  // Disable edit widget if in read-only mode
+  if ( this._readOnly ) {
+    anno.hideSelectionWidget();
+  }
 }
 
 annotorious.plugin.RESTStorage.prototype._newLoadIndicator = function() { 
@@ -82,11 +92,8 @@ annotorious.plugin.RESTStorage.prototype._loadAnnotations = function(anno) {
     } catch (e) {
       self._showError(e);
     }
-    
-    // Remove all load indicators
-    jQuery.each(self._loadIndicators, function(idx, spinner) {
-      jQuery(spinner).remove();
-    });
+
+    self.onLoadComplete(anno);    
   });
 }
 

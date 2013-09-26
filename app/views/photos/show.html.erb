@@ -69,20 +69,18 @@
 <!-- FIXME: Annotorious Proof of Concept. Much improvement left -->
 <script src="/javascripts/annotorious/annotorious.min.js"></script>
 <script src="/javascripts/annotorious/anno-rest-storage-plugin.js"></script>
+<%
+# Annotorious seems to break the $ jQuery object, which creates havoc with 
+# other Javascript code, so we load it dynamically after the page is loaded.
+# Interestingly this doesn't happen with the dev (uncompiled) version. More
+# interestingly trying to restore it ($=jQuery) breaks the plugin 
+%>
 <script>
-// Annotorious seems to break the $ jQuery object, which creates havoc with 
-// other Javascript code, so we load it dynamically after the page is loaded.
-// Interestingly this doesn't happen with the dev (uncompiled) version. More
-// interestingly trying to restore it ($=jQuery) breaks the plugin 
 jQuery(function() {
-  <% if not can? :manage, @photo %>
-  // Set default properties so the widget doesn't come back after annotations loaded
-  anno.setProperties = { hide_selection_widget: true, hide_annotations: false };
-  // ...and then hide the widget
-  anno.hideSelectionWidget();
-  <% end %>
-
-  anno.addPlugin('RESTStorage', { base_url: '/annotations' });
+  anno.addPlugin('RESTStorage', { 
+                    base_url: '/annotations', 
+                    read_only: <%= (can? :manage, @photo) ? 'false' : 'true' %>
+                  });
 });
 </script>
 <style>
