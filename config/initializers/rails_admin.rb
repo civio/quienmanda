@@ -216,6 +216,11 @@ RailsAdmin.config do |config|
   end
 
   # RailsAdmin configuration
+  config.model 'Annotation' do
+    parent Photo
+  end
+
+  # RailsAdmin configuration
   config.model 'Post' do
     list do
       field :published, :toggle
