@@ -19,7 +19,7 @@
       
         <% if @post.show_photo_as_header and !@post.photo.url.blank? %>
         <div class="post-img picture">
-          <%= image_tag(@post.photo.url(:full), class: 'image') %>
+          <%= image_tag(@post.photo.file.url(:full), class: 'image') %>
         </div>
         <% end %>
         <div class="info">
