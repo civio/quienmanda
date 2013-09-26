@@ -4,8 +4,6 @@ class Post < ActiveRecord::Base
 
   has_paper_trail
 
-  mount_uploader :old_photo, PhotoUploader  # FIXME: remove!
-
   include PgSearch
   multisearchable :against => [:title, :content], :if => :published?
 

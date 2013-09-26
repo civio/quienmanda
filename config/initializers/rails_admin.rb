@@ -246,7 +246,6 @@ RailsAdmin.config do |config|
       group :internal do
         label "Internal"
         field :photo
-        field :old_photo
         field :show_photo_as_header do
           default_value false
         end
