@@ -12,7 +12,7 @@
             <% @highlights.each do |post| %>
             <li>
               <%= link_to post, class: 'image' do %>
-              <%= image_tag(post.photo.url()) %>
+              <%= image_tag(post.photo.file.url(:full)) %>
               <div class="slide-caption n">
                 <h3><%= post.title %></h3>
               </div>
@@ -56,7 +56,7 @@
   <div id="wall" class="row-fluid">
             
     <% @posts.each do |post| %>
-      <%= render '/shared/show_post', :item => post, :width => 'span6' %>
+      <%= render '/shared/show_post', :item => post, :width => 'span6', :frontpage => 'true' %>
     <% end %>
 
   </div>

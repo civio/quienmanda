@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924155419) do
+ActiveRecord::Schema.define(version: 20130926222735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,12 +105,14 @@ ActiveRecord::Schema.define(version: 20130924155419) do
     t.text     "notes"
     t.string   "slug"
     t.boolean  "needs_work",           default: true,  null: false
-    t.string   "photo"
+    t.string   "old_photo"
     t.boolean  "show_photo_as_header", default: false
     t.text     "lead"
+    t.integer  "photo_id"
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
+  add_index "posts", ["photo_id"], name: "index_posts_on_photo_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|

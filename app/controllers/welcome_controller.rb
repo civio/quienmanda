@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     # Highlight the latest three articles in the frontpage
-    @highlights = Post.where("photo is not null").order("updated_at desc").limit(3)
+    @highlights = Post.where("photo_id is not null").order("updated_at desc").limit(3)
     @highlights = @highlights.published() unless can? :manage, Post
 
     # Show the normal posts also
