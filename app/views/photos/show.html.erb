@@ -79,6 +79,7 @@
 jQuery(function() {
   anno.addPlugin('RESTStorage', { 
                     base_url: '/annotations', 
+                    resource_id: <%= @photo.id %>,
                     read_only: <%= (can? :manage, @photo) ? 'false' : 'true' %>
                   });
 });

@@ -22,7 +22,7 @@ Quienmanda::Application.routes.draw do
     end
   end
 
-  resources :annotations
+  resources :annotations, :except => [:new, :edit]
 
   # Global search
   get '/search' => 'search#search', :as => 'search'

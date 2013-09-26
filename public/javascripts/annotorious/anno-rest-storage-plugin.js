@@ -12,6 +12,9 @@ annotorious.plugin.RESTStorage = function(opt_config_options) {
   this._loadIndicators = [];
 
   /** @private **/
+  this._resourceId = opt_config_options['resource_id'];
+
+  /** @private **/
   this._readOnly = opt_config_options['read_only'];
 }
 
@@ -76,7 +79,7 @@ annotorious.plugin.RESTStorage.prototype._loadAnnotations = function(anno) {
 
   // TODO need to restrict search to the URL of the annotated
   var self = this;
-  jQuery.getJSON(this._STORE_URI, function(data) {
+  jQuery.getJSON(this._STORE_URI, { id: this._resourceId }, function(data) {
     try {
       jQuery.each(data, function(idx, hit) {
         var annotation = hit['data'];

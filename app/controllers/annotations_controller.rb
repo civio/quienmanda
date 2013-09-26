@@ -1,23 +1,22 @@
 # A very basic JSON-only controller, custom built for Annotorious storage
 class AnnotationsController < ApplicationController
-  before_action :set_annotation, only: [:show, :edit, :update, :destroy]
+  before_action :set_annotation, only: [:show, :update, :destroy]
 
   # GET /annotations.json
   def index
-    @annotations = Annotation.all
+    # Allow filtering of annotations by supplying the 'id' parameter of the 
+    # photo the annotation refers to. Note the id refers to the photo, not
+    # the annotation, so the route is not 'annotations/id.json'.
+    # TODO: Make annotations a nested resource below a photo 'photo/3/annotations.json'
+    if params[:id]
+      @annotations = Photo.find(params[:id]).annotations
+    else
+      @annotations = Annotation.all
+    end
   end
 
   # GET /annotations/1.json
   def show
-  end
-
-  # GET /annotations/new
-  def new
-    @annotation = Annotation.new
-  end
-
-  # GET /annotations/1/edit
-  def edit
   end
 
   # POST /annotations.json
