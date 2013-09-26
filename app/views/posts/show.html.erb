@@ -17,7 +17,7 @@
       <!-- start: Post -->
       <div class="post first last">
       
-        <% if @post.show_photo_as_header and !@post.photo.url.blank? %>
+        <% if @post.show_photo_as_header and !@post.photo.file.url.blank? %>
         <div class="post-img picture">
           <%= image_tag(@post.photo.file.url(:full), class: 'image') %>
         </div>
