@@ -23,7 +23,7 @@ CarrierWave.configure do |config|
     config.storage = :file
     config.root = "#{Rails.root}/tmp"
     config.enable_processing = false
-  elsif Rails.env.development?
+  elsif Rails.env.development? and ENV['FORCE_S3_IN_DEV']!='true'
     config.storage = :file
   else
     config.storage = :fog

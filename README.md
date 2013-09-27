@@ -87,6 +87,8 @@ Following [Heroku instructions][3]:
     $ heroku pgbackups:capture
     $ curl -o latest.dump `heroku pgbackups:url`
     $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -U qm -d qm_development latest.dump 
+
+You may want to add `FORCE_S3_IN_DEV: false` to `config/application.yml` or the uploaded pictures won't show up, since by default the app uses local storage for development.
  
 [3]: https://devcenter.heroku.com/articles/heroku-postgres-import-export
 
