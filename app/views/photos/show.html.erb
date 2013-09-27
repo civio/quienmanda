@@ -17,6 +17,7 @@
       <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
 
       <p>
+        <strong><%= I18n.localize(@photo.date, :format => "%d de %B %Y") %>.</strong>
         <%= raw(@photo.footer) %>
       </p>
       <p>
