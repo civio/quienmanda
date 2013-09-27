@@ -75,12 +75,25 @@
   border-bottom: 1px black solid;
 }
 
+div.quienmanda-embed-wrapper {
+  margin-left: 20px;
+}
+
+
+/* Sidebar */
 .sidebar {
   margin-bottom: 20px;
 }
 
-div.quienmanda-embed-wrapper {
-  margin-left: 20px;
+.sidebar .tiny.image {
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.sidebar h3 {
+  margin: -10px 0 10px 0;
 }
 
 

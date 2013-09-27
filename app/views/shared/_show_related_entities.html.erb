@@ -1,14 +1,19 @@
 <% unless entities.empty? %>
 <div class="span4 sidebar hidden-phone">
   <h3>Entidades</h3>
-  <p>
-    <ul class="links-list-alt">
       <% entities.each do |entity| %>
-      <li>
-        <%= link_to entity.short_or_long_name, entity_path(entity) %>
-      </li>
+      <div class="clearfix">
+        <%= link_to entity_path(entity) do %>
+        <%= 
+          image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image tiny') 
+        %>
+        <% end %>
+        <p>
+          <%= link_to entity.short_or_long_name, entity_path(entity) %>.
+          <small><%= entity.description %></small>
+          <%= render 'shared/show_admin_links', :item => entity, :inline => true %>
+        </p>
+      </div>
       <% end %>
-    </ul>
-  </p>
 </div>
 <% end %>
