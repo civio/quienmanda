@@ -33,6 +33,7 @@ class Post < ActiveRecord::Base
 
     def lookup_link(domain_name, extractors, link)
       begin
+        return if link['href'].blank?                 # Nothing to do...
         uri = URI(link['href'])
         uri.host =~ /(^|\.)#{domain_name}$/           # Allow subdomains too
         return nil unless $~
