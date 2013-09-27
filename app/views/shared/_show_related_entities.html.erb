@@ -1,0 +1,14 @@
+<% unless entities.empty? %>
+<div class="span4 sidebar hidden-phone">
+  <h3>Entidades</h3>
+  <p>
+    <ul class="links-list-alt">
+      <% entities.each do |entity| %>
+      <li>
+        <%= link_to entity.short_or_long_name, entity_path(entity) %>
+      </li>
+      <% end %>
+    </ul>
+  </p>
+</div>
+<% end %>

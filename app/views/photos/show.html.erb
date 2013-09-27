@@ -29,23 +29,7 @@
 
     </div>
 
-    <% unless @photo.related_entities.empty? %>
-    <!-- start: Sidebar -->
-    <div class="span4 sidebar hidden-phone">
-
-      <p>
-        <ul class="links-list-alt">
-          <% @photo.related_entities.each do |entity| %>
-          <li>
-            <%= link_to entity.short_or_long_name, entity_path(entity) %>
-          </li>
-          <% end %>
-        </ul>
-      </p>
-
-    </div>
-    <!-- end: Sidebar -->
-    <% end %>
+    <%= render 'shared/show_related_entities', entities: @photo.related_entities %>
 
     <% if can? :manage, @photo and not @photo.tag_list.empty? %>
     <!-- start: Sidebar -->

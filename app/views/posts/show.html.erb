@@ -48,22 +48,7 @@
 
     </div>  
 
-    <!-- start: Sidebar -->
-    <div class="span4 sidebar hidden-phone">
-
-      <h3>Entidades</h3>
-      <p>
-        <ul class="links-list-alt">
-          <% @related_entities.each do |entity| %>
-          <li>
-            <%= link_to entity.short_or_long_name, entity_path(entity) %>
-          </li>
-          <% end %>
-        </ul>
-      </p>
-
-    </div>
-    <!-- end: Sidebar -->
+    <%= render 'shared/show_related_entities', entities: @related_entities %>
 
     <% unless @related_posts.empty? %>
     <!-- start: Sidebar -->
