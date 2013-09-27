@@ -64,6 +64,10 @@
   color: #BBBBBB;
 }
 
+#homepage-lead {
+  text-align: justify;
+}
+
 
 /* Post page */
 .post-description a {
