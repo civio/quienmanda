@@ -1,19 +1,22 @@
 # A very basic JSON-only controller, custom built for Annotorious storage
 class AnnotationsController < ApplicationController
-  before_action :set_photo, only: [:index, :create]
+  before_action :set_photo, only: [:index, :show, :create]
   before_action :set_annotation, only: [:show, :update, :destroy]
 
   # GET /annotations.json
   def index
+    authorize! :read, @photo
     @annotations = @photo.annotations
   end
 
   # GET /annotations/1.json
   def show
+    authorize! :read, @photo
   end
 
   # POST /annotations.json
   def create
+    authorize! :manage, @photo
     @annotation = Annotation.new(annotation_params)
 
     respond_to do |format|
@@ -27,6 +30,7 @@ class AnnotationsController < ApplicationController
 
   # PATCH/PUT /annotations/1.json
   def update
+    authorize! :manage, Photo
     respond_to do |format|
       if @annotation.update(annotation_params)
         format.json { head :no_content }
@@ -38,6 +42,7 @@ class AnnotationsController < ApplicationController
 
   # DELETE /annotations/1.json
   def destroy
+    authorize! :manage, Photo
     @annotation.destroy
     respond_to do |format|
       format.json { head :no_content }
