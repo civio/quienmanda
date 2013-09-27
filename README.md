@@ -18,7 +18,7 @@ Postgres is used for the database. We use the `hstore` datatypes, so 9.0 is requ
     $ createuser -s -h localhost qm
     $ createdb -O qm -h localhost qm_development
     $ createdb -O qm -h localhost qm_test
-    
+
 Then install and run locally, get a copy of the code, install the dependencies:
  
     $ git clone https://github.com/dcabo/quienmanda.es.git
@@ -28,8 +28,8 @@ Then install and run locally, get a copy of the code, install the dependencies:
 Set up the database (this will also create some sample data, and a user with email `admin@quienmanda.es` and password `password`):
 
     $ rake db:setup
-    
-And run…
+
+We keep "sensitive parameters" in a local file `config/application.yml` outside of version control. Make a copy of `config/application.yml-example` into `config/application.yml`; for a local deployment you don't need to modify the settings. And then run the application:
 
     $ rails server
 
@@ -49,7 +49,7 @@ The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable 
 [1b]: https://github.com/mbleigh/acts-as-taggable-on/issues/192
 [1c]: https://github.com/mbleigh/acts-as-taggable-on/issues/192#issuecomment-23538713
 
-In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. So, make a copy of `config/application.yml-example` into `config/application.yml` and fill it with your actual details. Then, run `rake figaro:heroku` to set the env variables in Heroku.
+In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then run `rake figaro:heroku` to set the env variables in Heroku.
 
 To back up the Heroku database contents, [see][2]:
 
