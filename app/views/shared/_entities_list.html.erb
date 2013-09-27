@@ -9,6 +9,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th>fuente</th>
         <th>desde</th>
         <th>hasta</th>
         <th>en</th>
@@ -31,6 +32,11 @@
           <td>
             <%= link_to relation.target.short_or_long_name, 
                         relation.target.person ? person_path(relation.target) : organization_path(relation.target) %>
+          </td>
+          <td>
+            <%= display_source relation.via %>
+            <%= display_source relation.via2 %>
+            <%= display_source relation.via3 %>
           </td>
           <td><%= relation.from %></td>
           <td><%= relation.to %></td>
