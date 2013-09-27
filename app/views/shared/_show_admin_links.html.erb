@@ -1,11 +1,11 @@
 <% if can? :manage, item.class %>
 <%= '<p>'.html_safe unless defined?(inline) %>
-  <%= link_to '<span class="label"><i class="icon-edit"></i> Edit</span>'.html_safe, 
+  <%= link_to '<span class="label admin-action"><i class="icon-edit"></i> Edit</span>'.html_safe, 
               rails_admin.edit_path(id: item.id, model_name: item.class.name), 
               target: '_blank' %>
 
   <% if item.class.name == 'Photo' %>
-  <%= link_to '<span class="label"><i class="icon-picture"></i> Original</span>'.html_safe, 
+  <%= link_to '<span class="label admin-action"><i class="icon-picture"></i> Original</span>'.html_safe, 
               item.file.url, 
               target: '_blank' %>
   <% end %>

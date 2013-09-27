@@ -89,11 +89,17 @@ div.quienmanda-embed-wrapper {
   width: 60px;
   float: left;
   margin-right: 10px;
-  margin-bottom: 5px;
 }
 
 .sidebar h3 {
   margin: -10px 0 10px 0;
+}
+
+table tr td .admin-action { 
+  display:none;
+}
+table tr:hover td .admin-action { 
+  display:inline-block;
 }
 
 
