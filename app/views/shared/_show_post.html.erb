@@ -1,7 +1,7 @@
 <div class="<%= defined?(width) ? width : 'span3' %> item">
   <div class="picture">
     <% if defined?(frontpage) %>
-    <h2 class="center"><%= link_to item.title, post_path(item) %></h2>
+    <h2><%= link_to item.title, post_path(item) %></h2>
     <% else %>
     <h3><%= link_to item.title, post_path(item) %></h3>
     <% end %>
