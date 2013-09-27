@@ -7,7 +7,7 @@
         <td>
           <%= link_to entity_path(entity) do %>
           <%= 
-            image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image tiny') 
+            image_tag(entity.avatar.url ? entity.avatar.url(:icon) : 'avatar.png', class: 'image tiny') 
           %>
           <% end %>
         </td>
