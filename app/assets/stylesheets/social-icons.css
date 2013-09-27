@@ -64,3 +64,12 @@
   background-position: -200px -40px;
   background-color: #3b5998;
 }
+
+.social-googleplus {
+  background-position: -360px -240px;
+}
+
+.social-googleplus:hover {
+  background-position: -360px -280px;
+  background-color: #d94a39;
+}

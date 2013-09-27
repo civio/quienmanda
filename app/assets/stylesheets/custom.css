@@ -1,7 +1,63 @@
+/* Social sharing */
+.sharing-buttons {
+  margin: 25px 0 0 -10px;
+  padding: .5em;
+  text-align: center;
+}
+.addthis_toolbox {
+  margin: 0;
+  text-align: center;
+}
+.addthis_toolbox li {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  list-style: none;
+  list-style-type: none;
+  margin: 0 .25em .25em 0;
+  vertical-align: middle;
+}
+[class^="addthis_button_"] {
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  -webkit-box-shadow: 0 0 0 3px rgba(183, 47, 0, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  -moz-box-shadow: 0 0 0 3px rgba(183, 47, 0, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 0 0 3px rgba(183, 47, 0, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+}
+[class^="addthis_button_"] span {
+  background: none!important;
+}
+[class^="addthis_button_"]:hover {
+  background-color: #b72f00;
+}
+.addthis_default_style .at300b,
+.addthis_default_style .at300bo,
+.addthis_default_style .at300m {
+  padding: 0!important;
+}
+.addthis_button_expanded {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+
 /* Home page */
 .slide-caption .source-link {
   color: #BBBBBB;
 }
+
 
 /* Post page */
 .post-description a {
@@ -21,6 +77,7 @@ div.quienmanda-embed-wrapper {
   margin-left: 20px;
 }
 
+
 /* For internal use, detect automatically internal broken links in posts and highlight */
 .broken-link {
   background-color: red;
@@ -31,6 +88,7 @@ div.quienmanda-embed-wrapper {
   background-color: orange;
   text-shadow: none;
 }
+
 
 /* Entity page */
 #wrapper.tight {
@@ -45,6 +103,7 @@ div.quienmanda-embed-wrapper {
   text-decoration: none;
   color: green;
 }
+
 
 /* Import page */
 td.field-match-success {
@@ -72,6 +131,7 @@ table.table tr td span.import-actions {
 table.table tr:hover td span.import-actions { 
   display:inline-block;
 }
+
 
 /* Search box */
 /* Taken from http://bootsnipp.com/snipps/stylish-search-form */
