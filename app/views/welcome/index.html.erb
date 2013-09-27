@@ -11,12 +11,20 @@
 
             <% @highlights.each do |post| %>
             <li>
-              <%= link_to post, class: 'image' do %>
-              <%= image_tag(post.photo.file.url(:full)) %>
-              <div class="slide-caption n">
-                <h3><%= post.title %></h3>
-              </div>
+              <%= link_to post do %>
+                <%= image_tag(post.photo.file.url(:full)) %>
               <% end %>
+              <div class="slide-caption n">
+                <%= link_to post do %>
+                  <h3><%= post.title %></h3>
+                <% end %>
+                <p>
+                  <%= post.lead %>
+                </p>
+                <p>
+                  <%= render 'shared/show_photo_credit', photo: post.photo %>
+                </p>
+              </div>
             </li>
             <% end %>
 

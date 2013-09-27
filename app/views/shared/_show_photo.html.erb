@@ -6,9 +6,7 @@
         <%= link_to raw(item.footer), item %>
       </p>
       <p>
-        <% if !item.source.blank? %>
-        <i class="icon-external-link-sign"></i> <%= link_to item.copyright, absolute_url(item.source), target: '_blank' %>
-        <% end %>
+        <%= render 'shared/show_photo_credit', photo: item %>
       </p>
 
       <%= render 'shared/show_admin_links', :item => item %>

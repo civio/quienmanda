@@ -1,9 +1,18 @@
 <div class="<%= defined?(width) ? width : 'span3' %> item">
   <div class="picture">
+    <% if defined?(frontpage) %>
+    <h2 class="center"><%= link_to item.title, post_path(item) %></h2>
+    <% else %>
+    <h3><%= link_to item.title, post_path(item) %></h3>
+    <% end %>
+
     <%= link_to image_tag(item.photo && item.photo.file.url(defined?(frontpage) ? :full : :small)), item, class: 'image' %>
     <div class="description">
       <p>
-        <%= link_to item.title, post_path(item) %>
+        <%= link_to item.lead, post_path(item) unless item.lead.blank? %>
+      </p>
+      <p>
+        <%= render 'shared/show_photo_credit', photo: item.photo %>
       </p>
       <%= render 'shared/show_admin_links', :item => item %>
     </div>

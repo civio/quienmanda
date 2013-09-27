@@ -1,0 +1,8 @@
+<% unless photo.nil? or photo.source.blank? %>
+<small>
+  (Foto: <%= link_to photo.copyright, 
+              absolute_url(photo.source), 
+              target: '_blank',
+              class: 'source-link' %>)
+</small>
+<% end %>
