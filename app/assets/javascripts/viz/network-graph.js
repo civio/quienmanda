@@ -165,6 +165,6 @@ function NetworkGraph(selector) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
   function dragend(d) {
-    d.fixed = !d.fixed; // toggle fixed attribute after dragging is completed
+    d.fixed = true; // fix the node position after dragging is completed
   };
 };
