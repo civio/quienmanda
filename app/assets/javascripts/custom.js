@@ -63,10 +63,10 @@ function widthFunctions(e) {
     
     if($("#wall").width()) {
       
-      if($(".item").hasClass("span3")) {
+      if($("#wall.item").hasClass("span3")) {
 
-        $(".item").removeClass("span3");
-        $(".item").addClass("span4");
+        $("#wall.item").removeClass("span3");
+        $("#wall.item").addClass("span4");
 
       }
       
@@ -88,8 +88,8 @@ function widthFunctions(e) {
       
       if($(".item").hasClass("span4")) {
 
-        $(".item").removeClass("span4");
-        $(".item").addClass("span3");
+        $("#wall.item").removeClass("span4");
+        $("#wall.item").addClass("span3");
 
       }
       
