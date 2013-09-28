@@ -17,11 +17,10 @@ jQuery(document).ready(function($){
 /* dcabo: Nah, undo, didn't fix it but broke the search page for some reason. Will
           try something else. */
 
-jQuery(document).ready(function () {
-  
-  $('#wall').imagesLoaded(function() {
+function layoutPhotoWall(container_name) {
+  $(container_name).imagesLoaded(function() {
     
-    var $container = $('#wall');
+    var $container = $(container_name);
     $select = $('#filters select');
 
     // initialize Isotope
@@ -84,9 +83,14 @@ jQuery(document).ready(function () {
 
       return false;
       });
-  });
-  
+  });  
+}
+
+jQuery(document).ready(function(){
+  layoutPhotoWall('#wall');
+  layoutPhotoWall('.extra-wall'); /* Sigh */
 });
+
 
 /* -------------------- Width Functions --------------------- */
 

@@ -70,12 +70,25 @@
 
   </div>
   <!-- end: Portfolio -->
-  
-  <%= paginate @posts %>
 
 </div>
 <!-- end: Wrapper  -->
 
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid extra-wall">
+            
+    <% @photos.each do |photo| %>
+      <%= render '/shared/show_photo', :item => photo %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+
+</div>
+<!-- end: Wrapper  -->
 
 <script>
 $(function () {
