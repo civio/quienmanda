@@ -252,6 +252,9 @@ RailsAdmin.config do |config|
         field :published do
           default_value false
         end
+        field :featured do
+          default_value false
+        end
         field :needs_work do
           default_value true
         end
