@@ -138,6 +138,9 @@ RailsAdmin.config do |config|
         field :needs_work do
           default_value true
         end
+        field :related_posts do
+          read_only true
+        end
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
         end
@@ -242,6 +245,9 @@ RailsAdmin.config do |config|
         field :author do
           inverse_of :posts
         end
+        field :mentions do
+          read_only true
+        end
       end
       group :internal do
         label "Internal"
@@ -265,6 +271,11 @@ RailsAdmin.config do |config|
         field :updated_at
       end
     end
+  end
+
+  # RailsAdmin configuration
+  config.model 'Mention' do
+    parent Post
   end
 
   config.model 'Relation' do

@@ -2,6 +2,9 @@ class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
   belongs_to :photo # Don't get confused, we _have_ a header photo
 
+  # outward mentions from the post content, not incoming!
+  has_many :mentions, dependent: :delete_all, inverse_of: :post
+
   has_paper_trail
 
   include PgSearch

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928160155) do
+ActiveRecord::Schema.define(version: 20130928172027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 20130928160155) do
 
   add_index "facts_relations", ["fact_id"], name: "index_facts_relations_on_fact_id", using: :btree
   add_index "facts_relations", ["relation_id"], name: "index_facts_relations_on_relation_id", using: :btree
+
+  create_table "mentions", force: true do |t|
+    t.integer "post_id"
+    t.integer "mentionee_id"
+    t.string  "mentionee_type"
+  end
+
+  add_index "mentions", ["mentionee_id", "mentionee_type"], name: "index_mentions_on_mentionee_id_and_mentionee_type", using: :btree
+  add_index "mentions", ["post_id"], name: "index_mentions_on_post_id", using: :btree
 
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
