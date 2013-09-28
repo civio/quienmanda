@@ -17,10 +17,13 @@ class PostsController < ApplicationController
 
     @related_entities = []
     @related_posts = []
-    @post.mentions.each do |mention|
+    @related_photos = []
+    @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
         @related_entities << mentionee
+      elsif mentionee.class.name == 'Photo'
+        @related_photos << mentionee
       else
         @related_posts << mentionee
       end

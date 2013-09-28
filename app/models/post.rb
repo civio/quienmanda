@@ -2,8 +2,11 @@ class Post < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: User
   belongs_to :photo # Don't get confused, we _have_ a header photo
 
-  # outward mentions from the post content, not incoming!
-  has_many :mentions, dependent: :delete_all, inverse_of: :post
+  # these are outward mentions from the post content, not incoming!
+  has_many :mentions_in_content, class_name: Mention, dependent: :delete_all, inverse_of: :post
+
+  has_many :mentions, as: :mentionee, inverse_of: :mentionee, dependent: :delete_all
+  has_many :related_posts, -> { order('updated_at desc') }, through: :mentions, source: :post
 
   has_paper_trail
 
@@ -27,13 +30,14 @@ class Post < ActiveRecord::Base
       extractors = [
         { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
         { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } },
-        { prefix: router.posts_path, method: ->(slug) { Post.find_by_slug(slug) } }
+        { prefix: router.posts_path, method: ->(slug) { Post.find_by_slug(slug) } },
+        { prefix: router.photos_path, method: ->(id) { Photo.find(id) } }
       ]
       content_mentions = []
       extract_references(ENV['DOMAIN_NAME'], extractors).each do |reference|
         content_mentions << Mention.new(post: self, mentionee: reference)
       end
-      self.mentions = content_mentions
+      self.mentions_in_content = content_mentions
     end
   end
 
@@ -65,6 +69,7 @@ class Post < ActiveRecord::Base
           ref = extractor[:method].call($1)           # Try to find related object
           if !ref.nil?
             link['target'] = '_blank'                 # Add a _blank target
+            link['class'] = ''                        # This is not very nice
           else
             link['class'] = 'broken-link'             # Mark the link as broken for display
           end

@@ -208,12 +208,15 @@ RailsAdmin.config do |config|
         field :needs_work do
           default_value true
         end
+        field :related_posts do
+          read_only true
+        end
         field :tag_list do
           label "Tags"
           partial 'tag_list_with_suggestions'
         end
         field :notes
-        field :posts
+        field :posts_as_header
         field :updated_at
       end
     end
@@ -245,7 +248,7 @@ RailsAdmin.config do |config|
         field :author do
           inverse_of :posts
         end
-        field :mentions do
+        field :mentions_in_content do
           read_only true
         end
       end
@@ -263,6 +266,9 @@ RailsAdmin.config do |config|
         end
         field :needs_work do
           default_value true
+        end
+        field :related_posts do
+          read_only true
         end
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'

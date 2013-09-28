@@ -34,7 +34,7 @@
 
     <%= render 'shared/show_related_entities', entities: @photo.related_entities %>
 
-    <%= render 'shared/related_posts_sidebar', posts: @related_posts %>
+    <%= render 'shared/related_posts_sidebar', posts: @photo.related_posts %>
 
     <% if can? :manage, @photo and not @photo.tag_list.empty? %>
     <!-- start: Sidebar -->
