@@ -69,7 +69,7 @@ class Post < ActiveRecord::Base
           ref = extractor[:method].call($1)           # Try to find related object
           if !ref.nil?
             link['target'] = '_blank'                 # Add a _blank target
-            link['class'] = ''                        # This is not very nice
+            link['class'] = '' unless link['class'].blank? # This is not very nice
           else
             link['class'] = 'broken-link'             # Mark the link as broken for display
           end
