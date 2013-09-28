@@ -50,22 +50,7 @@
 
     <%= render 'shared/show_related_entities', entities: @related_entities %>
 
-    <% unless @related_posts.empty? %>
-    <!-- start: Sidebar -->
-    <div class="span4 sidebar full">
-
-      <!-- start: Wall -->
-      <div id="wall">
-        <h3>Otros artículos</h3>
-        <% @related_posts.each do |post| %>
-          <%= render '/shared/show_post', :item => post, :width => 'span12' %>
-        <% end %>
-      </div>
-      <!-- end: Wall -->
-
-    </div>
-    <!-- end: Sidebar -->
-    <% end %>
+    <%= render 'shared/related_posts_sidebar', posts: @related_posts %>
 
   </div>
   <!--end: Row -->
