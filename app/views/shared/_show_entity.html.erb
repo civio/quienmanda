@@ -30,7 +30,7 @@
           <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
         </ul>
       </p>
-      <%= render '/shared/needs_work' %>
+      <%= render '/shared/needs_work' if entity.needs_work %>
       <%= render 'shared/show_admin_links', item: entity %>
     </div>
 
