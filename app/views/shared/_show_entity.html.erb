@@ -37,7 +37,19 @@
   </div>
 </div>
 
-      <%= render 'shared/social_buttons' %>
+<% unless entity.related_posts.empty? %>
+<div id="wrapper" class="full tight">       
+  <div class="row-fluid">
+
+    <% entity.related_posts[0..2].each do |post| %>
+      <%= render '/shared/show_post', :item => post, :width => 'span4' %>
+    <% end %>
+
+  </div>
+</div>
+<% end %>
+
+<%= render 'shared/social_buttons' %>
 
 <div id="wrapper" class="full tight">       
   <div class="row-fluid">

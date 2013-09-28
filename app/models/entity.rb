@@ -6,7 +6,7 @@ class Entity < ActiveRecord::Base
   has_many :relations_as_target, foreign_key: :target_id, class_name: Relation, inverse_of: :target
 
   has_many :mentions, as: :mentionee, inverse_of: :mentionee, dependent: :delete_all
-  has_many :related_posts, through: :mentions, source: :post
+  has_many :related_posts, through: :mentions, source: :post, order: 'updated_at desc'
 
   has_paper_trail
   
