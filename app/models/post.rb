@@ -20,19 +20,36 @@ class Post < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
 
-  # Extract references to other entities from content
-  def extract_references(domain_name, extractors)
-    references = []
-    doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
-    doc.css('a').each do |link|                       # Check all links
-      result = lookup_link(domain_name, extractors, link)
-      references << result unless result.nil?         # Keep the related object, if found
+  before_save :update_mentions
+
+  def update_mentions()
+    Rails.application.routes.url_helpers.tap do |router|
+      extractors = [
+        { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
+        { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } },
+        { prefix: router.posts_path, method: ->(slug) { Post.find_by_slug(slug) } }
+      ]
+      content_mentions = []
+      extract_references(ENV['DOMAIN_NAME'], extractors).each do |reference|
+        content_mentions << Mention.new(post: self, mentionee: reference)
+      end
+      self.mentions = content_mentions
     end
-    self.content = doc.to_html                        # Save changes and...
-    references                                        # return found references
   end
 
   private
+
+    # Extract references to other entities from content
+    def extract_references(domain_name, extractors)
+      references = []
+      doc = Nokogiri::HTML::DocumentFragment.parse(self.content)
+      doc.css('a').each do |link|                       # Check all links
+        result = lookup_link(domain_name, extractors, link)
+        references << result unless result.nil?         # Keep the related object, if found
+      end
+      self.content = doc.to_html                        # Save changes and...
+      references                                        # return found references
+    end
 
     def lookup_link(domain_name, extractors, link)
       begin

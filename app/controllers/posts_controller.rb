@@ -15,20 +15,14 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
 
-    Rails.application.routes.url_helpers.tap do |router|
-      extractors = [
-        { prefix: router.people_path, method: ->(slug) { Entity.find_by_slug(slug) } },
-        { prefix: router.organizations_path, method: ->(slug) { Entity.find_by_slug(slug) } },
-        { prefix: router.posts_path, method: ->(slug) { Post.find_by_slug(slug) } }
-      ]
-      @related_entities = []
-      @related_posts = []
-      @post.extract_references(get_domain_name, extractors).each do |reference|
-        if reference.class.name == 'Entity'
-          @related_entities << reference
-        else
-          @related_posts << reference
-        end
+    @related_entities = []
+    @related_posts = []
+    @post.mentions.each do |mention|
+      mentionee = mention.mentionee
+      if mentionee.class.name == 'Entity'
+        @related_entities << mentionee
+      else
+        @related_posts << mentionee
       end
     end
 
