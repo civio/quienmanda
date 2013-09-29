@@ -7,10 +7,6 @@
   margin-top: 15px;
 }
 
-.label.clickable {
-  cursor: pointer;
-}
-
 
 /* Social sharing */
 .sharing-buttons {
@@ -113,6 +109,17 @@ table tr td .admin-action {
 table tr:hover td .admin-action { 
   display:inline-block;
 }
+
+
+/* Toggle buttons */
+.label.toggable {
+  cursor: pointer;
+}
+.active .show-active { display:inline-block; }
+.active .show-inactive { display:none;}
+
+.inactive .show-active { display:none;}
+.inactive .show-inactive { display:inline-block; }
 
 
 /* For internal use, detect automatically internal broken links in posts and highlight */

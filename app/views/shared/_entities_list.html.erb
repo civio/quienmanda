@@ -1,8 +1,9 @@
 <% if !list.nil? and list.size > 0 %>
-<span class="label" data-toggle="collapse" data-target="#entities-list">
-  <i class="icon-chevron-up"></i> Ocultar tabla de relaciones...
+<span id="relations-table-toggle" class="label toggable active" data-toggle="collapse" data-target="#relations-list">
+  <span class="show-active"><i class="icon-chevron-up"></i> Ocultar tabla de relaciones...</span>
+  <span class="show-inactive"><i class="icon-chevron-down"></i> Mostrar tabla de relaciones...</span>
 </span>
-<div id="entities-list" class="entities-list collapse in">
+<div id="relations-list" class="collapse in">
   <table class="table">
     <thead>
       <tr>

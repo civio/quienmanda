@@ -84,6 +84,12 @@ $(function () {
     $('#related-entities-toggle').hide();
   });
 
+  $(function() {
+    $('.label.toggable').click(function() {
+      $(this).toggleClass('active, inactive');
+    }); 
+  });
+
 });
 
 })(jQuery);
