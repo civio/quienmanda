@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :set_title
   before_action :set_photo, only: [:show]
 
   layout proc { |controller| controller.request.params[:widget].blank? ? 'application' : 'widget' }
@@ -27,5 +28,9 @@ class PhotosController < ApplicationController
   private
     def set_photo
       @photo = Photo.find(params[:id])
+    end
+
+    def set_title
+      @title = 'El Fotomandón'
     end
 end

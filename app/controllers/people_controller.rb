@@ -4,6 +4,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+    @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
     @people = @people.order("updated_at DESC").page(params[:page]).per(16)
   end
@@ -12,6 +13,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     authorize! :read, @person
+    @title = @person.short_or_long_name
     @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
   end
 

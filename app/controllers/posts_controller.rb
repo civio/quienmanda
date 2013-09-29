@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
     @posts = @posts.order("updated_at DESC").page params[:page]
   end
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
 
+    @title = @post.title
     @related_entities = []
     @related_posts = @post.related_posts  # As a start
     @related_photos = []

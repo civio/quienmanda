@@ -4,6 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
+    @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
     @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(16)
   end
@@ -12,6 +13,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     authorize! :read, @organization
+    @title = @organization.short_or_long_name
     @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
   end
 
