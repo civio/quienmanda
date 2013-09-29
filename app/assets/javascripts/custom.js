@@ -11,12 +11,6 @@ jQuery(document).ready(function($){
 }); 
 
 /* -------------------- Isotope --------------------- */
-/* dcabo: This was called on ready() in the original template, but images overlapped
-          when using Turbolinks (only in Firefox, maybe). See discussion at
-          https://github.com/rails/turbolinks/issues/159 
-/* dcabo: Nah, undo, didn't fix it but broke the search page for some reason. Will
-          try something else. */
-
 function layoutPhotoWall(container_name) {
   $(container_name).imagesLoaded(function() {
     
@@ -107,5 +101,16 @@ function widthFunctions(e) {
   }
   
 }
+
+/* -------------------- Misc Functions --------------------- */
+
+$(function () {
+
+  $('#related-entities-toggle').click(function(){
+    $('.extra-related-entity').slideToggle();
+    $('#related-entities-toggle').hide();
+  });
+
+});
 
 })(jQuery);

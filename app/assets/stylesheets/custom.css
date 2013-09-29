@@ -7,6 +7,10 @@
   margin-top: 15px;
 }
 
+.label.clickable {
+  cursor: pointer;
+}
+
 
 /* Social sharing */
 .sharing-buttons {
@@ -99,8 +103,8 @@ div.quienmanda-embed-wrapper {
   margin-right: 10px;
 }
 
-.sidebar h3 {
-  margin: -10px 0 10px 0;
+.extra-related-entity {
+  display: none;
 }
 
 table tr td .admin-action { 
