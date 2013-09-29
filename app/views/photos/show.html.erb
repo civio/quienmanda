@@ -36,21 +36,6 @@
 
     <%= render 'shared/related_posts_sidebar', posts: @photo.related_posts %>
 
-    <% if can? :manage, @photo and not @photo.tag_list.empty? %>
-    <!-- start: Sidebar -->
-    <div class="span4 sidebar full">
-
-      <h3>Tags</h3>
-      <div class="tags"> 
-        <% @photo.tag_list.each do |tag| %>
-        <%= link_to tag, tagged_photos_path(tag_name: tag) %>
-        <% end %>
-      </div>
-
-    </div>
-    <!-- end: Sidebar -->
-    <% end %>
-
   </div>
 
 </div>
