@@ -44,27 +44,5 @@
 
 </div>
 
-<script src="/javascripts/annotorious/annotorious.min.js"></script>
-<script src="/javascripts/annotorious/anno-rest-storage-plugin.js"></script>
-<%#
-# The minimized version of Annotorious breaks the $ jQuery object, which creates havoc 
-# with other Javascript code, so be careful. Trying to restore jQuery ($=jQuery) breaks 
-# the plugin in a strange way
-%>
-<script>
-jQuery(function() {
-  anno.addPlugin('RESTStorage', { 
-                    base_url: '<%= "/photos/#{@photo.id}/annotations" %>',
-                    read_only: <%= (can? :manage, @photo) ? 'false' : 'true' %>
-                  });
-});
-</script>
-<%# This is not a secure way of avoiding edits, but the real check is in the controller %>
-<% if not can? :manage, @photo %>
-<style>
-  .annotorious-popup-button-edit,
-  .annotorious-popup-button-delete {
-    display: none;
-  }
-</style>
-<% end %>
+<%= render 'shared/annotorious', photo: @photo %>
+
