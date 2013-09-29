@@ -75,20 +75,26 @@ function widthFunctions(e) {
   
 }
 
-/* -------------------- Label toggling on/off --------------------- */
+/* -------------------- Misc functions --------------------- */
 
 $(function () {
 
-  $('#related-entities-toggle').click(function(){
-    $('.extra-related-entity').slideToggle();
-    $('#related-entities-toggle').hide();
-  });
+  // Related entities sidebar
+  if ( $('.extra-related-entity').length > 0 ) {
+    $('#related-entities-toggle').show();
+    $('#related-entities-toggle').click(function(){
+      $('.extra-related-entity').slideToggle();
+      $('#related-entities-toggle').hide();
+    });
+  }
 
+  // Label toggling on/off 
   $('.label.toggable').click(function() {
     $(this).toggleClass('active, inactive');
   }); 
 
-      $('.footable').footable();
+  // FooTable
+  $('.footable').footable();
 });
 
 })(jQuery);

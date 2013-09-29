@@ -99,6 +99,7 @@ div.quienmanda-embed-wrapper {
   margin-right: 10px;
 }
 
+#related-entities-toggle,
 .extra-related-entity {
   display: none;
 }
