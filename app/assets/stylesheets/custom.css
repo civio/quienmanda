@@ -3,6 +3,10 @@
   line-height: 25px;
 }
 
+#disqus_thread {
+  margin-top: 15px;
+}
+
 
 /* Social sharing */
 .sharing-buttons {
