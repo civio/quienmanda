@@ -159,7 +159,6 @@ RailsAdmin.config do |config|
       field :importer
       field :relations
       field :summary
-      field :updated_at
     end
 
     edit do
@@ -170,7 +169,6 @@ RailsAdmin.config do |config|
       field :summary do
         read_only true
       end
-      field :updated_at
     end
   end  
 
