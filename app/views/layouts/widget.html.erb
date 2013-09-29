@@ -31,6 +31,9 @@
         <strong><%= I18n.localize(@photo.date, :format => "%d de %B %Y") %>.</strong>
         <% end %>
         <%= raw(@photo.footer) %>
+        <%= link_to @photo, target: '_blank' do %>
+          <i class="icon-external-link"></i>
+        <% end %>
       </p>
       <p>
         <%= render 'shared/show_photo_credit', photo: @photo %>
