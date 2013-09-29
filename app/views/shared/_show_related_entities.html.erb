@@ -1,6 +1,6 @@
 <% unless entities.empty? %>
 <div class="span4 sidebar hidden-phone">
-  <h3>Entidades</h3>
+  <h3>Protagonistas</h3>
   <table>
     <% entities.each_with_index do |entity, i| %>
     <%# Start displaying at least 5 related entities, always the high priority ones %>
@@ -22,7 +22,7 @@
   </table>
 
   <span id="related-entities-toggle" class="label clickable">
-    <i class="icon-chevron-down"></i> Mostrar todas
+    <i class="icon-chevron-down"></i> Mostrar todos
   </span> 
 </div>
 <% end %>
