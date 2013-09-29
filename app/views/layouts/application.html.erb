@@ -10,6 +10,12 @@
   <meta name="author" content=""/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <meta property="og:image" content="/images/facebook_avatar.png"/>
+  <meta property="og:title" content="<%= "#{@title} - " if @title %>QuienManda - Un proyecto de Civio"/>
+  <meta property="og:url" content="<%= request.original_url %>"/>
+  <meta property="og:site_name" content="QuienManda.es"/>
+  <meta property="og:type" content="article"/>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
