@@ -43,6 +43,8 @@
 
         <%= render 'shared/social_buttons' %>
 
+        <%= render 'shared/related_posts', related_posts: @related_posts[0..1], width: 'span6' %>
+
         <%= render 'shared/comments' %>
       
       </div>
@@ -51,8 +53,6 @@
     </div>  
 
     <%= render 'shared/show_related_entities', entities: @related_entities %>
-
-    <%= render 'shared/related_posts_sidebar', posts: @related_posts %>
 
   </div>
   <!--end: Row -->

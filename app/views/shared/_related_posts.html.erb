@@ -1,0 +1,17 @@
+<% unless related_posts.empty? %>
+<% if defined?(wrapper) %>
+<div id="wrapper" class="full tight">
+<% end %>
+
+  <div class="row-fluid">
+
+    <% related_posts[0..2].each do |post| %>
+      <%= render '/shared/show_post', :item => post, :width => defined?(width) ? width : 'span4' %>
+    <% end %>
+
+  </div>
+
+<% if defined?(wrapper) %>
+</div>
+<% end %>
+<% end %>

@@ -12,29 +12,35 @@
   <!--start: Row -->
   <div class="row-fluid">
   
-    <div class="posts span8 full picture">
+    <div class=" span8">
 
-      <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
+      <div class="posts full picture">
 
-      <p>
-        <% unless @photo.date.blank? %>
-        <strong><%= I18n.localize(@photo.date, :format => "%d de %B %Y") %>.</strong>
-        <% end %>
-        <%= raw(@photo.footer) %>
-      </p>
-      <p>
-        <%= render 'shared/show_photo_credit', photo: @photo %>
-      </p>
+        <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
 
-      <%= render 'shared/show_admin_links', item: @photo %>
+        <p>
+          <% unless @photo.date.blank? %>
+          <strong><%= I18n.localize(@photo.date, :format => "%d de %B %Y") %>.</strong>
+          <% end %>
+          <%= raw(@photo.footer) %>
+        </p>
+        <p>
+          <%= render 'shared/show_photo_credit', photo: @photo %>
+        </p>
 
-      <%= render 'shared/social_buttons' %>
+        <%= render 'shared/show_admin_links', item: @photo %>
+
+        <%= render 'shared/social_buttons' %>
+
+      </div>
+
+      <div id="wrapper" class="full tight">
+        <%= render 'shared/related_posts', related_posts: @photo.related_posts[0..1], width: 'span6' %>
+      </div>
 
     </div>
 
     <%= render 'shared/show_related_entities', entities: @photo.related_entities %>
-
-    <%= render 'shared/related_posts_sidebar', posts: @photo.related_posts %>
 
   </div>
 
