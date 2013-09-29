@@ -7,7 +7,7 @@ module EntityHelper
 
   def display_source(via)
     return if via.blank?
-    link_to via do
+    link_to via, target: '_blank' do
       '<i class="icon-ok"></i>'.html_safe
     end
   end
