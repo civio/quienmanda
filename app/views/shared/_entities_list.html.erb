@@ -38,6 +38,9 @@
             <%= display_source relation.via %>
             <%= display_source relation.via2 %>
             <%= display_source relation.via3 %>
+            <% relation.facts.each do |fact| %>
+              <%= display_source fact.properties['via'] unless fact.properties['via'].blank? %>
+            <% end %>
           </td>
           <td><%= relation.from %></td>
           <td><%= relation.to %></td>
