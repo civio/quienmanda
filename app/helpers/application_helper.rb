@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # Used on search page to pick correct helper
   def partial_name(thing)
     case thing.class.to_s
     when 'Post'
@@ -11,6 +12,7 @@ module ApplicationHelper
     nil # Shouldn't happen
   end
 
+  # Make sure links to external sites (like photo credits) are absolute
   def absolute_url(url)
     url.start_with?('http') ? url : "http://#{url}"
   end
