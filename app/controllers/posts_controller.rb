@@ -33,6 +33,10 @@ class PostsController < ApplicationController
 
     # Parse shortcodes (do this after we've parsed the post looking for QM references)
     @content = Shortcodes.shortcode(@post.content)
+
+    # Facebook Open Graph metadata
+    @fb_description = @post.lead unless @post.lead.blank?
+    @fb_image_url = @post.photo.file.url(:full) unless @post.photo.nil? or @post.photo.file.nil?
   end
 
   private

@@ -15,6 +15,10 @@ class PhotosController < ApplicationController
   # GET /photos/1.json
   def show
     authorize! :read, @photo
+
+    # Facebook Open Graph metadata
+    @fb_description = @photo.footer unless @photo.footer.blank?
+    @fb_image_url = @photo.file.url(:full) unless @photo.file.nil?
   end
 
   # GET /photos/tagged/juicy

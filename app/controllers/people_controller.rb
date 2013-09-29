@@ -15,6 +15,10 @@ class PeopleController < ApplicationController
     authorize! :read, @person
     @title = @person.short_or_long_name
     @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
+
+    # Facebook Open Graph metadata
+    @fb_description = @person.description unless @person.description.blank?
+    @fb_image_url = @person.avatar.url() unless @person.avatar.nil?
   end
 
   private

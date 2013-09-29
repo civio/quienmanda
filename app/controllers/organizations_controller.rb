@@ -15,6 +15,10 @@ class OrganizationsController < ApplicationController
     authorize! :read, @organization
     @title = @organization.short_or_long_name
     @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
+
+    # Facebook Open Graph metadata
+    @fb_description = @organization.description unless @organization.description.blank?
+    @fb_image_url = @organization.avatar.url() unless @organization.avatar.nil?
   end
 
   private

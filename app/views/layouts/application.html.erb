@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>
-    <%= "#{@title} - " if @title %>QuienManda - Un proyecto de Civio
-  </title>
-  <meta name="description" content=""/>
+  <%
+    # Defaults for Facebook Open Graph metadata
+    @title = @title.blank? ? '' : @title+' - '
+    @title = @title + 'QuienManda - Un proyecto de Civio'
+    @fb_description ||= "El Quién es Quién de las personas más importantes del país."
+    @fb_image_url ||= "#{request.protocol}#{request.host_with_port}/images/facebook_avatar.png"
+  %>
+  <title><%= @title %></title>
+  <meta name="description" content="<%= @fb_description %>"/>
   <meta name="keywords" content="" />
-  <meta name="author" content=""/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:image" content="<%= "#{request.protocol}#{request.host_with_port}/images/facebook_avatar.png" %>"/>
-  <meta property="og:title" content="<%= "#{@title} - " if @title %>QuienManda - Un proyecto de Civio"/>
-  <meta property="og:url" content="<%= request.original_url %>"/>
   <meta property="og:site_name" content="QuienManda.es"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:url" content="<%= request.original_url %>"/>
+  <meta property="og:title" content="<%= @title %>"/>
+  <meta property="og:image" content="<%= @fb_image_url %>"/>
+  <meta property="og:description" content="<%= @fb_description %>"/>
 
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
