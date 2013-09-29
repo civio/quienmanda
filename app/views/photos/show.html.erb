@@ -18,15 +18,7 @@
 
         <%= image_tag(@photo.file.url(:full), class: 'photo annotatable', id: 'photo') %>
 
-        <p>
-          <% unless @photo.date.blank? %>
-          <strong><%= I18n.localize(@photo.date, :format => "%d de %B %Y") %>.</strong>
-          <% end %>
-          <%= raw(@photo.footer) %>
-        </p>
-        <p>
-          <%= render 'shared/show_photo_credit', photo: @photo %>
-        </p>
+        <%= render 'shared/photo_footer', photo: @photo %>
 
         <%= render 'shared/show_admin_links', item: @photo %>
 
