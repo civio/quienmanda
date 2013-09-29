@@ -41,6 +41,10 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def to_s
+    "Post: #{title}"
+  end
+
   private
 
     # Extract references to other entities from content
@@ -52,7 +56,7 @@ class Post < ActiveRecord::Base
         references << result unless result.nil?         # Keep the related object, if found
       end
       self.content = doc.to_html                        # Save changes and...
-      references                                        # return found references
+      references.uniq                                   # return found references
     end
 
     def lookup_link(domain_name, extractors, link)
