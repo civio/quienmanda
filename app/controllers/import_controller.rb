@@ -32,7 +32,7 @@ class ImportController < ApplicationController
                   .where("properties->'role' = ?", row['role'])
                   .where("properties->'target' = ?", row['target']).first
       if fact
-        # Do something
+        # Do nothing for now, we have the fact already
         @results << { fact: fact, imported: false }
       else
         # We just import the whole thing into the database, hstore can handle it
