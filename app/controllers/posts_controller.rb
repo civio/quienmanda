@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     authorize! :read, @post
 
     @related_entities = []
-    @related_posts = []
+    @related_posts = @post.related_posts  # As a start
     @related_photos = []
     @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
