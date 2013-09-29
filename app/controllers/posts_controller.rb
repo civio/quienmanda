@@ -16,22 +16,22 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
 
+    # Get related entities and posts
     @title = @post.title
     @related_entities = []
     @related_posts = @post.related_posts  # As a start
-    @related_photos = []
     @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
         @related_entities << mentionee
-      elsif mentionee.class.name == 'Photo'
-        @related_photos << mentionee
-      else
+      elsif mentionee.class.name == 'Post'
         @related_posts << mentionee
       end
+      # No point in keeping track of mentioned photos, I think.
     end
+    @related_entities.sort_by! &:priority
 
-    # Parse shortcodes (do this after we've parsed the post looking for QM references)
+    # Parse shortcodes
     @content = Shortcodes.shortcode(@post.content)
 
     # Facebook Open Graph metadata

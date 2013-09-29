@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   has_many :annotations, dependent: :delete_all
-  has_many :related_entities, through: :annotations, source: :entity
+  has_many :related_entities, -> { order('priority asc') }, through: :annotations, source: :entity
 
   has_many :posts_as_header, class_name: Post # It can be used as header in many posts
 
