@@ -75,7 +75,7 @@ function widthFunctions(e) {
   
 }
 
-/* -------------------- Misc Functions --------------------- */
+/* -------------------- Label toggling on/off --------------------- */
 
 $(function () {
 
@@ -84,12 +84,11 @@ $(function () {
     $('#related-entities-toggle').hide();
   });
 
-  $(function() {
-    $('.label.toggable').click(function() {
-      $(this).toggleClass('active, inactive');
-    }); 
-  });
+  $('.label.toggable').click(function() {
+    $(this).toggleClass('active, inactive');
+  }); 
 
+      $('.footable').footable();
 });
 
 })(jQuery);
