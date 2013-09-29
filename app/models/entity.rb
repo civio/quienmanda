@@ -46,4 +46,8 @@ class Entity < ActiveRecord::Base
   def relations
     Relation.where('source_id = ? or target_id = ?', self, self)
   end
+
+  def to_s
+    short_or_long_name
+  end
 end

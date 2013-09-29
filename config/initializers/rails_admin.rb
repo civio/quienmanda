@@ -282,6 +282,10 @@ RailsAdmin.config do |config|
   # RailsAdmin configuration
   config.model 'Mention' do
     parent Post
+
+    object_label_method do
+      :to_s
+    end
   end
 
   config.model 'Relation' do
