@@ -16,10 +16,10 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
 
-    # Get related entities and posts
+    # Get related entities and posts from content
     @title = @post.title
     @related_entities = []
-    @related_posts = @post.related_posts.clone  # As a start
+    @related_posts = []
     @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
@@ -28,6 +28,9 @@ class PostsController < ApplicationController
         @related_posts << mentionee
       end
       # No point in keeping track of mentioned photos, I think.
+    end
+    @post.related_posts.each do |post|
+      @related_posts << post unless @related_posts.include? post
     end
     @related_entities.sort_by! &:priority
 
