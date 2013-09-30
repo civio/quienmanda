@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     # Get related entities and posts
     @title = @post.title
     @related_entities = []
-    @related_posts = @post.related_posts  # As a start
+    @related_posts = @post.related_posts.clone  # As a start
     @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
