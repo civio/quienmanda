@@ -14,5 +14,6 @@
  *= require font-awesome
  *= require style
  *= require custom
- *= require_tree .
+ *= require_directory ./annotorious
+ *= require_directory .
  */
