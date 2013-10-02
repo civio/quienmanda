@@ -7,15 +7,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <%= link_to 'Quien Manda', root_path, class: 'brand' %>
+        <%= link_to '<h1>Quien Manda</h1>'.html_safe, root_path, class: 'brand' %>
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="<%= 'active' if controller.controller_name == 'posts' %>"><%= link_to 'Artículos', posts_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'photos' %>"><%= link_to 'Fotomandón', photos_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'people' %>"><%= link_to 'Personas', people_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'organizations' %>"><%= link_to 'Organizaciones', organizations_path %></li>
-
-            <%= form_tag search_path, :id => 'custom-search-form', 
+          </ul>
+          <%= form_tag search_path, :id => 'custom-search-form', 
                                       :class => 'form-search form-horizontal pull-right', 
                                       :method => 'get' do %>
               <div class="input-append span2">
@@ -26,7 +26,6 @@
                 <button type="submit" class="btn"><i class="icon-search"></i></button>
               </div>
             <% end %>
-          </ul>
         </div>
       </div>
     </div>

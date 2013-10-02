@@ -1,16 +1,202 @@
-/* Base */
+/* Color variables
+=================================================================== */
+body {
+  font-size: 16px;
+}
+/* Genearl
+=================================================================== */
+p.alert-info {
+  margin: 0;
+}
+/* Header
+=================================================================== */
+body > header {
+  position: absolute;
+  top: 0;
+  height: 145px;
+  border: none;
+  background: #eef2ea;
+}
+.nav-collapse.collapse {
+  left: 84px;
+  top: 83px;
+}
+.navbar .brand {
+  padding: 0;
+  margin: 15px 0 0;
+  border: none;
+  text-shadow: none;
+}
+.navbar .brand h1 {
+  display: block;
+  width: 225px;
+  height: 115px;
+  text-indent: -9999px;
+  background: url(/images/quien-manda_logo.png) no-repeat 0 0 transparent;
+}
+.navbar .brand:after,
+.navbar .brand:before {
+  display: none;
+}
+.navbar .nav {
+  position: absolute;
+  left: 0;
+  right: 312px;
+  padding-left: 205px;
+  margin: 0;
+}
+.navbar .nav > li {
+  background: #eef2ea;
+}
+.navbar .nav > li > a {
+  color: #4a4c47;
+  font-family: 'Economica', sans-serif;
+  font-weight: 700;
+  font-size: 1.375em;
+}
+#custom-search-form {
+  padding: 0;
+  margin-top: 10px;
+  margin-right: 128px;
+}
+#custom-search-form .search-query {
+  width: 170px;
+  background: #dbe3d4;
+  padding-right: 8px;
+  padding-right: 9px \9;
+  padding-left: 8px;
+  padding-left: 9px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 1px solid #d3d9cd;
+}
+#custom-search-form .search-query:focus + button {
+  z-index: 3;
+}
+#custom-search-form button {
+  border: 0;
+  background: none;
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: 0;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+}
+#custom-search-form button .icon-search {
+  color: #a8c315;
+  font-size: 18px;
+}
+/* Base
+=================================================================== */
+body > .container {
+  margin-top: 145px;
+}
+#wrapper.full {
+  margin-top: 0;
+}
 #wall h3 {
   line-height: 25px;
 }
-
-#disqus_thread {
-  margin-top: 15px;
+/* Home Page
+=================================================================== */
+.slider.span7.nogutter {
+  width: 59.82905982905983%;
 }
-
-
-/* Social sharing */
+.slide-caption .source-link {
+  color: #BBBBBB;
+}
+#homepage-lead {
+  text-align: center;
+  background: #dee5d8;
+  margin-left: 0;
+  padding: 24px 42px;
+}
+/* Post Page
+=================================================================== */
+.post-description a {
+  border-bottom: 1px black dotted;
+}
+.post-description a:hover {
+  text-decoration: none;
+  border-bottom: 1px black solid;
+}
+div.quienmanda-embed-wrapper {
+  margin-left: 20px;
+}
+/* Sidebar
+=================================================================== */
+.sidebar {
+  margin-bottom: 20px;
+}
+.sidebar .tiny.image {
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+}
+.sidebar h3 {
+  margin: -10px 0 10px 0;
+}
+table tr td .admin-action {
+  display: none;
+}
+table tr:hover td .admin-action {
+  display: inline-block;
+}
+/* For internal use, detect automatically internal broken links in posts and highlight */
+.broken-link {
+  background-color: red;
+  text-shadow: none;
+}
+.unknown-link {
+  background-color: orange;
+  text-shadow: none;
+}
+/* Entity Page
+=================================================================== */
+#wrapper.tight {
+  margin-top: 20px;
+}
+.entity-links li {
+  font-size: 1.5em;
+  float: left;
+}
+.entity-links a:hover {
+  text-decoration: none;
+  color: green;
+}
+/* Import Page
+=================================================================== */
+td.field-match-warning {
+  background-color: #FCF8E3 !important;
+  text-shadow: none;
+}
+td.field-match-error {
+  background-color: #F2DEDE !important;
+  text-shadow: none;
+}
+body.admin #wrapper a {
+  border-bottom: 1px black dotted;
+}
+body.admin #wrapper a:hover {
+  border-bottom: 1px black solid;
+  text-decoration: none;
+}
+table.table tr td span.import-actions {
+  display: none;
+}
+table.table tr:hover td span.import-actions {
+  display: inline-block;
+}
+/* Social sharing
+=================================================================== */
 .sharing-buttons {
-  margin: 20px 0 20px 0px;
+  margin: 25px 0 0 -10px;
   padding: .5em;
   text-align: center;
 }
@@ -60,158 +246,4 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-}
-
-
-/* Home page */
-.slide-caption .source-link {
-  color: #BBBBBB;
-}
-
-#homepage-lead {
-  text-align: justify;
-}
-
-
-/* Post page */
-.post-description a {
-  border-bottom: 1px black dotted;
-}
-
-.post-description a:hover {
-  text-decoration: none;
-  border-bottom: 1px black solid;
-}
-
-div.quienmanda-embed-wrapper {
-  margin-left: 20px;
-}
-
-
-/* Sidebar */
-.sidebar {
-  margin-bottom: 20px;
-}
-
-.sidebar .tiny.image {
-  width: 60px;
-  float: left;
-  margin-right: 10px;
-}
-
-#related-entities-toggle,
-.extra-related-entity {
-  display: none;
-}
-
-table tr td .admin-action { 
-  display:none;
-}
-table tr:hover td .admin-action { 
-  display:inline-block;
-}
-
-
-/* Toggle buttons */
-.label.toggable {
-  cursor: pointer;
-}
-.active .show-active { display:inline-block; }
-.active .show-inactive { display:none;}
-
-.inactive .show-active { display:none;}
-.inactive .show-inactive { display:inline-block; }
-
-
-/* For internal use, detect automatically internal broken links in posts and highlight */
-.broken-link {
-  background-color: red;
-  text-shadow: none;
-}
-
-.unknown-link {
-  background-color: orange;
-  text-shadow: none;
-}
-
-
-/* Entity page */
-#wrapper.tight {
-  margin-top: 20px;
-}
-
-.entity-links li {
-  font-size: 1.5em;
-  float: left;
-}
-.entity-links a:hover {
-  text-decoration: none;
-  color: green;
-}
-
-
-/* Import page */
-td.field-match-success {
-}
-td.field-match-warning {
-  background-color: #FCF8E3 !important;
-  text-shadow: none;
-}
-td.field-match-error {
-  background-color: #F2DEDE !important;
-  text-shadow: none;
-}
-
-body.admin #wrapper a {
-  border-bottom: 1px black dotted;
-}
-body.admin #wrapper a:hover {
-  border-bottom: 1px black solid;
-  text-decoration: none;
-}
-
-table.table tr td span.import-actions { 
-  display:none;
-}
-table.table tr:hover td span.import-actions { 
-  display:inline-block;
-}
-
-
-/* Search box */
-/* Taken from http://bootsnipp.com/snipps/stylish-search-form */
-#custom-search-form {
-  margin:0;
-  margin-top: 10px;
-  padding: 0;
-}
-
-#custom-search-form .search-query {
-  padding-right: 3px;
-  padding-right: 4px \9;
-  padding-left: 3px;
-  padding-left: 4px \9;
-  /* IE7-8 doesn't have border-radius, so don't indent the padding */
-  margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-#custom-search-form button {
-  border: 0;
-  background: none;
-  padding: 2px 5px;
-  margin-top: 2px;
-  position: relative;
-  left: -28px;
-  /* IE7-8 doesn't have border-radius, so don't indent the padding */
-  margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-.search-query:focus + button {
-  z-index: 3;
 }
