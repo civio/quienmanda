@@ -2,56 +2,48 @@
 <div class="row-fluid">
 
   <!--start: Wrapper-->
-  <div id="wrapper" class="full span8">
+  <!-- start: Flexslider -->
+  <div id="homepage-slider" class="slider span7 nogutter">
+    <div id="flex1" class="flexslider home">
+      <ul class="slides">
 
-      <!-- start: Flexslider -->
-      <div class="slider">
-        <div id="flex1" class="flexslider home">
-          <ul class="slides">
-
-            <% @highlights.each do |post| %>
-            <li>
-              <%= link_to post do %>
-                <%= image_tag(post.photo.file.url(:full)) %>
-              <% end %>
-              <div class="slide-caption n">
-                <%= link_to post do %>
-                  <h3><%= post.title %></h3>
-                <% end %>
-                <p>
-                  <%= post.lead %>
-                </p>
-                <p>
-                  <%= render 'shared/show_photo_credit', photo: post.photo %>
-                </p>
-              </div>
-            </li>
+        <% @highlights.each do |post| %>
+        <li>
+          <%= link_to post do %>
+            <%= image_tag(post.photo.file.url(:full)) %>
+          <% end %>
+          <div class="slide-caption n">
+            <%= link_to post do %>
+              <h3><%= post.title %></h3>
             <% end %>
+            <p>
+              <%= post.lead %>
+            </p>
+            <p>
+              <%= render 'shared/show_photo_credit', photo: post.photo %>
+            </p>
+          </div>
+        </li>
+        <% end %>
 
-          </ul>
-        </div>
-      </div>
-      <!-- end: Flexslider -->
-
+      </ul>
+    </div>
   </div>
+  <!-- end: Flexslider -->
   <!-- end: Wrapper  -->  
 
   <!--start: Wrapper-->
-  <div id="wrapper" class="full span4">
-
-    <div id="homepage-lead">
-      <h3>Participa</h3>
-      <p>Envíanos imágenes que muestren vínculos entre empresarios y políticos para nuestro fotomandón o sugiere historias interesantes. Escríbenos a <a href="mailto:contacto@civio.es">contacto@civio.es</a>.</p>
-      <p>Además, puedes ayudarnos a seguir investigando y aportando datos fiables con una donación.</p>
-      <h3><a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto">¿Pero qué es esto?</a></h3>
-      <p>
-        Quién Manda es un mapa del poder en España desarrollado por Civio con tres objetivos: poner luz sobre esos vínculos, que se regule el lobby y que se publiquen las agendas de trabajo completes de los cargos públicos. Todo lo que encuentres en esta web está documentado, puedes comprobarlo tú mismo.
-      </p>
-      <p>
-        Si quieres saber más: <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#que">¿Qué es Quién Manda?</a> <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#como">¿Cómo se ha hecho?</a> <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#quienes">¿Quiénes estamos detrás?</a> Y, lo más importante, <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#porque">¿por qué hacemos esto?</a>
-      </p>
-    </div>
-
+  <div id="homepage-lead" class="span5">
+    <h3>Participa</h3>
+    <p>Envíanos imágenes que muestren vínculos entre empresarios y políticos para nuestro fotomandón o sugiere historias interesantes. Escríbenos a <a href="mailto:contacto@civio.es">contacto@civio.es</a>.</p>
+    <p>Además, puedes ayudarnos a seguir investigando y aportando datos fiables con una donación.</p>
+    <h3><a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto">¿Pero qué es esto?</a></h3>
+    <p>
+      Quién Manda es un mapa del poder en España desarrollado por Civio con tres objetivos: poner luz sobre esos vínculos, que se regule el lobby y que se publiquen las agendas de trabajo completes de los cargos públicos. Todo lo que encuentres en esta web está documentado, puedes comprobarlo tú mismo.
+    </p>
+    <p>
+      Si quieres saber más: <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#que">¿Qué es Quién Manda?</a> <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#como">¿Cómo se ha hecho?</a> <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#quienes">¿Quiénes estamos detrás?</a> Y, lo más importante, <a href="http://qmqm.herokuapp.com/posts/pero-que-es-esto#porque">¿por qué hacemos esto?</a>
+    </p>
   </div>
   <!-- end: Wrapper  -->  
 
@@ -78,7 +70,7 @@
 <div id="wrapper">
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid extra-wall">
+  <div id="wall" class="row-fluid extra-wall photo">
             
     <% @photos.each do |photo| %>
       <%= render '/shared/show_photo', :item => photo %>

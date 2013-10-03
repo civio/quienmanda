@@ -11,9 +11,7 @@
       <p>
         <%= link_to item.lead, post_path(item) unless item.lead.blank? %>
       </p>
-      <p>
-        <%= render 'shared/show_photo_credit', photo: item.photo %>
-      </p>
+      <%= render 'shared/show_photo_credit', photo: item.photo %>
       <%= render 'shared/show_admin_links', :item => item %>
     </div>
   </div>  

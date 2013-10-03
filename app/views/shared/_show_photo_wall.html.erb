@@ -2,7 +2,7 @@
 <div id="wrapper" class="<%= extra_wrapper_css unless not defined? extra_wrapper_css %>">
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid">
+  <div id="wall" class="row-fluid photo">
             
     <% photos.each do |photo| %>
       <%= render 'shared/show_photo', :item => photo %>

@@ -1,5 +1,5 @@
 <% if can? :manage, item.class %>
-<%= '<p>'.html_safe unless defined?(inline) %>
+<%= '<p class="admin-link">'.html_safe unless defined?(inline) %>
   <%= link_to '<span class="label admin-action"><i class="icon-edit"></i> Edit</span>'.html_safe, 
               rails_admin.edit_path(id: item.id, model_name: item.class.name), 
               target: '_blank' %>
