@@ -37,8 +37,6 @@
   </div>
 </div>
 
-<%= render 'shared/related_posts', related_posts: entity.related_posts[0..2], wrapper: true %>
-
 <%= render 'shared/social_buttons' %>
 
 <div id="wrapper" class="full tight">       
@@ -50,7 +48,9 @@
   </div>
 </div>
 
-<%= render '/shared/mixed_wall', items: entity.related_photos, extra_wrapper_css: 'tight' %>
+<%= render '/shared/mixed_wall', 
+            items: entity.related_posts[0..2]+entity.related_photos, 
+            extra_wrapper_css: 'tight' %>
 
 <script>
 $(function () {
