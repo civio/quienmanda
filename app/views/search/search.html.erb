@@ -6,20 +6,4 @@
 </div>
 <!-- end: Page Title -->
 
-<!--start: Wrapper-->
-<div id="wrapper">
-  
-  <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid">
-            
-    <% @results.each do |result| %>
-      <%= render partial_name(result.searchable), :item => result.searchable %>
-    <% end %>
-
-  </div>
-  <!-- end: Portfolio -->
-
-  <%= paginate @results %>
-  
-</div>
-<!-- end: Wrapper  -->
+<%= render '/shared/mixed_wall', items: @results.map {|r| r.searchable } %>

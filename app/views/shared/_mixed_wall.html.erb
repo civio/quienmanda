@@ -4,14 +4,14 @@
   <!-- start: Portfolio -->
   <div id="wall" class="row-fluid photo">
             
-    <% photos.each do |photo| %>
-      <%= render 'shared/show_photo', :item => photo %>
+    <% items.each do |item| %>
+      <%= render partial_name(item), :item => item %>
     <% end %>
 
   </div>
   <!-- end: Portfolio -->
   
-  <%= paginate photos if photos.respond_to? :current_page %>
+  <%= paginate items if items.respond_to? :current_page %>
 
 </div>
 <!-- end: Wrapper  -->
