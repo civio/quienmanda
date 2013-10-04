@@ -364,16 +364,125 @@ body > .container {
   text-align: left;
 }
 #page-title.article:before {
-  display: none;
+  display: block;
+  float: left;
+  width: 62px;
+  height: 64px;
+  overflow: hidden;
+  background: url(/images/sprites.png) no-repeat 0 -8px transparent;
+  margin-top: -32px;
 }
 #page-title.article h2 {
   padding: 0;
+  margin-left: 80px;
 }
 #page-title h2 {
   font-size: 2.25em;
   color: #515151;
   background: #dee5d8;
   font-weight: bold !important;
+}
+#wrapper .posts,
+#wrapper .sidebar {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  border: 0;
+}
+#wrapper .posts .post {
+  margin: 0;
+  padding: 20px 0 0;
+}
+#wrapper .posts .post .picture {
+  padding: 3px;
+}
+#wrapper .posts .post .picture img {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+#wrapper .posts .post .picture-footer,
+#wrapper .posts .post .credits {
+  color: #515151;
+  font-size: 0.875em;
+  background: #dde4cd;
+  margin: 0;
+}
+#wrapper .posts .post .picture-footer {
+  padding: 10px 12px 6px;
+}
+#wrapper .posts .post .credits {
+  padding: 0 12px 12px;
+}
+#wrapper .posts .post .credits a {
+  color: #8aa304;
+  text-decoration: underline;
+}
+#wrapper .posts .post .credits a:hover {
+  color: #515151;
+  text-decoration: none;
+}
+#wrapper .sidebar.span4 {
+  position: relative;
+  width: 34.04255319148936%;
+  margin-left: 0;
+  background: #e0e0cd;
+}
+#wrapper .sidebar.span4:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+}
+#wrapper .sidebar.span4 h3 {
+  font-family: 'Economica', sans-serif !important;
+  font-size: 1.625em;
+  font-weight: bold !important;
+  padding: 24px;
+}
+#wrapper .sidebar.span4 .related-entities {
+  padding: 6px 24px 24px;
+}
+#wrapper .sidebar.span4 .related-entities li {
+  float: none;
+  clear: both;
+  margin-bottom: 24px;
+  list-style: none;
+  min-height: 74px;
+  position: relative;
+}
+#wrapper .sidebar.span4 .related-entities li .picture {
+  float: left;
+  width: 68px;
+  height: 68px;
+  margin-right: 12px;
+  border: 3px solid #fff;
+}
+#wrapper .sidebar.span4 .related-entities li .content {
+  color: #515151;
+}
+#wrapper .sidebar.span4 .related-entities li .content a {
+  display: block;
+  width: 100%;
+  color: #8aa304;
+  font-weight: bold;
+}
+#wrapper .sidebar.span4 .related-entities li .admin-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+#wrapper .sidebar.span4 .related-entities li:after {
+  content: "";
+  float: none;
+  clear: both;
 }
 /* Post Page
 =================================================================== */
@@ -388,24 +497,29 @@ div.quienmanda-embed-wrapper {
   margin-left: 20px;
 }
 /* Sidebar
-=================================================================== */
+=================================================================== 
 .sidebar {
   margin-bottom: 20px;
 }
+
 .sidebar .tiny.image {
   width: 60px;
   float: left;
   margin-right: 10px;
 }
+
 .sidebar h3 {
   margin: -10px 0 10px 0;
 }
-table tr td .admin-action {
-  display: none;
+
+table tr td .admin-action { 
+  display:none;
 }
-table tr:hover td .admin-action {
-  display: inline-block;
+table tr:hover td .admin-action { 
+  display:inline-block;
 }
+
+*/
 /* For internal use, detect automatically internal broken links in posts and highlight */
 .broken-link {
   background-color: red;

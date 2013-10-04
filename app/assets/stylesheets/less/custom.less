@@ -6,6 +6,7 @@
 @colorBody: #dee5d8;
 @colorSidebar: #e0e0cd;
 @colorTextGreen: #6bb21b;
+@colorLinkGreen: #8aa304;
 
 @fontEconomica: 'Economica', sans-serif;;
 @fontDroid: 'Droid Sans', sans-serif;
@@ -361,7 +362,7 @@ body > .container{
       font-size: 0.875em;
 
       a{
-        color: #8aa304;
+        color: @colorLinkGreen;
         text-decoration: underline;
 
         &:hover{
@@ -436,13 +437,23 @@ body > .container{
   margin-top: 42px;
 
   &.article{
+
     padding: 0;
     text-align: left;
 
-    &:before{ display: none; };
+    &:before{
+      display: block;
+      float: left;
+      width: 62px;
+      height: 64px;
+      overflow: hidden;
+      background: url(/images/sprites.png) no-repeat 0 -8px transparent;
+      margin-top: -32px;
+    };
 
     h2{
       padding: 0;
+      margin-left: 80px;
     }
   }
 
@@ -453,6 +464,136 @@ body > .container{
     font-weight: bold !important;
   }
 }
+
+#wrapper .posts,
+#wrapper .sidebar{
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  border: 0;
+}
+
+#wrapper .posts .post{
+
+  margin: 0;
+  padding: 20px 0 0;
+
+  .picture{
+    padding: 3px;
+
+    img{
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+    }
+  }
+
+  .picture-footer,
+  .credits{
+    color: @colorGray;
+    font-size: 0.875em;
+    background: #dde4cd;
+    margin: 0;
+  }
+
+  .picture-footer{
+    padding: 10px 12px 6px;
+  }
+
+  .credits{
+    padding: 0 12px 12px;
+
+    a{
+      color: @colorLinkGreen;
+      text-decoration: underline;
+
+      &:hover{
+        color: @colorGray;
+        text-decoration: none;
+      };
+    }
+  }
+}
+
+
+#wrapper .sidebar.span4{
+
+  position: relative;
+  width: 100 - 65.95744680851064%;
+  margin-left: 0;
+  background: @colorSidebar;
+
+  &:before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+
+    -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow:    0px 4px 10px rgba(0, 0, 0, 0.7);
+    box-shadow:         0px 4px 10px rgba(0, 0, 0, 0.7);
+  };
+
+  h3{
+    font-family: @fontEconomica !important;
+    font-size: 1.625em;
+    font-weight: bold !important;
+    padding: 24px; 
+  }
+
+  .related-entities{
+    padding: 6px 24px 24px;
+
+    li{
+
+      float: none;
+      clear: both;
+      margin-bottom: 24px;
+      list-style: none;
+      min-height: 74px;
+      position: relative;
+
+      .picture{
+        float: left;
+        width: 68px;
+        height: 68px;
+        margin-right: 12px;
+        border: 3px solid #fff;
+      }
+
+      .content{
+
+        color: @colorGray;
+
+        a{
+          display: block;
+          width: 100%;
+          color: @colorLinkGreen;
+          font-weight: bold;
+        }
+
+      }
+
+      .admin-link{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      &:after{
+        content: "";
+        float: none;
+        clear: both;
+      };
+    }
+  }
+}
+
+
 
 /* Post Page
 =================================================================== */
@@ -471,7 +612,7 @@ div.quienmanda-embed-wrapper {
 
 
 /* Sidebar
-=================================================================== */
+=================================================================== 
 .sidebar {
   margin-bottom: 20px;
 }
@@ -492,6 +633,8 @@ table tr td .admin-action {
 table tr:hover td .admin-action { 
   display:inline-block;
 }
+
+*/
 
 
 /* For internal use, detect automatically internal broken links in posts and highlight */

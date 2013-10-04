@@ -1,25 +1,28 @@
 <% unless entities.empty? %>
 <div class="span4 sidebar hidden-phone">
   <h3>Protagonistas</h3>
-  <table>
-    <% entities.each_with_index do |entity, i| %>
-    <%# Start displaying at least 5 related entities, always the high priority ones %>
-    <tr <%= "class='extra-related-entity'".html_safe if i>=5 and entity.priority!='1' %>>
-      <td>
-        <%= link_to entity_path(entity) do %>
-        <%= 
-          image_tag(entity.avatar.url ? entity.avatar.url(:icon) : 'avatar.png', class: 'image tiny') 
-        %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to entity.short_or_long_name, entity_path(entity) %>.
-        <small><%= entity.description %></small>
+  
+  <div class="related-entities">
+    <ul>
+      <% entities.each_with_index do |entity, i| %>
+      <%# Start displaying at least 5 related entities, always the high priority ones %>
+      <li <%= "class='extra-related-entity'".html_safe if i>=5 and entity.priority!='1' %>>
+        <div class="picture">
+          <%= link_to entity_path(entity) do %>
+          <%= 
+            image_tag(entity.avatar.url ? entity.avatar.url(:icon) : 'avatar.png', class: 'image tiny') 
+          %>
+          <% end %>
+        </div>
+        <div class="content">
+          <%= link_to entity.short_or_long_name, entity_path(entity) %>
+          <small><%= entity.description %></small>
+        </div>
         <%= render 'shared/show_admin_links', :item => entity, :inline => true %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 
   <span id="related-entities-toggle" class="label toggable">
     <i class="icon-chevron-down"></i> Mostrar todos

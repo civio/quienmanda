@@ -1,12 +1,12 @@
-<p>
+<p class="picture-footer">
   <% unless photo.date.blank? %>
   <strong><%= I18n.localize(photo.date, :format => "%d de %B %Y") %>.</strong>
   <% end %>
   <%= raw(photo.footer) %>
-  <%= render 'shared/show_photo_credit', photo: photo %>
-  <% if defined?(external_link) %>
-    <%= link_to @photo, target: '_blank' do %>
-      <i class="icon-external-link"></i>
-    <% end %>
-  <% end %>
 </p>
+<%= render 'shared/show_photo_credit', photo: photo %>
+<% if defined?(external_link) %>
+  <%= link_to @photo, target: '_blank' do %>
+    <i class="icon-external-link"></i>
+  <% end %>
+<% end %>
