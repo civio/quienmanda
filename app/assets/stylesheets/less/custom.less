@@ -792,3 +792,32 @@ table.table tr:hover td span.import-actions {
     padding-left: 30px;
   }
 }
+
+
+
+/* TODO: Los pegotes de CSS de David, a incorporar más arriba
+====================================================================== */
+
+/* Expandir/colapsar entidades relacionadas en el sidebar */
+#related-entities-toggle,
+.extra-related-entity {
+  display: none;
+} 
+
+/* Toggle buttons */
+.label.toggable {
+  cursor: pointer;
+}
+.active .show-active { display:inline-block; }
+.active .show-inactive { display:none;}
+
+.inactive .show-active { display:none;}
+.inactive .show-inactive { display:inline-block; }
+
+/* Botones de edición para administradores en entidades relacionadas */
+li .admin-action {
+  display:none;
+}
+li:hover .admin-action {
+  display:inline-block;
+}
