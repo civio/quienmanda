@@ -105,23 +105,24 @@ function NetworkGraph(selector) {
       .call(drag)
       .call(createNode)
         .attr("class", function(d) { return d.root ? "node root" : "node" } )
-        .on('dblclick', function(d) { that.loadNode(d.url); })
+        .on('dblclick', function(d) { that.loadNode(d.url, d.x, d.y); })
       .append("text")
         .attr("dx", 11)
         .attr("dy", ".35em")
         .text(function(d) { return d.name });
   };
 
-  this.loadNode = function(url) {
+  this.loadNode = function(url, posx, posy) {
+    // If a position is given, preposition child nodes around that.
+    // Otherwise just put them in the middle of the screen
+    if(typeof(posx)==='undefined') posx = centerx;
+    if(typeof(posy)==='undefined') posy = centery;
+
     var networkGraph = this;
     $.getJSON(url, function(data) {
-      var isFirstLoad = (typeof node === 'undefined');
-
       // Add the retrieved nodes to the network graph
       $.each(data.nodes, function(key, node) {
-        if ( isFirstLoad ) {
-          presetFirstNodes(node);
-        }
+        presetChildNodes(node, posx, posy);
         nodes[node.url] = nodes[node.url] || node;
       });
 
@@ -168,15 +169,15 @@ function NetworkGraph(selector) {
   // When creating a new, pre-position the root node in the middle of the screen 
   // (and mark it as fixed for the D3.js layout). Put the non-root nodes randomly 
   // in a circle around it to avoid the dizzying start where all the nodes fly around
-  function presetFirstNodes(node) {
+  function presetChildNodes(node, posx, posy) {
     if (node['root']) {
       node['fixed'] = true;
-      node['x'] = centerx;
-      node['y'] = centery;
+      node['x'] = posx;
+      node['y'] = posy;
     } else {
       var angle = 2 * Math.PI * Math.random();
-      node['x'] = centerx + linkDistance * Math.sin(angle);
-      node['y'] = centery + linkDistance * Math.cos(angle);
+      node['x'] = posx + linkDistance * Math.sin(angle);
+      node['y'] = posy + linkDistance * Math.cos(angle);
     }
   }
 
