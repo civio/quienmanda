@@ -2,7 +2,7 @@ function NetworkGraph(selector) {
 
   // Basic D3.js SVG container setup
   var width = $(selector).width(),
-      height = width * .5,
+      height = Math.max(width * 9 / 16, 450),
       centerx = width / 2,
       centery = height / 2,
       linkDistance = height * .2;
