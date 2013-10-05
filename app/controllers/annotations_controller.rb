@@ -52,11 +52,11 @@ class AnnotationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_annotation
-      @annotation = Annotation.find!(params[:id])
+      @annotation = Annotation.find(params[:id])
     end
 
     def set_photo
-      @photo = Photo.find!(params[:photo_id])
+      @photo = Photo.find(params[:photo_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

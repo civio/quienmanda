@@ -31,7 +31,7 @@ class PhotosController < ApplicationController
 
   private
     def set_photo
-      @photo = Photo.find!(params[:id])
+      @photo = Photo.find(params[:id])
     end
 
     def set_title
