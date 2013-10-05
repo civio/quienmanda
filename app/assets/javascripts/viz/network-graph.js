@@ -39,6 +39,7 @@ function NetworkGraph(selector) {
   // Visualization data
   var nodes = {};
   var links = {};
+  var connectedNodes = {};  // Convenience data, to highlight neighbours
 
   // D3.js selectors, available for tick() method
   var node,
@@ -76,7 +77,6 @@ function NetworkGraph(selector) {
 
 
   /* PUBLIC interface */
-
   this.display = function() {
     // Create force layout
     force
@@ -127,6 +127,9 @@ function NetworkGraph(selector) {
 
       // Add the retrieved links to the network graph
       $.each(data.links, function(key, link) {
+        // Keep track of neighboring nodes
+        connectedNodes[link.source + "," + link.target] = 1;
+
         link.source = nodes[link.source];
         link.target = nodes[link.target];
         links[link.id] = links[link.id] || link;
@@ -156,6 +159,8 @@ function NetworkGraph(selector) {
 
   function createNode(node) {
     node.append("circle")
+      .on("mouseover", fade(.2))
+      .on("mouseout", fade(1))
       .attr("r", 9)
       .style("fill", function(d) { return color(d.group); });
   }
@@ -225,5 +230,33 @@ function NetworkGraph(selector) {
     d3.select(this).classed("hovered",false);
     $("div#pop-up").hide();
   }
+
+
+  // Highlighting neighbouring nodes on hover
+  function isConnected(a, b) {
+    return  connectedNodes[a.url + "," + b.url] || 
+            connectedNodes[b.url + "," + a.url] || 
+            a.url == b.url;
+  }
+  
+  function fade(opacity, e) {
+    return function(d) {
+      node.style("stroke-opacity", function(o) {
+        thisOpacity = isConnected(d, o) ? 1 : opacity;
+        this.setAttribute('fill-opacity', thisOpacity);
+        return thisOpacity;
+      });
+
+      path.style("stroke-opacity", function(o) {
+        return o.source === d || o.target === d ? 1 : opacity;
+      });
+
+      if (d3.event.type == "mouseover")
+        path.attr("marker-end", function(o) { return o.source === d || o.target === d ? "url(#relation)" : null; });
+      else
+        path.attr("marker-end", "url(#relation)");
+    };
+  }
+
 
 };
