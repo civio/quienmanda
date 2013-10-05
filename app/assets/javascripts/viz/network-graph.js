@@ -34,7 +34,7 @@ function NetworkGraph(selector) {
   // Node drag behaviour
   var drag = force.drag()
       .on("dragstart", dragstart)
-      .on("dragend", dragend);
+      .on("drag", dragmove);
 
   // Visualization data
   var nodes = {};
@@ -204,8 +204,10 @@ function NetworkGraph(selector) {
   function dragstart(d) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
-  function dragend(d) {
-    d.fixed = true; // fix the node position after dragging is completed
+  function dragmove(d) {
+    // fix the node position when the node is dragged
+    // (used to do this at dragend, but a double click would confuse it)
+    d.fixed = true;   
   }
 
   // Relations mouse over
