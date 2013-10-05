@@ -19,6 +19,15 @@ text {
   pointer-events: none;
 }
 
+/* Controls */
+.visualization-controls {
+  float: left;
+  font-size: 20px;
+}
+.visualization-controls i {
+  cursor: pointer;
+}
+
 /* Legend */
 .legend {
   font-size: 12px;

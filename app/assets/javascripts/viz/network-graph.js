@@ -10,12 +10,17 @@ function NetworkGraph(selector) {
   var category2 = [ "#60A300", "#A9C300" ];
   var color = d3.scale.ordinal().range(category2).domain([1,2]);
 
+  // I keep track of panning+zooming and use the 'drag' behaviour plus two buttons.
+  // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
+  // find a way of disabling it.
+  var scale = 1;
+  var center_x = 0;
+  var center_y = 0;
+
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
       .attr("height", height)
-      .call(d3.behavior.zoom().scaleExtent([.50, 1])
-        .on("zoom", rescale))
-        .on("dblclick.zoom", null)
+      .call(d3.behavior.drag().on("drag", onDrag))
       .append("g");   // Removing this breaks zooming/panning
 
   // Force layout configuration
@@ -26,6 +31,7 @@ function NetworkGraph(selector) {
       .linkDistance(linkDistance)
       .size([width, height]);
 
+  // Node drag behaviour
   var drag = force.drag()
       .on("dragstart", dragstart)
       .on("dragend", dragend);
@@ -117,6 +123,21 @@ function NetworkGraph(selector) {
     });
   };
 
+  // Zoom controls
+  this.zoomIn = function() {
+    scale *= 1.2;
+    rescale();
+  };
+  this.zoomOut = function() {
+    scale /= 1.2;
+    rescale();
+  };
+  this.zoomReset = function() {
+    scale = 1;
+    center_x = 0;
+    center_y = 0;
+    rescale();
+  }
 
   /* PRIVATE */
 
@@ -155,12 +176,18 @@ function NetworkGraph(selector) {
     });
   };
 
-  // Zoom handler
+  // Canvas drag handler
+  function onDrag() {
+    center_x += d3.event.dx;
+    center_y += d3.event.dy;
+    rescale();
+    d3.event.sourceEvent.stopPropagation(); // silence other listeners
+  }
   function rescale() {
-    svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    svg.attr("transform", "translate(" + center_x + ","+ center_y+")scale("+scale+")");
   }
 
-  // Drag handlers
+  // Node drag handlers
   function dragstart(d) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
