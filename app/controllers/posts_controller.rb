@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find_by_slug(params[:id])
+      @post = Post.find_by_slug(params[:id]) || not_found
     end
 
     def get_domain_name
