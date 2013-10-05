@@ -20,7 +20,7 @@ module Shortcodes
   }  
 </script>
 <iframe class="quienmanda-embed" onload="resizeIframe(this)" frameborder="0" width="#{width}"
-  style="display: block; border-style: solid; border-color: #FAFAFA; border-radius: 4px 4px 4px 4px; border-right: 1px solid #FAFAFA; border-width: 2px 1px 1px; margin: 10px 0px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), 0 3px 1px rgba(0, 0, 0, 0.05);"
+  style="display: block; border-style: solid; border-color: #FAFAFA; border-radius: 4px 4px 4px 4px; border-right: 1px solid #FAFAFA; border-width: 2px 1px 1px; margin: 10px auto; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), 0 3px 1px rgba(0, 0, 0, 0.05);"
   height="0" scrolling="no" src="#{url}?widget=1">
 </iframe>
 </div>
