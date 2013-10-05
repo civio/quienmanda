@@ -1,4 +1,4 @@
-function NetworkGraph(selector) {
+function NetworkGraph(selector, infobox) {
 
   // Basic D3.js SVG container setup
   var width = $(selector).width(),
@@ -9,6 +9,7 @@ function NetworkGraph(selector) {
 
   var category2 = [ "#60A300", "#A9C300" ];
   var color = d3.scale.ordinal().range(category2).domain([1,2]);
+  var infobox = d3.select(infobox);
 
   // I keep track of panning+zooming and use the 'drag' behaviour plus two buttons.
   // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
@@ -66,16 +67,6 @@ function NetworkGraph(selector) {
   svg.append("g")
     .attr("id", "nodesContainer");
 
-  // Pop-up
-  var popup = d3.select(selector)
-    .append("div")
-      .attr("id", "pop-up");
-  popup.append("div")
-    .attr("id", "pop-up-title");
-  popup.append("div")
-    .attr("id", "pop-up-content");
-
-
   /* PUBLIC interface */
   this.display = function() {
     // Create force layout
@@ -91,7 +82,6 @@ function NetworkGraph(selector) {
     path.enter().append("svg:path")
         .attr("class", "link")
         .on("mouseover", onRelationMouseOver)
-        .on("mouseout", onRelationMouseOut)
         .attr("marker-end", function(d) { return "url(#relation)"; });
 
     // Nodes
@@ -160,8 +150,8 @@ function NetworkGraph(selector) {
 
   function createNode(node) {
     node.append("circle")
-      .on("mouseover", fade(.2))
-      .on("mouseout", fade(1))
+      .on("mouseover", onNodeMouseOver)
+      .on("mouseout", onNodeMouseOut)
       .attr("r", 9)
       .style("fill", function(d) { return color(d.group); });
   }
@@ -217,19 +207,25 @@ function NetworkGraph(selector) {
   }
 
   // Relations mouse over
-  function onRelationMouseOver(d) {
-    d3.select(this).classed("hovered",true);
-    $("#pop-up-title").html("");
-    $("#pop-up-content").html("Haz click para ver las evidencias de la relación");
+  function onNodeMouseOver(d) {
+    fade(d, .2);  // Fade-out non-neighbouring nodes
 
-    var popLeft = d3.event.pageX - $("div#pop-up").width() / 2;
-    var popTop = d3.event.pageY - $("div#pop-up").height() - 15;
-    $("div#pop-up").css({ "left": popLeft, "top": popTop }).show();
+    infobox.html('');
+    infobox.append('strong')
+      .text(d.name);
+    infobox.append('span')
+      .text('. '+d.description+' ');
+    infobox.append('a')
+      .attr('href', d.url)
+      .attr('target', '_blank')
+      .append('i')
+        .attr('class', 'icon-external-link');
   }
-
-  function onRelationMouseOut(d) {
-    d3.select(this).classed("hovered",false);
-    $("div#pop-up").hide();
+  function onNodeMouseOut(d) {
+    fade(d, 1);
+  }
+  function onRelationMouseOver(d) {
+    infobox.html("Haz click para ver las evidencias de la relación");
   }
 
 
@@ -240,23 +236,21 @@ function NetworkGraph(selector) {
             a.url == b.url;
   }
   
-  function fade(opacity, e) {
-    return function(d) {
-      node.style("stroke-opacity", function(o) {
-        thisOpacity = isConnected(d, o) ? 1 : opacity;
-        this.setAttribute('fill-opacity', thisOpacity);
-        return thisOpacity;
-      });
+  function fade(d, opacity) {
+    node.style("stroke-opacity", function(o) {
+      thisOpacity = isConnected(d, o) ? 1 : opacity;
+      this.setAttribute('fill-opacity', thisOpacity);
+      return thisOpacity;
+    });
 
-      path.style("stroke-opacity", function(o) {
-        return o.source === d || o.target === d ? 1 : opacity;
-      });
+    path.style("stroke-opacity", function(o) {
+      return o.source === d || o.target === d ? 1 : opacity;
+    });
 
-      if (d3.event.type == "mouseover")
-        path.attr("marker-end", function(o) { return o.source === d || o.target === d ? "url(#relation)" : null; });
-      else
-        path.attr("marker-end", "url(#relation)");
-    };
+    if (d3.event.type == "mouseover")
+      path.attr("marker-end", function(o) { return o.source === d || o.target === d ? "url(#relation)" : null; });
+    else
+      path.attr("marker-end", "url(#relation)");
   }
 
 

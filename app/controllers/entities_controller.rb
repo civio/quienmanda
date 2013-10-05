@@ -23,9 +23,10 @@ class EntitiesController < ApplicationController
   def add_node_if_needed(nodes, entity, root: false)
     if nodes[entity.id].nil?
       nodes[entity.id] = { 
-        name: entity.short_or_long_name, 
+        name: entity.short_or_long_name,
+        description: entity.description,
         group: entity.person? ? 1 : 2, 
-        url: entity_path(entity, format: :json)
+        url: entity_path(entity)
       }
       # Should the node be fixed to the center of the screen?
       nodes[entity.id][:root] = true if root
@@ -44,8 +45,8 @@ class EntitiesController < ApplicationController
       add_node_if_needed(nodes, relation.source)
       add_node_if_needed(nodes, relation.target)
       links << { 
-        source: entity_path(relation.source, format: :json),
-        target: entity_path(relation.target, format: :json),
+        source: entity_path(relation.source),
+        target: entity_path(relation.target),
         id: relation.id
       }
     end

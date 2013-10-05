@@ -50,6 +50,9 @@
 
       <div id="viz-container"></div>
 
+      <div id="infobox">
+
+      </div>
     </div>
 
   </div>
@@ -65,7 +68,7 @@
 <script>
 $(function () {
 
-  var graph = new NetworkGraph("#viz-container");
+  var graph = new NetworkGraph("#viz-container", "#infobox");
   graph.loadNode('<%= entity_path(entity, format: :json) %>');
   $('#control-zoom-in').click(function() { graph.zoomIn(); });
   $('#control-zoom-out').click(function() { graph.zoomOut(); });

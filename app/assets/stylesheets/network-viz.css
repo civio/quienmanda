@@ -85,3 +85,9 @@ text {
 .legend-organizations i {
   color: #A9C300;
 }
+
+
+/* Infobox */
+#infobox {
+  font-size: 14px;
+}
