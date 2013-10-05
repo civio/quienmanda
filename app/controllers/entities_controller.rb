@@ -46,8 +46,7 @@ class EntitiesController < ApplicationController
       links << { 
         source: entity_path(relation.source, format: :json),
         target: entity_path(relation.target, format: :json),
-        id: relation.id,
-        value: 9  # Nice thick link
+        id: relation.id
       }
     end
     { nodes: nodes.values, links: links }
