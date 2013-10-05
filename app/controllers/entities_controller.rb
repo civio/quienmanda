@@ -45,10 +45,14 @@ class EntitiesController < ApplicationController
       add_node_if_needed(nodes, relation.source)
       add_node_if_needed(nodes, relation.target)
       links << { 
+        id: relation.id,
         source: entity_path(relation.source),
         target: entity_path(relation.target),
         type: relation.relation_type.description,
-        id: relation.id
+        via: relation.sources,
+        from: relation.from,
+        to: relation.to,
+        at: relation.at
       }
     end
     { nodes: nodes.values, links: links }
