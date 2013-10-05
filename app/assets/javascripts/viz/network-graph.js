@@ -207,25 +207,33 @@ function NetworkGraph(selector, infobox) {
   }
 
   // Relations mouse over
+  function renderNodeName(parent, node) {
+    parent.append('a')
+      .attr('href', node.url)
+      .attr('target', '_blank')
+      .append('strong')
+        .text(node.name)
+      .append('i')
+        .attr('class', 'icon-external-link');
+  }
   function onNodeMouseOver(d) {
     fade(d, .2);  // Fade-out non-neighbouring nodes
 
     infobox.html('');
-    infobox.append('strong')
-      .text(d.name);
+    renderNodeName(infobox, d);
     infobox.append('span')
       .text('. '+d.description+' ');
-    infobox.append('a')
-      .attr('href', d.url)
-      .attr('target', '_blank')
-      .append('i')
-        .attr('class', 'icon-external-link');
   }
   function onNodeMouseOut(d) {
     fade(d, 1);
   }
   function onRelationMouseOver(d) {
-    infobox.html("Haz click para ver las evidencias de la relación");
+    infobox.html('');
+    renderNodeName(infobox, d.source);
+    infobox.append('span')
+      .attr('class', 'separator')
+      .text(d.type);
+    renderNodeName(infobox, d.target);
   }
 
 

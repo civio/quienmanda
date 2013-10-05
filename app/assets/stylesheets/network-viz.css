@@ -91,3 +91,10 @@ text {
 #infobox {
   font-size: 14px;
 }
+#infobox i {
+  margin-left: 5px;
+}
+#infobox span.separator {
+  margin-left: 10px;
+  margin-right: 10px;
+}

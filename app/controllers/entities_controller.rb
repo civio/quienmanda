@@ -47,6 +47,7 @@ class EntitiesController < ApplicationController
       links << { 
         source: entity_path(relation.source),
         target: entity_path(relation.target),
+        type: relation.relation_type.description,
         id: relation.id
       }
     end
