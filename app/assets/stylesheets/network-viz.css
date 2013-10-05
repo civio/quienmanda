@@ -1,10 +1,10 @@
-
-circle.node {
+g.node circle {
   stroke-width: 0px;
 }
-circle.node.root {
+g.node.root circle {
   stroke-width: 3px;
   stroke: black;
+  fill: black !important;
 }
 
 path.link {

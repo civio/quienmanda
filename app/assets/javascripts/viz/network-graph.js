@@ -93,6 +93,7 @@ function NetworkGraph(selector) {
     node.enter().append("g")
       .call(drag)
       .call(createNode)
+        .attr("class", function(d) { return d.root ? "node root" : "node" } )
         .on('dblclick', function(d) { that.loadNode(d.url); })
       .append("text")
         .attr("dx", 11)
@@ -145,7 +146,6 @@ function NetworkGraph(selector) {
   function createNode(node) {
     node.append("circle")
       .attr("r", 9)
-      .attr("class", function(d) { return d.root ? "node root" : "node" } )
       .style("fill", function(d) { return color(d.group); });
   }
 
