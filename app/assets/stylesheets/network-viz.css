@@ -18,3 +18,19 @@ text {
   font-size: 12px;
   pointer-events: none;
 }
+
+/* Legend */
+.legend {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 auto;
+}
+.legend span.legend-organizations {
+  margin-right: 20px;
+}
+.legend-people i {
+  color: #60A300;
+}
+.legend-organizations i {
+  color: #A9C300;
+}
