@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe PostsController do
-  context "an anon user" do
-    before do
-      @public_post = create(:public_post)
-    end
+  before do
+    @public_post = create(:public_post)
+    @private_post = create(:private_post)
+  end
 
+  context "an anon user" do
     it "sees the list of published posts" do
       get :index
       assert_template :index
@@ -36,9 +37,6 @@ describe PostsController do
 
   context "an admin" do
     before do
-      @public_post = create(:public_post)
-      @private_post = create(:private_post)
-
       sign_in create(:admin)
     end
 
