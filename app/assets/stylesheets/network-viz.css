@@ -54,16 +54,23 @@ text {
 
 
 /* Controls */
-.visualization-controls {
+#visualization-controls {
   float: left;
   font-size: 20px;
+  position: absolute;
 }
-.visualization-controls i {
+#visualization-controls i {
   cursor: pointer;
 }
 
 
 /* Legend */
+#visualization-legend {
+  position: absolute;
+  float: right; 
+  right: 100px;
+}
+
 .legend {
   font-size: 12px;
   display: inline-block;
