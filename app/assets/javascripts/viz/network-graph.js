@@ -139,7 +139,7 @@ function NetworkGraph(selector) {
     center_x = 0;
     center_y = 0;
     rescale();
-  }
+  };
 
   /* PRIVATE */
 
@@ -162,7 +162,7 @@ function NetworkGraph(selector) {
       node['x'] = centerx + linkDistance * Math.sin(angle);
       node['y'] = centery + linkDistance * Math.cos(angle);
     }
-  };
+  }
 
   // Force layout iteration
   function tick() {
@@ -176,7 +176,7 @@ function NetworkGraph(selector) {
     node.attr("transform", function(d) {
       return "translate(" + d.x + "," + d.y + ")";
     });
-  };
+  }
 
   // Canvas drag handler
   function onDrag() {
@@ -195,5 +195,5 @@ function NetworkGraph(selector) {
   }
   function dragend(d) {
     d.fixed = true; // fix the node position after dragging is completed
-  };
+  }
 };
