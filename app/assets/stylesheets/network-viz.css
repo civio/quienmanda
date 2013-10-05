@@ -1,13 +1,13 @@
 
 circle.node {
   stroke: #fff;
-  stroke-width: 1.5px;
+  stroke-width: 1px;
 }
 
 path.link {
   fill: none;
   stroke: #999;
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 
 marker {
@@ -15,5 +15,6 @@ marker {
 }
 
 text {
+  font-size: 12px;
   pointer-events: none;
 }

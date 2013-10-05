@@ -45,8 +45,8 @@ function NetworkGraph(selector) {
       .attr("viewBox", "0 -5 15 10")
       .attr("refX", 20)
       .attr("refY", -0.5)
-      .attr("markerWidth", 6)
-      .attr("markerHeight", 6)
+      .attr("markerWidth", 5)
+      .attr("markerHeight", 5)
       .attr("orient", "auto")
     .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
@@ -74,8 +74,7 @@ function NetworkGraph(selector) {
 
     path.enter().append("svg:path")
         .attr("class", "link")
-        .attr("marker-end", function(d) { return "url(#relation)"; })
-        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+        .attr("marker-end", function(d) { return "url(#relation)"; });
 
     // Nodes
     node = svg.select("#nodesContainer").selectAll(".node")
@@ -88,7 +87,7 @@ function NetworkGraph(selector) {
         .attr("class", "node")
         .on('dblclick', function(d) { that.loadNode(d.url); })
       .append("text")
-        .attr("dx", 15)
+        .attr("dx", 11)
         .attr("dy", ".35em")
         .text(function(d) { return d.name });
   };
@@ -122,7 +121,7 @@ function NetworkGraph(selector) {
 
   function createNode(node) {
     node.append("circle")
-      .attr("r", 13)
+      .attr("r", 9)
       .style("fill", function(d) { return color(d.group); });
   }
 
@@ -146,7 +145,7 @@ function NetworkGraph(selector) {
     path.attr("d", function(d) {
       var dx = d.target.x - d.source.x,
           dy = d.target.y - d.source.y,
-          dr = Math.sqrt(dx * dx + dy * dy);
+          dr = Math.sqrt(dx * dx + dy * dy) * 1.5;
       return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     });
 
