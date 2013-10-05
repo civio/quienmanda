@@ -16,10 +16,6 @@ module Shortcodes
       attributes.fetch('height', 550)
     end
 
-    def width
-      attributes.fetch('width', 400)
-    end
-
     def document_name
       hyphen_position = url.index('-')
       unless hyphen_position.nil?
@@ -29,12 +25,20 @@ module Shortcodes
 
     def render
       <<TEMPLATE
+<div class="documentCloudWrapper" style="position: relative; height: #{height}px;">
+<style>
+.documentCloudWrapper .DV-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
 <div id="DV-viewer-#{document_id}-#{document_name}" class="DV-container"></div>
 <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
 <script>
   DV.load("//www.documentcloud.org/documents/#{document_id}-#{document_name}.js", {
-    width: '#{height}',
-    height: '#{width}',
     sidebar: false,
     container: "#DV-viewer-#{document_id}-#{document_name}"
   });
@@ -44,6 +48,7 @@ module Shortcodes
   <br />
   <a href="http://s3.documentcloud.org/documents/#{document_id}/#{document_name}.txt" target="_blank">Documento (Texto)</a>
 </noscript>
+</div>
 TEMPLATE
     end
 
