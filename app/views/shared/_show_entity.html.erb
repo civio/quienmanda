@@ -47,7 +47,7 @@
   </div>
 </div>
 
-<%= render "shared/entities_list", :list => @relations %>
+<%= render "shared/relations_list", :list => @relations %>
 
 <%= render '/shared/mixed_wall', 
             items: entity.related_posts[0..2]+entity.related_photos, 
