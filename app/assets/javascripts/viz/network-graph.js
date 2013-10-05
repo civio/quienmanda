@@ -7,7 +7,8 @@ function NetworkGraph(selector) {
       centery = height / 2,
       linkDistance = height * .2;
 
-  var color = d3.scale.category20();
+  var category2 = [ "#60A300", "#A9C300" ];
+  var color = d3.scale.ordinal().range(category2).domain([1,2]);
 
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
