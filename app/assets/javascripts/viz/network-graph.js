@@ -14,8 +14,8 @@ function NetworkGraph(selector) {
   // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
   // find a way of disabling it.
   var scale = 1;
-  var center_x = 0;
-  var center_y = 0;
+  var viewport_x = 0;
+  var viewport_y = 0;
 
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
@@ -150,8 +150,8 @@ function NetworkGraph(selector) {
   };
   this.zoomReset = function() {
     scale = 1;
-    center_x = 0;
-    center_y = 0;
+    viewport_x = 0;
+    viewport_y = 0;
     rescale();
   };
 
@@ -196,13 +196,13 @@ function NetworkGraph(selector) {
 
   // Canvas drag handler
   function onDrag() {
-    center_x += d3.event.dx;
-    center_y += d3.event.dy;
+    viewport_x += d3.event.dx;
+    viewport_y += d3.event.dy;
     rescale();
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
   function rescale() {
-    svg.attr("transform", "translate(" + center_x + ","+ center_y+")scale("+scale+")");
+    svg.attr("transform", "translate(" + viewport_x + ","+ viewport_y+")scale("+scale+")");
   }
 
   // Node drag handlers
