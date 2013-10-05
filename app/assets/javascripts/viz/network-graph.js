@@ -84,14 +84,15 @@ function NetworkGraph(selector) {
         .attr("marker-end", function(d) { return "url(#relation)"; });
 
     // Nodes
-    node = svg.select("#nodesContainer").selectAll(".node")
+    node = svg
+        .select("#nodesContainer")
+        .selectAll(".node")
         .data(force.nodes(), function(d) { return d.url; })
 
     var that = this;
     node.enter().append("g")
       .call(drag)
       .call(createNode)
-        .attr("class", "node")
         .on('dblclick', function(d) { that.loadNode(d.url); })
       .append("text")
         .attr("dx", 11)
@@ -144,6 +145,7 @@ function NetworkGraph(selector) {
   function createNode(node) {
     node.append("circle")
       .attr("r", 9)
+      .attr("class", function(d) { return d.root ? "node root" : "node" } )
       .style("fill", function(d) { return color(d.group); });
   }
 

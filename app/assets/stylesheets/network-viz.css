@@ -1,7 +1,10 @@
 
 circle.node {
-  stroke: #fff;
-  stroke-width: 1px;
+  stroke-width: 0px;
+}
+circle.node.root {
+  stroke-width: 3px;
+  stroke: black;
 }
 
 path.link {
