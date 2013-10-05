@@ -23,6 +23,6 @@ class OrganizationsController < ApplicationController
 
   private
     def set_organization
-      @organization = Entity.organizations.find_by_slug(params[:id])
+      @organization = Entity.organizations.find_by_slug!(params[:id])
     end
 end

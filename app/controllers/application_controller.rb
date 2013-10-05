@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     redirect_to '/', alert: exception.message
   end
 
-  # Convenience method to redirect to 404 error page
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
   before_action :set_locale
 
   protected
