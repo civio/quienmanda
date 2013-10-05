@@ -1,19 +1,18 @@
 <!-- start: Page Title -->
-<div id="page-title">
+<div id="page-title" class="article">
 
   <h2><%= entity.short_or_long_name %></h2>
 
 </div>
 <!-- end: Page Title -->
+<%= render 'shared/social_buttons' %>
 
-<div id="wrapper" class="full">       
+<div id="wrapper tight">
+
   <div class="row-fluid">
 
-    <div class="span4 separate">
+    <div id="wrapper" class="full span3">       
       <%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %>
-    </div>
-
-    <div class="span8">
       <p>
         <strong><%= entity.name %></strong><br>
         <%= entity.description %>
@@ -34,17 +33,14 @@
       <%= render 'shared/show_admin_links', item: entity %>
     </div>
 
-  </div>
-</div>
+    <div id="wrapper" class="full span9">
 
-<%= render 'shared/social_buttons' %>
+        <div id="viz-container"></div>
 
-<div id="wrapper" class="full tight">       
-  <div class="row-fluid">
-
-    <div id="viz-container"></div>
+    </div>
 
   </div>
+
 </div>
 
 <%= render "shared/relations_list", :list => @relations %>
