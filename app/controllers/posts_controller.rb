@@ -15,12 +15,16 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     authorize! :read, @post
+    @title = @post.title
+
+    # Make sure we don't leak unpublished related articles or entities
+    mentions = @post.mentions_in_content.to_a
+    mentions.select! {|m| m.mentionee.published? } unless (can? :manage, @post)
 
     # Get related entities and posts from content
-    @title = @post.title
     @related_entities = []
     @related_posts = []
-    @post.mentions_in_content.each do |mention|
+    mentions.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
         @related_entities << mentionee
@@ -30,6 +34,7 @@ class PostsController < ApplicationController
       # No point in keeping track of mentioned photos, I think.
     end
     @post.related_posts.each do |post|
+      next unless post.published? or can? :manage, @post
       @related_posts << post unless @related_posts.include? post
     end
     @related_entities.sort_by! &:priority
