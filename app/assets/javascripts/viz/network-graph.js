@@ -65,6 +65,15 @@ function NetworkGraph(selector) {
   svg.append("g")
     .attr("id", "nodesContainer");
 
+  // Pop-up
+  var popup = d3.select(selector)
+    .append("div")
+      .attr("id", "pop-up");
+  popup.append("div")
+    .attr("id", "pop-up-title");
+  popup.append("div")
+    .attr("id", "pop-up-content");
+
 
   /* PUBLIC interface */
 
@@ -81,6 +90,8 @@ function NetworkGraph(selector) {
 
     path.enter().append("svg:path")
         .attr("class", "link")
+        .on("mouseover", onRelationMouseOver)
+        .on("mouseout", onRelationMouseOut)
         .attr("marker-end", function(d) { return "url(#relation)"; });
 
     // Nodes
@@ -196,4 +207,21 @@ function NetworkGraph(selector) {
   function dragend(d) {
     d.fixed = true; // fix the node position after dragging is completed
   }
+
+  // Relations mouse over
+  function onRelationMouseOver(d) {
+    d3.select(this).classed("hovered",true);
+    $("#pop-up-title").html("");
+    $("#pop-up-content").html("Haz click para ver las evidencias de la relación");
+
+    var popLeft = d3.event.pageX - $("div#pop-up").width() / 2;
+    var popTop = d3.event.pageY - $("div#pop-up").height() - 15;
+    $("div#pop-up").css({ "left": popLeft, "top": popTop }).show();
+  }
+
+  function onRelationMouseOut(d) {
+    d3.select(this).classed("hovered",false);
+    $("div#pop-up").hide();
+  }
+
 };

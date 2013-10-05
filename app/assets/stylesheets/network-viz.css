@@ -1,3 +1,4 @@
+/* Visualization elements */
 g.node circle {
   stroke-width: 0px;
 }
@@ -12,6 +13,10 @@ path.link {
   stroke: #999;
   stroke-width: 2px;
 }
+path.link:hover {
+  fill: none;
+  stroke: red;
+}
 
 marker {
   fill: #999;
@@ -22,6 +27,32 @@ text {
   pointer-events: none;
 }
 
+
+/* Pop-up */
+#pop-up {
+  display: none;
+  position:absolute;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px 5px 10px;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px 4px;
+  border-radius: 4px 4px;
+  pointer-events: none;
+  text-shadow: none;
+}
+
+#pop-up-title {
+  font-size: 14px;
+  margin-bottom: 4px;
+  font-weight: bolder;
+}
+
+#pop-up-content {
+  font-size: 12px;
+}
+
+
 /* Controls */
 .visualization-controls {
   float: left;
@@ -30,6 +61,7 @@ text {
 .visualization-controls i {
   cursor: pointer;
 }
+
 
 /* Legend */
 .legend {
