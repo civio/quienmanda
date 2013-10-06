@@ -239,6 +239,16 @@ function NetworkGraph(selector, infobox) {
       .text(relation.type);
     renderNodeName(infobox, relation.target);
 
+    if ( relation.at != null ) {
+      infobox.append('span')
+        .attr('class', 'separator')
+        .text('('+relation.at+')');
+    } else if ( relation.from != null || relation.to != null ) {
+      infobox.append('span')
+        .attr('class', 'separator')
+        .text('('+(relation.from||'')+' - '+(relation.to||'')+')');
+    }
+
     if ( relation.via.length > 0 ) {
       sources = infobox.append('span').attr('class', 'sources').text('Fuente: ');
       sources.selectAll('.via').data(relation.via)
