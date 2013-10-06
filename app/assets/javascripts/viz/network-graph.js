@@ -122,12 +122,14 @@ function NetworkGraph(selector, infobox) {
 
       // Add the retrieved links to the network graph
       $.each(data.links, function(key, link) {
-        // Keep track of neighboring nodes
-        connectedNodes[link.source + "," + link.target] = 1;
+        addLink(link);
+      });
 
-        link.source = nodes[link.source];
-        link.target = nodes[link.target];
-        links[link.id] = links[link.id] || link;
+      // Go through the relations of child nodes, looking for relations among them
+      $.each(data.child_links, function(key, link) {
+        if ( nodes[link.source]!=null && nodes[link.target]!=null) {
+          addLink(link);
+        }
       });
 
       networkGraph.display();
@@ -160,9 +162,17 @@ function NetworkGraph(selector, infobox) {
       .style("fill", function(d) { return color(d.group); });
   }
 
-  // When creating a new, pre-position the root node in the middle of the screen 
-  // (and mark it as fixed for the D3.js layout). Put the non-root nodes randomly 
-  // in a circle around it to avoid the dizzying start where all the nodes fly around
+  function addLink(link) {
+    // Keep track of neighboring nodes
+    connectedNodes[link.source + "," + link.target] = 1;
+
+    link.source = nodes[link.source];
+    link.target = nodes[link.target];
+    links[link.id] = links[link.id] || link;
+  }
+
+  // When adding children nodes, put the news nodes randomly in a circle around 
+  // the existing one to avoid the dizzying start where all the nodes fly around.
   function presetChildNodes(node, posx, posy) {
     if (node['root']) {
       node['fixed'] = true;
@@ -210,7 +220,7 @@ function NetworkGraph(selector, infobox) {
     d.fixed = true;   
   }
 
-  // Relations mouse over
+  // Mouse over handlers
   function renderNodeName(parent, node) {
     parent.append('a')
       .attr('href', node.url)
@@ -220,18 +230,25 @@ function NetworkGraph(selector, infobox) {
       .append('i')
         .attr('class', 'icon-external-link');
   }
+
   function onNodeMouseOver(d) {
     fade(d, .2);  // Fade-out non-neighbouring nodes
 
+    // Display node information
     infobox.html('');
     renderNodeName(infobox, d);
-    infobox.append('span')
-      .text('. '+d.description+' ');
+    if ( d.description != null ) {
+      infobox.append('span')
+        .text('. '+d.description+' ');
+    }
   }
+
   function onNodeMouseOut(d) {
-    fade(d, 1);
+    fade(d, 1);   // Fade-in the whole graph
   }
+
   function onRelationMouseOver(relation) {
+    // Display basic relation information
     infobox.html('');
     renderNodeName(infobox, relation.source);
     infobox.append('span')
@@ -239,6 +256,7 @@ function NetworkGraph(selector, infobox) {
       .text(relation.type);
     renderNodeName(infobox, relation.target);
 
+    // Display date information
     if ( relation.at != null ) {
       infobox.append('span')
         .attr('class', 'separator')
@@ -249,6 +267,7 @@ function NetworkGraph(selector, infobox) {
         .text('('+(relation.from||'')+' - '+(relation.to||'')+')');
     }
 
+    // Display sources
     if ( relation.via.length > 0 ) {
       sources = infobox.append('span').attr('class', 'sources').text('Fuente: ');
       sources.selectAll('.via').data(relation.via)
