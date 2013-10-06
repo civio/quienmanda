@@ -96,7 +96,10 @@ function NetworkGraph(selector, infobox) {
       .call(drag)
       .call(createNode)
         .attr("class", function(d) { return d.root ? "node root" : "node" } )
-        .on('dblclick', function(d) { that.loadNode(d.url, d.x, d.y); })
+        .on('dblclick', function(d) { 
+          d.fixed = true; // Feels better if the node gets fixed when it 'explodes'
+          that.loadNode(d.url, d.x, d.y); 
+        })
       .append("text")
         .attr("dx", 11)
         .attr("dy", ".35em")
