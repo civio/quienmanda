@@ -62,7 +62,7 @@
 <%= render "shared/relations_list", :list => @relations %>
 
 <%= render '/shared/mixed_wall', 
-            items: entity.related_posts[0..2]+entity.related_photos, 
+            items: entity.related_posts+entity.related_photos, 
             extra_wrapper_css: 'tight' %>
 
 <script>
