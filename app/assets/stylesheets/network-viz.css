@@ -98,3 +98,10 @@ text {
   margin-left: 10px;
   margin-right: 10px;
 }
+#infobox span.sources {
+  font-size: 12px;
+  margin-left: 10px;
+}
+#infobox span.sources a {
+  margin-right: 4px;
+}

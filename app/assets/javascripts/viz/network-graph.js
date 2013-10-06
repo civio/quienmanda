@@ -227,13 +227,22 @@ function NetworkGraph(selector, infobox) {
   function onNodeMouseOut(d) {
     fade(d, 1);
   }
-  function onRelationMouseOver(d) {
+  function onRelationMouseOver(relation) {
     infobox.html('');
-    renderNodeName(infobox, d.source);
+    renderNodeName(infobox, relation.source);
     infobox.append('span')
       .attr('class', 'separator')
-      .text(d.type);
-    renderNodeName(infobox, d.target);
+      .text(relation.type);
+    renderNodeName(infobox, relation.target);
+
+    if ( relation.via.length > 0 ) {
+      sources = infobox.append('span').attr('class', 'sources').text('Fuente: ');
+      sources.selectAll('.via').data(relation.via)
+        .enter().append('a')
+          .attr('target', '_blank')
+          .attr('href', function(d) { return d; })
+          .text(function(d, i) { return (i+1); });
+    }
   }
 
 
