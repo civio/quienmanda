@@ -1,3 +1,8 @@
+<%#
+# We can't use the Rails include helper for these two scripts: we keep them outside
+# the Rails asset pipeline so they can be referenced from the photo widget.
+# (So beware when changing them, as they may be cached. Safer to add a version number.)
+%>
 <script src="/javascripts/annotorious/annotorious.min.js"></script>
 <script src="/javascripts/annotorious/anno-rest-storage-plugin.js"></script>
 <%#
