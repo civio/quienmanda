@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 # Redirect to the appropriate People or Organizations controller.
 # This exists basically so RailsAdmin can do ShowInApp for Entities.
 class EntitiesController < ApplicationController
@@ -49,7 +51,7 @@ class EntitiesController < ApplicationController
         source: entity_path(relation.source),
         target: entity_path(relation.target),
         type: relation.relation_type.description,
-        via: relation.sources,
+        via: relation.sources.map{|s| absolute_url(s) },
         from: relation.from,
         to: relation.to,
         at: relation.at
