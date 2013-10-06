@@ -28,8 +28,9 @@ function NetworkGraph(selector, infobox) {
   var force = d3.layout.force()
       .on("tick", tick)
       .charge(-linkDistance * 5)
-      .gravity(0.05)
+      .gravity(0.02)
       .linkDistance(linkDistance)
+      .linkStrength(.6)
       .size([width, height]);
 
   // Node drag behaviour
