@@ -263,6 +263,7 @@ body > .container {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  text-shadow: none;
 }
 #wall .item h2,
 #wall .item h3 {
@@ -491,6 +492,7 @@ body > .container {
 #wrapper .posts .post .credits {
   color: #515151;
   font-size: 0.875em;
+  text-shadow: none;
   background: #dde4cd;
   margin: 0;
 }
@@ -652,6 +654,7 @@ body > .container {
 }
 #wrapper .sidebar.span4 .related-entities li .content {
   color: #515151;
+  text-shadow: none;
 }
 #wrapper .sidebar.span4 .related-entities li .content a {
   display: block;
