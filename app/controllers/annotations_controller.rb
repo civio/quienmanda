@@ -3,6 +3,8 @@ class AnnotationsController < ApplicationController
   before_action :set_photo, only: [:index, :show, :create]
   before_action :set_annotation, only: [:show, :update, :destroy]
 
+  caches_action :index, expires_in: 1.hour, unless: :current_user
+
   # GET /annotations.json
   def index
     authorize! :read, @photo

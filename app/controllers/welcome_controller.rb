@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
-  def index
+  caches_action :index, expires_in: 1.hour, unless: :current_user
+
+  def index    
     # Highlight manually curated articles in the frontpage
     @highlights = Post.where(featured: true).order("updated_at desc")
     @highlights = @highlights.published() unless can? :manage, Post
