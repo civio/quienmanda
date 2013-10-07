@@ -273,7 +273,7 @@ body > .container {
 #wall .item h2 {
   font-size: 1.375em;
   line-height: 1.375em;
-  padding: 12px 24px;
+  padding: 16px 24px 8px;
 }
 #wall .item h3 {
   font-size: 1.25em;
