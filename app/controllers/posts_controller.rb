@@ -1,6 +1,8 @@
 require 'shortcodes/all'  # Needed (for now) to handle the built-in shortcodes
 
 class PostsController < ApplicationController
+  caches_action :index, :show, expires_in: 1.hour, unless: :current_user
+
   before_action :set_post, only: [:show]
 
   # GET /posts

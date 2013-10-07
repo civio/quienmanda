@@ -2,4 +2,5 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 use Rack::RubyProf, :path => './tmp/profile' if Rails.env.profile?
+use Rack::Deflater  # gzip compression
 run Rails.application

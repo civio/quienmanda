@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  caches_action :index, :show, :tagged, expires_in: 1.hour, unless: :current_user
+
   before_action :set_title
   before_action :set_photo, only: [:show]
 

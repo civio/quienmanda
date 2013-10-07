@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  caches_action :index, :show, expires_in: 1.hour, unless: :current_user
+
   before_action :set_person, only: [:show]
 
   # GET /people

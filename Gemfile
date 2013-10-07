@@ -91,6 +91,7 @@ group :development, :test do
 end
 
 # Performance and profiling
+gem 'actionpack-action_caching'
 gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'rack-cache'
