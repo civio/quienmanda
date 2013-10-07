@@ -477,6 +477,7 @@ body > .container {
   margin: 0 0 24px;
   padding: 20px 0 0;
   text-align: left;
+  line-height: 24px;
 }
 #wrapper .posts .post .picture {
   padding: 3px;
@@ -548,6 +549,9 @@ body > .container {
   padding: 0 32px;
   clear: both;
   float: none;
+}
+#wrapper .posts .post .post-content p {
+  margin: 0 0 15px;
 }
 #wrapper .posts .post .post-content .post-meta {
   padding: 0 0 12px;
