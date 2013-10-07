@@ -1088,10 +1088,10 @@ li:hover .admin-action {
   display: inline-block;
 }
 /* Visualization help */
-#control-help:hover {
+#visualization-controls a:hover {
   text-decoration: none;
 }
 .tooltip {
   text-shadow: none;
-  width: 200px;
+  width: 180px;
 }
