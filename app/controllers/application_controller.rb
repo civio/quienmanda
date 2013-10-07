@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
-  before_action :set_caching_headers
+  # before_action :set_caching_headers
 
   protected
 
