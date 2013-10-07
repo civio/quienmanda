@@ -81,12 +81,13 @@ $(function () {
 
   // Related entities sidebar
   if ( $('.extra-related-entity').length > 0 ) {
-    $('#related-entities-toggle').show();
     $('#related-entities-toggle').click(function(){
       $('.extra-related-entity').slideToggle();
       $('#related-entities-toggle').hide();
     });
-  }
+  } else {
+    $('#related-entities-toggle').hide();
+  };
 
   // Label toggling on/off 
   $('.label.toggable').click(function() {
