@@ -553,6 +553,13 @@ body > .container {
 #wrapper .posts .post .post-content p {
   margin: 0 0 15px;
 }
+#wrapper .posts .post .post-content h2 {
+  font-family: 'Economica', sans-serif !important;
+  font-weight: 700;
+  font-size: 25px;
+  margin: 25px 0px 0px;
+  line-height: 30px;
+}
 #wrapper .posts .post .post-content .post-meta {
   padding: 0 0 12px;
 }
