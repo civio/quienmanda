@@ -50,6 +50,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use thin as the web server, instead of Webrick
+gem 'thin'
+
 
 # QuienManda app
 gem 'devise'
