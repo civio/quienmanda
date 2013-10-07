@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
                 cache_path: Proc.new { request.url + (params[:page]||'') }
   caches_action :show, 
                 expires_in: 1.hour, 
-                unless: :current_user, 
+                unless: :current_user
 
   before_action :set_person, only: [:show]
 
