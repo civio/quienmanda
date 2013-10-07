@@ -1,5 +1,11 @@
 class PhotosController < ApplicationController
-  caches_action :index, :show, :tagged, expires_in: 1.hour, unless: :current_user
+  caches_action :index, 
+                expires_in: 1.hour, 
+                unless: :current_user, 
+                cache_path: Proc.new { request.url + (params[:page]||'') }
+  caches_action :show, 
+                expires_in: 1.hour, 
+                unless: :current_user
 
   before_action :set_title
   before_action :set_photo, only: [:show]
