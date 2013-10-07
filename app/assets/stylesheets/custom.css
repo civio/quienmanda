@@ -476,6 +476,7 @@ body > .container {
   position: relative;
   margin: 0 0 24px;
   padding: 20px 0 0;
+  text-align: left;
 }
 #wrapper .posts .post .picture {
   padding: 3px;
@@ -1075,7 +1076,6 @@ li .admin-action {
 li:hover .admin-action {
   display: inline-block;
 }
-
 /* Visualization help */
 #control-help:hover {
   text-decoration: none;
