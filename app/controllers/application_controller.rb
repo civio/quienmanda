@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   # Mark responses to anonymous requests as cacheable for 10 minutes
   def set_caching_headers
-    expires_in(3600.seconds, public: true) if current_user.nil?
+    if current_user.nil?
+      expires_in(3600.seconds, public: true)  # Cache anywhere, including our rack-cache
+    else
+      expires_in(3600.seconds, public: false) # Cache privately, in the user's browser
+    end
   end
 end
