@@ -1,24 +1,24 @@
 <!-- start: Page Title -->
-<div id="page-title" class="article">
+<div id="page-title" class="people">
 
   <h2><%= entity.short_or_long_name %></h2>
 
 </div>
 <!-- end: Page Title -->
-<%= render 'shared/social_buttons' %>
+<div class="sharing-right">
+  <%= render 'shared/social_buttons' %>
+</div>
 
-<div id="wrapper tight">
+<div id="wrapper" class="people">
 
   <div class="row-fluid">
 
     <div id="wrapper" class="full span3">       
-      <%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %>
-      <p>
-        <strong><%= entity.name %></strong><br>
-        <%= entity.description %>
-      </p>
-      <p>
-        <ul class='entity-links clearfix'>
+      <div class="picture"><%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %></div>
+      <p class="title"><%= entity.name %></p>
+      <p class="description"><%= entity.description %></p>
+      <div class='entity-links'>
+        <ul>
           <li><%= icon_link entity.web_page, 'link' %></li>
           <li><%= icon_link entity.wikipedia_page, 'wikipedia' %></li>
           <li><%= icon_link entity.twitter_handle, 'twitter' %></li>
@@ -28,7 +28,7 @@
           <li><%= icon_link entity.youtube_page, 'youtube' %></li>
           <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
         </ul>
-      </p>
+      </div>
       <%= render '/shared/needs_work' if entity.needs_work %>
       <%= render 'shared/show_admin_links', item: entity %>
     </div>
