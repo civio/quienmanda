@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
 
     # Show the latests posts...
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    @posts = @posts.where(featured: false).order("updated_at DESC").limit(4)
+    @posts = @posts.where(featured: false).order("updated_at DESC").limit(6)
 
     # ...and photos
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
