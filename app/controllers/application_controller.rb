@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  before_action :set_caching_headers
+
   protected
 
   def configure_permitted_parameters
@@ -25,5 +27,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
     # Force Admin locale to English
     I18n.locale = :en if is_a?(RailsAdmin::ApplicationController)
+  end
+
+  # Mark responses to anonymous requests as cacheable for 10 minutes
+  def set_caching_headers
+    expires_in(600.seconds, public: true) if current_user.nil?
   end
 end
