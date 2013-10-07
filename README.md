@@ -38,10 +38,10 @@ We keep "sensitive parameters" in a local file `config/application.yml` outside 
 There is a nice guide [here][1], but basically:
  
     $ heroku apps:create
+    $ heroku addons:add memcachier
     $ heroku labs:enable user-env-compile 
     $ git push heroku master
     $ heroku run rake db:setup
-    $ heroku apps:open
     
 The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c].)
 
@@ -50,6 +50,10 @@ The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable 
 [1c]: https://github.com/mbleigh/acts-as-taggable-on/issues/192#issuecomment-23538713
 
 In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then run `rake figaro:heroku` to set the env variables in Heroku.
+
+You can now start the app:
+
+    $ heroku apps:open
 
 To back up the Heroku database contents, [see][2]:
 
@@ -79,6 +83,8 @@ Set up a daily auto-backup by enabling the add-on:
  * NewRelic: performance monitoring
  * [Shortcode](https://github.com/carnesmedia/shortcodes)
  * [fuzzy_match](https://github.com/seamusabshere/fuzzy_match)
+
+Additionally, when deploying to production, we use rack-cache and Memcachier.
  
 ### Transferring database from production to local
 

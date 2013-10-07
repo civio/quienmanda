@@ -52,8 +52,16 @@ Quienmanda::Application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  # Use the same storage as rack-cache
+  config.cache_store = :dalli_store
+
+  # Configure rack-cache
+  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
+                             :value_max_bytes => 10485760)
+  config.action_dispatch.rack_cache = {
+    :metastore    => client,
+    :entitystore  => client
+  }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"

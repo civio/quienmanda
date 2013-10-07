@@ -89,6 +89,10 @@ end
 
 # Performance and profiling
 gem 'newrelic_rpm'
+gem 'memcachier'
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
 group :profile do
   gem 'ruby-prof'
 end
