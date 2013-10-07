@@ -23,6 +23,10 @@ if CKEDITOR?
     config.toolbar = 'Pure'
     config.toolbarCanCollapse = true
     config.toolbarStartupExpanded = false
+
+    config.stylesSet = [
+      { name: 'Ladillo', element: 'h2', styles: { } }
+    ]
     true
 
 if CKEDITOR?
