@@ -112,6 +112,7 @@ function NetworkGraph(selector, infobox) {
     if(typeof(posx)==='undefined') posx = centerx;
     if(typeof(posy)==='undefined') posy = centery;
 
+    var spinner = showSpinner();
     var networkGraph = this;
     $.getJSON(url, function(data) {
       // Add the retrieved nodes to the network graph
@@ -132,6 +133,7 @@ function NetworkGraph(selector, infobox) {
         }
       });
 
+      spinner.stop();
       networkGraph.display();
     });
   };
@@ -183,6 +185,29 @@ function NetworkGraph(selector, infobox) {
       node['x'] = posx + linkDistance * Math.sin(angle);
       node['y'] = posy + linkDistance * Math.cos(angle);
     }
+  }
+
+  // Load spinner, using spin.js
+  function showSpinner() {    
+    var opts = {
+      lines: 13, // The number of lines to draw
+      length: 20, // The length of each line
+      width: 12, // The line thickness
+      radius: 45, // The radius of the inner circle
+      corners: 0.7, // Corner roundness (0..1)
+      rotate: 59, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb or array of colors
+      speed: 1, // Rounds per second
+      trail: 63, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: 'auto', // Top position relative to parent in px
+      left: 'auto' // Left position relative to parent in px
+    };
+    return new Spinner(opts).spin($(selector)[0]);
   }
 
   // Force layout iteration
