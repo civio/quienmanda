@@ -31,7 +31,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Serve assets in Heroku and handle logging
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
