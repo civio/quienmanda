@@ -29,12 +29,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = :en if is_a?(RailsAdmin::ApplicationController)
   end
 
-  # Mark responses to anonymous requests as cacheable for 10 minutes
+  # Mark responses to requests as cacheable for an hour
   def set_caching_headers
     if current_user.nil?
       expires_in(3600.seconds, public: true)  # Cache anywhere, including our rack-cache
-    else
-      expires_in(3600.seconds, public: false) # Cache privately, in the user's browser
     end
   end
 end
