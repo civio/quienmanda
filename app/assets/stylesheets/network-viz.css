@@ -7,6 +7,16 @@ g.node.root circle {
   stroke: black;
   fill: black !important;
 }
+g.node image {
+  display: none;
+  pointer-events: none;
+}
+g.node.expandable circle {
+  cursor: pointer;
+}
+g.node.expandable image {
+  display: inline;
+}
 
 path.link {
   fill: none;

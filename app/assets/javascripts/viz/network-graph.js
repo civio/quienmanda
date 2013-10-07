@@ -90,14 +90,17 @@ function NetworkGraph(selector, infobox) {
         .select("#nodesContainer")
         .selectAll(".node")
         .data(force.nodes(), function(d) { return d.url; })
+        .attr("class", getNodeClass);
 
     var that = this;
     node.enter().append("g")
       .call(drag)
       .call(createNode)
-        .attr("class", function(d) { return d.root ? "node root" : "node" } )
-        .on('dblclick', function(d) { 
-          d.fixed = true; // Feels better if the node gets fixed when it 'explodes'
+        .attr("class", getNodeClass)
+        .on('dblclick', function(d) {
+          if ( d['expandable'] != true ) return;  // Nothing to do
+          d['expandable'] = false;                // Not anymore
+          d.fixed = true;                         // Fix after 'exploding', feels better
           that.loadNode(d.url, d.x, d.y); 
         })
       .append("text")
@@ -128,7 +131,11 @@ function NetworkGraph(selector, infobox) {
 
       // Go through the relations of child nodes, looking for relations among them
       $.each(data.child_links, function(key, link) {
-        if ( nodes[link.source]!=null && nodes[link.target]!=null) {
+        if ( nodes[link.source]==null ) {
+          nodes[link.target]['expandable'] = true;
+        } else if ( nodes[link.target]==null ) {
+          nodes[link.source]['expandable'] = true;
+        } else {
           addLink(link);
         }
       });
@@ -162,6 +169,21 @@ function NetworkGraph(selector, infobox) {
       .on("mouseout", onNodeMouseOut)
       .attr("r", 9)
       .style("fill", function(d) { return color(d.group); });
+
+    // We add an image with a expand sign; will be visible only when applicable
+    node.append("image")
+      .attr("xlink:href", "/img/plus-sign.png")
+      .attr("x", -8)
+      .attr("y", -8)
+      .attr("class", "expand-icon")
+      .attr("width", 16)
+      .attr("height", 16);
+  }
+
+  function getNodeClass(node) {
+    return node.root ? 
+            "node root" : 
+            (node['expandable'] ? "node expandable" : "node");
   }
 
   function addLink(link) {
@@ -317,6 +339,9 @@ function NetworkGraph(selector, infobox) {
       this.setAttribute('fill-opacity', thisOpacity);
       return thisOpacity;
     });
+
+    d3.selectAll('.expand-icon')
+      .style('opacity', opacity);
 
     path.style("stroke-opacity", function(o) {
       return o.source === d || o.target === d ? 1 : opacity;
