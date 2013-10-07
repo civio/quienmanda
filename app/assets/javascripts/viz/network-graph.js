@@ -97,7 +97,7 @@ function NetworkGraph(selector, infobox) {
       .call(drag)
       .call(createNode)
         .attr("class", getNodeClass)
-        .on('dblclick', function(d) {
+        .on('click', function(d) {
           if ( d['expandable'] != true ) return;  // Nothing to do
           d['expandable'] = false;                // Not anymore
           d.fixed = true;                         // Fix after 'exploding', feels better
