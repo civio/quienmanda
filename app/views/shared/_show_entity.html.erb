@@ -36,9 +36,12 @@
     <div id="wrapper" class="full span9">
 
       <div id="visualization-controls">
-        <i class="icon-zoom-in" id="control-zoom-in"></i>
-        <i class="icon-zoom-out" id="control-zoom-out"></i>
-        <i class="icon-repeat" id="control-zoom-reset"></i>
+        <i class="icon-zoom-in" id="control-zoom-in" title="Acercar"></i>
+        <i class="icon-zoom-out" id="control-zoom-out" title="Alejar"></i>
+        <i class="icon-repeat" id="control-zoom-reset" title="Inicio"></i>
+        <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz doble click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o relación pasa el puntero por encima de ellos.'>
+          <i class="icon-question-sign"></i>
+        </a>
       </div>
 
       <div id="visualization-legend">    
@@ -73,6 +76,6 @@ $(function () {
   $('#control-zoom-in').click(function() { graph.zoomIn(); });
   $('#control-zoom-out').click(function() { graph.zoomOut(); });
   $('#control-zoom-reset').click(function() { graph.zoomReset(); });
-
+  $('#control-help').tooltip();
 });
 </script>

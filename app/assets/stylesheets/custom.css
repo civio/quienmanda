@@ -681,3 +681,12 @@ li .admin-action {
 li:hover .admin-action {
   display: inline-block;
 }
+
+/* Visualization help */
+#control-help:hover {
+  text-decoration: none;
+}
+.tooltip {
+  text-shadow: none;
+  width: 200px;
+}
