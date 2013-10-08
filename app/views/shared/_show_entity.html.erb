@@ -78,7 +78,7 @@
 $(function () {
 
   var graph = new NetworkGraph("#viz-container", "#infobox");
-  graph.loadNode('<%= entity_path(entity, format: :json) %>');
+  graph.loadNode('<%= entity_path(entity) %>');
   $('#control-zoom-in').click(function() { graph.zoomIn(); return false; });
   $('#control-zoom-out').click(function() { graph.zoomOut(); return false; });
   $('#control-zoom-reset').click(function() { graph.zoomReset(); return false; });

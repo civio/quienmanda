@@ -117,7 +117,11 @@ function NetworkGraph(selector, infobox) {
 
     var spinner = showSpinner();
     var networkGraph = this;
-    $.getJSON(url, function(data) {
+    // Adding '.json' is not strictly necessary, since Rails and jQuery will understand
+    // the Content Type headers of the request. But the Rails cache is mixing up the 
+    // HTML and JSON responses, so the quickest way of fixing that is making sure the
+    // request URLs are different.
+    $.getJSON(url+'.json', function(data) {
       // Add the retrieved nodes to the network graph
       $.each(data.nodes, function(key, node) {
         presetChildNodes(node, posx, posy);
