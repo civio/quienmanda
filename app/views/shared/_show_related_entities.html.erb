@@ -18,7 +18,11 @@
           <% end %>
         </div>
         <div class="content">
-          <%= link_to entity.short_or_long_name, entity_path(entity) %>
+          <% if entity.person? %>
+          <%= link_to entity.short_or_long_name, person_path(entity) %>
+          <% else %>
+          <%= link_to entity.short_or_long_name, organization_path(entity) %>
+          <% end %>
           <small><%= entity.description %></small>
         </div>
         <%= render 'shared/show_admin_links', :item => entity, :inline => true %>
