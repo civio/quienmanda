@@ -8,7 +8,7 @@ quienmanda.es
 
 ### Install locally
 
-Rails 2.0 needed. You can install it using RVM:
+Ruby 2.0 needed. You can install it using RVM:
  
     $ rvm get stable
     $ rvm install 2.0.0

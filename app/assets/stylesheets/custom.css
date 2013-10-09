@@ -419,7 +419,10 @@ body > .container {
   font-weight: bold !important;
 }
 #page-title.people:before {
-  background-position: 0 -135px;
+  display: none;
+}
+#page-title.people h2 {
+  margin-left: 0;
 }
 #wrapper .title {
   position: relative;
