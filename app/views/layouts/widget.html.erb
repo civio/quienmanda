@@ -1,7 +1,7 @@
 <html>
 <head>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <link href="/css/annotorious.css" media="all" rel="stylesheet" type="text/css" />
+  <%= stylesheet_link_tag "/css/annotorious.css" %>
   <style>
     body {
       color: #242424;
@@ -31,7 +31,7 @@
   </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/javascripts/jquery.imagesloaded.js"></script>
+<%= javascript_include_tag "/javascripts/jquery.imagesloaded.js" %>
 <%= render 'shared/annotorious', photo: @photo %>
 
 </body>
