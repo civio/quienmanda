@@ -45,6 +45,7 @@ class Entity < ActiveRecord::Base
   #   This is cleaner than prefetching relations_as_source, adding to relations_as_source...
   def relations
     Relation.where('source_id = ? or target_id = ?', self, self)
+            .includes(:facts, :relation_type, :source, :target)
   end
 
   def to_s
