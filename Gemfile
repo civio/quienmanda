@@ -100,3 +100,7 @@ gem 'kgio'
 group :profile do
   gem 'ruby-prof'
 end
+
+# Fix cross-domain fonts when using Firefox and a CDN
+# See https://discussion.heroku.com/t/fontawesome-doesnt-load-on-firefox-because-of-cors-configuration-issue/35/10
+gem 'font_assets'

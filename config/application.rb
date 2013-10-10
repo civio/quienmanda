@@ -22,10 +22,5 @@ module Quienmanda
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
     config.i18n.available_locales = [:es]
-
-    # Add 'Access-Control-Allow-Origin' to fix cross-domain fonts when using CDN with Firefox
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => '*'
-    }
   end
 end
