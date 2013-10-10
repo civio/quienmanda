@@ -63,7 +63,7 @@ gem 'kaminari'
 gem 'pg_search'
 gem 'acts-as-taggable-on'
 gem 'shortcodes'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', "~> 3.2.1.3"  # Force version change after CDN cache issues
 gem 'unicode_utils'
 gem 'rails-i18n', '~> 4.0.0.pre'
 gem 'nokogiri'
