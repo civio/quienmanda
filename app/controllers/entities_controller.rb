@@ -3,20 +3,20 @@ include ApplicationHelper
 # Redirect to the appropriate People or Organizations controller.
 # This exists basically so RailsAdmin can do ShowInApp for Entities.
 class EntitiesController < ApplicationController
-  caches_action :show, expires_in: 100.hour, unless: :current_user
-
   def show
     entity = Entity.find_by_slug(params[:id])
-    respond_to do |format|
-      format.html do
-        redirect_to entity.person? ? person_path(entity) : organization_path(entity)
-      end
-      # TODO: I should change the JS client to use just the plain show/ action
-      # returning JSON, but for now a custom method is needed...
-      format.json do
-        authorize! :read, entity
-        relations = (can? :manage, Entity) ? entity.relations : entity.relations.published
-        render json: generate_graph_data(entity, relations)
+    if stale?(entity)
+      respond_to do |format|
+        format.html do
+          redirect_to entity.person? ? person_path(entity) : organization_path(entity)
+        end
+        # TODO: I should change the JS client to use just the plain show/ action
+        # returning JSON, but for now a custom method is needed...
+        format.json do
+          authorize! :read, entity
+          relations = (can? :manage, Entity) ? entity.relations : entity.relations.published
+          render json: generate_graph_data(entity, relations)
+        end
       end
     end
   end
