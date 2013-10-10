@@ -977,6 +977,7 @@ header {
   cursor: pointer;
 }
 
+/* dcabo: removed, 404s due to images missing
 .image-overlay-link {
   background-image: url(../img/overlay-icon-01.png);
 }
@@ -984,7 +985,7 @@ header {
 .image-overlay-zoom {
   background-image: url(../img/overlay-icon-02.png);
 }
-
+*/
 /* Flexslider
 =================================================================== */
 
