@@ -2498,6 +2498,7 @@ a.buy:hover {
 
 /* List Styles
 =================================================================== */
+/* dcabo: remove, unused
 .check_list li,
 .plus_list li,
 .minus_list li,
@@ -2518,7 +2519,7 @@ a.buy:hover {
 .square_list  li {background: url(../img/icons/list/grey/list_square.png) no-repeat 0% 50%; padding: 0 0 0 16px;}
 .circle_list  li {background: url(../img/icons/list/grey/list_circle.png) no-repeat 0% 50%; padding: 0 0 0 16px;}
 .cross_list  li {background: url(../img/icons/list/grey/list_cross.png) no-repeat 0% 50%; padding: 0 0 0 16px;}
-
+*/
 
 /* Footer
 ====================================================================== */
