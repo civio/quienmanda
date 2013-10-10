@@ -1459,6 +1459,7 @@ input[type="button"] {
 
 /* Testimonial's Carousel
 =================================================================== */
+/* dcabo: removed, not used
 .testimonial-container {
   position: relative;
 }
@@ -1496,7 +1497,7 @@ input[type="button"] {
 
 .testimonials-author span {
   color:#a0a0a0
-}
+}*/
 
 /* Carousel */
 .carousel-disabled,
@@ -1523,7 +1524,7 @@ input[type="button"] {
      -moz-border-radius: 2px;
       border-radius: 2px;
 }
-
+/* dcabo: removed, not used;
 .mr-rotato-next {
   background: url(../img/testimonials-right-01.png) no-repeat 50%;
   background-color: #fff;
@@ -1551,7 +1552,7 @@ input[type="button"] {
   background-color: #080808;
   border-color: #080808;
 }
-
+*/
 /* Tabs
 =================================================================== */
 
