@@ -133,7 +133,7 @@ RailsAdmin.config do |config|
       group :internal do
         label "Internal"
         field :published do
-          default_value false
+          default_value true
         end
         field :needs_work do
           default_value true
