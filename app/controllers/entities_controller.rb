@@ -7,7 +7,7 @@ class EntitiesController < ApplicationController
 
   def show
     entity = Entity.find_by_slug(params[:id])
-    if stale?(entity)
+    if stale?(entity, :public => current_user.nil?)
       respond_to do |format|
         format.html do
           redirect_to entity.person? ? person_path(entity) : organization_path(entity)
