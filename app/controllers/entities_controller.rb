@@ -3,6 +3,8 @@ include ApplicationHelper
 # Redirect to the appropriate People or Organizations controller.
 # This exists basically so RailsAdmin can do ShowInApp for Entities.
 class EntitiesController < ApplicationController
+  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+
   def show
     entity = Entity.find_by_slug(params[:id])
     if stale?(entity)
