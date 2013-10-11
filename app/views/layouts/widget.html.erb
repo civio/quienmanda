@@ -21,8 +21,7 @@
     }
   </style>
 </head>
-<body onload="iframeResizePipe()">
-  <iframe id="helpframe" src='' height='0' width='0' frameborder='0'></iframe>
+<body onload="adjustIFrameHeight();">
   <div class="span6 item">
     <div class="picture">
       <%= image_tag(@photo.file.url(:full), width: '100%', id: 'photo', class: 'photo annotatable') %>
@@ -37,15 +36,9 @@
 
   <script>
   // http://stackoverflow.com/questions/153152/resizing-an-iframe-based-on-content
-  function iframeResizePipe() {
-     var height = document.body.scrollHeight;
-
-     // Going to 'pipe' the data to the parent through the helpframe..
-     var pipe = document.getElementById('helpframe');
-
-     // Cachebuster a precaution here to stop browser caching interfering
-     pipe.src = '//<%= ENV["DOMAIN_NAME"] %>/helper.html?height='+height+'&cacheb='+Math.random();
-
+  function adjustIFrameHeight() {
+    parent.postMessage(document.body.scrollHeight, "*");
+    //* allows this to post to any parent iframe regardless of domain
   }
   </script>
 
