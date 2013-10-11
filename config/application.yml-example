@@ -10,9 +10,7 @@ FORCE_S3_IN_DEV: false
 
 NEW_RELIC_KEY: put-your-new-relic-key-here
 
-# Domain name where the app is deployed. Used to:
-#   - extract references from post contents
-#   - link to parent domain from embedded widget
+# Optional. Used to extract references from post contents
 DOMAIN_NAME: quienmanda.es
 
 # Optional. Content Delivery Network
