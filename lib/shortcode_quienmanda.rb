@@ -12,14 +12,15 @@ module Shortcodes
     end
 
     def render
+      # See http://stackoverflow.com/questions/153152/resizing-an-iframe-based-on-content
       template = <<TEMPLATE
 <div class="quienmanda-embed-wrapper">
 <script>
-  function resizeIframe(iframe) {
-    iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+  function resizeIframe(height) {
+    document.getElementById('quienmanda-embed').height = parseInt(height);
   }  
 </script>
-<iframe class="quienmanda-embed" onload="resizeIframe(this)" frameborder="0" width="#{width}"
+<iframe class="quienmanda-embed" id="quienmanda-embed" frameborder="0" width="#{width}"
   style="display: block; border-style: solid; border-color: #FAFAFA; border-radius: 4px 4px 4px 4px; border-right: 1px solid #FAFAFA; border-width: 2px 1px 1px; margin: 10px auto; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), 0 3px 1px rgba(0, 0, 0, 0.05);"
   height="0" scrolling="no" src="#{url}?widget=1">
 </iframe>
