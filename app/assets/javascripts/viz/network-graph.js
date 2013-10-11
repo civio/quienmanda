@@ -98,6 +98,7 @@ function NetworkGraph(selector, infobox) {
       .call(createNode)
         .attr("class", getNodeClass)
         .on('click', function(d) {
+          if (d3.event.defaultPrevented) return;  // click suppressed
           if ( d['expandable'] != true ) return;  // Nothing to do
           d['expandable'] = false;                // Not anymore
           d.fixed = true;                         // Fix after 'exploding', feels better
