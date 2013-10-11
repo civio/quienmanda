@@ -24,6 +24,12 @@ class PhotosController < ApplicationController
   def show
     authorize! :read, @photo
 
+    # Set response headers to allow widget being embedded cross-domain
+    # See http://stackoverflow.com/questions/16561066/ruby-on-rails-4-app-not-works-in-iframe
+    if params[:widget]
+      response.headers['X-Frame-Options'] = 'ALLOWALL'
+    end
+
     # Facebook Open Graph metadata
     @fb_description = @photo.footer unless @photo.footer.blank?
     @fb_image_url = @photo.file.url(:full) unless @photo.file.nil?
