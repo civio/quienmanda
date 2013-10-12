@@ -25,14 +25,14 @@ class PostsController < ApplicationController
     authorize! :read, @post
     @title = @post.title
 
-    # Make sure we don't leak unpublished related articles or entities
-    mentions = @post.mentions_in_content.to_a
-    mentions.select! {|m| m.mentionee.published? } unless (can? :manage, @post)
-
     # Get related entities and posts from content
+    # Note: I used to check that we weren't leaking unpublished related articles 
+    # or entities at this point, but it makes no sense: if there's a mention in the
+    # article content (i.e. a link in the text) we are leaking whether we show
+    # the mentionee in the sidebar or not.
     @related_entities = []
     @related_posts = []
-    mentions.each do |mention|
+    @post.mentions_in_content.each do |mention|
       mentionee = mention.mentionee
       if mentionee.class.name == 'Entity'
         @related_entities << mentionee
@@ -41,10 +41,15 @@ class PostsController < ApplicationController
       end
       # No point in keeping track of mentioned photos, I think.
     end
+
+    # Add the other related posts, the ones that are linking to this one post.
+    # We need to check we are not leaking unpublished content at this point.
     @post.related_posts.each do |post|
       next unless post.published? or can? :manage, @post
       @related_posts << post unless @related_posts.include? post
     end
+
+    # Sort related entities so they are displayed properly in sidebar
     @related_entities.sort_by! &:priority
 
     # Parse shortcodes
