@@ -1,6 +1,14 @@
 class Relation < ActiveRecord::Base
-  belongs_to :source, foreign_key: :source_id, class_name: Entity, inverse_of: :relations_as_source
-  belongs_to :target, foreign_key: :target_id, class_name: Entity, inverse_of: :relations_as_target
+  belongs_to :source, 
+              foreign_key: :source_id, 
+              class_name: Entity, 
+              inverse_of: :relations_as_source, 
+              touch: true
+  belongs_to :target, 
+              foreign_key: :target_id, 
+              class_name: Entity, 
+              inverse_of: :relations_as_target, 
+              touch: true
   belongs_to :relation_type, inverse_of: :relations
 
   has_paper_trail
