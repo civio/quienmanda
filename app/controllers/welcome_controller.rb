@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  caches_action :index, expires_in: 1.hour, unless: :current_user
+  etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
   def index    
     # Highlight manually curated articles in the frontpage
@@ -13,5 +13,7 @@ class WelcomeController < ApplicationController
     # ...and photos
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
     @photos = @photos.order("updated_at DESC").limit(6)
+ 
+    fresh_when [@highlights, @posts, @photos], public: current_user.nil?
   end
 end
