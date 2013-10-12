@@ -1,32 +1,30 @@
 class PeopleController < ApplicationController
-  caches_action :index, 
-                expires_in: 1.hour, 
-                unless: :current_user, 
-                cache_path: Proc.new { request.url + (params[:page]||'') }
-  caches_action :show, 
-                expires_in: 1.hour, 
-                unless: :current_user
-
   before_action :set_person, only: [:show]
+
+  etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
   # GET /people
   # GET /people.json
   def index
     @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
-    @people = @people.order("updated_at DESC").page(params[:page]).per(16)
+    if stale?(@people, :public => current_user.nil?)
+      @people = @people.order("updated_at DESC").page(params[:page]).per(16)
+    end
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
     authorize! :read, @person
-    @title = @person.short_or_long_name
-    @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
+    if stale?(@people, :public => current_user.nil?)
+      @title = @person.short_or_long_name
+      @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
 
-    # Facebook Open Graph metadata
-    @fb_description = @person.description unless @person.description.blank?
-    @fb_image_url = @person.avatar.url() unless @person.avatar.nil?
+      # Facebook Open Graph metadata
+      @fb_description = @person.description unless @person.description.blank?
+      @fb_image_url = @person.avatar.url() unless @person.avatar.nil?
+    end
   end
 
   private
