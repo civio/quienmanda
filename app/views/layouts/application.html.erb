@@ -23,7 +23,8 @@
 
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <%# Conditional CSRF as suggested by http://xyzpub.com/en/ruby-on-rails/3.2/http_caching.html %>
+  <%= csrf_meta_tags unless response.cache_control[:public] %>
   
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
