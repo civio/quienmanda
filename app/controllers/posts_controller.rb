@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find_by_slug!(params[:id])
+      @post = Post.includes(:mentions).find_by_slug!(params[:id])
     end
 
     def get_domain_name
