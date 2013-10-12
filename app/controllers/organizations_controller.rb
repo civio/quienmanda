@@ -1,32 +1,30 @@
 class OrganizationsController < ApplicationController
-  caches_action :index, 
-                expires_in: 1.hour, 
-                unless: :current_user, 
-                cache_path: Proc.new { request.url + (params[:page]||'') }
-  caches_action :show, 
-                expires_in: 1.hour, 
-                unless: :current_user
-
   before_action :set_organization, only: [:show]
+
+  etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
   # GET /organizations
   # GET /organizations.json
   def index
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
-    @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(16)
+    if stale?(@organizations, :public => current_user.nil?)
+      @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(16)
+    end
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
   def show
     authorize! :read, @organization
-    @title = @organization.short_or_long_name
-    @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
+    if stale?(@organization, :public => current_user.nil?)
+      @title = @organization.short_or_long_name
+      @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
 
-    # Facebook Open Graph metadata
-    @fb_description = @organization.description unless @organization.description.blank?
-    @fb_image_url = @organization.avatar.url() unless @organization.avatar.nil?
+      # Facebook Open Graph metadata
+      @fb_description = @organization.description unless @organization.description.blank?
+      @fb_image_url = @organization.avatar.url() unless @organization.avatar.nil?
+    end
   end
 
   private
