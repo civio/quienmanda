@@ -42,7 +42,7 @@ class PhotosController < ApplicationController
 
   private
     def set_photo
-      @photo = Photo.find(params[:id])
+      @photo = Photo.includes(:related_entities, :annotations).find(params[:id])
     end
 
     def set_title

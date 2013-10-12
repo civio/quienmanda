@@ -29,6 +29,8 @@ class PeopleController < ApplicationController
 
   private
     def set_person
-      @person = Entity.people.find_by_slug!(params[:id])
+      @person = Entity.people
+                      .includes(:related_posts, :related_photos, :mentions)
+                      .find_by_slug!(params[:id])
     end
 end

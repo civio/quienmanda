@@ -29,6 +29,8 @@ class OrganizationsController < ApplicationController
 
   private
     def set_organization
-      @organization = Entity.organizations.find_by_slug!(params[:id])
+      @organization = Entity.organizations
+                            .includes(:related_posts, :related_photos, :mentions)
+                            .find_by_slug!(params[:id])
     end
 end
