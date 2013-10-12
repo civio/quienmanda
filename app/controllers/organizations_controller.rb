@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   def index
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
-    if stale?(@organizations, :public => current_user.nil?)
+    if stale?(last_modified: @organizations.maximum(:updated_at), :public => current_user.nil?)
       @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(16)
     end
   end

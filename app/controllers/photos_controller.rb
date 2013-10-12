@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   before_action :set_title
   before_action :set_photo, only: [:show]
 
-  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+  etag { can? :manage, Photo } # Don't cache admin content together with the rest
 
   layout proc { |controller| controller.request.params[:widget].blank? ? 'application' : 'widget' }
 
@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
-    if stale?(@photos, :public => current_user.nil?)
+    if stale?(last_modified: @photos.maximum(:updated_at), :public => current_user.nil?)
       @photos = @photos.order("updated_at DESC").page(params[:page]).per(15)
     end
   end

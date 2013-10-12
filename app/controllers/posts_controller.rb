@@ -3,14 +3,14 @@ require 'shortcodes/all'  # Needed (for now) to handle the built-in shortcodes
 class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
-  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+  etag { can? :manage, Post } # Don't cache admin content together with the rest
 
   # GET /posts
   # GET /posts.json
   def index
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    if stale?(@posts, :public => current_user.nil?)
+    if stale?(last_modified: @posts.maximum(:updated_at), :public => current_user.nil?)
       @posts = @posts.order("updated_at DESC").includes(:photo).page params[:page]
     end
   end

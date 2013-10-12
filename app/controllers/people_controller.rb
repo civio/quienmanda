@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   def index
     @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
-    if stale?(@people, :public => current_user.nil?)
+    if stale?(last_modified: @people.maximum(:updated_at), :public => current_user.nil?)
       @people = @people.order("updated_at DESC").page(params[:page]).per(16)
     end
   end
