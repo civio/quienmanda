@@ -66,7 +66,6 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
-    daemons (1.1.9)
     dalli (2.6.4)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
@@ -76,7 +75,6 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     excon (0.25.3)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -202,6 +200,7 @@ GEM
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.12.0)
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -254,10 +253,6 @@ GEM
     subexec (0.2.3)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
-    thin (1.6.0)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.5.0)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -273,6 +268,10 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     unicode_utils (1.4.0)
+    unicorn (4.6.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -322,7 +321,7 @@ DEPENDENCIES
   sdoc
   shortcodes
   stringex
-  thin
   turbolinks
   uglifier (>= 1.3.0)
   unicode_utils
+  unicorn
