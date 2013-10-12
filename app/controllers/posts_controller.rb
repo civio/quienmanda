@@ -3,6 +3,8 @@ require 'shortcodes/all'  # Needed (for now) to handle the built-in shortcodes
 class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
+  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+
   # GET /posts
   # GET /posts.json
   def index
