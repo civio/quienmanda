@@ -16,7 +16,9 @@ class PostsController < ApplicationController
   def index
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    @posts = @posts.order("updated_at DESC").page params[:page]
+    if stale?(@posts, :public => current_user.nil?)
+      @posts = @posts.order("updated_at DESC").includes(:photo).page params[:page]
+    end
   end
 
   # GET /posts/1
