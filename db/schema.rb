@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928172027) do
+ActiveRecord::Schema.define(version: 20131015122401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20130928172027) do
   add_index "annotations", ["photo_id"], name: "index_annotations_on_photo_id", using: :btree
 
   create_table "entities", force: true do |t|
-    t.string   "name",                                            null: false
+    t.string   "name",                                           null: false
     t.string   "description",          limit: 90
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "priority",             limit: 1,                  null: false
+    t.string   "priority",             limit: 1,                 null: false
     t.string   "short_name"
     t.string   "twitter_handle"
     t.string   "wikipedia_page"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20130928172027) do
     t.string   "linkedin_page"
     t.text     "notes"
     t.string   "slug"
-    t.boolean  "person",                          default: true,  null: false
-    t.boolean  "published",                       default: false, null: false
-    t.boolean  "needs_work",                      default: true,  null: false
+    t.boolean  "person",                          default: true, null: false
+    t.boolean  "published",                       default: true, null: false
+    t.boolean  "needs_work",                      default: true, null: false
     t.string   "avatar"
     t.string   "web_page"
     t.string   "open_corporates_page"
