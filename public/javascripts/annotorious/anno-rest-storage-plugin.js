@@ -74,7 +74,6 @@ annotorious.plugin.RESTStorage.prototype._showError = function(error) {
  */
 annotorious.plugin.RESTStorage.prototype._loadAnnotations = function(anno) {
 
-  // TODO need to restrict search to the URL of the annotated
   var self = this;
   jQuery.getJSON(this._STORE_URI, function(data) {
     try {
