@@ -31,6 +31,10 @@ Set up the database (this will also create some sample data, and a user with ema
 
     $ bundle exec rake db:setup
 
+Run the tests:
+
+    $ bundle exec rake
+
 And then run the application:
 
     $ bundle exec rails server
