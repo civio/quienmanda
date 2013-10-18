@@ -104,6 +104,8 @@ Entities and relations among them can be created automatically by uploading Fact
 
  * Have a title row. The values of the fields in this row will be used as column names.
  * Contain at least three columns: 'source', 'role' and 'target'. Additional columns will be imported as additional attributes of the Fact.
+ * If attributes 'from', 'to' or 'at' exist, they will be added as date attributes in the new relation.
+ * The 'via' attribute is special too: it will be shown as the source of the information when displaying the relation.
 
 NOTE: If generating the CSV file from Excel, be careful with the character encoding. The application will try to guess the encoding of the uploaded file (using Charlock Holmes), but it may not always guess right and misread some accented characters. If you don't know how to set the encoding manually to UTF8 (using for example TextMate), try at least to save in Excel as "Windows Comma Separated Values", it seems to make detection by Charlock Holmes more accurate.
 

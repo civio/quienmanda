@@ -43,7 +43,18 @@ class CsvImporter < Importer
   end
 
   # Placeholder for children classes to override
+  # TODO: Do not overwrite manually entered stuff? and/or warning if conflict
   def populate_extra_relation_attributes(relation, fact)
+    if from_date = fact.properties['from']
+      relation.from = Date.strptime(from_date, '%d/%m/%Y')
+    end
+    if to_date = fact.properties['to']
+      relation.to = Date.strptime(to_date, '%d/%m/%Y')
+    end
+    if at_date = fact.properties['at']
+      relation.at = Date.strptime(at_date, '%d/%m/%Y')
+    end
+    relation.save! if relation.changed?    
   end
 
   # Guess whether a given name relates to a company or a person
