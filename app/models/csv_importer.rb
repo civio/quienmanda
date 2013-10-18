@@ -9,7 +9,7 @@ class CsvImporter < Importer
   end
 
   def create_relation(fact, match_result)
-    # Do nothing if the we miss one of the basic elements of a relation
+    # Do nothing if we're missing one of the basic elements of a relation
     if match_result[:relation_type].nil?
       warn(fact, "Skipping fact, unknown relation type '#{fact.properties[role_field]}'...")
       return
