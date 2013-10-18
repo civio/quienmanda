@@ -1,10 +1,10 @@
 quienmanda.es
 =============
 
-[![Build Status](https://travis-ci.org/dcabo/quienmanda.es.png)](https://travis-ci.org/dcabo/quienmanda.es)
-[![Coverage Status](https://coveralls.io/repos/dcabo/quienmanda.es/badge.png?branch=master)](https://coveralls.io/r/dcabo/quienmanda.es?branch=master)
-[![Code Climate](https://codeclimate.com/github/dcabo/quienmanda.es.png)](https://codeclimate.com/github/dcabo/quienmanda.es)
-[![Dependency Status](https://gemnasium.com/dcabo/quienmanda.es.png)](https://gemnasium.com/dcabo/quienmanda.es)
+[![Build Status](https://travis-ci.org/civio/quienmanda.es.png)](https://travis-ci.org/civio/quienmanda.es)
+[![Coverage Status](https://coveralls.io/repos/civio/quienmanda.es/badge.png?branch=master)](https://coveralls.io/r/civio/quienmanda.es?branch=master)
+[![Code Climate](https://codeclimate.com/github/civio/quienmanda.es.png)](https://codeclimate.com/github/civio/quienmanda.es)
+[![Dependency Status](https://gemnasium.com/civio/quienmanda.es.png)](https://gemnasium.com/civio/quienmanda.es)
 
 ### Install locally
 
@@ -21,7 +21,7 @@ Postgres is used for the database. We use the `hstore` datatypes, so 9.0 is requ
 
 Then install and run locally, get a copy of the code, install the dependencies:
  
-    $ git clone https://github.com/dcabo/quienmanda.es.git
+    $ git clone https://github.com/civio/quienmanda.es.git
     $ cd quienmanda.es
     $ bundle install
     
