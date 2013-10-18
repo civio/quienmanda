@@ -68,6 +68,18 @@ Post.create(title: 'La próxima gran historia',
             published: false)
 
 # Add photo seeds
-photo = Photo.create!(footer: 'Marichalar de compras', copyright: 'Desconocido', published: true)
-photo.file.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'Marichalar.jpeg')))
-photo.save!
+photo_marichalar = Photo.create!(footer: 'Marichalar de compras', copyright: 'Desconocido', published: true)
+photo_marichalar.file.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'Marichalar.jpeg')))
+photo_marichalar.save!
+
+# Create a featured article with photo
+photo_montoro = Photo.create!(footer: 'Cristóbal Montoro, ministro de Hacienda y Administraciones Públicas', copyright: 'Flickr', published: true)
+photo_montoro.file.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'Montoro.jpeg')))
+photo_montoro.save!
+
+Post.create(title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fermentum.',
+            content: 'Quisque porta semper semper.',
+            author: admin,
+            published: true,
+            photo: photo_montoro,
+            featured: true)
