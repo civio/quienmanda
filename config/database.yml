@@ -1,18 +1,12 @@
 development:
   adapter: postgresql
   database: qm_development
-  username: qm
-  password: 
-  host: localhost
   pool: 5
   timeout: 5000
 
 profile:
   adapter: postgresql
   database: qm_development
-  username: qm
-  password: 
-  host: localhost
   pool: 5
   timeout: 5000
 
@@ -22,17 +16,11 @@ profile:
 test:
   adapter: postgresql
   database: qm_test
-  username: qm
-  password: 
-  host: localhost
   pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
   database: qm_production
-  username: qm
-  password: 
-  host: localhost
   pool: 5
   timeout: 5000
