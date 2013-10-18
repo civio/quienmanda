@@ -29,11 +29,11 @@ We keep "sensitive parameters" in a local file `config/application.yml` outside 
 
 Set up the database (this will also create some sample data, and a user with email `admin@quienmanda.es` and password `password`):
 
-    $ rake db:setup
+    $ bundle exec rake db:setup
 
 And then run the application:
 
-    $ rails server
+    $ bundle exec rails server
 
 ### Deploying in Heroku
 
