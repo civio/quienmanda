@@ -7,6 +7,7 @@
 @colorSidebar: #e0e0cd;
 @colorTextGreen: #6bb21b;
 @colorLinkGreen: #8aa304;
+@colorOrange: #ce7a20;
 
 @fontEconomica: 'Economica', sans-serif;;
 @fontDroid: 'Open Sans', sans-serif;
@@ -566,7 +567,7 @@ body > .container{
 
   position: relative;
   margin: 0 0 24px;
-  padding: 20px 0 0;
+  padding: 20px 0;
   text-align: left;
   line-height: 24px;
 
@@ -706,8 +707,88 @@ body > .container{
     margin: 0;
     z-index: 10;
   }
-}
 
+  &.related-posts,
+  &.comments {
+    margin: 0;
+    background: #dde4cd;
+  }
+
+  &.related-posts{
+    
+    .title{
+
+      color: @colorGray;
+      font-size: 1.625em;
+      font-family: @fontEconomica;
+      font-weight: bold;
+      text-transform: lowercase;
+      width: 90%;
+      margin: 0 auto;
+      padding: 18px 0 24px;
+
+      &:before{
+        display: none;
+      };
+    }
+
+    .item{
+
+      background: #fff;
+
+      .picture{
+        margin: 4px;
+        padding: 0;
+        position: relative;
+        min-height: 72px;
+      }
+
+      h3{
+        font-size: 1em;
+        font-family: @fontBaskerville !important;
+        font-weight: bold !important;
+        padding: 3px 0 3px 110px;
+        line-height: 1.375em;
+
+        a{
+          color: @colorGray;
+        }
+      }
+
+      a.image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 72px;
+        overflow: hidden;
+        
+        img{
+          width: 100px;
+        }
+      }
+
+      .description{
+        clear: both;
+        float: none;
+
+        p{
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.comments {
+
+    padding: 30px 0 20px;
+  
+    #disqus_thread {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}
 
 #wrapper .posts.full.picture{
 
@@ -864,6 +945,10 @@ body > .container{
       border-bottom: 1px solid @colorTextGreen;
       margin: 10px 12px 0;
       padding-bottom: 10px;
+
+      &:before{
+        display: none;
+      };
     }
 
     .description{
@@ -1050,27 +1135,135 @@ table tr:hover td .admin-action {
 =================================================================== */
 #footer{
   font-size: 0.938em;
-  background: #1a1a1a;
+  padding: 60px 30px;
+  background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
+  text-shadow: none;
 
   h3{
-    font-family: @fontDroid !important;
+    color: #FFF;
+    font-family: @fontBaskerville !important;
     font-size: 1.067em;
+    font-style: italic;
   }
 
-  a:hover{
-    color: @colorTextGreen !important;
-    text-decoration: none
-  };
+  .about{
 
-  a.civio-logo{
-    float: none;
-    clear: both;
-    display: block;
-    width: 195px;
-    height: 53px;
-    margin-top: 16px;
-    text-indent: 9999px;
-    background: url(/images/logo-civio.gif) no-repeat 0 0;
+    a.civio-logo{
+      float: none;
+      clear: both;
+      display: block;
+      width: 150px;
+      height: 42px;
+      margin-top: 16px;
+      text-indent: 9999px;
+      background: url(/images/logo-civio.png) no-repeat 0 0;
+    }
+
+    a.partner{
+      padding-right: 8px;
+    }
+
+    a.logo, 
+    a.partner{
+
+      &:hover{
+        filter: alpha(opacity=60);
+        -moz-opacity: 0.6;
+        -khtml-opacity: 0.6;
+        opacity: 0.6;
+      };
+
+      img{
+        padding: 0 0 16px;
+      }
+    }
+
+    .social{
+
+      clear: both;
+      float: none;
+      padding: 16px 0 0;
+      height: 36px;
+
+      ul{
+        float: left;
+      }
+      
+      li{
+        float: left;
+        padding-right: 12px;
+
+        a{
+          width: 36px;
+          height: 36px;
+          background-color: @colorOrange;
+
+          &.social-twitter {
+            background-position: -82px -42px;
+
+            &:hover{
+              background-color: #48c4d2;
+            };
+          }
+
+          &.social-facebook {
+            background-position: -202px -42px;
+
+            &:hover{
+              background-color: #3b5998;
+            };
+          }
+        }
+      }
+
+      .contact{
+        display: block;
+        float: left;
+        margin-left: 8px;
+        color: @colorOrange !important;
+        text-transform: uppercase;
+        color: #ce7a20 !important;
+        line-height: 38px;
+        font-weight: bold;
+
+        &:hover{
+          color: #fff !important;
+          text-decoration: none;
+        }
+      }
+    }    
+  }
+
+  .icon{
+    height: 263px;
+    background: url(/images/footer-icon.png) no-repeat center 0 transparent;
+  }
+
+  .links{
+
+    padding-top: 60px;
+    padding-left: 25px;
+
+    h3{
+      display: block;
+      float: right;
+      margin-top: -40px;
+      width: 154px;
+      height: 220px;
+      text-indent: -9999px;
+      overflow: hidden;
+      background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
+    }
+
+    a{
+      color: @colorTextGreen !important;
+      text-decoration: underline;
+
+      &:hover{
+        color: #fff !important;
+        text-decoration: none;
+      };
+    }
   }
 }
 
@@ -1181,6 +1374,10 @@ table.table tr:hover td span.import-actions {
     padding-right: 30px;
     padding-left: 30px;
   }
+
+  #footer .links {
+    padding-left: 120px;
+  }
 }
 
 /* Higher than 1200 (desktop devices)
@@ -1250,8 +1447,33 @@ table.table tr:hover td span.import-actions {
       .slides > li{ padding: 3px; }
     }
   }
+
+  #footer .icon{
+    background: none;
+  }
+
+  #footer .links {
+    padding-left: 0;
+  }
 }
 
+/* All Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 767px) {
+
+  .navbar .brand{
+    margin-left: 12px;
+  }
+
+  .navbar .btn-navbar{
+    margin-right: 12px;
+  }
+
+  #footer .icon,
+  #footer .links h3{
+    display: none;
+  }
+}
 
 
 /* TODO: Los pegotes de CSS de David, a incorporar más arriba
@@ -1290,18 +1512,3 @@ li:hover .admin-action {
   width: 180px;
 }
 
-/* Intentando arreglar la parte de comentarios, chapuceramente */
-.comments {
-  background-color: #dde4cd;
-  padding: 50px 0 0 0 !important;
-  margin: 0 0 0 0 !important;
-}
-#disqus_thread {
-  padding: 0 10px 0 10px;
-}
-
-/* Quitar el icono junto al nombre en las páginas de entidades */
-#wrapper .title.nobackground:before {
-  background: none !important;
-  width: 0px;
-}

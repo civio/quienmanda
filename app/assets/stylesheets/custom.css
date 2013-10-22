@@ -479,7 +479,7 @@ body > .container {
 #wrapper .posts .post {
   position: relative;
   margin: 0 0 24px;
-  padding: 20px 0 0;
+  padding: 20px 0;
   text-align: left;
   line-height: 24px;
 }
@@ -593,6 +593,68 @@ body > .container {
   bottom: -56px;
   margin: 0;
   z-index: 10;
+}
+#wrapper .posts .post.related-posts,
+#wrapper .posts .post.comments {
+  margin: 0;
+  background: #dde4cd;
+}
+#wrapper .posts .post.related-posts .title {
+  color: #515151;
+  font-size: 1.625em;
+  font-family: 'Economica', sans-serif;
+  font-weight: bold;
+  text-transform: lowercase;
+  width: 90%;
+  margin: 0 auto;
+  padding: 18px 0 24px;
+}
+#wrapper .posts .post.related-posts .title:before {
+  display: none;
+}
+#wrapper .posts .post.related-posts .item {
+  background: #fff;
+}
+#wrapper .posts .post.related-posts .item .picture {
+  margin: 4px;
+  padding: 0;
+  position: relative;
+  min-height: 72px;
+}
+#wrapper .posts .post.related-posts .item h3 {
+  font-size: 1em;
+  font-family: 'Libre Baskerville', serif !important;
+  font-weight: bold !important;
+  padding: 3px 0 3px 110px;
+  line-height: 1.375em;
+}
+#wrapper .posts .post.related-posts .item h3 a {
+  color: #515151;
+}
+#wrapper .posts .post.related-posts .item a.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 72px;
+  overflow: hidden;
+}
+#wrapper .posts .post.related-posts .item a.image img {
+  width: 100px;
+}
+#wrapper .posts .post.related-posts .item .description {
+  clear: both;
+  float: none;
+}
+#wrapper .posts .post.related-posts .item .description p {
+  display: none;
+}
+#wrapper .posts .post.comments {
+  padding: 30px 0 20px;
+}
+#wrapper .posts .post.comments #disqus_thread {
+  width: 90%;
+  margin: 0 auto;
 }
 #wrapper .posts.full.picture .picture-footer,
 #wrapper .posts.full.picture .credits,
@@ -720,6 +782,9 @@ body > .container {
   border-bottom: 1px solid #6bb21b;
   margin: 10px 12px 0;
   padding-bottom: 10px;
+}
+#wrapper.people .full.span3 .title:before {
+  display: none;
 }
 #wrapper.people .full.span3 .description {
   color: #373737;
@@ -878,25 +943,108 @@ table tr:hover td .admin-action {
 =================================================================== */
 #footer {
   font-size: 0.938em;
-  background: #1a1a1a;
+  padding: 60px 30px;
+  background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
+  text-shadow: none;
 }
 #footer h3 {
-  font-family: 'Open Sans', sans-serif !important;
+  color: #FFF;
+  font-family: 'Libre Baskerville', serif !important;
   font-size: 1.067em;
+  font-style: italic;
 }
-#footer a:hover {
-  color: #6bb21b !important;
-  text-decoration: none;
-}
-#footer a.civio-logo {
+#footer .about a.civio-logo {
   float: none;
   clear: both;
   display: block;
-  width: 195px;
-  height: 53px;
+  width: 150px;
+  height: 42px;
   margin-top: 16px;
   text-indent: 9999px;
-  background: url(/images/logo-civio.gif) no-repeat 0 0;
+  background: url(/images/logo-civio.png) no-repeat 0 0;
+}
+#footer .about a.partner {
+  padding-right: 8px;
+}
+#footer .about a.logo:hover,
+#footer .about a.partner:hover {
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+}
+#footer .about a.logo img,
+#footer .about a.partner img {
+  padding: 0 0 16px;
+}
+#footer .about .social {
+  clear: both;
+  float: none;
+  padding: 16px 0 0;
+  height: 36px;
+}
+#footer .about .social ul {
+  float: left;
+}
+#footer .about .social li {
+  float: left;
+  padding-right: 12px;
+}
+#footer .about .social li a {
+  width: 36px;
+  height: 36px;
+  background-color: #ce7a20;
+}
+#footer .about .social li a.social-twitter {
+  background-position: -82px -42px;
+}
+#footer .about .social li a.social-twitter:hover {
+  background-color: #48c4d2;
+}
+#footer .about .social li a.social-facebook {
+  background-position: -202px -42px;
+}
+#footer .about .social li a.social-facebook:hover {
+  background-color: #3b5998;
+}
+#footer .about .social .contact {
+  display: block;
+  float: left;
+  margin-left: 8px;
+  text-transform: uppercase;
+  color: #ce7a20 !important;
+  line-height: 38px;
+  font-weight: bold;
+}
+#footer .about .social .contact:hover {
+  color: #fff !important;
+  text-decoration: none;
+}
+#footer .icon {
+  height: 263px;
+  background: url(/images/footer-icon.png) no-repeat center 0 transparent;
+}
+#footer .links {
+  padding-top: 60px;
+  padding-left: 25px;
+}
+#footer .links h3 {
+  display: block;
+  float: right;
+  margin-top: -40px;
+  width: 154px;
+  height: 220px;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
+}
+#footer .links a {
+  color: #6bb21b !important;
+  text-decoration: underline;
+}
+#footer .links a:hover {
+  color: #fff !important;
+  text-decoration: none;
 }
 /* Import Page
 =================================================================== */
@@ -997,6 +1145,9 @@ table.table tr:hover td span.import-actions {
     padding-right: 30px;
     padding-left: 30px;
   }
+  #footer .links {
+    padding-left: 120px;
+  }
 }
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
@@ -1067,6 +1218,26 @@ table.table tr:hover td span.import-actions {
   #homepage-slider .flexslider.home .slides > li {
     padding: 3px;
   }
+  #footer .icon {
+    background: none;
+  }
+  #footer .links {
+    padding-left: 0;
+  }
+}
+/* All Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 767px) {
+  .navbar .brand {
+    margin-left: 12px;
+  }
+  .navbar .btn-navbar {
+    margin-right: 12px;
+  }
+  #footer .icon,
+  #footer .links h3 {
+    display: none;
+  }
 }
 /* TODO: Los pegotes de CSS de David, a incorporar más arriba
 ====================================================================== */
@@ -1105,18 +1276,4 @@ li:hover .admin-action {
 .tooltip {
   text-shadow: none;
   width: 180px;
-}
-/* Intentando arreglar la parte de comentarios, chapuceramente */
-.comments {
-  background-color: #dde4cd;
-  padding: 50px 0 0 0 !important;
-  margin: 0 0 0 0 !important;
-}
-#disqus_thread {
-  padding: 0 10px 0 10px;
-}
-/* Quitar el icono junto al nombre en las páginas de entidades */
-#wrapper .title.nobackground:before {
-  background: none !important;
-  width: 0px;
 }
