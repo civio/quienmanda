@@ -4,7 +4,7 @@
 @colorHeaderLink: #a8c315;
 @colorGray: #515151;
 @colorBody: #dee5d8;
-@colorSidebar: #e0e0cd;
+@colorSidebar: #e1e1cd;
 @colorTextGreen: #6bb21b;
 @colorLinkGreen: #8aa304;
 @colorOrange: #ce7a20;
@@ -12,6 +12,7 @@
 @fontEconomica: 'Economica', sans-serif;;
 @fontDroid: 'Open Sans', sans-serif;
 @fontBaskerville: 'Libre Baskerville', serif;
+@fontOswald: 'Oswald', sans-serif;
 
 
 body{
@@ -226,7 +227,7 @@ body > .container{
 
   position: relative;
   text-align: center;
-  background: @colorSidebar;
+  background: url(/images/sidebar-pattern.gif) repeat 0 0 @colorSidebar;
   margin-left: 0;
   padding: 12px 30px 24px;
   z-index: 60;
@@ -1213,25 +1214,60 @@ table tr:hover td .admin-action {
               background-color: #3b5998;
             };
           }
+
+          &.social-rss {
+            background-position: -362px -122px;
+
+            &:hover{
+              background-color: #FE9900;
+            };
+          }
         }
       }
 
-      .contact{
+      #mc-embedded-subscribe-form input{
         display: block;
-        float: left;
-        margin-left: 8px;
+        background: #5BA1D7;
+        color: #fff;
+        font-size: 0.75em;
+        border: none;
+        height: 36px;
+        padding: 8px;
+        margin: 0;
+        width: 148px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+
+        &:focus{
+          .box-shadow( none );
+        }
+      }
+    }
+
+    .contact{
+      clear: both;
+      float: none;
+      color: #fff;
+      font-size: 1.75em;
+      font-family: @fontOswald;
+      text-transform: uppercase;
+      margin-top: 36px;
+
+      a{
+
         color: @colorOrange !important;
-        text-transform: uppercase;
-        color: #ce7a20 !important;
-        line-height: 38px;
-        font-weight: bold;
+        font-size: 1em;
 
         &:hover{
           color: #fff !important;
           text-decoration: none;
         }
       }
-    }    
+    }  
   }
 
   .icon{
@@ -1449,11 +1485,17 @@ table.table tr:hover td span.import-actions {
   }
 
   #footer .icon{
-    background: none;
+    display: none;
+  }
+
+  #footer .about,
+  #footer .links
+  {
+    width: 50%;
   }
 
   #footer .links {
-    padding-left: 0;
+    margin-left: 0;
   }
 }
 
@@ -1469,9 +1511,18 @@ table.table tr:hover td span.import-actions {
     margin-right: 12px;
   }
 
-  #footer .icon,
   #footer .links h3{
     display: none;
+  }
+
+  #footer .about,
+  #footer .links
+  {
+    width: 100%;
+  }
+
+  #footer .links {
+    padding-left: 0;
   }
 }
 

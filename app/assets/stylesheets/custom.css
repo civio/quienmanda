@@ -182,7 +182,7 @@ body > .container {
 #homepage-lead {
   position: relative;
   text-align: center;
-  background: #e0e0cd;
+  background: url(/images/sidebar-pattern.gif) repeat 0 0 #e1e1cd;
   margin-left: 0;
   padding: 12px 30px 24px;
   z-index: 60;
@@ -671,7 +671,7 @@ body > .container {
   width: 34.04255319148936%;
   margin-top: 64px;
   margin-left: 0;
-  background: #e0e0cd;
+  background: #e1e1cd;
   z-index: 0;
 }
 #wrapper .sidebar.span4:before {
@@ -922,7 +922,7 @@ table tr:hover td .admin-action {
 .entity-links {
   display: block;
   width: 100%;
-  background: #e0e0cd;
+  background: #e1e1cd;
   height: 40px;
 }
 .entity-links ul {
@@ -1007,16 +1007,48 @@ table tr:hover td .admin-action {
 #footer .about .social li a.social-facebook:hover {
   background-color: #3b5998;
 }
-#footer .about .social .contact {
-  display: block;
-  float: left;
-  margin-left: 8px;
-  text-transform: uppercase;
-  color: #ce7a20 !important;
-  line-height: 38px;
-  font-weight: bold;
+#footer .about .social li a.social-rss {
+  background-position: -362px -122px;
 }
-#footer .about .social .contact:hover {
+#footer .about .social li a.social-rss:hover {
+  background-color: #FE9900;
+}
+#footer .about .social #mc-embedded-subscribe-form input {
+  display: block;
+  background: #5BA1D7;
+  color: #fff;
+  font-size: 0.75em;
+  border: none;
+  height: 36px;
+  padding: 8px;
+  margin: 0;
+  width: 148px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+#footer .about .social #mc-embedded-subscribe-form input:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#footer .about .contact {
+  clear: both;
+  float: none;
+  color: #fff;
+  font-size: 1.75em;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin-top: 36px;
+}
+#footer .about .contact a {
+  color: #ce7a20 !important;
+  font-size: 1em;
+}
+#footer .about .contact a:hover {
   color: #fff !important;
   text-decoration: none;
 }
@@ -1169,7 +1201,7 @@ table.table tr:hover td span.import-actions {
     top: 80px;
     margin: 0;
     border-left: none;
-    background: #e0e0cd;
+    background: #e1e1cd;
   }
   .navbar .btn-navbar:before {
     display: none;
@@ -1219,10 +1251,14 @@ table.table tr:hover td span.import-actions {
     padding: 3px;
   }
   #footer .icon {
-    background: none;
+    display: none;
+  }
+  #footer .about,
+  #footer .links {
+    width: 50%;
   }
   #footer .links {
-    padding-left: 0;
+    margin-left: 0;
   }
 }
 /* All Mobile Sizes (devices and browser)
@@ -1234,9 +1270,15 @@ table.table tr:hover td span.import-actions {
   .navbar .btn-navbar {
     margin-right: 12px;
   }
-  #footer .icon,
   #footer .links h3 {
     display: none;
+  }
+  #footer .about,
+  #footer .links {
+    width: 100%;
+  }
+  #footer .links {
+    padding-left: 0;
   }
 }
 /* TODO: Los pegotes de CSS de David, a incorporar más arriba
