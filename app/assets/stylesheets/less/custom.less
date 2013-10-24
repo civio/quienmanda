@@ -54,6 +54,16 @@ p.alert-info{ margin: 0; }
   box-shadow: @params;
 }
 
+.ad-banner{
+
+  display: block !important;
+
+  a,
+  img{
+    width: 100%;
+  }
+}
+
 /* Header
 =================================================================== */
 
@@ -251,9 +261,20 @@ body > .container{
     font-size: 0.938em;
     line-height: 1.5em;
 
-    a:hover{ 
-      color: @colorTextGreen;
+    a:hover{
       text-decoration: none;
+    }
+  }
+
+  a{
+    -webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+
+    &:hover{ 
+      color: @colorLinkGreen;
     }
   }
 
@@ -327,36 +348,92 @@ body > .container{
     color: @colorGray;
     font-family: @fontBaskerville !important;
     font-weight: 700 !important;
+    line-height: 1.375em;
+    padding-left: 3px;
+    margin: 12px 12px 8px 64px;
+    min-height: 64px;
+    border-left: 1px solid @colorTextGreen;
+
+    a{
+      display: block;
+      min-height: 64px;
+      padding-left: 12px;
+      border-left: 1px solid @colorTextGreen;
+    }
   }
 
   h2{
     font-size: 1.375em;
-    line-height: 1.375em;
-    padding: 16px 24px 8px;
   }
 
   h3{
     font-size: 1.25em;
-    line-height: 1.375em;
-    padding: 12px 24px;
   }
 
   a{
     color: @colorGray;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     
     &:hover{
-      color: @colorTextGreen;
+      color: @colorLinkGreen;
       text-decoration: none;
     }
   }
 
+  .post-date{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 0 20px;
+    margin: 0;
+    text-align: center;
+
+    .day,
+    .month{
+      display: block;
+      color: @colorGray;
+      font-size: 1.375em;
+      line-height: 1.375em;
+    }
+
+    .day{
+      font-family: @fontBaskerville;
+      font-style: italic;
+    }
+
+    .month{
+      font-family: @fontEconomica;
+      text-transform: uppercase;
+      
+    }
+  }
+
   .picture a.image{
-    width: 97%;
-    margin: 1.5%;
-    padding: 0;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    &:hover{
+      
+      filter: alpha(opacity=80);
+      -moz-opacity: 0.8;
+      -khtml-opacity: 0.8;
+      opacity: 0.8;
+    }
   }
 
   .picture a.image,
@@ -370,6 +447,7 @@ body > .container{
     color: @colorGray;
     font-size: 0.938em;
     line-height: 1.5em;
+    margin-top: 5px;
 
     p{ 
       padding: 8px 14px;
@@ -381,10 +459,12 @@ body > .container{
       padding: 10px 14px;
       margin: 10px 0 0;
       background: #dde4cd;
+      font-size: 0.875em;
+      font-family: @fontDroid;
+      font-weight: normal;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      font-size: 0.875em;
 
       a{
         color: @colorLinkGreen;
@@ -425,13 +505,6 @@ body > .container{
     p.admin-link{
       font-family: @fontDroid;
     }
-  }
-}
-
-#wall.post .item{
-
-  h3{
-    padding: 12px;
   }
 }
 
@@ -550,6 +623,33 @@ body > .container{
     }
   }
 
+  .all-btn{
+
+      margin: 24px 0 64px;
+      text-align: right;
+      
+      a{
+        color: @colorLinkGreen;
+        font-size: 1.375em;
+        font-family: @fontBaskerville;
+        font-style: italic;
+        background: @colorHeader;
+        padding: 10px 24px;
+        border-top: 1px dotted #999;
+        border-bottom: 1px dotted #999;
+        letter-spacing: -0.01em;
+
+        &:hover{
+          background: #dde4cd;
+          text-decoration: none;
+          -webkit-transition: background 0.4s ease-out;
+          -moz-transition: background 0.4s ease-out;
+          -o-transition: background 0.4s ease-out;
+          -ms-transition: background 0.4s ease-out;
+          transition: background 0.4s ease-out;
+        }
+      }
+  }
 }
 
 #wrapper .posts,
@@ -717,6 +817,8 @@ body > .container{
 
   &.related-posts{
     
+    .post-date{ display: none; }
+
     .title{
 
       color: @colorGray;
@@ -1135,6 +1237,7 @@ table tr:hover td .admin-action {
 /* Footer
 =================================================================== */
 #footer{
+
   font-size: 0.938em;
   padding: 60px 30px;
   background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
@@ -1145,6 +1248,14 @@ table tr:hover td .admin-action {
     font-family: @fontBaskerville !important;
     font-size: 1.067em;
     font-style: italic;
+  }
+
+  a{
+    -webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
   }
 
   .about{
@@ -1198,6 +1309,11 @@ table tr:hover td .admin-action {
           width: 36px;
           height: 36px;
           background-color: @colorOrange;
+          -webkit-transition: background-color 0.4s ease-out;
+          -moz-transition: background-color 0.4s ease-out;
+          -o-transition: background-color 0.4s ease-out;
+          -ms-transition: background-color 0.4s ease-out;
+          transition: background-color 0.4s ease-out;
 
           &.social-twitter {
             background-position: -82px -42px;
@@ -1416,7 +1532,7 @@ table.table tr:hover td span.import-actions {
   }
 }
 
-/* Higher than 1200 (desktop devices)
+/* Lower than 979 (tablets devices)
 ====================================================================== */
 @media only screen and (max-width: 979px) {
 
@@ -1484,6 +1600,10 @@ table.table tr:hover td span.import-actions {
     }
   }
 
+  #wall.post .item{
+    width: 48.5%;
+  }
+
   #footer .icon{
     display: none;
   }
@@ -1509,6 +1629,10 @@ table.table tr:hover td span.import-actions {
 
   .navbar .btn-navbar{
     margin-right: 12px;
+  }
+
+  #wall.post .item{
+    width: 100%;
   }
 
   #footer .links h3{

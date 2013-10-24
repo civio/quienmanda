@@ -1,11 +1,16 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= defined?(width) ? width : 'span3' %> item">
+<div class="<%= defined?(width) ? width : 'span4' %> item">
   <div class="picture">
     <% if defined?(frontpage) %>
     <h2><%= link_to item.title, post_path(item) %></h2>
     <% else %>
     <h3><%= link_to item.title, post_path(item) %></h3>
     <% end %>
+
+    <div class="post-date">
+      <span class="day"><%= item.updated_at.day %></span>
+      <span class="month"><%= I18n.localize(item.updated_at, :format => "%B")[0,3] %></span>
+    </div>
 
     <%= link_to image_tag(item.photo && item.photo.file.url(defined?(frontpage) ? :full : :small)), item, class: 'image' %>
     <div class="description">
