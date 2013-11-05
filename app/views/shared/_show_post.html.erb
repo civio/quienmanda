@@ -1,5 +1,5 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= defined?(width) ? width : 'span4' %> item">
+<div class="<%= defined?(width) ? width : 'span4' %> item post">
   <div class="picture">
     <% if defined?(frontpage) %>
     <h2><%= link_to item.title, post_path(item) %></h2>

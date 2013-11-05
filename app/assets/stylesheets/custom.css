@@ -422,13 +422,14 @@ body > .container {
 #wall.photo .item .picture .description p.admin-link {
   font-family: 'Open Sans', sans-serif;
 }
-#wall.people .item h4,
-#wall.organization .item h4 {
-  font-size: 1.25em;
-  padding: 8px 14px;
+#wall .item.people h4,
+#wall .item.organization h4 {
+  font-size: 1.125em;
+  padding: 8px 8px 8px 14px;
+  line-height: 1.375em;
 }
-#wall.people .item h4:before,
-#wall.organization .item h4:before {
+#wall .item.people h4:before,
+#wall .item.organization h4:before {
   float: left;
   content: "";
   display: block;
@@ -438,12 +439,35 @@ body > .container {
   border-right: 1px solid #6bb21b;
   margin-right: 8px;
 }
-#wall.people .item h4 a,
-#wall.organization .item h4 a {
+#wall .item.people h4 a,
+#wall .item.organization h4 a {
   font-size: 1em;
   font-family: 'Libre Baskerville', serif;
   font-weight: bold;
-  line-height: 1.25em;
+  line-height: 1em;
+}
+#wall.mixed .item .picture .description .credits {
+  position: relative;
+  padding-left: 60px;
+  min-height: 54px;
+}
+#wall.mixed .item .picture .description .credits:before {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  width: 38px;
+  height: 40px;
+  overflow: hidden;
+  border: none;
+  background: url(/images/sprites-small.png) no-repeat 0 0 transparent;
+}
+#wall.mixed .item.photo .picture .description .credits:before {
+  background-position: 0 -40px;
+}
+#wall.mixed .item.people .picture .description .credits:before {
+  background-position: 0 -80px;
 }
 /* Article Page
 =================================================================== */
@@ -990,6 +1014,10 @@ body > .container {
   margin: 3px 12px 12px;
   padding-top: 12px;
 }
+#wrapper.people .full.span3 .alert.alert-info {
+  margin: 12px;
+  padding: 16px;
+}
 #wrapper.people .full.span3 .admin-link {
   position: absolute;
   bottom: 3px;
@@ -1013,12 +1041,28 @@ body > .container {
   top: 18px;
   left: 18px;
 }
+#wrapper.people .full.span9 #visualization-controls a {
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+}
+#wrapper.people .full.span9 #visualization-controls a:hover {
+  filter: alpha(opacity=80);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
 #wrapper.people .full.span9 #visualization-legend {
   float: none;
+  color: #515151;
   background: #fff;
   padding: 4px 12px;
   top: 14px;
   right: 14px;
+}
+#wrapper.people .full.span9 #visualization-legend .legend {
+  font-size: 0.813em;
 }
 #wrapper.people .full.span9 #infobox {
   position: absolute;
@@ -1050,7 +1094,7 @@ body > .container {
 #relations-list .footable-sortable .footable-sort-indicator {
   color: #3f3f3f;
 }
-#relations-list .footable-first-column {
+#relations-list .footable-sorted {
   color: #3f3f3f;
 }
 #relations-list tr td {
@@ -1172,7 +1216,7 @@ table tr:hover td .admin-action {
 }
 #footer .about a.logo:hover,
 #footer .about a.partner:hover {
-  filter: alpha(opacity=60);
+  filter: alpha(opacity=80);
   -moz-opacity: 0.6;
   -khtml-opacity: 0.6;
   opacity: 0.6;

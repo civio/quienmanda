@@ -17,6 +17,7 @@
       <div class="picture"><%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %></div>
       <p class="title nobackground"><%= entity.name %></p>
       <p class="description"><%= entity.description %></p>
+      <%= render '/shared/needs_work' if entity.needs_work %>
       <div class='entity-links'>
         <ul>
           <li><%= icon_link entity.web_page, 'link' %></li>
@@ -29,7 +30,6 @@
           <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
         </ul>
       </div>
-      <%= render '/shared/needs_work' if entity.needs_work %>
       <%= render 'shared/show_admin_links', item: entity %>
     </div>
 

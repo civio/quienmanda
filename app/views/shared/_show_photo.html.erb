@@ -1,5 +1,5 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= item.extra_wide? ? 'span6': 'span3' %> item">
+<div class="<%= item.extra_wide? ? 'span6': 'span3' %> item photo">
   <div class="picture">
     <%= link_to image_tag(item.file.url(item.extra_wide ? :full : :small)), item, class: 'image' %>
     <div class="description">
