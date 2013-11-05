@@ -2,10 +2,21 @@
 <div class="span4 sidebar hidden-phone">
 
   <%= render 'shared/social_buttons' %>
-  
-  <h3>Protagonistas</h3>
-  
+
+  <% if defined?(navigation) %>
+  <div class="related-entities-navigation">
+    <!-- aladir url photo anterior -->
+    <a href="#" class="left" title="Anterior">Anterior</a>
+    <p>mostrar fotomandón</p>
+    <!-- aladir url photo siguiente -->
+    <a href="#" class="right" title="Siguiente">Siguiente</a>
+  </div>  
+  <% end %>
+
   <div class="related-entities">
+
+    <h3>Protagonistas</h3>
+
     <ul>
       <% entities.each_with_index do |entity, i| %>
       <%# Start displaying at least 5 related entities, always the high priority ones %>
