@@ -565,31 +565,33 @@ body > .container{
 
 #page-title{
 
+  padding: 0;
   margin-top: 42px;
   margin-bottom: 0;
+  text-align: left;
 
-  &.article,
-  &.people{
+  &:before{
+    display: block;
+    content: "";
+    float: left;
+    width: 62px;
+    height: 63px;
+    overflow: hidden;
+    background: url(/images/sprites.png) no-repeat 0 -8px transparent;
+    margin-top: -30px;
+  }
 
-    padding: 0;
-    text-align: left;
-
-    &:before{
-      display: block;
-      float: left;
-      width: 62px;
-      height: 64px;
-      overflow: hidden;
-      background: url(/images/sprites.png) no-repeat 0 -8px transparent;
-      margin-top: -32px;
-    };
-
-    &:after{ display: none; };
-
-    h2{
-      padding: 0;
-      margin-left: 80px;
-    }
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    height: 3px;
+    top: 20px !important;
+    left: 82px;
+    right: 12px;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
+    width: auto;
   }
 
   h2{
@@ -597,15 +599,23 @@ body > .container{
     color: @colorGray;
     background: @colorBody;
     font-weight: bold !important;
+    padding: 0 16px 0 0;
+    margin-left: 80px;
+  }
+
+  &.photo:before{
+    background-position: 0 -72px; 
+  }
+  &.people:before,
+  &.organizations:before{
+    background-position: 0 -135px; 
+  }
+
+  &.single:after{
+    display: none;
   }
 }
 
-#page-title.people{
-
-  &:before{ display: none; } // background-position: 0 -135px; }
-
-  h2{ margin-left: 0; }
-}
 
 #wrapper{
 
@@ -632,7 +642,7 @@ body > .container{
       height: 3px;
       top: 10px;
       left: 82px;
-      right: 0;
+      right: 12px;
       border-top: 1px solid #fafafa;
       border-bottom: 1px solid #fafafa;
     }

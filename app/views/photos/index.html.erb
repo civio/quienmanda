@@ -1,9 +1,26 @@
 <!-- start: Page Title -->
-<div id="page-title">
+<div id="page-title" class="photo">
 
   <h2>Fotomandón</h2>
 
 </div>
 <!-- end: Page Title -->
 
-<%= render '/shared/mixed_wall', items: @photos %>
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid photo">
+            
+    <% @photos.each do |photo| %>
+      <%= render partial_name(photo), :item => photo %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+  
+  <%= paginate @photos %>
+
+</div>
+<!-- end: Wrapper  -->

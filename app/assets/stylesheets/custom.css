@@ -472,44 +472,50 @@ body > .container {
 /* Article Page
 =================================================================== */
 #page-title {
+  padding: 0;
   margin-top: 42px;
   margin-bottom: 0;
-}
-#page-title.article,
-#page-title.people {
-  padding: 0;
   text-align: left;
 }
-#page-title.article:before,
-#page-title.people:before {
+#page-title:before {
   display: block;
+  content: "";
   float: left;
   width: 62px;
-  height: 64px;
+  height: 63px;
   overflow: hidden;
   background: url(/images/sprites.png) no-repeat 0 -8px transparent;
-  margin-top: -32px;
+  margin-top: -30px;
 }
-#page-title.article:after,
-#page-title.people:after {
-  display: none;
-}
-#page-title.article h2,
-#page-title.people h2 {
-  padding: 0;
-  margin-left: 80px;
+#page-title:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  height: 3px;
+  top: 20px !important;
+  left: 82px;
+  right: 12px;
+  border-top: 1px solid #fafafa;
+  border-bottom: 1px solid #fafafa;
+  width: auto;
 }
 #page-title h2 {
   font-size: 2.25em;
   color: #515151;
   background: #dee5d8;
   font-weight: bold !important;
+  padding: 0 16px 0 0;
+  margin-left: 80px;
 }
-#page-title.people:before {
+#page-title.photo:before {
+  background-position: 0 -72px;
+}
+#page-title.people:before,
+#page-title.organizations:before {
+  background-position: 0 -135px;
+}
+#page-title.single:after {
   display: none;
-}
-#page-title.people h2 {
-  margin-left: 0;
 }
 #wrapper .title {
   position: relative;
@@ -532,7 +538,7 @@ body > .container {
   height: 3px;
   top: 10px;
   left: 82px;
-  right: 0;
+  right: 12px;
   border-top: 1px solid #fafafa;
   border-bottom: 1px solid #fafafa;
 }
