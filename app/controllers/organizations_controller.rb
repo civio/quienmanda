@@ -9,7 +9,7 @@ class OrganizationsController < ApplicationController
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
     if stale?(last_modified: @organizations.maximum(:updated_at), :public => current_user.nil?)
-      @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(16)
+      @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)
     end
   end
 
