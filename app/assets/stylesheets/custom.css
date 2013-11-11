@@ -713,10 +713,20 @@ body > .container {
 #wrapper .posts .post .post-content .post-description ul {
   padding-left: 12px;
   padding-bottom: 16px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+
 }
 #wrapper .posts .post .post-content .post-description li {
-  padding-left: 30px;
-  background: url(/images/list-moustache.gif) no-repeat center left;
+  padding-left: 40px;
+  padding-bottom: 16px;
+  background: url(/images/list-moustache.gif) no-repeat 0px 7px;
 }
 #wrapper .posts .post .sharing-buttons {
   width: 100%;
@@ -747,8 +757,19 @@ body > .container {
 #wrapper .posts .post.related-posts .title:before {
   display: none;
 }
+#wrapper .posts .post.related-posts .row-fluid {
+  width: 92%;
+  margin: 14px 0 0 32px;
+}
 #wrapper .posts .post.related-posts .item {
   background: #fff;
+  width: 48%;
+  margin-right: 2%;
+  margin-bottom: 16px;
+  padding: 0;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
 }
 #wrapper .posts .post.related-posts .item .picture {
   margin: 4px;
@@ -1190,15 +1211,9 @@ table tr:hover td .admin-action {
 =================================================================== */
 #footer {
   font-size: 0.938em;
-  padding: 60px 30px;
+  padding: 60px 0;
   background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
   text-shadow: none;
-}
-#footer h3 {
-  color: #FFF;
-  font-family: 'Libre Baskerville', serif !important;
-  font-size: 1.067em;
-  font-style: italic;
 }
 #footer a {
   -webkit-transition: color 0.3s ease-out;
@@ -1206,6 +1221,20 @@ table tr:hover td .admin-action {
   -o-transition: color 0.3s ease-out;
   -ms-transition: color 0.3s ease-out;
   transition: color 0.3s ease-out;
+}
+#footer .about .logos {
+  float: left;
+  margin-right: 22px;
+}
+#footer .about .logos .title {
+  color: #FFF;
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 1.067em;
+  font-style: italic;
+}
+#footer .about .logos .logo img {
+  height: 34px;
+  width: auto;
 }
 #footer .about a.civio-logo {
   float: none;
@@ -1274,6 +1303,7 @@ table tr:hover td .admin-action {
 }
 #footer .about .social #mc-embedded-subscribe-form input {
   display: block;
+  float: left;
   background: #5BA1D7;
   color: #fff;
   font-size: 0.75em;
@@ -1293,6 +1323,23 @@ table tr:hover td .admin-action {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+#footer .about .social #mc-embedded-subscribe-form .btn-submit {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: url(/images/play-btn.png) no-repeat center center #3289cd;
+  text-indent: 9999px;
+  overflow: hidden;
+  width: 32px;
+  height: 36px;
+  border-color: #5BA1D7;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#footer .about .social #mc-embedded-subscribe-form .btn-submit:hover {
+  background-color: #5ba1d7;
 }
 #footer .about .contact {
   clear: both;

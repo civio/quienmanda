@@ -4,17 +4,21 @@
 
       <!-- start: About -->
       <div class="span5 about">
-        <h3>Un proyecto de Civio</h3>
-        <a href="http://www.civio.es" class="logo" title="Civio" target="_blank">
-          <%= image_tag("/images/logo-civio.png") %>
-        </a>
-        <h3>con la ayuda de</h3>
-        <a href="http://www.globalintegrity.org/" class="partner" title="Global Integrity" target="_blank">
-          <%= image_tag("/images/logo-gi.png", width: '160px') %>
-        </a>
-        <a href="http://sunlightfoundation.com/" class="partner" title="Sunlight Foundation" target="_blank">
-          <%= image_tag("/images/logo-sunlight.png", width: '90px') %>
-        </a>
+        <div class="logos">
+          <p class="title">Un proyecto de</p>
+          <a href="http://www.civio.es" class="logo" title="Civio" target="_blank">
+            <%= image_tag("/images/logo-civio.png") %>
+          </a>
+        </div>
+        <div class="logos">
+          <p class="title">con la ayuda de</p>
+          <a href="http://www.globalintegrity.org/" class="partner" title="Global Integrity" target="_blank">
+            <%= image_tag("/images/logo-gi.png", width: '160px') %>
+          </a>
+          <a href="http://sunlightfoundation.com/" class="partner" title="Sunlight Foundation" target="_blank">
+            <%= image_tag("/images/logo-sunlight.png", width: '90px') %>
+          </a>
+        </div>
         <div class="social">
           <ul>
             <li><a href="https://twitter.com/civio" class="social-twitter" title="Twitter" target="_blank"></a></li>
@@ -22,7 +26,8 @@
             <li><a href="http://www.civio.es/feed/" class="social-rss" title="RSS" target="_blank"></a></li>
           </ul>
           <form target="_blank" class="validate" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form" method="post" action="http://civio.us4.list-manage1.com/subscribe/post?u=9416fe6b76f2c3f985c1f8e0f&amp;id=9d5b4c8cda">         
-            <input id="mce-EMAIL" class="email" type="email" required="" placeholder="correo" name="EMAIL" value="SUSCRÍBETE AL BOLETÍN" style="border: none;">           
+            <input id="mce-EMAIL" class="email" type="email" required="" placeholder="correo" name="EMAIL" value="SUSCRÍBETE AL BOLETÍN" style="border: none;">
+            <button type="submit" class="btn btn-submit">Enviar</button>
           </form>
         </div>
         <div class="contact"><a href="mailto:contacto@civio.es" class="contact">contacto@civio.es</a> //</div>
