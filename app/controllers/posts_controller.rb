@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
     if stale?(last_modified: @posts.maximum(:updated_at), :public => current_user.nil?)
-      @posts = @posts.order("updated_at DESC").includes(:photo).page params[:page]
+      @posts = @posts.order("updated_at DESC").includes(:photo).page(params[:page]).per(9)
     end
   end
 

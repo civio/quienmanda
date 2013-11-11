@@ -96,6 +96,12 @@ $(function () {
 
   // FooTable
   $('.footable').footable();
+
+  // Newsletter subscription
+  $('#mce-EMAIL, #mce-EMAIL-footer').click(function() {
+    $(this).val('');
+    $(this).css('border', 'none');
+  }); 
 });
 
 })(jQuery);
