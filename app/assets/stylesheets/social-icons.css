@@ -73,3 +73,12 @@
   background-position: -360px -280px;
   background-color: #d94a39;
 }
+
+.social-meneame {
+  background-position: -320px -80px;
+}
+
+.social-meneame:hover {
+  background-position: -320px -120px;
+  background-color: #FF6400;
+}
