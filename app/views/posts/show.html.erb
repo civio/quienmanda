@@ -65,9 +65,11 @@
 
     <%= render 'shared/show_related_entities', entities: @related_entities %>
 
-    <!-- Goteo widget. TODO: Remove this, temporary -->
+    <!-- Donate banner -->
     <div class="span4">
-    <iframe frameborder="0" height="480px" src="http://goteo.org/widget/project/quien-manda" width="250px" scrolling="no" style="margin-left: auto;"></iframe>
+      <a href="http://www.civio.es/dona/" target="_blank">
+        <%= image_tag("/images/banner_vertical.jpg") %>
+      </a>
     </div>
 
   </div>
