@@ -24,11 +24,11 @@ textarea {
 p.alert-info {
   margin: 0;
 }
-.ad-banner {
+.post-end-image {
   display: block !important;
 }
-.ad-banner a,
-.ad-banner img {
+.post-end-image a,
+.post-end-image img {
   width: 100%;
 }
 /* Header
