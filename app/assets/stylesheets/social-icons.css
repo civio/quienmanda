@@ -9,7 +9,7 @@
   *margin-right: .3em;
   line-height: 40px;
   vertical-align: text-top;
-  background-image: url("../img/icons/social-icons-set.png");
+  background-image: url("../img/icons/social-icons-set.v2.png");
   background-position: 40px 40px;
   background-repeat: no-repeat;
   -webkit-transition: all 0.3s ease-in-out;
@@ -30,7 +30,7 @@
     height: 40px;
     line-height: 40px;
     vertical-align: text-top;
-    background-image: url("../img/icons/social-icons-set@2x.png");
+    background-image: url("../img/icons/social-icons-set@2x.v2.png");
     background-position: 40px 40px;
     background-repeat: no-repeat;
     background-size: 400px 320px;
