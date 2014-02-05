@@ -122,6 +122,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.1)
+    libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -205,6 +206,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    ref (1.0.5)
     remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -254,6 +256,9 @@ GEM
     subexec (0.2.3)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -323,6 +328,7 @@ DEPENDENCIES
   sdoc
   shortcodes
   stringex
+  therubyracer
   turbolinks
   uglifier (>= 1.3.0)
   unicode_utils

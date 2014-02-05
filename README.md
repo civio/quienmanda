@@ -24,14 +24,20 @@ Then install and run locally, get a copy of the code, install the dependencies:
     $ git clone https://github.com/civio/quienmanda.es.git
     $ cd quienmanda.es
     $ bundle install
-    
+
+We keep "sensitive parameters" in a local file `config/application.yml` outside of version control. Make a copy of `config/application.yml-example` into `config/application.yml`; for a local deployment you don't need to modify the settings.
+
 Set up the database (this will also create some sample data, and a user with email `admin@quienmanda.es` and password `password`):
 
-    $ rake db:setup
+    $ bundle exec rake db:setup
 
-We keep "sensitive parameters" in a local file `config/application.yml` outside of version control. Make a copy of `config/application.yml-example` into `config/application.yml`; for a local deployment you don't need to modify the settings. And then run the application:
+Run the tests:
 
-    $ rails server
+    $ bundle exec rake
+
+And then run the application:
+
+    $ bundle exec rails server
 
 ### Deploying in Heroku
 
