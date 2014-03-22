@@ -272,7 +272,11 @@ RailsAdmin.config do |config|
           help 'Leave blank for the URL slug to be auto-generated'
         end
         field :notes
-        field :published_at
+        field :published_at do
+          default_value do
+            Time.now
+          end
+        end
         field :updated_at do
           read_only true
         end
