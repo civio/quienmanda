@@ -43,7 +43,7 @@ There is a nice guide [here][1], but basically:
     $ git push heroku master
     $ heroku run rake db:setup
     
-The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c].)
+The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c]. Also, I should check whether upgrading to the latest version of acts-as-taggable 3.x has fixed the issue.)
 
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
 [1b]: https://github.com/mbleigh/acts-as-taggable-on/issues/192
