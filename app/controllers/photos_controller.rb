@@ -36,7 +36,7 @@ class PhotosController < ApplicationController
   # Note: admin only (for now at least)
   def tagged
     authorize! :manage, Photo
-    @photos = Photo.tagged_with(params[:tag_name])
+    @photos = Photo.tagged_with(params[:tag_name]).page(params[:page]).per(15)
     render :index
   end
 
