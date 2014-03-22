@@ -25,8 +25,8 @@
         <% end %>
         <div class="info">
           <span class="post-date">
-            <span class="day"><%= @post.updated_at.day %></span>
-            <span class="month"><%= I18n.localize(@post.updated_at, :format => "%B")[0,3] %></span>
+            <span class="day"><%= @post.published_at.day %></span>
+            <span class="month"><%= I18n.localize(@post.published_at, :format => "%B")[0,3] %></span>
           </span>
         </div>
         <div class="post-title clearfix">

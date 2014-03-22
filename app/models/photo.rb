@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
   has_many :posts_as_header, class_name: Post # It can be used as header in many posts
 
   has_many :mentions, as: :mentionee, inverse_of: :mentionee, dependent: :delete_all
-  has_many :related_posts, -> { order('updated_at desc') }, through: :mentions, source: :post
+  has_many :related_posts, -> { order('published_at desc') }, through: :mentions, source: :post
 
   has_paper_trail
 

@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   has_many :mentions_in_content, class_name: Mention, dependent: :delete_all, inverse_of: :post
 
   has_many :mentions, as: :mentionee, inverse_of: :mentionee, dependent: :delete_all
-  has_many :related_posts, -> { order('updated_at desc') }, through: :mentions, source: :post
+  has_many :related_posts, -> { order('published_at desc') }, through: :mentions, source: :post
 
   has_paper_trail
 

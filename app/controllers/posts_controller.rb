@@ -10,8 +10,8 @@ class PostsController < ApplicationController
   def index
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    if stale?(last_modified: @posts.maximum(:updated_at), :public => current_user.nil?)
-      @posts = @posts.order("updated_at DESC").includes(:photo).page(params[:page]).per(9)
+    if stale?(last_modified: @posts.maximum(:published_at), :public => current_user.nil?)
+      @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
     end
   end
 

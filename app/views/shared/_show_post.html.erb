@@ -8,8 +8,8 @@
     <% end %>
 
     <div class="post-date">
-      <span class="day"><%= item.updated_at.day %></span>
-      <span class="month"><%= I18n.localize(item.updated_at, :format => "%B")[0,3] %></span>
+      <span class="day"><%= item.published_at.day %></span>
+      <span class="month"><%= I18n.localize(item.published_at, :format => "%B")[0,3] %></span>
     </div>
 
     <%= link_to image_tag(item.photo && item.photo.file.url(defined?(frontpage) ? :full : :small)), item, class: 'image' %>

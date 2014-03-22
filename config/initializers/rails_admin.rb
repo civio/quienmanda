@@ -232,7 +232,7 @@ RailsAdmin.config do |config|
       field :needs_work
       field :title
       field :author
-      field :updated_at
+      field :published_at
     end
 
     edit do
@@ -272,7 +272,10 @@ RailsAdmin.config do |config|
           help 'Leave blank for the URL slug to be auto-generated'
         end
         field :notes
-        field :updated_at
+        field :published_at
+        field :updated_at do
+          read_only true
+        end
       end
     end
   end
