@@ -10,9 +10,8 @@ class PostsController < ApplicationController
   def index
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    if stale?(last_modified: @posts.maximum(:published_at), :public => current_user.nil?)
-      @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
-    end
+    @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
+    fresh_when etag: @posts, :public => current_user.nil?
   end
 
   # GET /posts/1
@@ -64,7 +63,7 @@ class PostsController < ApplicationController
     @posts = Post.published.order("published_at desc").limit(10)
     @updated = @posts.maximum(:updated_at) unless @posts.empty?
 
-    if stale?(etag: @posts, last_modified: @updated, :public => true)
+    if stale?(etag: @posts, :public => true)
       respond_to do |format|
         format.atom { render :layout => false }
         # we want the RSS feed to redirect permanently to the ATOM feed
