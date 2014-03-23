@@ -26,7 +26,8 @@ class CsvImporter < Importer
     # Get basic relation data
     attributes = {source: match_result[:source], 
                   relation_type: match_result[:relation_type],
-                  target: match_result[:target]}
+                  target: match_result[:target],
+                  published: true}
 
     # If needed, create the relation associated to the fact. Otherwise, edit existing one
     if relation = Relation.where(attributes).first
@@ -110,7 +111,7 @@ class CsvImporter < Importer
     is_a_person = attributes[:person].nil? ? is_a_person(name) : attributes[:person]
     priority = attributes[:priority] || Entity::PRIORITY_MEDIUM
     needs_work = attributes[:needs_work].nil? ? true : attributes[:needs_work]
-    published = attributes[:published].nil? ? false : attributes[:published]
+    published = attributes[:published].nil? ? true : attributes[:published]
     entity = Entity.create!(name: name, 
                             short_name: short_name,
                             priority: priority, 

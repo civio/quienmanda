@@ -147,6 +147,7 @@ describe CsvImporter do
 
       fact.relations.size.should == 1
       fact.relations.first.to_s.should == 'Emilio Botín -> presidente -> Banco Santander'
+      fact.relations.first.published.should == true
 
       @importer.event_log.tap do |log|
         log.size.should == 1
@@ -255,12 +256,12 @@ describe CsvImporter do
     def create_entity(attributes); @importer.send(:create_entity, attributes); end
 
     it 'create entity as specified' do
-      entity = create_entity({name: 'foobar', person: true, priority: '1', needs_work: false, published: true})
+      entity = create_entity({name: 'foobar', person: true, priority: '1', needs_work: false, published: false})
       entity.name.should == 'Foobar'
       entity.person.should == true
       entity.priority.should == Entity::PRIORITY_HIGH
       entity.needs_work.should == false
-      entity.published.should == true
+      entity.published.should == false
     end
 
     it 'guess entity type if not specified, and use defaults in other fields' do
@@ -269,7 +270,7 @@ describe CsvImporter do
       entity.person.should == true
       entity.priority.should == Entity::PRIORITY_MEDIUM
       entity.needs_work.should == true
-      entity.published.should == false
+      entity.published.should == true
     end
 
     it 'guess person/organization type based on name' do
