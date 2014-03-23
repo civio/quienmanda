@@ -17,4 +17,8 @@ class Photo < ActiveRecord::Base
   acts_as_taggable
 
   scope :published, -> { where(published: true) }
+
+  # Navigate across photo objects
+  scope :next, ->(photo) { where("updated_at > ?", photo.updated_at).order("updated_at ASC") }
+  scope :previous, ->(photo) { where("updated_at < ?", photo.updated_at).order("updated_at DESC") }
 end

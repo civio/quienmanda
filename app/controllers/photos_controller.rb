@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :set_title
-  before_action :set_photo, only: [:show]
+  before_action :set_photo, only: [:show, :next, :previous]
 
   etag { can? :manage, Photo } # Don't cache admin content together with the rest
 
@@ -30,6 +30,18 @@ class PhotosController < ApplicationController
       @fb_description = @photo.footer unless @photo.footer.blank?
       @fb_image_url = @photo.file.url(:full) unless @photo.file.nil?
     end
+  end
+
+  def next
+    photos = (can? :manage, Photo) ? Photo.all : Photo.published
+    next_photo = photos.next(@photo).first
+    redirect_to next_photo.nil? ? photos_path() : photo_path(next_photo)
+  end
+
+  def previous
+    photos = (can? :manage, Photo) ? Photo.all : Photo.published
+    previous_photo = photos.previous(@photo).first
+    redirect_to previous_photo.nil? ? photos_path() : photo_path(previous_photo)
   end
 
   # GET /photos/tagged/juicy

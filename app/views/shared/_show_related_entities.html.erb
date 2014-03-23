@@ -3,12 +3,11 @@
 
   <%= render 'shared/social_buttons' %>
 
-  <%# TODO: Add this once functionality is ready %>
-  <% if false and defined?(navigation) %>
+  <% if defined?(photo_navigation) %>
   <div class="related-entities-navigation">
-    <a href="#" class="left" title="Anterior">Anterior</a>
-    <p>mostrar fotomandón</p>
-    <a href="#" class="right" title="Siguiente">Siguiente</a>
+    <%= link_to "Anterior", previous_photo_path(@photo), class: "left" %>
+    <p>El Fotomandón</p>
+    <%= link_to "Siguiente", next_photo_path(@photo), class: "right" %>
   </div>  
   <% end %>
 

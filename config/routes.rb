@@ -18,6 +18,10 @@ Quienmanda::Application.routes.draw do
 
   resources :photos, only: [:index, :show] do
     resources :annotations, :except => [:new, :edit]
+    member do
+      get 'next'
+      get 'previous'
+    end
     collection do
       get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
     end
