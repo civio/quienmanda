@@ -12,6 +12,10 @@ module Shortcodes
     end
 
     def render
+      # Get photo id to uniquely identify each embed
+      url =~ /photos\/(\d+)/
+      photo_id = $1
+
       # See http://stackoverflow.com/a/15558627
       template = <<TEMPLATE
 <div class="quienmanda-embed-wrapper">
@@ -24,11 +28,11 @@ module Shortcodes
   // Listen to message from child window
   eventer(messageEvent, function(event) {
     if ('#{url}'.indexOf(event.origin) == 0) {
-      document.getElementById('quienmanda-embed').height = event.data + 'px';
+      document.getElementById("quienmanda-embed-#{photo_id}").height = event.data + 'px';
     }
   },false);
 </script>
-<iframe class="quienmanda-embed" id="quienmanda-embed" frameborder="0" width="#{width}"
+<iframe class="quienmanda-embed" id="quienmanda-embed-#{photo_id}" frameborder="0" width="#{width}"
   style="display: block; border-style: solid; border-color: #FAFAFA; border-radius: 4px 4px 4px 4px; border-right: 1px solid #FAFAFA; border-width: 2px 1px 1px; margin: 10px auto; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 1px rgba(0, 0, 0, 0.1), 0 3px 1px rgba(0, 0, 0, 0.05);"
   height="0" scrolling="no" src="#{url}?widget=1">
 </iframe>
