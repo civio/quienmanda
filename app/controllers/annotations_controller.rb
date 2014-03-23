@@ -7,7 +7,7 @@ class AnnotationsController < ApplicationController
   def index
     authorize! :read, @photo
     @annotations = @photo.annotations
-    fresh_when last_modified: @annotations.maximum(:updated_at), public: true
+    fresh_when etag: @annotations, public: true
   end
 
   # GET /annotations/1.json
