@@ -14,7 +14,7 @@ atom_feed :language => 'en-US' do |feed|
       entry.updated(item.published_at.strftime("%Y-%m-%dT%H:%M:%SZ")) 
 
       entry.author do |author|
-        author.name(entry.author)
+        author.name(item.author.name)
       end
     end
   end
