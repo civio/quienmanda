@@ -10,7 +10,11 @@ Quienmanda::Application.routes.draw do
   post '/admin/commit' => 'import#commit'
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  resources :posts, only: [:index, :show]
+  resources :posts, only: [:index, :show] do
+    collection do
+      get 'feed', :as => :feed, :defaults => { :format => 'atom' }
+    end
+  end
 
   resources :people, only: [:index, :show]
 
