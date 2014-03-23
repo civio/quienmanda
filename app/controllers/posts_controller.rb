@@ -61,13 +61,15 @@ class PostsController < ApplicationController
   # See http://stackoverflow.com/a/4832591
   def feed
     @title = "Artículos de Quién Manda"
-    @posts = Post.order("published_at desc").limit(10)
-    @updated = @posts.first.updated_at unless @posts.empty?
+    @posts = Post.published.order("published_at desc").limit(10)
+    @updated = @posts.maximum(:updated_at) unless @posts.empty?
 
-    respond_to do |format|
-      format.atom { render :layout => false }
-      # we want the RSS feed to redirect permanently to the ATOM feed
-      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    if stale?(etag: @posts, last_modified: @updated, :public => true)
+      respond_to do |format|
+        format.atom { render :layout => false }
+        # we want the RSS feed to redirect permanently to the ATOM feed
+        format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+      end
     end
   end
 
