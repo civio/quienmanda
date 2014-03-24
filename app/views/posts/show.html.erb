@@ -34,7 +34,7 @@
         </div>
         <div class="post-content">
           <div class="post-meta">
-            <span>Por <a href="#"><%= @post.author.name %></a></span> 
+            <span>Por <a href="<%= @post.author.url %>" target="_blank"><%= @post.author.name %></a></span> 
           </div>
           <%= render 'shared/show_admin_links', item: @post %>
           <div class="post-description">
