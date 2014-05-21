@@ -41,13 +41,11 @@ And then run the application:
 
 ### Deploying in Heroku
 
-There is a nice guide [here][1], but basically:
+There is a nice guide [here][1], but basically start by creating the app:
  
     $ heroku apps:create
     $ heroku addons:add memcachier
     $ heroku labs:enable user-env-compile 
-    $ git push heroku master
-    $ heroku run rake db:setup
     
 The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c]. Also, I should check whether upgrading to the latest version of acts-as-taggable 3.x has fixed the issue.)
 
@@ -57,7 +55,10 @@ The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable 
 
 In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then run `rake figaro:heroku` to set the env variables in Heroku.
 
-You can now start the app:
+    $ git push heroku master
+    $ heroku run rake db:setup
+
+You can now deploy and start the app:
 
     $ heroku apps:open
 
