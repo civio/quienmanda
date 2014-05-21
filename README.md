@@ -45,13 +45,12 @@ There is a nice guide [here][1], but basically start by creating the app:
  
     $ heroku apps:create
     $ heroku addons:add memcachier
-    $ heroku labs:enable user-env-compile 
-    
-The `labs:enable user-env-compile` command is needed because of [ActsAsTaggable issue #192][1b]: deployment fails during asset precompilation otherwise. (I could try [this proposed solution][1c]. Also, I should check whether upgrading to the latest version of acts-as-taggable 3.x has fixed the issue.)
+    $ heroku labs:enable user-env-compile  NOT ANYMORE?
+
+(Note: there used to be an issue with [acts-as-taggable][1b] that forced us to enable `labs:enable user-env-compile` in Heroku. It seems to be fixed in acts-as-taggable 3.x.)
 
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
 [1b]: https://github.com/mbleigh/acts-as-taggable-on/issues/192
-[1c]: https://github.com/mbleigh/acts-as-taggable-on/issues/192#issuecomment-23538713
 
 In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then run `rake figaro:heroku` to set the env variables in Heroku.
 
