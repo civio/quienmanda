@@ -7,7 +7,7 @@
 
   <div class="row-fluid">
 
-    <% related_posts[0..3].each do |post| %>
+    <% related_posts[0..5].each do |post| %>
       <%= render '/shared/show_post', :item => post, :width => defined?(width) ? width : 'span4' %>
     <% end %>
 
