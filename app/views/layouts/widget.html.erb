@@ -37,7 +37,7 @@
   <script>
   // http://stackoverflow.com/questions/153152/resizing-an-iframe-based-on-content
   function adjustIFrameHeight() {
-    parent.postMessage(document.body.scrollHeight, "*");
+    parent.postMessage({id: '<%= @photo.id %>', height: document.body.scrollHeight}, "*");
     //* allows this to post to any parent iframe regardless of domain
   }
   </script>

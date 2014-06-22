@@ -28,7 +28,7 @@ module Shortcodes
   // Listen to message from child window
   eventer(messageEvent, function(event) {
     if ('#{url}'.indexOf(event.origin) == 0) {
-      document.getElementById("quienmanda-embed-#{photo_id}").height = event.data + 'px';
+      document.getElementById("quienmanda-embed-"+event.data.id).height = event.data.height + 'px';
     }
   },false);
 </script>
