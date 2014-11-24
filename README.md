@@ -52,12 +52,16 @@ There is a nice guide [here][1], but basically start by creating the app:
 [1]: https://devcenter.heroku.com/articles/rails4-getting-started
 [1b]: https://github.com/mbleigh/acts-as-taggable-on/issues/192
 
-In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then run `rake figaro:heroku` to set the env variables in Heroku.
+In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then, to set the env variables in Heroku, run:
+
+    $ rake figaro:heroku
+
+(Or, if you have multiple Heroku apps in the same folder, do `rake figaro:heroku[myapp]`.)
+
+You can now deploy and start the app:
 
     $ git push heroku master
     $ heroku run rake db:setup
-
-You can now deploy and start the app:
 
     $ heroku apps:open
 
