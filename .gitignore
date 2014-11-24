@@ -16,8 +16,7 @@ rerun.txt
 pickle-email-*.html
 # Ignore application configuration
 /config/application.yml
-/config/application.yml-bigbangdata
-/config/application.yml-quienmanda
+/config/application.yml-*
 /app/tabula_v1_0_2_html/
 latest.dump
 test.csv
