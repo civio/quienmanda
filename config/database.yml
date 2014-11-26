@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
-  database: qm_development
-  username: qm
-  password: 
+  database: onodo
+  username: postgres
+  password: admin123
   host: localhost
   pool: 5
   timeout: 5000

@@ -42,7 +42,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
@@ -71,7 +71,7 @@ gem 'rails_admin_toggleable'
 gem 'rails_admin_tag_list'
 gem 'ckeditor_rails'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
-gem 'charlock_holmes_bundle_icu'
+#gem 'charlock_holmes_bundle_icu'
 gem 'fuzzy_match'
 
 # Picture upload and handling
@@ -93,7 +93,7 @@ gem 'newrelic_rpm'
 gem 'memcachier'
 gem 'rack-cache'
 gem 'dalli'
-gem 'kgio'
+#gem 'kgio'
 group :profile do
   gem 'ruby-prof'
 end
