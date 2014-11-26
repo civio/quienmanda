@@ -124,7 +124,8 @@ class Importer
     # one word, like 'Política'. So I'm disabling it, until I think of a more configurable approach
     # (This would work fine if the casing of 'política' in the input data was correct, but 
     # we just don't want to start changing all the Excels the team is doing)
-    result, score = @fuzzy_matcher.find_with_score(entity_name, must_match_at_least_one_word: false)
+    # XXX: Now that I rescue InvalidRecord errors, see what happens when this is back on
+    result, score = @fuzzy_matcher.find_with_score(entity_name, must_match_at_least_one_word: true)
     return [nil, 0] if result.nil? or score < @fuzzy_matching_threshold
     [result[1], score]
   end
