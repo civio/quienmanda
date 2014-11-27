@@ -1374,7 +1374,7 @@ table tr:hover td .admin-action {
   height: 220px;
   text-indent: -9999px;
   overflow: hidden;
-  background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
+  /*background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;*/
 }
 #footer .links a {
   color: #6bb21b !important;
