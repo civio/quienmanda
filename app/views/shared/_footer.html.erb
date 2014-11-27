@@ -11,26 +11,24 @@
           </a>
         </div>
         <div class="logos">
-          <p class="title">con la ayuda de</p>
-          <a href="http://www.globalintegrity.org/" class="partner" title="Global Integrity" target="_blank">
-            <%= image_tag("/images/logo-gi.png", width: '160px') %>
+          <p class="title">en colaboración con</p>
+          <a href="http://www.ciudadania20.org/" class="partner" title="Innovación Ciudadana" target="_blank">
+            <%= image_tag("/images/logoIc.png", width: '160px') %>
           </a>
+		  <!-- 
           <a href="http://sunlightfoundation.com/" class="partner" title="Sunlight Foundation" target="_blank">
-            <%= image_tag("/images/logo-sunlight.png", width: '90px') %>
+            <%= image_tag("/images/logo-gob.png", width: '90px') %>
           </a>
+		   -->
         </div>
         <div class="social">
           <ul>
-            <li><a href="https://twitter.com/quien_manda" class="social-twitter" title="Twitter" target="_blank"></a></li>
+            <li><a href="https://twitter.com/OnodoMex" class="social-twitter" title="Twitter" target="_blank"></a></li>
             <li><a href="http://facebook.com/fundacioncivio" class="social-facebook" title="Facebook" target="_blank"></a></li>
             <!-- TODO: Put back once we have a RSS feed
             <li><a href="http://www.civio.es/feed/" class="social-rss" title="RSS" target="_blank"></a></li>
             -->
           </ul>
-          <form target="_blank" class="validate" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form" method="post" action="http://civio.us4.list-manage1.com/subscribe/post?u=9416fe6b76f2c3f985c1f8e0f&amp;id=9d5b4c8cda">         
-            <input id="mce-EMAIL" class="email" type="email" required="" placeholder="correo" name="EMAIL" value="SUSCRÍBETE AL BOLETÍN" style="border: none;">
-            <button type="submit" class="btn btn-submit">Enviar</button>
-          </form>
         </div>
         <div class="contact"><a href="mailto:contacto@civio.es" class="contact">contacto@civio.es</a> //</div>
       </div>
@@ -42,8 +40,10 @@
       <div class="span5 links">
         <h3>Quién Manda</h3>
         <p><a href="/posts/pero-que-es-esto#porque">¿Por qué hacemos esto?</a></p>
-        <p><a href="/posts/pero-que-es-esto#quienes">Agradecimientos</a></p>
-        <p><a href="/posts/pero-que-es-esto#legales">Términos legales</a></p>
+        <p><a href="/organizations/onodomex">Integrantes</a></p>
+        <!-- ecaamal
+		<p><a href="/posts/pero-que-es-esto#legales">Términos legales</a></p>
+		-->
         <p><%= link_to 'Log In', user_session_path %></p>
         <p><%= link_to 'Administración', rails_admin_path %></p>
       </div>
