@@ -101,6 +101,7 @@ RailsAdmin.config do |config|
         field :priority do
           default_value Entity::PRIORITY_MEDIUM
         end
+        field :age
         field :avatar
       end
       group :social_media do
