@@ -112,14 +112,19 @@ class CsvImporter < Importer
     priority = attributes[:priority] || Entity::PRIORITY_MEDIUM
     needs_work = attributes[:needs_work].nil? ? true : attributes[:needs_work]
     published = attributes[:published].nil? ? true : attributes[:published]
-    entity = Entity.create!(name: name, 
-                            short_name: short_name,
-                            priority: priority, 
-                            person: is_a_person,
-                            needs_work: needs_work,
-                            published: published)
-    # TODO: Missing fact here
-    info(nil, "Created #{is_a_person ? 'person' : 'organization'} '#{entity.short_or_long_name}'")
-    entity
+    begin
+      entity = Entity.create!(name: name, 
+                              short_name: short_name,
+                              priority: priority, 
+                              person: is_a_person,
+                              needs_work: needs_work,
+                              published: published)
+      # TODO: Missing fact here
+      info(nil, "Created #{is_a_person ? 'person' : 'organization'} '#{entity.short_or_long_name}'")
+      entity
+    rescue ActiveRecord::RecordInvalid => invalid
+      warn(nil, "Invalid record '#{name}': #{invalid.record.errors}")
+      nil      
+    end
   end
 end
