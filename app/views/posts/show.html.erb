@@ -27,6 +27,7 @@
           <span class="post-date">
             <span class="day"><%= @post.published_at.day %></span>
             <span class="month"><%= I18n.localize(@post.published_at, :format => "%B")[0,3] %></span>
+            <span class="year"><%= @post.published_at.year %></span>
           </span>
         </div>
         <div class="post-title clearfix">

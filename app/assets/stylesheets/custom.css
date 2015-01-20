@@ -107,7 +107,6 @@ body > header {
   padding-left: 8px;
   padding-left: 9px \9;
   /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
   margin-bottom: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -134,7 +133,6 @@ body > header {
   position: relative;
   left: 0;
   /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
   margin-bottom: 0;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -165,7 +163,7 @@ body > .container {
 /* Home Page
 =================================================================== */
 .slider.span7.nogutter {
-  width: 59.57446808510638%;
+  width: 59.57446809%;
 }
 .slide-caption .source-link {
   color: #BBBBBB;
@@ -638,7 +636,7 @@ body > .container {
   margin: 14px auto 22px;
 }
 #wrapper .posts .post .post-title {
-  margin: 32px 32px 36px 86px;
+  margin: 32px 32px 36px 104px;
   border-left: 1px solid #6bb21b;
 }
 #wrapper .posts .post .post-title h2 {
@@ -655,21 +653,32 @@ body > .container {
 #wrapper .posts .post .post-date {
   width: auto;
   height: auto;
-  padding: 20px 32px 0 0;
+  padding: 10px 0;
   margin: 32px 12px 0 32px;
+  background: #eef2ea;
+  text-align: center;
+}
+#wrapper .posts .post .post-date .day,
+#wrapper .posts .post .post-date .month,
+#wrapper .posts .post .post-date .year {
+  display: block;
 }
 #wrapper .posts .post .post-date .day {
   color: #515151;
-  font-size: 1.375em;
+  font-size: 1.25em;
   font-family: 'Libre Baskerville', serif;
-  font-style: italic;
-  padding-bottom: 8px;
 }
 #wrapper .posts .post .post-date .month {
   color: #515151;
   font-size: 1.375em;
   font-family: 'Economica', sans-serif;
   text-transform: uppercase;
+  padding: 4px 0;
+}
+#wrapper .posts .post .post-date .year {
+  color: #515151;
+  font-size: 0.875em;
+  font-family: 'Libre Baskerville', serif;
 }
 #wrapper .posts .post .post-content {
   font-size: 0.938em;
@@ -715,13 +724,10 @@ body > .container {
   padding-bottom: 16px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
-
   -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
-
   box-sizing: border-box;
   /* Opera/IE 8+ */
-
 }
 #wrapper .posts .post .post-content .post-description li {
   padding-left: 40px;
@@ -845,7 +851,7 @@ body > .container {
   bottom: -28px;
 }
 #wrapper .sidebar.span4 {
-  width: 34.04255319148936%;
+  width: 34.04255319%;
   margin-left: 0;
   background: none;
   border: none;
@@ -1069,13 +1075,13 @@ body > .container {
   left: 18px;
 }
 #wrapper.people .full.span9 #visualization-controls a {
-  filter: alpha(opacity=80);
+  filter: alpha(opacity=75);
   -moz-opacity: 0.75;
   -khtml-opacity: 0.75;
   opacity: 0.75;
 }
 #wrapper.people .full.span9 #visualization-controls a:hover {
-  filter: alpha(opacity=80);
+  filter: alpha(opacity=100);
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
@@ -1251,7 +1257,7 @@ table tr:hover td .admin-action {
 }
 #footer .about a.logo:hover,
 #footer .about a.partner:hover {
-  filter: alpha(opacity=80);
+  filter: alpha(opacity=60);
   -moz-opacity: 0.6;
   -khtml-opacity: 0.6;
   opacity: 0.6;
@@ -1432,7 +1438,6 @@ table.table tr:hover td span.import-actions {
   display: inline-block;
   *display: inline;
   /* IE7 inline-block hack */
-
   *zoom: 1;
   list-style: none;
   list-style-type: none;
@@ -1451,9 +1456,9 @@ table.table tr:hover td span.import-actions {
   background-repeat: no-repeat;
   text-align: left;
   direction: ltr;
-  -webkit-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
-  -moz-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
-  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  -webkit-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  -moz-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
 }
 [class^="addthis_button_"] span {
   background: none!important;
