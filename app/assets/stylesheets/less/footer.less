@@ -1,0 +1,210 @@
+/* Footer
+=================================================================== */
+#footer{
+
+  font-size: 0.938em;
+  padding: 60px 0;
+  background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
+  text-shadow: none;
+
+  a{
+    -webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+  }
+
+  .about{
+
+    .logos{
+
+      float: left;
+      margin-right: 22px;
+
+      .title{
+        color: #FFF;
+        font-family: @fontBaskerville !important;
+        font-size: 1.067em;
+        font-style: italic;
+      }
+
+      .logo img{
+        height: 34px;
+        width: auto;
+      }
+    }
+
+    a.civio-logo{
+      float: none;
+      clear: both;
+      display: block;
+      width: 150px;
+      height: 42px;
+      margin-top: 16px;
+      text-indent: 9999px;
+      background: url(/images/logo-civio.png) no-repeat 0 0;
+    }
+
+    a.partner{
+      padding-right: 8px;
+    }
+
+    a.logo, 
+    a.partner{
+
+      &:hover{
+        .opacity( 0.6 );
+      };
+
+      img{
+        padding: 0 0 16px;
+      }
+    }
+
+    .social{
+
+      clear: both;
+      float: none;
+      padding: 16px 0 0;
+      height: 36px;
+
+      ul{
+        float: left;
+      }
+      
+      li{
+        float: left;
+        padding-right: 12px;
+
+        a{
+          width: 36px;
+          height: 36px;
+          background-color: @colorOrange;
+          -webkit-transition: background-color 0.4s ease-out;
+          -moz-transition: background-color 0.4s ease-out;
+          -o-transition: background-color 0.4s ease-out;
+          -ms-transition: background-color 0.4s ease-out;
+          transition: background-color 0.4s ease-out;
+
+          &.social-twitter {
+            background-position: -82px -42px;
+
+            &:hover{
+              background-color: #48c4d2;
+            };
+          }
+
+          &.social-facebook {
+            background-position: -202px -42px;
+
+            &:hover{
+              background-color: #3b5998;
+            };
+          }
+
+          &.social-rss {
+            background-position: -362px -122px;
+
+            &:hover{
+              background-color: #FE9900;
+            };
+          }
+        }
+      }
+
+      #mc-embedded-subscribe-form input{
+        display: block;
+        float: left;
+        background: #5BA1D7;
+        color: #fff;
+        font-size: 0.75em;
+        border: none;
+        height: 36px;
+        padding: 8px;
+        margin: 0;
+        width: 148px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+
+        &:focus{
+          .box-shadow( none );
+        }
+      }
+
+      #mc-embedded-subscribe-form .btn-submit{
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        background: url(/images/play-btn.png) no-repeat center center darken(#5BA1D7, 10%);
+        text-indent: 9999px;
+        overflow: hidden;
+        width: 32px;
+        height: 36px;
+        border-color: #5BA1D7;
+        .box-shadow( none );
+
+        &:hover{
+          background-color: #5BA1D7
+        }
+      }
+    }
+
+    .contact{
+      clear: both;
+      float: none;
+      color: #fff;
+      font-size: 1.75em;
+      font-family: @fontOswald;
+      text-transform: uppercase;
+      margin-top: 36px;
+
+      a{
+
+        color: @colorOrange !important;
+        font-size: 1em;
+
+        &:hover{
+          color: #fff !important;
+          text-decoration: none;
+        }
+      }
+    }  
+  }
+
+  .icon{
+    height: 263px;
+    background: url(/images/footer-icon.png) no-repeat center 0 transparent;
+  }
+
+  .links{
+
+    padding-top: 60px;
+    padding-left: 25px;
+
+    h3{
+      display: block;
+      float: right;
+      margin-top: -40px;
+      width: 154px;
+      height: 220px;
+      text-indent: -9999px;
+      overflow: hidden;
+      background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
+    }
+
+    a{
+      color: @colorTextGreen !important;
+      text-decoration: underline;
+
+      &:hover{
+        color: #fff !important;
+        text-decoration: none;
+      };
+    }
+  }
+}

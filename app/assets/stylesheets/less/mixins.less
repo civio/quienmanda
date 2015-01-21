@@ -1,0 +1,30 @@
+/* Mixins
+=================================================================== */
+
+.titleBorder(){
+
+  &:before{
+    float: left;
+    content: "";
+    display: block;
+    width: 3px;
+    height: 1.375em;
+    border-left: 1px solid @colorTextGreen;
+    border-right: 1px solid @colorTextGreen;
+    margin-right: 8px;
+  };
+}
+
+.box-shadow( @params ){
+   -webkit-box-shadow: @params;
+  -moz-box-shadow: @params;
+  box-shadow: @params;
+}
+
+.opacity( @val ){
+  @val100: 100 * @val;
+  filter: alpha(opacity=@val100);
+  -moz-opacity: @val;
+  -khtml-opacity: @val;
+  opacity: @val;
+}

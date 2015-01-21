@@ -1,0 +1,121 @@
+/* Header
+=================================================================== */
+
+body > header{
+  position: absolute;
+  top: 0;
+  height: 145px;
+  border: none;
+  background: @colorHeader;
+}
+
+.nav-collapse.collapse {
+  left: 0;
+  top: 83px;
+  background: @colorHeader;
+}
+
+.navbar{
+
+  .brand{
+
+    padding: 0;
+    margin: 15px 0 0;
+    border: none;
+    text-shadow: none;
+
+    h1{
+      display: block;
+      width: 225px;
+      height: 115px;
+      text-indent: -9999px;
+      background: url(/images/quien-manda_logo.png) no-repeat 0 0 transparent;
+    }
+
+    &:after, &:before{ display: none; }
+  }
+
+  .nav{
+    position: absolute;
+    left: 84px;
+    right: 232px;
+    padding-left: 140px;
+    margin: 0;
+    background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
+  }
+
+  .nav>li{
+    background: @colorHeader;
+
+    &.active a{ color: @colorHeaderLink !important; }
+  }
+
+  .nav > li > a {
+    color: @colorGray;
+    font-family: @fontEconomica;
+    font-weight: 700;
+    font-size: 1.375em;
+    -webkit-transition: color 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out;
+    -ms-transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+
+    &:hover{ color: @colorHeaderLink; };
+  }
+}
+
+#custom-search-form{
+
+  padding: 0;
+  margin-top: 10px;
+  margin-right: 0;
+
+  .input-append{
+    width: 100%;
+  }
+
+  .search-query{
+    color: @colorGray;
+    width: 170px;
+    background: darken( @colorBody, 2% );
+    padding-right: 8px;
+    padding-right: 9px \9;
+    padding-left: 8px;
+    padding-left: 9px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border: 1px solid #d3d9cd;
+    margin-top: 3px;
+    padding-top: 3px;
+    .box-shadow( none );
+
+    &:focus + button { z-index: 3; }
+    &:focus{ 
+      border-color: #aaa; 
+      background: @colorBody; 
+    }
+  }
+
+  button {
+    border: 0;
+    background: none;
+    padding: 4px 8px;
+    margin-top: 5px;
+    position: relative;
+    left: 0;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    .box-shadow( none );
+
+    .icon-search{
+      color: @colorHeaderLink;
+      font-size: 18px;
+    }
+
+    &:hover .icon-search{ color: @colorGray; }
+  }
+}

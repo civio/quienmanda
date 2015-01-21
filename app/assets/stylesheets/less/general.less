@@ -1,0 +1,138 @@
+/* Base
+=================================================================== */
+
+body{
+  font-size: 16px;
+  font-family: @fontDroid;
+  background: @colorBody;
+  // Guide!
+  //background: url(/images/QuienManda-home.jpg) no-repeat top center;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: @fontDroid !important; }
+
+input, button, select, textarea{ font-family: @fontDroid; }
+
+body > .container{
+  position: relative;
+  margin-top: 145px;
+}
+
+#wrapper{ margin-top: 48px; }
+#wrapper.full{ margin-top: 0; }
+
+#wall h3 {
+  line-height: 25px;
+}
+
+
+/* General
+=================================================================== */
+
+p.alert-info{ 
+  margin: 0; 
+}
+
+.tooltip {
+  text-shadow: none;
+  width: 180px;
+}
+
+.post-end-image {
+
+  display: block !important;
+
+  a,
+  img{
+    width: 100%;
+  }
+}
+
+/* For internal use, detect automatically internal broken links in posts and highlight */
+.broken-link {
+  background-color: red;
+  text-shadow: none;
+}
+
+.unknown-link {
+  background-color: orange;
+  text-shadow: none;
+}
+
+/* Toggle buttons */
+.label.toggable {
+  cursor: pointer;
+}
+.active .show-active { display:inline-block; }
+.active .show-inactive { display:none;}
+
+.inactive .show-active { display:none;}
+.inactive .show-inactive { display:inline-block; }
+
+
+
+/* Social sharing
+=================================================================== */
+.sharing-right{
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin: 0;
+}
+.sharing-buttons {
+  margin: 25px 0 0 -10px;
+  padding: .5em;
+  text-align: center;
+}
+.addthis_toolbox {
+  margin: 0;
+  text-align: center;
+}
+.addthis_toolbox li {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  list-style: none;
+  list-style-type: none;
+  margin: 0 .25em .25em 0;
+  vertical-align: middle;
+}
+[class^="addthis_button_"] {
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  -webkit-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  -moz-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.19999999999999996), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+}
+[class^="addthis_button_"] span {
+  background: none!important;
+}
+[class^="addthis_button_"]:hover {
+  background-color: #79cf18;
+}
+.addthis_default_style .at300b,
+.addthis_default_style .at300bo,
+.addthis_default_style .at300m {
+  padding: 0!important;
+  background-color: #fff;
+}
+
+.addthis_button_expanded {
+  .box-shadow( none );
+}
+
+iframe.quienmanda-embed{
+  background: @colorHeader;
+  body{ margin: 0; }
+}

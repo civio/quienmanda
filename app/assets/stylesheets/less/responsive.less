@@ -1,0 +1,146 @@
+
+/* Higher than 1200 (desktop devices)
+====================================================================== */
+@media (min-width: 1200px) {
+
+  .navbar .nav{ 
+    right: 232px; 
+    padding-left: 210px;
+  }
+
+  #homepage-lead {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  #footer .links {
+    padding-left: 120px;
+  }
+
+  #wrapper .sidebar.span4 .related-entities-navigation{
+    margin: 24px 64px;
+  }
+}
+
+/* Lower than 979 (tablets devices)
+====================================================================== */
+@media only screen and (max-width: 979px) {
+
+  .navbar-inverse .navbar-inner{
+    position: relative;
+  }
+
+  .nav-collapse.collapse {
+    position: absolute;
+    top: 146px;
+    left: auto;
+    right: 0;
+    height: 0;
+    .box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
+  }
+
+  .navbar .btn-navbar{
+    top: 80px;
+    margin: 0;
+    border-left: none;
+    background: @colorSidebar; 
+
+    &:before{ display: none; };
+    &:hover{ background: @colorBody; };
+  }
+
+  .navbar .nav{
+    position: static;
+    padding: 0;
+    margin: 0;
+    right: auto;
+    left: auto;
+  }
+
+  .navbar .nav > li{ 
+    padding-bottom: 5px;
+    border-bottom: 2px solid @colorBody;
+  }
+
+  .navbar .nav > li:first-child > a{ border-top: none; }
+
+  #custom-search-form{
+
+    margin-top: 18px;
+
+    .input-append{ margin-left: 20px; }
+    button{ margin-right: 10px; }
+  }
+
+  #homepage-lead,
+  #homepage-slider{
+    width: 100%;
+
+    &:before{ display: none; };
+  }
+
+  #homepage-slider{
+    padding-top: 12px;
+
+    .flexslider.home{
+      padding: 3px;
+      border: 1px dotted #969a92;
+
+      .slides > li{ padding: 3px; }
+    }
+  }
+
+  #wall.post .item{
+    width: 48.5%;
+  }
+
+  #wrapper .sidebar.span4 .related-entities-navigation{
+    font-size: 0.913em;
+    margin: 24px 16px;
+  }
+
+  #footer .icon{
+    display: none;
+  }
+
+  #footer .about,
+  #footer .links
+  {
+    width: 50%;
+  }
+
+  #footer .links {
+    margin-left: 0;
+  }
+}
+
+/* All Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 767px) {
+
+  .navbar .brand{
+    margin-left: 12px;
+  }
+
+  .navbar .btn-navbar{
+    margin-right: 12px;
+  }
+
+  #wall.post .item{
+    width: 100%;
+  }
+
+  #footer .links h3{
+    display: none;
+  }
+
+  #footer .about,
+  #footer .links
+  {
+    width: 100%;
+  }
+
+  #footer .links {
+    padding-left: 0;
+  }
+}

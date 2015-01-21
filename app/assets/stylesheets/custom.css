@@ -1,5 +1,9 @@
 /* Color variables
 =================================================================== */
+/* Mixins
+=================================================================== */
+/* Base
+=================================================================== */
 body {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
@@ -19,10 +23,27 @@ select,
 textarea {
   font-family: 'Open Sans', sans-serif;
 }
+body > .container {
+  position: relative;
+  margin-top: 145px;
+}
+#wrapper {
+  margin-top: 48px;
+}
+#wrapper.full {
+  margin-top: 0;
+}
+#wall h3 {
+  line-height: 25px;
+}
 /* General
 =================================================================== */
 p.alert-info {
   margin: 0;
+}
+.tooltip {
+  text-shadow: none;
+  width: 180px;
 }
 .post-end-image {
   display: block !important;
@@ -30,6 +51,97 @@ p.alert-info {
 .post-end-image a,
 .post-end-image img {
   width: 100%;
+}
+/* For internal use, detect automatically internal broken links in posts and highlight */
+.broken-link {
+  background-color: red;
+  text-shadow: none;
+}
+.unknown-link {
+  background-color: orange;
+  text-shadow: none;
+}
+/* Toggle buttons */
+.label.toggable {
+  cursor: pointer;
+}
+.active .show-active {
+  display: inline-block;
+}
+.active .show-inactive {
+  display: none;
+}
+.inactive .show-active {
+  display: none;
+}
+.inactive .show-inactive {
+  display: inline-block;
+}
+/* Social sharing
+=================================================================== */
+.sharing-right {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin: 0;
+}
+.sharing-buttons {
+  margin: 25px 0 0 -10px;
+  padding: .5em;
+  text-align: center;
+}
+.addthis_toolbox {
+  margin: 0;
+  text-align: center;
+}
+.addthis_toolbox li {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+  *zoom: 1;
+  list-style: none;
+  list-style-type: none;
+  margin: 0 .25em .25em 0;
+  vertical-align: middle;
+}
+[class^="addthis_button_"] {
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  -webkit-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  -moz-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
+}
+[class^="addthis_button_"] span {
+  background: none!important;
+}
+[class^="addthis_button_"]:hover {
+  background-color: #79cf18;
+}
+.addthis_default_style .at300b,
+.addthis_default_style .at300bo,
+.addthis_default_style .at300m {
+  padding: 0!important;
+  background-color: #fff;
+}
+.addthis_button_expanded {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+iframe.quienmanda-embed {
+  background: #eef2ea;
+}
+iframe.quienmanda-embed body {
+  margin: 0;
 }
 /* Header
 =================================================================== */
@@ -145,20 +257,182 @@ body > header {
 #custom-search-form button:hover .icon-search {
   color: #515151;
 }
-/* Base
+/* Footer
 =================================================================== */
-body > .container {
-  position: relative;
-  margin-top: 145px;
+#footer {
+  font-size: 0.938em;
+  padding: 60px 0;
+  background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
+  text-shadow: none;
 }
-#wrapper {
-  margin-top: 48px;
+#footer a {
+  -webkit-transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+  -ms-transition: color 0.3s ease-out;
+  transition: color 0.3s ease-out;
 }
-#wrapper.full {
-  margin-top: 0;
+#footer .about .logos {
+  float: left;
+  margin-right: 22px;
 }
-#wall h3 {
-  line-height: 25px;
+#footer .about .logos .title {
+  color: #FFF;
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 1.067em;
+  font-style: italic;
+}
+#footer .about .logos .logo img {
+  height: 34px;
+  width: auto;
+}
+#footer .about a.civio-logo {
+  float: none;
+  clear: both;
+  display: block;
+  width: 150px;
+  height: 42px;
+  margin-top: 16px;
+  text-indent: 9999px;
+  background: url(/images/logo-civio.png) no-repeat 0 0;
+}
+#footer .about a.partner {
+  padding-right: 8px;
+}
+#footer .about a.logo:hover,
+#footer .about a.partner:hover {
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+}
+#footer .about a.logo img,
+#footer .about a.partner img {
+  padding: 0 0 16px;
+}
+#footer .about .social {
+  clear: both;
+  float: none;
+  padding: 16px 0 0;
+  height: 36px;
+}
+#footer .about .social ul {
+  float: left;
+}
+#footer .about .social li {
+  float: left;
+  padding-right: 12px;
+}
+#footer .about .social li a {
+  width: 36px;
+  height: 36px;
+  background-color: #ce7a20;
+  -webkit-transition: background-color 0.4s ease-out;
+  -moz-transition: background-color 0.4s ease-out;
+  -o-transition: background-color 0.4s ease-out;
+  -ms-transition: background-color 0.4s ease-out;
+  transition: background-color 0.4s ease-out;
+}
+#footer .about .social li a.social-twitter {
+  background-position: -82px -42px;
+}
+#footer .about .social li a.social-twitter:hover {
+  background-color: #48c4d2;
+}
+#footer .about .social li a.social-facebook {
+  background-position: -202px -42px;
+}
+#footer .about .social li a.social-facebook:hover {
+  background-color: #3b5998;
+}
+#footer .about .social li a.social-rss {
+  background-position: -362px -122px;
+}
+#footer .about .social li a.social-rss:hover {
+  background-color: #FE9900;
+}
+#footer .about .social #mc-embedded-subscribe-form input {
+  display: block;
+  float: left;
+  background: #5BA1D7;
+  color: #fff;
+  font-size: 0.75em;
+  border: none;
+  height: 36px;
+  padding: 8px;
+  margin: 0;
+  width: 148px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+#footer .about .social #mc-embedded-subscribe-form input:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#footer .about .social #mc-embedded-subscribe-form .btn-submit {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: url(/images/play-btn.png) no-repeat center center #3289cd;
+  text-indent: 9999px;
+  overflow: hidden;
+  width: 32px;
+  height: 36px;
+  border-color: #5BA1D7;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#footer .about .social #mc-embedded-subscribe-form .btn-submit:hover {
+  background-color: #5ba1d7;
+}
+#footer .about .contact {
+  clear: both;
+  float: none;
+  color: #fff;
+  font-size: 1.75em;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin-top: 36px;
+}
+#footer .about .contact a {
+  color: #ce7a20 !important;
+  font-size: 1em;
+}
+#footer .about .contact a:hover {
+  color: #fff !important;
+  text-decoration: none;
+}
+#footer .icon {
+  height: 263px;
+  background: url(/images/footer-icon.png) no-repeat center 0 transparent;
+}
+#footer .links {
+  padding-top: 60px;
+  padding-left: 25px;
+}
+#footer .links h3 {
+  display: block;
+  float: right;
+  margin-top: -40px;
+  width: 154px;
+  height: 220px;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
+}
+#footer .links a {
+  color: #6bb21b !important;
+  text-decoration: underline;
+}
+#footer .links a:hover {
+  color: #fff !important;
+  text-decoration: none;
 }
 /* Home Page
 =================================================================== */
@@ -467,7 +741,7 @@ body > .container {
 #wall.mixed .item.people .picture .description .credits:before {
   background-position: 0 -80px;
 }
-/* Article Page
+/* Articles Page
 =================================================================== */
 #page-title {
   padding: 0;
@@ -580,6 +854,8 @@ body > .container {
   -ms-transition: background 0.4s ease-out;
   transition: background 0.4s ease-out;
 }
+/* Article Single
+=================================================================== */
 #wrapper .posts,
 #wrapper .sidebar {
   position: relative;
@@ -943,6 +1219,10 @@ body > .container {
   list-style: none;
   min-height: 74px;
   position: relative;
+  /* Expandir/colapsar entidades relacionadas en el sidebar */
+}
+#wrapper .sidebar.span4 .related-entities li.extra-related-entity {
+  display: none;
 }
 #wrapper .sidebar.span4 .related-entities li .picture {
   position: absolute;
@@ -1012,6 +1292,15 @@ body > .container {
   -moz-box-shadow: 0px 0px 12px #000000;
   box-shadow: 0px 0px 12px #000000;
 }
+.post-description a {
+  border-bottom: 1px black dotted;
+}
+.post-description a:hover {
+  text-decoration: none;
+  border-bottom: 1px black solid;
+}
+/* Entities
+=================================================================== */
 #wrapper.people .full.span3,
 #wrapper.people .full.span9 {
   position: relative;
@@ -1085,6 +1374,7 @@ body > .container {
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
+  text-decoration: none;
 }
 #wrapper.people .full.span9 #visualization-legend {
   float: none;
@@ -1102,6 +1392,28 @@ body > .container {
   bottom: 14px;
   left: 18px;
 }
+.entity-links {
+  display: block;
+  width: 100%;
+  background: #e1e1cd;
+  height: 40px;
+}
+.entity-links ul {
+  display: block;
+  text-align: center;
+}
+.entity-links li {
+  float: none;
+  display: inline;
+  line-height: 40px;
+  font-size: 1.25em;
+}
+.entity-links a:hover {
+  text-decoration: none;
+  color: #6bb21b;
+}
+/* Relations
+=================================================================== */
 #relations-table-toggle {
   float: right;
   background: #fff;
@@ -1149,247 +1461,6 @@ body > .container {
 #relations-list .table-striped tbody > tr:nth-child(odd) > th {
   background: #e4eadf;
 }
-/* Post Page
-=================================================================== */
-.post-description a {
-  border-bottom: 1px black dotted;
-}
-.post-description a:hover {
-  text-decoration: none;
-  border-bottom: 1px black solid;
-}
-/* Sidebar
-=================================================================== 
-.sidebar {
-  margin-bottom: 20px;
-}
-
-.sidebar .tiny.image {
-  width: 60px;
-  float: left;
-  margin-right: 10px;
-}
-
-.sidebar h3 {
-  margin: -10px 0 10px 0;
-}
-
-table tr td .admin-action { 
-  display:none;
-}
-table tr:hover td .admin-action { 
-  display:inline-block;
-}
-
-*/
-/* For internal use, detect automatically internal broken links in posts and highlight */
-.broken-link {
-  background-color: red;
-  text-shadow: none;
-}
-.unknown-link {
-  background-color: orange;
-  text-shadow: none;
-}
-/* Entity Page
-=================================================================== */
-.entity-links {
-  display: block;
-  width: 100%;
-  background: #e1e1cd;
-  height: 40px;
-}
-.entity-links ul {
-  display: block;
-  text-align: center;
-}
-.entity-links li {
-  float: none;
-  display: inline;
-  line-height: 40px;
-  font-size: 1.25em;
-}
-.entity-links a:hover {
-  text-decoration: none;
-  color: #6bb21b;
-}
-/* Footer
-=================================================================== */
-#footer {
-  font-size: 0.938em;
-  padding: 60px 0;
-  background: url(/images/footer-pattern.jpg) repeat 0 0 #1a1a1a;
-  text-shadow: none;
-}
-#footer a {
-  -webkit-transition: color 0.3s ease-out;
-  -moz-transition: color 0.3s ease-out;
-  -o-transition: color 0.3s ease-out;
-  -ms-transition: color 0.3s ease-out;
-  transition: color 0.3s ease-out;
-}
-#footer .about .logos {
-  float: left;
-  margin-right: 22px;
-}
-#footer .about .logos .title {
-  color: #FFF;
-  font-family: 'Libre Baskerville', serif !important;
-  font-size: 1.067em;
-  font-style: italic;
-}
-#footer .about .logos .logo img {
-  height: 34px;
-  width: auto;
-}
-#footer .about a.civio-logo {
-  float: none;
-  clear: both;
-  display: block;
-  width: 150px;
-  height: 42px;
-  margin-top: 16px;
-  text-indent: 9999px;
-  background: url(/images/logo-civio.png) no-repeat 0 0;
-}
-#footer .about a.partner {
-  padding-right: 8px;
-}
-#footer .about a.logo:hover,
-#footer .about a.partner:hover {
-  filter: alpha(opacity=60);
-  -moz-opacity: 0.6;
-  -khtml-opacity: 0.6;
-  opacity: 0.6;
-}
-#footer .about a.logo img,
-#footer .about a.partner img {
-  padding: 0 0 16px;
-}
-#footer .about .social {
-  clear: both;
-  float: none;
-  padding: 16px 0 0;
-  height: 36px;
-}
-#footer .about .social ul {
-  float: left;
-}
-#footer .about .social li {
-  float: left;
-  padding-right: 12px;
-}
-#footer .about .social li a {
-  width: 36px;
-  height: 36px;
-  background-color: #ce7a20;
-  -webkit-transition: background-color 0.4s ease-out;
-  -moz-transition: background-color 0.4s ease-out;
-  -o-transition: background-color 0.4s ease-out;
-  -ms-transition: background-color 0.4s ease-out;
-  transition: background-color 0.4s ease-out;
-}
-#footer .about .social li a.social-twitter {
-  background-position: -82px -42px;
-}
-#footer .about .social li a.social-twitter:hover {
-  background-color: #48c4d2;
-}
-#footer .about .social li a.social-facebook {
-  background-position: -202px -42px;
-}
-#footer .about .social li a.social-facebook:hover {
-  background-color: #3b5998;
-}
-#footer .about .social li a.social-rss {
-  background-position: -362px -122px;
-}
-#footer .about .social li a.social-rss:hover {
-  background-color: #FE9900;
-}
-#footer .about .social #mc-embedded-subscribe-form input {
-  display: block;
-  float: left;
-  background: #5BA1D7;
-  color: #fff;
-  font-size: 0.75em;
-  border: none;
-  height: 36px;
-  padding: 8px;
-  margin: 0;
-  width: 148px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-}
-#footer .about .social #mc-embedded-subscribe-form input:focus {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#footer .about .social #mc-embedded-subscribe-form .btn-submit {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: url(/images/play-btn.png) no-repeat center center #3289cd;
-  text-indent: 9999px;
-  overflow: hidden;
-  width: 32px;
-  height: 36px;
-  border-color: #5BA1D7;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#footer .about .social #mc-embedded-subscribe-form .btn-submit:hover {
-  background-color: #5ba1d7;
-}
-#footer .about .contact {
-  clear: both;
-  float: none;
-  color: #fff;
-  font-size: 1.75em;
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
-  margin-top: 36px;
-}
-#footer .about .contact a {
-  color: #ce7a20 !important;
-  font-size: 1em;
-}
-#footer .about .contact a:hover {
-  color: #fff !important;
-  text-decoration: none;
-}
-#footer .icon {
-  height: 263px;
-  background: url(/images/footer-icon.png) no-repeat center 0 transparent;
-}
-#footer .links {
-  padding-top: 60px;
-  padding-left: 25px;
-}
-#footer .links h3 {
-  display: block;
-  float: right;
-  margin-top: -40px;
-  width: 154px;
-  height: 220px;
-  text-indent: -9999px;
-  overflow: hidden;
-  background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
-}
-#footer .links a {
-  color: #6bb21b !important;
-  text-decoration: underline;
-}
-#footer .links a:hover {
-  color: #fff !important;
-  text-decoration: none;
-}
 /* Import Page
 =================================================================== */
 td.field-match-success {
@@ -1417,71 +1488,12 @@ table.table tr td span.import-actions {
 table.table tr:hover td span.import-actions {
   display: inline-block;
 }
-/* Social sharing
-=================================================================== */
-.sharing-right {
-  position: absolute;
-  top: 10px;
-  right: 0;
-  margin: 0;
+/* Botones de edición para administradores en entidades relacionadas */
+li .admin-action {
+  display: none;
 }
-.sharing-buttons {
-  margin: 25px 0 0 -10px;
-  padding: .5em;
-  text-align: center;
-}
-.addthis_toolbox {
-  margin: 0;
-  text-align: center;
-}
-.addthis_toolbox li {
+li:hover .admin-action {
   display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  list-style: none;
-  list-style-type: none;
-  margin: 0 .25em .25em 0;
-  vertical-align: middle;
-}
-[class^="addthis_button_"] {
-  height: 40px;
-  width: 40px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  display: block;
-  text-indent: -999em;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  text-align: left;
-  direction: ltr;
-  -webkit-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
-  -moz-box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
-  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 0.25em rgba(0, 0, 0, 0.5) inset;
-}
-[class^="addthis_button_"] span {
-  background: none!important;
-}
-[class^="addthis_button_"]:hover {
-  background-color: #79cf18;
-}
-.addthis_default_style .at300b,
-.addthis_default_style .at300bo,
-.addthis_default_style .at300m {
-  padding: 0!important;
-  background-color: #fff;
-}
-.addthis_button_expanded {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-iframe.quienmanda-embed {
-  background: #eef2ea;
-}
-iframe.quienmanda-embed body {
-  margin: 0;
 }
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
@@ -1610,42 +1622,4 @@ iframe.quienmanda-embed body {
   #footer .links {
     padding-left: 0;
   }
-}
-/* TODO: Los pegotes de CSS de David, a incorporar más arriba
-====================================================================== */
-/* Expandir/colapsar entidades relacionadas en el sidebar */
-#related-entities-toggle,
-.extra-related-entity {
-  display: none;
-}
-/* Toggle buttons */
-.label.toggable {
-  cursor: pointer;
-}
-.active .show-active {
-  display: inline-block;
-}
-.active .show-inactive {
-  display: none;
-}
-.inactive .show-active {
-  display: none;
-}
-.inactive .show-inactive {
-  display: inline-block;
-}
-/* Botones de edición para administradores en entidades relacionadas */
-li .admin-action {
-  display: none;
-}
-li:hover .admin-action {
-  display: inline-block;
-}
-/* Visualization help */
-#visualization-controls a:hover {
-  text-decoration: none;
-}
-.tooltip {
-  text-shadow: none;
-  width: 180px;
 }
