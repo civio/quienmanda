@@ -6,11 +6,11 @@
   <div id="homepage-slider" class="slider span7 nogutter">
     <div id="flex1" class="flexslider home">
       <ul class="slides">
-
+        
         <% @highlights.each do |post| %>
         <li>
           <%= link_to post do %>
-            <%= image_tag(post.photo.file.url(:full)) %>
+            <%= image_tag( post.photo && !post.photo.file.url.blank? ? post.photo.file.url(:full) : 'avatar.png') %>
           <% end %>
           <div class="slide-caption n">
             <%= link_to post do %>

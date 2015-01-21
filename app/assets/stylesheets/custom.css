@@ -458,6 +458,11 @@ body > header {
   padding: 3px 0 3px 3px;
   background: #fff;
 }
+#homepage-slider .flexslider .slides > li > a {
+  display: block;
+  max-height: 500px;
+  overflow: hidden;
+}
 #homepage-lead {
   position: relative;
   text-align: center;
@@ -1608,6 +1613,10 @@ li:hover .admin-action {
   }
   .navbar .btn-navbar {
     margin-right: 12px;
+  }
+  #wrapper {
+    margin-right: 10px;
+    margin-left: 10px;
   }
   #wall.post .item {
     width: 100%;

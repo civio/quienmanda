@@ -13,18 +13,24 @@
 
   .flexslider{
     background: none;
-  }
 
-  .flexslider.home{
-    padding: 3px 0 3px 3px;
-    border-top: 1px dotted #969a92;
-    border-bottom: 1px dotted #969a92;
-    border-left: 1px dotted #969a92;
-  }
+    &.home{
+      padding: 3px 0 3px 3px;
+      border-top: 1px dotted #969a92;
+      border-bottom: 1px dotted #969a92;
+      border-left: 1px dotted #969a92;
+    }
 
-  .flexslider .slides > li{
-    padding: 3px 0 3px 3px;
-    background: #fff;
+    .slides > li{
+      padding: 3px 0 3px 3px;
+      background: #fff;
+
+      > a{
+        display: block;
+        max-height: 500px;
+        overflow: hidden;
+      }
+    }
   }
 }
 
