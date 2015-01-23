@@ -254,7 +254,7 @@ RailsAdmin.config do |config|
         label "Internal"
         field :photo
         field :show_photo_as_header do
-          default_value false
+          default_value true
         end
         field :published do
           default_value false
