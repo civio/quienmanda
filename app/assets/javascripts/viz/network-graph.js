@@ -1,13 +1,15 @@
 function NetworkGraph(selector, infobox) {
 
+  var _this = this;
+
   // Basic D3.js SVG container setup
   var width = $(selector).width(),
-      height = Math.max(width * 9 / 16, 450),
+      height = Math.max(Math.round(width * 9 / 16), 450),
       centerx = width / 2,
       centery = height / 2,
       linkDistance = height * .2;
 
-  var category2 = [ "#60A300", "#A9C300" ];
+  var category2 = [ "#60A300", "#A9C300" ]; //[ "#CE7A20", "#814607" ];
   var color = d3.scale.ordinal().range(category2).domain([1,2]);
   var infobox = d3.select(infobox);
 
@@ -15,6 +17,8 @@ function NetworkGraph(selector, infobox) {
   // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
   // find a way of disabling it.
   var scale = 1;
+  var viewport_origin_x = 0;
+  var viewport_origin_y = 0;
   var viewport_x = 0;
   var viewport_y = 0;
 
@@ -78,46 +82,41 @@ function NetworkGraph(selector, infobox) {
 
     // Relations
     path = svg.select("#linksContainer").selectAll(".link")
-        .data(force.links(), function(d) { return d.id; })
+        .data(force.links(), function(d) { return d.id; });
 
     path.enter().append("svg:path")
+        .attr("id", function(d){ return 'link-'+d.id; })
         .attr("class", "link")
         .on("mouseover", onRelationMouseOver)
+        .on("mouseout", onRelationMouseOut)
         .attr("marker-end", function(d) { return "url(#relation)"; });
 
     // Nodes
     node = svg
         .select("#nodesContainer")
         .selectAll(".node")
-        .data(force.nodes(), function(d) { return d.url; })
-        .attr("class", getNodeClass);
+        .data(force.nodes(), function(d) { return d.url; });
 
-    var that = this;
     node.enter().append("g")
       .call(drag)
       .call(createNode)
+        .attr("id", function(d){ return 'node-'+d.index; })
         .attr("class", getNodeClass)
-        .on('click', function(d) {
-          if (d3.event.defaultPrevented) return;  // click suppressed
-          if ( d['expandable'] != true ) return;  // Nothing to do
-          d['expandable'] = false;                // Not anymore
-          d.fixed = true;                         // Fix after 'exploding', feels better
-          that.loadNode(d.url, d.x, d.y); 
-        })
+        .on('click', onClickNode)
       .append("text")
         .attr("dx", 11)
         .attr("dy", ".35em")
-        .text(function(d) { return d.name });
+        .text(function(d) { return d.name; });
   };
 
-  this.loadNode = function(url, posx, posy) {
+  this.loadNode = function(url, posx, posy, isChild) {
     // If a position is given, preposition child nodes around that.
     // Otherwise just put them in the middle of the screen
     if(typeof(posx)==='undefined') posx = centerx;
     if(typeof(posy)==='undefined') posy = centery;
 
     var spinner = showSpinner();
-    var networkGraph = this;
+
     // Adding '.json' is not strictly necessary, since Rails and jQuery will understand
     // the Content Type headers of the request. But the Rails cache is mixing up the 
     // HTML and JSON responses, so the quickest way of fixing that is making sure the
@@ -126,6 +125,7 @@ function NetworkGraph(selector, infobox) {
       // Add the retrieved nodes to the network graph
       $.each(data.nodes, function(key, node) {
         presetChildNodes(node, posx, posy);
+        if (isChild) { node.parent = url; }
         nodes[node.url] = nodes[node.url] || node;
       });
 
@@ -145,8 +145,11 @@ function NetworkGraph(selector, infobox) {
         }
       });
 
+      console.log('load node!');
+      console.dir(nodes);
+
       spinner.stop();
-      networkGraph.display();
+      _this.display();
     });
   };
 
@@ -165,6 +168,24 @@ function NetworkGraph(selector, infobox) {
     viewport_y = 0;
     rescale();
   };
+
+  this.resize = function() {
+
+    width = $(selector).width();
+    height = Math.max( Math.round(width * 9 / 16), 450);
+
+    viewport_origin_x = (width * 0.5) - centerx;
+    viewport_origin_y = (height * 0.5) - centery;
+    linkDistance = height * 0.2;
+
+    // update svg size
+    d3.select(selector).select('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    rescale();
+  };
+
 
   /* PRIVATE */
 
@@ -186,9 +207,36 @@ function NetworkGraph(selector, infobox) {
   }
 
   function getNodeClass(node) {
-    return node.root ? 
-            "node root" : 
-            (node['expandable'] ? "node expandable" : "node");
+    return node.root ?
+            "node root" :
+            (node['expandable'] ? "node expandable" :
+            (node['expanded'] ? "node expanded" : "node") );
+  }
+
+  // Remove child nodes from url & its related links
+  function removeChildNodes(url) {
+
+    // delete child nodes from parent
+    $.each(nodes, function(key,node) {
+      if (node.parent == url){
+        // Delete links from this node
+        $.each(links, function(key,link) {
+            if (link.source.url == node.url || link.target.url == node.url){
+              d3.select("#link-"+link.id).remove(); // from DOM
+              delete links[link.id];                // from data
+            }
+        });
+        // Delete node
+        d3.select("#node-"+node.index).remove();  // from DOM
+        delete nodes[node.url];                   // from data
+      }
+    });
+
+    // Update force after remove nodes & links
+    force
+      .nodes(d3.values(nodes))
+      .links(d3.values(links))
+      .start();
   }
 
   function addLink(link) {
@@ -215,7 +263,7 @@ function NetworkGraph(selector, infobox) {
   }
 
   // Load spinner, using spin.js
-  function showSpinner() {    
+  function showSpinner() {
     var opts = {
       lines: 13, // The number of lines to draw
       length: 20, // The length of each line
@@ -239,6 +287,7 @@ function NetworkGraph(selector, infobox) {
 
   // Force layout iteration
   function tick() {
+
     path.attr("d", function(d) {
       var dx = d.target.x - d.source.x,
           dy = d.target.y - d.source.y,
@@ -259,7 +308,7 @@ function NetworkGraph(selector, infobox) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
   function rescale() {
-    svg.attr("transform", "translate(" + viewport_x + ","+ viewport_y+")scale("+scale+")");
+    svg.attr("transform", "translate(" + (viewport_origin_x + viewport_x) + ","+ (viewport_origin_y + viewport_y) +")scale("+scale+")");
   }
 
   // Node drag handlers
@@ -269,7 +318,32 @@ function NetworkGraph(selector, infobox) {
   function dragmove(d) {
     // fix the node position when the node is dragged
     // (used to do this at dragend, but a double click would confuse it)
-    d.fixed = true;   
+    d.fixed = true;
+  }
+
+  // Click on node
+  function onClickNode(d) {
+    if (d3.event.defaultPrevented) return;  // click suppressed
+  
+    // Check if expand or contract
+    if ( d['expandable'] ) {
+      d['expandable'] = false;                // Not anymore expandable
+      d['expanded'] = true;                   // Expanded
+      d3.select( d3.event.target.parentNode ) // Change image icon (less)
+        .select('image')
+        .attr("xlink:href", "/img/less-sign.png");
+      d.fixed = true;                         // Fix after 'exploding', feels better
+      _this.loadNode(d.url, d.x, d.y, true);  // add child nodes
+
+    } else if ( d['expanded'] ) {
+      d['expandable'] = true;
+      d['expanded'] = false;
+      d3.select( d3.event.target.parentNode ) // Change image icon (plus)
+        .select('image')
+        .attr("xlink:href", "/img/plus-sign.png");
+      d.fixed = false;
+      removeChildNodes(d.url);   // remove child nodes
+    }
   }
 
   // Mouse over handlers
@@ -284,6 +358,8 @@ function NetworkGraph(selector, infobox) {
   }
 
   function onNodeMouseOver(d) {
+    if (d3.select( d3.event.target.parentNode ).classed('root')) { return; }
+
     fade(d, .2);  // Fade-out non-neighbouring nodes
 
     // Display node information
@@ -291,15 +367,20 @@ function NetworkGraph(selector, infobox) {
     renderNodeName(infobox, d);
     if ( d.description != null ) {
       infobox.append('span')
-        .text('. '+d.description+' ');
+        .text(' '+d.description+' ');
     }
   }
 
   function onNodeMouseOut(d) {
+    if (d3.select( d3.event.target.parentNode ).classed('root')) { return; }
+
     fade(d, 1);   // Fade-in the whole graph
   }
 
   function onRelationMouseOver(relation) {
+
+    fade(relation.source, .2);  // Fade-out non-neighbouring nodes
+
     // Display basic relation information
     infobox.html('');
     renderNodeName(infobox, relation.source);
@@ -330,11 +411,15 @@ function NetworkGraph(selector, infobox) {
     }
   }
 
+  function onRelationMouseOut(relation) {
+    fade(relation.source, 1);   // Fade-in the whole graph
+  }
+
 
   // Highlighting neighbouring nodes on hover
   function isConnected(a, b) {
-    return  connectedNodes[a.url + "," + b.url] || 
-            connectedNodes[b.url + "," + a.url] || 
+    return  connectedNodes[a.url + "," + b.url] ||
+            connectedNodes[b.url + "," + a.url] ||
             a.url == b.url;
   }
   
@@ -358,5 +443,4 @@ function NetworkGraph(selector, infobox) {
       path.attr("marker-end", "url(#relation)");
   }
 
-
-};
+}
