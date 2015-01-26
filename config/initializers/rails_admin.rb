@@ -253,18 +253,10 @@ RailsAdmin.config do |config|
       group :internal do
         label "Internal"
         field :photo
-        field :show_photo_as_header do
-          default_value true
-        end
-        field :published do
-          default_value false
-        end
-        field :featured do
-          default_value false
-        end
-        field :needs_work do
-          default_value true
-        end
+        field :show_photo_as_header
+        field :published
+        field :featured
+        field :needs_work
         field :related_posts do
           read_only true
         end

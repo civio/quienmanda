@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324194109) do
+ActiveRecord::Schema.define(version: 20150126043010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140324194109) do
     t.string   "web_page"
     t.string   "open_corporates_page"
     t.string   "youtube_page"
+    t.integer  "age"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 20140324194109) do
     t.text     "notes"
     t.string   "slug"
     t.boolean  "needs_work",           default: true,  null: false
-    t.boolean  "show_photo_as_header", default: false
+    t.boolean  "show_photo_as_header", default: true
     t.text     "lead"
     t.integer  "photo_id"
     t.boolean  "featured",             default: false
