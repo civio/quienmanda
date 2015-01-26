@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     redirect_to '/', alert: exception.message
   end
 
+  # After successful login, go to admin page
+  def after_sign_in_path_for(resource)
+    rails_admin.dashboard_path
+  end
+
   before_action :set_locale
 
   protected
