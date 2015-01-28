@@ -145,9 +145,6 @@ function NetworkGraph(selector, infobox) {
         }
       });
 
-      console.log('load node!');
-      console.dir(nodes);
-
       spinner.stop();
       _this.display();
     });

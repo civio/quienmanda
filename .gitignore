@@ -20,3 +20,4 @@ pickle-email-*.html
 /app/tabula_v1_0_2_html/
 latest.dump
 test.csv
+app/assets/stylesheets/less/config.codekit

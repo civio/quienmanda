@@ -35,37 +35,40 @@
 
     <div id="wrapper" class="full span9">
 
-      <div id="visualization-controls">
-        <a href="#" id="control-zoom-in" data-toggle="tooltip" data-placement='bottom' data-original-title='Acercar la visualización'>
-          <i class="icon-zoom-in"></i>
-        </a>
-        <a href="#" id="control-zoom-out" data-toggle="tooltip" data-placement='bottom' data-original-title='Alejar la visualización'>
-          <i class="icon-zoom-out"></i>
-        </a>
-        <a href="#" id="control-zoom-reset" data-toggle="tooltip" data-placement='bottom' data-original-title='Volver a la posición inicial'>
-          <i class="icon-repeat"></i>
-        </a>
-        <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o qué tipo de relación les une (líneas) pasa el puntero por encima de ellos.'>
-          <i class="icon-question-sign"></i>
-        </a>
-      </div>
+      <div id="viz-container" data-path="<%= entity_path(entity) %>">
 
-      <div id="visualization-legend">    
-        <div class="legend">
-          <span class="legend-organizations"><i class="icon-circle"></i> Organizaciones</span>
-          <span class="legend-people"><i class="icon-circle"></i> Personas</span>
+        <div id="visualization-controls">
+          <a href="#" id="control-fullscreen" data-toggle="tooltip" data-placement='bottom' data-original-title='Ver a pantalla completa'>
+            <i class="icon-fullscreen"></i>
+          </a>
+          <a href="#" id="control-fullscreen-exit" data-toggle="tooltip" data-placement='bottom' data-original-title='Salir de pantalla completa'>
+            <i class="icon-resize-small"></i>
+          </a>
+          <a href="#" id="control-zoom-in" data-toggle="tooltip" data-placement='bottom' data-original-title='Acercar la visualización'>
+            <i class="icon-zoom-in"></i>
+          </a>
+          <a href="#" id="control-zoom-out" data-toggle="tooltip" data-placement='bottom' data-original-title='Alejar la visualización'>
+            <i class="icon-zoom-out"></i>
+          </a>
+          <a href="#" id="control-zoom-reset" data-toggle="tooltip" data-placement='bottom' data-original-title='Volver a la posición inicial'>
+            <i class="icon-repeat"></i>
+          </a>
+          <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o qué tipo de relación les une (líneas) pasa el puntero por encima de ellos.'>
+            <i class="icon-question-sign"></i>
+          </a>
         </div>
-      </div>
 
-      <div id="viz-container"></div>
+        <div id="visualization-legend">    
+          <div class="legend">
+            <span class="legend-organizations"><i class="icon-circle"></i> Organizaciones</span>
+            <span class="legend-people"><i class="icon-circle"></i> Personas</span>
+          </div>
+        </div>
 
-      <div id="infobox">
-
+        <div id="infobox"></div>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <%= render "shared/relations_list", :list => @relations %>
@@ -73,17 +76,3 @@
 <%= render '/shared/mixed_wall', 
             items: entity.related_posts+entity.related_photos, 
             extra_wrapper_css: 'tight' %>
-
-<script>
-$(function () {
-
-  var graph = new NetworkGraph("#viz-container", "#infobox");
-  graph.loadNode('<%= entity_path(entity) %>');
-  $('#control-zoom-in').click(function() { graph.zoomIn(); return false; });
-  $('#control-zoom-out').click(function() { graph.zoomOut(); return false; });
-  $('#control-zoom-reset').click(function() { graph.zoomReset(); return false; });
-  $('#control-help').click(function() { return false; });
-  $('#visualization-controls a').tooltip();
-
-});
-</script>
