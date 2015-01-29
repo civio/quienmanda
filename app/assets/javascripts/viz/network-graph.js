@@ -100,7 +100,7 @@ function NetworkGraph(selector, infobox) {
     node.enter().append("g")
       .call(drag)
       .call(createNode)
-        .attr("id", function(d){ return 'node-'+d.index; })
+        .attr("id", function(d){ return 'node'+d.url.replace(/\//g,'-'); })
         .attr("class", getNodeClass)
         .on('click', onClickNode)
       .append("text")
@@ -122,6 +122,7 @@ function NetworkGraph(selector, infobox) {
     // HTML and JSON responses, so the quickest way of fixing that is making sure the
     // request URLs are different.
     $.getJSON(url+'.json', function(data) {
+
       // Add the retrieved nodes to the network graph
       $.each(data.nodes, function(key, node) {
         presetChildNodes(node, posx, posy);
@@ -212,20 +213,25 @@ function NetworkGraph(selector, infobox) {
 
   // Remove child nodes from url & its related links
   function removeChildNodes(url) {
-
     // delete child nodes from parent
     $.each(nodes, function(key,node) {
       if (node.parent == url){
         // Delete links from this node
         $.each(links, function(key,link) {
             if (link.source.url == node.url || link.target.url == node.url){
-              d3.select("#link-"+link.id).remove(); // from DOM
+              d3.select('#link-'+link.id).remove(); // from DOM
               delete links[link.id];                // from data
             }
         });
+
+        var nodeToDelete = d3.select('#node'+node.url.replace(/\//g,'-'));
+        // Check if node to delete has child to remove recursively
+        if( nodeToDelete.classed('expanded') ){
+          removeChildNodes( node.url );
+        }
         // Delete node
-        d3.select("#node-"+node.index).remove();  // from DOM
-        delete nodes[node.url];                   // from data
+        nodeToDelete.remove();  // from DOM
+        delete nodes[node.url]; // from data
       }
     });
 
@@ -326,18 +332,20 @@ function NetworkGraph(selector, infobox) {
     if ( d['expandable'] ) {
       d['expandable'] = false;                // Not anymore expandable
       d['expanded'] = true;                   // Expanded
-      d3.select( d3.event.target.parentNode ) // Change image icon (less)
+      d3.select( d3.event.target.parentNode ) // Update class & change image icon (less)
+        .attr('class', getNodeClass)
         .select('image')
-        .attr("xlink:href", "/img/less-sign.png");
+          .attr("xlink:href", "/img/less-sign.png");
       d.fixed = true;                         // Fix after 'exploding', feels better
       _this.loadNode(d.url, d.x, d.y, true);  // add child nodes
 
     } else if ( d['expanded'] ) {
       d['expandable'] = true;
       d['expanded'] = false;
-      d3.select( d3.event.target.parentNode ) // Change image icon (plus)
+      d3.select( d3.event.target.parentNode ) // Update class & change image icon (plus)
+        .attr('class', getNodeClass)
         .select('image')
-        .attr("xlink:href", "/img/plus-sign.png");
+          .attr("xlink:href", "/img/plus-sign.png");
       d.fixed = false;
       removeChildNodes(d.url);   // remove child nodes
     }
