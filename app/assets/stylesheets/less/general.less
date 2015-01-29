@@ -1,28 +1,85 @@
 /* Base
 =================================================================== */
 
-body{
-  font-size: 16px;
-  font-family: @fontDroid;
-  background: @colorBody;
-  // Guide!
-  //background: url(/images/QuienManda-home.jpg) no-repeat top center;
+html { 
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: @fontDroid !important; }
+body{
+  color: #000;
+  font-size: 16px;
+  font-family: @fontDroid;
+  font-weight: 400;
+  background: @colorBody;
+}
+
+a {
+  color: #242424;
+
+  &:hover {
+    color: #121212;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #414141;
+  font-family: @fontDroid;
+  font-weight: normal !important;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+}
+h2 {
+  font-size: 20px;
+  line-height: 40px;
+}
+h3 {
+  font-size: 18px;
+  line-height: 32px;
+}
+h4 {
+  font-size: 13px;
+  line-height: 30px;
+}
+h5 {
+  font-size: 12px;
+  line-height: 26px;
+}
+h6 {
+  font-size: 11px;
+  line-height: 24px;
+}
+
+ul, ol { margin: 0; }
 
 input, button, select, textarea{ font-family: @fontDroid; }
+
+
+/* Layout
+=================================================================== */
 
 body > .container{
   position: relative;
   margin-top: 145px;
 }
 
-#wrapper{ margin-top: 48px; }
-#wrapper.full{ margin-top: 0; }
+#wrapper {
+  margin-top: 48px;
+  margin-bottom: 30px;
 
-#wall h3 {
-  line-height: 25px;
+  &.full{ 
+    margin-top: 0;
+    .boxStyle();
+  }
+}
+
+.picture img {
+  width: 100%;
+  height: auto;
 }
 
 
@@ -69,6 +126,59 @@ p.alert-info{
 .inactive .show-active { display:none;}
 .inactive .show-inactive { display:inline-block; }
 
+
+/* Isotope styles
+=================================================================== */
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.5s;
+   -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+   transition-duration: 0.5s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  -ms-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property:    -moz-transform, opacity;
+  -ms-transition-property:     -ms-transform, opacity;
+  -o-transition-property:         top, left, opacity;
+  transition-property:         transform, opacity;
+}
+
+// Disabling Isotope CSS3 transitions
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+  -moz-transition-duration: 0s;
+  -ms-transition-duration: 0s;
+  -o-transition-duration: 0s;
+   transition-duration: 0s;
+}
+
+// Disable CSS transitions for containers with infinite scrolling
+.isotope.infinite-scrolling {
+  .transition( none );
+}
 
 
 /* Social sharing

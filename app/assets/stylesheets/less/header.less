@@ -4,15 +4,32 @@
 body > header{
   position: absolute;
   top: 0;
+  width: 100%;
   height: 145px;
-  border: none;
   background: @colorHeader;
+  z-index: 1000;
+  .box-shadow( ~'0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05)' );
 }
 
 .nav-collapse.collapse {
   left: 0;
   top: 83px;
   background: @colorHeader;
+  height: auto \9 !important;
+  overflow: visible \9 !important;
+  z-index: 9999;
+}
+
+.navbar, 
+.navbar-inner, 
+.nav,
+.navbar-inverse {
+  background: transparent !important;
+  filter: none !important;
+  border: none;
+  padding: 0px;
+  margin: 0;
+  .box-shadow( none );
 }
 
 .navbar{
@@ -21,8 +38,6 @@ body > header{
 
     padding: 0;
     margin: 15px 0 0;
-    border: none;
-    text-shadow: none;
 
     h1{
       display: block;
@@ -42,26 +57,55 @@ body > header{
     padding-left: 140px;
     margin: 0;
     background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
+
+    >li{
+      background: @colorHeader;
+
+      > a {
+        color: @colorGray;
+        font-family: @fontEconomica;
+        font-weight: 700;
+        font-size: 1.375em;
+        padding: 16px;
+        text-shadow: 0 1px 0 #ffffff;
+        .transition( color 0.3s ease-in-out );
+
+        &:hover{ 
+          color: @colorHeaderLink;
+          background-color: transparent !important;
+        }
+      }
+
+      &.active{
+        > a{
+          color: @colorHeaderLink;
+
+          &:hover{
+            color: @colorGray;
+            .box-shadow( none );
+          }
+        }
+
+        > a,
+        > a:focus{
+          background-color: transparent !important; 
+          .box-shadow( none );
+        }
+      }
+    }
   }
 
-  .nav>li{
-    background: @colorHeader;
+  .btn-navbar{
+  
+    position: relative; 
+    border: none;
+    padding: 19px 16px 18px;
+    .border-radius( 0 );
 
-    &.active a{ color: @colorHeaderLink !important; }
-  }
-
-  .nav > li > a {
-    color: @colorGray;
-    font-family: @fontEconomica;
-    font-weight: 700;
-    font-size: 1.375em;
-    -webkit-transition: color 0.3s ease-in-out;
-    -moz-transition: color 0.3s ease-in-out;
-    -o-transition: color 0.3s ease-in-out;
-    -ms-transition: color 0.3s ease-in-out;
-    transition: color 0.3s ease-in-out;
-
-    &:hover{ color: @colorHeaderLink; };
+    .icon-bar {
+      background: #a3a3a3 !important;
+      .box-shadow( 0 1px 0 #fff );
+    }
   }
 }
 

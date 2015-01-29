@@ -6,6 +6,10 @@
   .navbar .nav{ 
     right: 232px; 
     padding-left: 210px;
+
+    >li > a{
+      padding: 16px 20px;
+    }
   }
 
   #homepage-lead {
@@ -55,14 +59,20 @@
     margin: 0;
     right: auto;
     left: auto;
-  }
 
-  .navbar .nav > li{ 
-    padding-bottom: 5px;
-    border-bottom: 2px solid @colorBody;
-  }
+    >li{ 
+      border-bottom: 2px solid @colorBody;
 
-  .navbar .nav > li:first-child > a{ border-top: none; }
+      &:first-child > a{ 
+        padding-top: 15px;
+        border-top: none; 
+      }
+
+      a{
+        padding: 10px 20px;
+      }
+    }
+  }
 
   #custom-search-form{
 
@@ -126,9 +136,14 @@
     margin-right: 12px;
   }
 
-  #wrapper{
-    margin-right: 10px;
-    margin-left: 10px;
+  body{
+    padding: 0;
+  }
+
+  body > .container,
+  #footer > .container{
+    margin-right: 12px;
+    margin-left: 12px;
   }
 
   #wall.post .item{

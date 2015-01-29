@@ -2,16 +2,23 @@
 =================================================================== */
 
 #page-title{
-
+  position: relative;
   padding: 0;
   margin-top: 42px;
   margin-bottom: 0;
   text-align: left;
 
-  &:before{
+  &:before,
+  &:after {
+    position: absolute;
     display: block;
     content: "";
-    float: left;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+  }
+
+  &:before{
     width: 62px;
     height: 63px;
     overflow: hidden;
@@ -20,25 +27,24 @@
   }
 
   &:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
+    width: auto;
     height: 3px;
     top: 20px !important;
     left: 82px;
     right: 12px;
     border-top: 1px solid #fafafa;
     border-bottom: 1px solid #fafafa;
-    width: auto;
   }
 
   h2{
-    font-size: 2.25em;
-    color: @colorGray;
-    background: @colorBody;
-    font-weight: bold !important;
+    font-family: @fontEconomica;
+    display: inline-block;
     padding: 0 16px 0 0;
-    margin-left: 80px;
+    margin: 0 0 0 80px;
+    color: @colorGray;
+    font-size: 2.25em;
+    font-weight: bold !important;
+    background: @colorBody;
   }
 
   &.photo:before{
@@ -142,13 +148,10 @@
   .posts,
   .sidebar{
     position: relative;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
     padding: 0;
-    border: 0;
     margin-bottom: 32px;
     z-index: 60;
+    .boxStyle();
   }
 
   .posts.span8{
@@ -162,6 +165,10 @@
     padding: 20px 0;
     text-align: left;
     line-height: 24px;
+
+    &.first {
+      margin-top: -20px;
+    }
 
     .picture{
       padding: 3px;
@@ -223,9 +230,14 @@
       }
     }
 
+
+    .info {
+      width: 100px;
+      float: left;
+    }
+
     .post-date{
-      width: auto;
-      height: auto;
+      display: block;
       padding: 10px 0;
       margin: 32px 12px 0 32px;
       background: @colorHeader;
@@ -259,11 +271,12 @@
     }
 
     .post-content{
-
-      font-size: 0.938em;
-      padding: 0 32px;
+  
       clear: both;
       float: none;
+      padding: 0 32px;
+      margin: 0;
+      font-size: 0.938em;  
 
       p{
         margin: 0 0 15px;
@@ -278,12 +291,14 @@
       }
 
       .post-meta{
-      
+        color: #666;
         padding: 0 0 12px;
+        margin: -10px 0 0;
 
         a{
           font-family: @fontBaskerville !important;
           font-style: italic;
+          text-decoration: none;
 
           &:hover{ color: @colorTextGreen; };
         }
@@ -677,4 +692,14 @@
 .post-description a:hover {
   text-decoration: none;
   border-bottom: 1px black solid;
+}
+
+.pagination {
+  text-align: center;
+
+  ul >li > a,
+  ul > li > span{
+    font-size: 0.913em;
+    padding: 6px 12px;
+  }
 }
