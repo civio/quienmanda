@@ -8,7 +8,21 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Economica:700,400italic|Libre+Baskerville:700,400italic|Oswald&text=CONTACTO%40CIVIO.ES/">
+
   <%= favicon_link_tag 'favicon.ico' %>
+
+  <!--[if lt IE 9 ]>
+    <%= stylesheet_link_tag "/css/styleIE.css" %>
+  <![endif]-->
+  <!--[if IE 9 ]>
+    <%= stylesheet_link_tag "/css/styleIE9.css" %>
+  <![endif]-->
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body class="admin">
   <header>
@@ -20,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to 'Quien Manda', root_path, class: 'brand' %>
+          <%= link_to '<h1>Quien Manda</h1>'.html_safe, root_path, class: 'brand' %>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li ><%= link_to 'Admin', rails_admin_path %></li>
@@ -35,5 +49,6 @@
     <%= yield %>
   </div>
 
+  <%= render 'shared/footer' %>
 </body>
 </html>
