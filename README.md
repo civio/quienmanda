@@ -5,6 +5,7 @@ quienmanda.es
 [![Coverage Status](https://coveralls.io/repos/civio/quienmanda.es/badge.png?branch=master)](https://coveralls.io/r/civio/quienmanda.es?branch=master)
 [![Code Climate](https://codeclimate.com/github/civio/quienmanda.es.png)](https://codeclimate.com/github/civio/quienmanda.es)
 [![Dependency Status](https://gemnasium.com/civio/quienmanda.es.png)](https://gemnasium.com/civio/quienmanda.es)
+[![Stories in Ready](https://badge.waffle.io/civio/quienmanda.es.svg?label=ready&title=Ready)](http://waffle.io/civio/quienmanda.es)
 
 ### Install locally
 
