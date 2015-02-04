@@ -9,7 +9,7 @@ quienmanda.es
 
 ### Install locally
 
-See [INSTALL.md|INSTALL.md] for detailed setup instructions.
+See [INSTALL.md](INSTALL.md) for detailed setup instructions.
 
 ### Components used
 
