@@ -33,6 +33,18 @@
       $('#visualization-controls a').tooltip();
     }
 
+    /* -------------------- Setup photo --------------------- */
+    anno.setProperties({ hi_stroke: '#6bb21b', });
+    if( $('#photo').data('readonly') ){
+      anno.addHandler('onMouseOverAnnotation', function(e) {
+        $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
+      });
+    }
+    anno.addPlugin('RESTStorage', {
+      base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
+      read_only: $('#photo').data('readonly')
+    });
+
     /* -------------------- Setup Resize --------------------- */
     onResize();
     $(window).bind("resize", onResize);
@@ -108,7 +120,11 @@
       // Reset Annotorious
       if (hasPhoto) {
         anno.reset();
-        anno.makeAnnotatable(document.getElementById('photo'));
+        anno.addPlugin('RESTStorage', {
+          base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
+          read_only: $('#photo').data('readonly')
+        });
+        $('.annotorious-es-plugin-load-outer').hide();
       }
 
       // Resize visualization
