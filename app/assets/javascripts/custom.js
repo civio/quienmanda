@@ -1,3 +1,5 @@
+jQuery.noConflict();
+
 (function($) {
 
   var $cont, contWidth = 0,
@@ -34,16 +36,19 @@
     }
 
     /* -------------------- Setup photo --------------------- */
-    anno.setProperties({ hi_stroke: '#6bb21b', });
-    if( $('#photo').data('readonly') ){
-      anno.addHandler('onMouseOverAnnotation', function(e) {
-        $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
+    if( hasPhoto ){
+      anno.setProperties({ hi_stroke: '#6bb21b', });
+      if( $('#photo').data('readonly') ){
+        anno.addHandler('onMouseOverAnnotation', function(e) {
+          $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
+        });
+      }
+      anno.addPlugin('RESTStorage', {
+        base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
+        read_only: $('#photo').data('readonly')
       });
     }
-    anno.addPlugin('RESTStorage', {
-      base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
-      read_only: $('#photo').data('readonly')
-    });
+
 
     /* -------------------- Setup Resize --------------------- */
     onResize();
@@ -133,6 +138,7 @@
       }
     }
 
+    /*
     // Improve this!!!
     if (winWidth < 980 && winWidth > 767) {
       
@@ -153,6 +159,7 @@
       }
 
     }
+    */
   }
 
 })(jQuery);

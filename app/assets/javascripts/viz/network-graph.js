@@ -1,9 +1,13 @@
+// We define $j instead of $ to avoid conflict with annotorious.js 
+// (see https://learn.jquery.com/using-jquery-core/avoid-conflicts-other-libraries/)
+$j = jQuery.noConflict();
+
 function NetworkGraph(selector, infobox) {
 
   var _this = this;
 
   // Basic D3.js SVG container setup
-  var width = $(selector).width(),
+  var width = $j(selector).width(),
       height = Math.max(Math.round(width * 9 / 16), 450),
       centerx = width / 2,
       centery = height / 2,
@@ -121,22 +125,22 @@ function NetworkGraph(selector, infobox) {
     // the Content Type headers of the request. But the Rails cache is mixing up the 
     // HTML and JSON responses, so the quickest way of fixing that is making sure the
     // request URLs are different.
-    $.getJSON(url+'.json', function(data) {
+    $j.getJSON(url+'.json', function(data) {
 
       // Add the retrieved nodes to the network graph
-      $.each(data.nodes, function(key, node) {
+      $j.each(data.nodes, function(key, node) {
         presetChildNodes(node, posx, posy);
         if (isChild) { node.parent = url; }
         nodes[node.url] = nodes[node.url] || node;
       });
 
       // Add the retrieved links to the network graph
-      $.each(data.links, function(key, link) {
+      $j.each(data.links, function(key, link) {
         addLink(link);
       });
 
       // Go through the relations of child nodes, looking for relations among them
-      $.each(data.child_links, function(key, link) {
+      $j.each(data.child_links, function(key, link) {
         if ( nodes[link.source]==null ) {
           nodes[link.target]['expandable'] = true;
         } else if ( nodes[link.target]==null ) {
@@ -169,7 +173,7 @@ function NetworkGraph(selector, infobox) {
 
   this.resize = function() {
 
-    width = $(selector).width();
+    width = $j(selector).width();
     height = Math.max( Math.round(width * 9 / 16), 450);
 
     viewport_origin_x = (width * 0.5) - centerx;
@@ -214,10 +218,10 @@ function NetworkGraph(selector, infobox) {
   // Remove child nodes from url & its related links
   function removeChildNodes(url) {
     // delete child nodes from parent
-    $.each(nodes, function(key,node) {
+    $j.each(nodes, function(key,node) {
       if (node.parent == url){
         // Delete links from this node
-        $.each(links, function(key,link) {
+        $j.each(links, function(key,link) {
             if (link.source.url == node.url || link.target.url == node.url){
               d3.select('#link-'+link.id).remove(); // from DOM
               delete links[link.id];                // from data
@@ -285,7 +289,7 @@ function NetworkGraph(selector, infobox) {
       top: 'auto', // Top position relative to parent in px
       left: 'auto' // Left position relative to parent in px
     };
-    return new Spinner(opts).spin($(selector)[0]);
+    return new Spinner(opts).spin($j(selector)[0]);
   }
 
   // Force layout iteration
@@ -447,5 +451,4 @@ function NetworkGraph(selector, infobox) {
     else
       path.attr("marker-end", "url(#relation)");
   }
-
 }
