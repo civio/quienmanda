@@ -4,7 +4,7 @@
 # (So beware when changing them, as they may be cached. Safer to add a version number.)
 %>
 <%= javascript_include_tag "/javascripts/annotorious/annotorious.min.js" %>
-<%= javascript_include_tag "/javascripts/annotorious/anno-rest-storage-plugin.js" %>
+<%= javascript_include_tag "/javascripts/annotorious/annotorious.rest-storage-plugin.js" %>
 <%#
 # The minimized version of Annotorious breaks the $ jQuery object, which creates havoc 
 # with other Javascript code, so be careful. Trying to restore jQuery ($=jQuery) breaks 
@@ -12,6 +12,7 @@
 %>
 <script>
 jQuery(function() {
+  anno.setProperties({ hi_stroke: '#6bb21b', });
   anno.addPlugin('RESTStorage', { 
                     base_url: '<%= "/photos/#{photo.id}/annotations" %>',
                     read_only: <%= (can? :manage, photo) ? 'false' : 'true' %>

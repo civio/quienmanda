@@ -241,6 +241,9 @@ iframe.quienmanda-embed {
 iframe.quienmanda-embed body {
   margin: 0;
 }
+.annotorious-annotationlayer {
+  width: 100%;
+}
 /* Header
 =================================================================== */
 body > header {
