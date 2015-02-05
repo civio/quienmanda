@@ -70,7 +70,7 @@ gem 'rails_admin'
 gem 'rails_admin_toggleable'
 gem 'rails_admin_tag_list'
 gem 'ckeditor_rails'
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
+gem 'paper_trail', '~> 4.0.0.beta'
 gem 'charlock_holmes_bundle_icu'
 gem 'fuzzy_match'
 
