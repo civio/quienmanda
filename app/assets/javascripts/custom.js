@@ -115,9 +115,7 @@ jQuery.noConflict();
 
   /* -------------------- Resize --------------------- */
   function onResize(e) {
-    var winHeight = $(window).height();
-    var winWidth = $(window).width();
-
+   
     // Reset Annotorious when change container width
     if ($cont && contWidth !== $cont.width()) {
       contWidth = $cont.width();
@@ -137,29 +135,6 @@ jQuery.noConflict();
         graph.resize();
       }
     }
-
-    /*
-    // Improve this!!!
-    if (winWidth < 980 && winWidth > 767) {
-      
-      if($("#wall").width()) {
-        if($("#wall.item").hasClass("span3")) {
-          $("#wall.item").removeClass("span3");
-          $("#wall.item").addClass("span4");
-        }
-      }
-              
-    } else {
-      
-      if($("#wall").width()) {
-        if($(".item").hasClass("span4")) {
-          $("#wall.item").removeClass("span4");
-          $("#wall.item").addClass("span3");
-        }
-      }
-
-    }
-    */
   }
 
 })(jQuery);
