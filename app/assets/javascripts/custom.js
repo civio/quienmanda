@@ -49,15 +49,27 @@ jQuery.noConflict();
     /* -------------------- Setup photo --------------------- */
     if( hasPhoto ){
       anno.setProperties({ hi_stroke: '#6bb21b', });
-      if( $('#photo').data('readonly') ){
-        anno.addHandler('onMouseOverAnnotation', function(e) {
-          $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
-        });
-      }
+      anno.addHandler('onMouseOverAnnotation', onAnnoHover);
       anno.addPlugin('RESTStorage', {
         base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
         read_only: $('#photo').data('readonly')
       });
+    }
+
+    // On Annotorious Mouse Over Handler
+    function onAnnoHover(e) {
+      if( e.K === undefined ) return true;
+
+      var $annoPopup = $('.annotorious-popup');
+
+      // Align title right if its placed at the right half of the picture
+      if( e.K.shapes[0].geometry.x > 0.5 ){
+        $annoPopup.css('left', $annoPopup.position().left - $annoPopup.width() - 16 + (e.K.shapes[0].geometry.width*$('.annotorious-annotationlayer').width()) );
+      }
+
+      if( $('#photo').data('readonly') ){
+        $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
+      }
     }
 
     /* -------------------- Setup Resize --------------------- */
