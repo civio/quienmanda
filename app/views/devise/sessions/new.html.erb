@@ -14,7 +14,8 @@
   <div class="row-fluid">
     
     <div id="login-form" class="span12">
-      
+
+      <%# Hide Twitter/FB login temporarily, until implemented
       <div class="page-title-small">
 
         <h3>use your account</h3>
@@ -35,6 +36,8 @@
         <h3>or</h3>
 
       </div>
+      %>
+      &nbsp;
       
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
