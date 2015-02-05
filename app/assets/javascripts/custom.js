@@ -2,8 +2,9 @@ jQuery.noConflict();
 
 (function($) {
 
-  var $cont, contWidth = 0,
-      $wall,
+  var $wall,
+      $cont,
+      contWidth = 0,
       hasPhoto = false,
       hasVis = false,
       graph;
@@ -16,18 +17,18 @@ jQuery.noConflict();
     hasPhoto = $('#photo').length > 0;        // check if there is a photo entity
     hasVis = $('#viz-container').length > 0;  // check if there is a visualization
 
+
+    /* -------------------- Setup home slider --------------------- */
+    $('#flex1').flexslider();
+
     /* -------------------- Setup layouts --------------------- */
-
     $wall = $('#wall, .extra-wall');
-
     $wall.imagesLoaded(function() {
-
       $wall.packery({
         itemSelector: '.item',
         columnWidth: $wall.width() / 12
       });
     });
-
 
     /* -------------------- Setup visualization --------------- */
     if( hasVis ){
@@ -59,14 +60,12 @@ jQuery.noConflict();
       });
     }
 
-
     /* -------------------- Setup Resize --------------------- */
     onResize();
     $(window).bind("resize", onResize);
 
 
     /* -------------------- Misc functions ------------------- */
-
     // Back to Top
     $('#under-footer-back-to-top a').click(function(){
       $('html, body').animate({scrollTop:0}, 300);
