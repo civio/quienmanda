@@ -1,13 +1,16 @@
 # Add application configuration variables here, as shown below.
 #
+
 DEVISE_SECRET: put-your-secret-here
 
+# Used only in production: Amazon S3 details to store uploaded photos
 S3_KEY: put-your-key-here
 S3_SECRET: put-your-secret-here
 S3_REGION: eu-west-1
 S3_BUCKET_NAME: quienmanda
 FORCE_S3_IN_DEV: false
 
+# Used only in production
 NEW_RELIC_KEY: put-your-new-relic-key-here
 
 # Optional. Used to extract references from post contents
