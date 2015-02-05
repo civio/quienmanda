@@ -498,14 +498,17 @@ body > header {
   clear: both;
   float: none;
   color: #fff;
-  font-size: 1.75em;
-  font-family: 'Oswald', sans-serif;
+  font-size: 2em;
+  font-family: 'Economica', sans-serif;
   text-transform: uppercase;
   margin-top: 36px;
 }
 #footer .about .contact a {
   color: #ce7a20 !important;
   font-size: 1em;
+}
+#footer .about .contact a .arroba {
+  font-family: 'Open Sans', sans-serif;
 }
 #footer .about .contact a:hover {
   color: #fff !important;
