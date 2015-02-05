@@ -11,6 +11,11 @@ Postgres is used for the database. We use the `hstore` datatypes, so 9.0 is requ
     $ createdb -O qm -h localhost qm_development
     $ createdb -O qm -h localhost qm_test
 
+ImageMagick is a dependency of Carrierwave, and is used to manipulate scaled images. You'll need to install it manually:
+
+    $ brew install imagemagick # in OS X
+    $ # TODO: add Linux command
+
 Then install and run locally, get a copy of the code, install the dependencies:
  
     $ git clone https://github.com/civio/quienmanda.es.git
