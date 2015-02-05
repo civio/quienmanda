@@ -7,9 +7,31 @@ quienmanda.es
 [![Dependency Status](https://gemnasium.com/civio/quienmanda.es.png)](https://gemnasium.com/civio/quienmanda.es)
 [![Stories in Ready](https://badge.waffle.io/civio/quienmanda.es.svg?label=ready&title=Ready)](http://waffle.io/civio/quienmanda.es)
 
-### Install locally
+Quién Manda is a map of power relations in Spain, combining network visualizations, investigative journalism articles and annotated photos. The code is stable and has been [live](http://quienmanda.es) since October 2013, but some important features are still missing:
+
+ * Embeddable content
+ 
+ * Richer network visualization
+ 
+ * Custom visualizations
+ 
+ * REST API
+
+ * User generated content
+
+### Currently working on...
+
+We're using a [Waffle.io board](https://waffle.io/civio/quienmanda.es) to show which issues we're working on at the moment: we select a coherent set of issues from Backlog and move them into the 'Next milestone' column; once all the issues move to the Done column we go back to the Backlog and repeat the process. We aim to have a series of meaningful milestones (or iterations) forming a sensible high-level roadmap.
+
+### Setting it up
 
 See [INSTALL.md](INSTALL.md) for detailed setup instructions.
+
+### Using production content in your local environment
+
+
+
+**TODO**: 
 
 ### Components used
 
