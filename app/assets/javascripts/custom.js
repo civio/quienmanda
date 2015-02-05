@@ -3,6 +3,7 @@ jQuery.noConflict();
 (function($) {
 
   var $cont, contWidth = 0,
+      $wall,
       hasPhoto = false,
       hasVis = false,
       graph;
@@ -16,8 +17,17 @@ jQuery.noConflict();
     hasVis = $('#viz-container').length > 0;  // check if there is a visualization
 
     /* -------------------- Setup layouts --------------------- */
-    layoutPhotoWall('#wall');
-    layoutPhotoWall('.extra-wall'); /* Sigh */
+
+    $wall = $('#wall, .extra-wall');
+
+    $wall.imagesLoaded(function() {
+
+      $wall.packery({
+        itemSelector: '.item',
+        columnWidth: $wall.width() / 12
+      });
+    });
+
 
     /* -------------------- Setup visualization --------------- */
     if( hasVis ){
@@ -90,35 +100,17 @@ jQuery.noConflict();
   });
 
 
-  /* -------------------- Isotope --------------------- */
-  function layoutPhotoWall(container_name) {
-    $(container_name).imagesLoaded(function() {
-      
-      var $container = $(container_name);
-      $container.isotope({
-        // options...
-        resizable: false, // disable normal resizing
-        // set columnWidth to a percentage of container width
-        masonry: { columnWidth: $container.width() / 12 },
-        itemSelector : '.item'
-      });
-
-      // update columnWidth on window resize
-      $(window).smartresize(function(){
-        $container.isotope({
-          // update columnWidth to a percentage of container width
-          masonry: { columnWidth: $container.width() / 12 }
-        });
-      });
-    });
-  }
-
   /* -------------------- Resize --------------------- */
   function onResize(e) {
    
-    // Reset Annotorious when change container width
     if ($cont && contWidth !== $cont.width()) {
+
       contWidth = $cont.width();
+
+      // Update packery column width
+      $wall.packery({
+        columnWidth: $wall.width() / 12
+      });
 
       // Reset Annotorious
       if (hasPhoto) {
