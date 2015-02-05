@@ -2211,8 +2211,12 @@ li:hover .admin-action {
   #homepage-slider .flexslider.home .slides > li {
     padding: 3px;
   }
-  #wall.post .item {
-    width: 48.5%;
+  #wall .item.span3,
+  #wall .item.span4 {
+    width: 48%;
+  }
+  #wall .item.span6 {
+    width: 100%;
   }
   #wrapper .sidebar.span4 .related-entities-navigation {
     font-size: 0.913em;
@@ -2246,9 +2250,6 @@ li:hover .admin-action {
     margin-right: 12px;
     margin-left: 12px;
   }
-  #wall.post .item {
-    width: 100%;
-  }
   #footer .links h3 {
     display: none;
   }
@@ -2258,5 +2259,13 @@ li:hover .admin-action {
   }
   #footer .links {
     padding-left: 0;
+  }
+}
+/* Small Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 520px) {
+  #wall .item.span3,
+  #wall .item.span4 {
+    width: 100%;
   }
 }

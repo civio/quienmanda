@@ -100,8 +100,12 @@
     }
   }
 
-  #wall.post .item{
-    width: 48.5%;
+  #wall .item.span3,
+  #wall .item.span4{
+    width: 48%;
+  }
+  #wall .item.span6{
+    width: 100%;
   }
 
   #wrapper .sidebar.span4 .related-entities-navigation{
@@ -146,10 +150,6 @@
     margin-left: 12px;
   }
 
-  #wall.post .item{
-    width: 100%;
-  }
-
   #footer .links h3{
     display: none;
   }
@@ -162,5 +162,16 @@
 
   #footer .links {
     padding-left: 0;
+  }
+}
+
+
+/* Small Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 520px) {
+
+  #wall .item.span3,
+  #wall .item.span4{
+    width: 100%;
   }
 }
