@@ -1,9 +1,13 @@
+<!DOCTYPE html>
 <html>
 <head>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag "/css/annotorious.css" %>
   <style>
+    html { -webkit-text-size-adjust: none; /* prevent font scaling in landscape */ }
     body {
+      margin: 0;
+      padding: 10px;
       color: #242424;
       font-size: 14px;
       font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -26,27 +30,27 @@
       color: black;
       text-decoration: none;
     }
+    .annotorious-annotationlayer{
+      width: 100%;
+    }
   </style>
 </head>
-<body onload="adjustIFrameHeight();">
-  <div class="span6 item">
-    <div class="picture">
-      <%= image_tag(@photo.file.url(:full), width: '100%', id: 'photo', class: 'photo annotatable') %>
+<body>
+  <div class="picture">
+    <%= image_tag(@photo.file.url(:full), width: '100%', id: 'photo', class: 'photo annotatable', :data => { :photoid => @photo.id, :readonly => (can? :manage, @photo) ? 'false' : 'true' }) %>
 
-      <%= render 'shared/photo_footer', photo: @photo, external_link: true %>
-    </div>  
+    <%= render 'shared/photo_footer', photo: @photo, external_link: true %>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <%= javascript_include_tag "/javascripts/annotorious/annotorious.min.js" %>
+  <%= javascript_include_tag "/javascripts/annotorious/annotorious.rest-storage-plugin.js" %>
   <%= javascript_include_tag "/javascripts/jquery.imagesloaded.js" %>
-  <%= render 'shared/annotorious', photo: @photo %>
-
+  <%= javascript_include_tag "/javascripts/pym.min.js" %>
+  <%= javascript_include_tag "/javascripts/widget.js" %>
   <script>
-  // http://stackoverflow.com/questions/153152/resizing-an-iframe-based-on-content
-  function adjustIFrameHeight() {
-    parent.postMessage({id: '<%= @photo.id %>', height: document.body.scrollHeight}, "*");
-    //* allows this to post to any parent iframe regardless of domain
-  }
+  var embededChild = new pym.Child();
+  setupWidget( embededChild );
   </script>
 
 </body>
