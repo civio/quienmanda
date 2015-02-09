@@ -42,16 +42,7 @@
     <%= render 'shared/photo_footer', photo: @photo, external_link: true %>
   </div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <%= javascript_include_tag "/javascripts/annotorious/annotorious.min.js" %>
-  <%= javascript_include_tag "/javascripts/annotorious/annotorious.rest-storage-plugin.js" %>
-  <%= javascript_include_tag "/javascripts/jquery.imagesloaded.js" %>
-  <%= javascript_include_tag "/javascripts/pym.min.js" %>
-  <%= javascript_include_tag "/javascripts/widget.js" %>
-  <script>
-  var embededChild = new pym.Child();
-  setupWidget( embededChild );
-  </script>
+  <%= javascript_include_tag "widget/widget", "data-turbolinks-track" => true %>
 
 </body>
 </html>

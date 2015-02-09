@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_directory .
+//= require_directory ./annotorious
+//= require_directory ./ckeditor
+//= require_directory ./viz
