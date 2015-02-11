@@ -11,7 +11,8 @@ function NetworkGraph(selector, infobox) {
       height = Math.max(Math.round(width * 9 / 16), 450),
       centerx = width / 2,
       centery = height / 2,
-      linkDistance = height * .2;
+      linkDistance = height * 0.2,
+      isFullscreen = false;
 
   var category2 = [ "#60A300", "#A9C300" ]; //[ "#CE7A20", "#814607" ];
   var color = d3.scale.ordinal().range(category2).domain([1,2]);
@@ -38,7 +39,7 @@ function NetworkGraph(selector, infobox) {
       .charge(-linkDistance * 5)
       .gravity(0.02)
       .linkDistance(linkDistance)
-      .linkStrength(.6)
+      .linkStrength(0.6)
       .size([width, height]);
 
   // Node drag behaviour
@@ -172,9 +173,9 @@ function NetworkGraph(selector, infobox) {
   };
 
   this.resize = function() {
-    width = $j(selector).width();
-    height = Math.max( Math.round(width * 9 / 16), 450);
 
+    width = $j(selector).width();
+    height = (isFullscreen) ? $j(selector).height() : Math.max( Math.round(width * 9 / 16), 450);
     viewport_origin_x = (width * 0.5) - centerx;
     viewport_origin_y = (height * 0.5) - centery;
     linkDistance = height * 0.2;
@@ -185,6 +186,11 @@ function NetworkGraph(selector, infobox) {
       .attr('height', height);
 
     rescale();
+  };
+
+  this.fullscreen = function() {
+    isFullscreen = !isFullscreen;
+    _this.resize();
   };
 
 

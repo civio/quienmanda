@@ -36,7 +36,7 @@ jQuery.noConflict();
       graph.loadNode( $('#viz-container').data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
         $('#viz-container').toggleClass('fullscreen');
-        graph.resize();
+        graph.fullscreen();
         return false;
       });
       $('#control-zoom-in').click(function() { graph.zoomIn(); return false; });
