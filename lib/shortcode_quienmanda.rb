@@ -16,7 +16,6 @@ module Shortcodes
       url =~ /photos\/(\d+)/
       photo_id = $1
 
-      # See http://stackoverflow.com/a/15558627
       template = <<TEMPLATE
 <div id="quienmanda-embed-#{photo_id}" class="quienmanda-embed-wrapper"></div>
 <script type="text/javascript" src="/javascripts/pym.min.js"></script>
