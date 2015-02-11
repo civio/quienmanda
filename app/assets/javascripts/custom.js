@@ -36,7 +36,7 @@ jQuery.noConflict();
       graph.loadNode( $('#viz-container').data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
         $('#viz-container').toggleClass('fullscreen');
-        graph.fullscreen();
+        graph.resize();
         return false;
       });
       $('#control-zoom-in').click(function() { graph.zoomIn(); return false; });
@@ -137,6 +137,9 @@ jQuery.noConflict();
       if (hasVis) {
         graph.resize();
       }
+    }
+    else if (hasVis && $('#viz-container').hasClass('fullscreen')) {
+      graph.resize();   // always resize when visualization is fullscreen 
     }
   }
 

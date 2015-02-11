@@ -8,7 +8,7 @@ function NetworkGraph(selector, infobox) {
 
   // Basic D3.js SVG container setup
   var width = $j(selector).width(),
-      height = Math.max(Math.round(width * 9 / 16), 450),
+      height = $j(selector).height(),
       centerx = width / 2,
       centery = height / 2,
       linkDistance = height * 0.2,
@@ -175,7 +175,7 @@ function NetworkGraph(selector, infobox) {
   this.resize = function() {
 
     width = $j(selector).width();
-    height = (isFullscreen) ? $j(selector).height() : Math.max( Math.round(width * 9 / 16), 450);
+    height = $j(selector).height();
     viewport_origin_x = (width * 0.5) - centerx;
     viewport_origin_y = (height * 0.5) - centery;
     linkDistance = height * 0.2;
@@ -187,12 +187,6 @@ function NetworkGraph(selector, infobox) {
 
     rescale();
   };
-
-  this.fullscreen = function() {
-    isFullscreen = !isFullscreen;
-    _this.resize();
-  };
-
 
   /* PRIVATE */
 

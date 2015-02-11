@@ -1726,6 +1726,7 @@ html[xmlns] .slides {
 #viz-container {
   background: #eef2ea;
   border: 3px solid #f9f9f9;
+  height: 450px;
 }
 #viz-container.fullscreen {
   position: fixed;
@@ -1733,6 +1734,7 @@ html[xmlns] .slides {
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100%;
   z-index: 9900;
 }
 /* Controls */
@@ -2105,6 +2107,9 @@ li:hover .admin-action {
   }
   #wrapper .sidebar.span4 .related-entities-navigation {
     margin: 24px 64px;
+  }
+  #viz-container {
+    height: 490px;
   }
 }
 /* Lower than 979 (tablets devices)
