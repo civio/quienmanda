@@ -43,7 +43,7 @@
   position:absolute;
   top:6px;
   left: 5px;
-  background:url('feather_icon.png');
+  background:url(/img/annotorious/feather_icon.png);
   background-repeat:no-repeat;
   width:19px;
   height:22px;
@@ -140,7 +140,7 @@
 }
 
 .annotorious-popup-button-edit {
-  background:url(pencil.png);
+  background:url(/img/annotorious/pencil.png);
   width:16px;
   height:16px;
   text-indent:100px;
@@ -148,7 +148,7 @@
 }
 
 .annotorious-popup-button-delete {
-  background:url(delete.png);
+  background:url(/img/annotorious/delete.png);
   width:16px;
   height:16px;
   text-indent:100px;
@@ -210,7 +210,7 @@
   text-align:center;
   text-decoration:none;
   font-family:Verdana, Arial;
-  font-size:10px;	
+  font-size:10px; 
   border:1px solid #777;
   color:#ddd;
   padding:3px 8px;
@@ -236,7 +236,7 @@
   background-color:#fff;
   padding:3px;
   font-family:Verdana, Arial;
-  font-size:12px;	
+  font-size:12px; 
 }
 
 /** OpenLayers module **/
@@ -268,18 +268,4 @@
 
 .annotorious-ol-hint-secondary {
   background-color:#fff000;
-}
-
-canvas {
-  z-index: 2;
-}
-
-canvas.hidden {
-  z-index: -1;
-  visibility: hidden;
-}
-  
-html.hasTouch .annotator-viewer li .annotator-controls, 
-html.hasTouch .annotator-viewer li .annotator-controls {
-  opacity: 1;
 }
