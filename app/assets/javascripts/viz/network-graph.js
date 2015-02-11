@@ -172,7 +172,6 @@ function NetworkGraph(selector, infobox) {
   };
 
   this.resize = function() {
-
     width = $j(selector).width();
     height = Math.max( Math.round(width * 9 / 16), 450);
 
@@ -294,7 +293,6 @@ function NetworkGraph(selector, infobox) {
 
   // Force layout iteration
   function tick() {
-
     path.attr("d", function(d) {
       var dx = d.target.x - d.source.x,
           dy = d.target.y - d.source.y,
@@ -387,7 +385,6 @@ function NetworkGraph(selector, infobox) {
   }
 
   function onRelationMouseOver(relation) {
-
     fade(relation.source, .2);  // Fade-out non-neighbouring nodes
 
     // Display basic relation information
