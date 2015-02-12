@@ -212,13 +212,13 @@ iframe.quienmanda-embed body {
   -moz-border-radius: 0;
   border-radius: 0;
 }
-.annotorious-annotationlayer .annotorious-popup a {
+.annotorious-annotationlayer .annotorious-popup .annotorious-popup-text a {
   color: #6bb21b;
   font-size: 1.125em;
   font-weight: bold;
   padding-bottom: 6px;
 }
-.annotorious-annotationlayer .annotorious-popup p {
+.annotorious-annotationlayer .annotorious-popup .annotorious-popup-text p {
   margin: 5px 0 0;
 }
 /* Header
