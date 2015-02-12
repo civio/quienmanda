@@ -72,6 +72,14 @@ class PostsController < ApplicationController
     end
   end
 
+  # GET /posts/tagged/juicy
+  # Note: admin only (for now at least)
+  def tagged
+    authorize! :manage, Post
+    @posts = Post.tagged_with(params[:tag_name]).page(params[:page]).per(15)
+    render :index
+  end
+
   private
     def set_post
       @post = Post.includes(:mentions).find_by_slug!(params[:id])

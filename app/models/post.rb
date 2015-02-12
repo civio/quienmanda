@@ -18,6 +18,8 @@ class Post < ActiveRecord::Base
     slug
   end
 
+  acts_as_taggable
+
   validates :title, presence: true, uniqueness: true
   validates :author, presence: true
 

@@ -232,6 +232,7 @@ RailsAdmin.config do |config|
       field :needs_work
       field :title
       field :author
+      field :tag_list
       field :published_at
     end
 
@@ -259,6 +260,10 @@ RailsAdmin.config do |config|
         field :needs_work
         field :related_posts do
           read_only true
+        end
+        field :tag_list do
+          label "Tags"
+          partial 'tag_list_with_suggestions'
         end
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'

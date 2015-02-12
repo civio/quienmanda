@@ -14,6 +14,9 @@ Quienmanda::Application.routes.draw do
     collection do
       get 'feed', :as => :feed, :defaults => { :format => 'atom' }
     end
+    collection do
+      get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
+    end
   end
 
   resources :people, only: [:index, :show]
