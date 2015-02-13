@@ -1,0 +1,27 @@
+<!-- start: Page Title -->
+<div id="page-title" class="post">
+
+  <h2><%= @title %></h2>
+
+</div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Articles -->
+  <div id="wall" class="row-fluid post">
+            
+    <% @posts.each do |post| %>
+      <%= render '/shared/show_post', :item => post %>
+    <% end %>
+            
+    <% @photos.each do |photo| %>
+      <%= render partial_name(photo), :item => photo %>
+    <% end %>
+
+  </div>
+  <!-- end: PortPhotosfolio -->
+
+</div>
+<!-- end: Wrapper  -->

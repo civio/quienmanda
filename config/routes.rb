@@ -34,6 +34,8 @@ Quienmanda::Application.routes.draw do
     end
   end
 
+  resources :topic, only: [:show]
+
   # Global search
   get '/search' => 'search#search', :as => 'search'
 
