@@ -225,6 +225,17 @@ RailsAdmin.config do |config|
     parent Photo
   end
 
+
+  # RailsAdmin configuration
+  config.model 'Topic' do
+    list do
+      field :published, :toggle
+      field :title
+      field :description
+    end
+  end
+
+
   # RailsAdmin configuration
   config.model 'Post' do
     list do

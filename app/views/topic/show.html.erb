@@ -1,27 +1,35 @@
 <!-- start: Page Title -->
-<div id="page-title" class="post">
-
+<div id="page-title" class="topic centered">
   <h2><%= @title %></h2>
-
 </div>
 <!-- end: Page Title -->
 
-<!--start: Wrapper-->
+<div class="row-fluid topic-description">
+  <p class="span6 offset3"><%= @description %></p>
+</div>
+
+<!-- start: Articles -->
+<% if !@posts.empty? %>
 <div id="wrapper">
-  
-  <!-- start: Articles -->
-  <div id="wall" class="row-fluid post">
-            
+  <div class="title article"><p>Artículos</p></div>
+  <div id="wall" class="row-fluid post"> 
     <% @posts.each do |post| %>
       <%= render '/shared/show_post', :item => post %>
     <% end %>
-            
+  </div>
+</div>
+<% end %>
+<!-- end: Articles -->
+
+<!-- start: Fotomandón -->
+<% if !@photos.empty? %>
+<div id="wrapper">
+  <div class="title photo"><p>Fotomandón</p></div>
+  <div id="wall" class="row-fluid extra-wall photo">
     <% @photos.each do |photo| %>
       <%= render partial_name(photo), :item => photo %>
     <% end %>
-
   </div>
-  <!-- end: PortPhotosfolio -->
-
 </div>
-<!-- end: Wrapper  -->
+<% end %>
+<!-- end: Fotomandón -->
