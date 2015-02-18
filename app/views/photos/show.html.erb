@@ -20,6 +20,11 @@
 
         <%= render 'shared/photo_footer', photo: @photo %>
 
+        <div class="picture-meta">
+          <%= render 'shared/show_photo_credit', photo: @photo %>
+          <%= render 'shared/show_tags', item: @photo %>
+        </div>
+
         <%= render 'shared/show_admin_links', item: @photo %>
 
         <%= render 'shared/social_buttons' %>

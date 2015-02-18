@@ -4,9 +4,3 @@
   <% end %>
   <%= raw(photo.footer) %>
 </p>
-<%= render 'shared/show_photo_credit', photo: photo %>
-<% if defined?(external_link) %>
-  <%= link_to @photo, class: 'photo-external-link', target: '_blank' do %>
-    Ver la imagen en el Fotomandón <i class="icon-chevron-right"></i>
-  <% end %>
-<% end %>

@@ -108,18 +108,26 @@
         color: @colorGray;
         font-size: 0.938em;
         line-height: 1.5em;
-        margin-top: 5px;
+        margin-top: 2px;
 
         p{ 
-          padding: 8px 14px;
+          padding: 2px 14px 0;
+        }
+
+        .picture-meta{
+          padding-top: 10px;
+          background: @colorSecondary;
+
+          .tags{
+            padding-bottom: 4px;
+          }
         }
 
         .credits{
           display: block;
           width: 100%;
-          padding: 10px 14px;
-          margin: 10px 0 0;
-          background: @colorSecondary;
+          padding: 0 14px 10px;
+          margin: 0;
           font-size: 0.875em;
           font-family: @fontDroid;
           font-weight: normal;
@@ -186,6 +194,10 @@
         font-weight: bold;
         line-height: 1em;
       }
+    }
+
+    .picture .description{
+      padding-bottom: 5px;
     }
   }
 

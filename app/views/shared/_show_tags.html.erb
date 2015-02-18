@@ -1,0 +1,10 @@
+<% unless item.nil? or item.tag_list.blank? %>
+	 <div class="tags">
+    <ul>
+    <% item.tag_list.each do |tag| %>
+      <li><a href="/topic/<%= tag.to_url %>" class="tag" title="<%= tag %>"><%= tag %></a></li>
+    <% end %>
+      <li class="clearfix"></li>
+    </ul>
+  </div>
+<% end %>

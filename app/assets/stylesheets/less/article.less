@@ -309,15 +309,16 @@
 
       .post-meta{
         color: #666;
-        padding: 0 0 12px;
+        padding: 10px 0;
         margin: -10px 0 0;
+        border-top: 1px solid @colorSecondary;
 
         a{
           font-family: @fontBaskerville !important;
           font-style: italic;
           text-decoration: none;
 
-          &:hover{ color: @colorTextGreen; };
+          &:hover{ color: #666; text-decoration: underline; };
         }
       }
 
@@ -326,7 +327,8 @@
         color: @colorGray;
         overflow: hidden;
         background: url(/images/moustache.gif) no-repeat bottom center;
-        padding-bottom: 12px;
+        padding: 30px 0 12px;
+        border-top: 1px solid @colorSecondary;
 
         a{
           border-bottom: 1px dotted @colorTextGreen;
@@ -460,19 +462,25 @@
 
   .posts.full.picture{
 
-    .picture-footer,
-    .credits,
+    .picture-footer{
+      padding: 24px;
+      margin: 0;
+    }
+
+    .picture-meta,
     .admin-link{
       padding: 24px 24px 0;
       margin: 0;
     }
 
+    .picture-meta{
+      background: @colorSecondary;
+    }
+
     .credits{
       color: @colorGray;
-      padding: 24px;
-      margin-top: 24px;
+      padding: 0 0 24px;
       font-size: 0.875em;
-      background: @colorSecondary;
       text-shadow: none;
 
       a{

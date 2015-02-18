@@ -1,15 +1,10 @@
-<% unless photo.nil? %>
-	<% unless photo.copyright.blank? %>
-  	<p class="credits">
-  	Foto: <%= photo.source.blank? ? 
-  	            photo.copyright :
-  	            (link_to photo.copyright, 
-  	                     absolute_url(photo.source), 
-  	                     target: '_blank',
-  	                     class: 'source-link') %>
-  	</p>
-	<% end %>
-	<% unless photo.tag_list.blank? %>
-	 <!--<p class="credits">Tags: <%= photo.tag_list %></p>-->
-	<% end %>
+<% unless photo.nil? or photo.copyright.blank? %>
+  <div class="credits">
+	Foto: <%= photo.source.blank? ? 
+	            photo.copyright :
+	            (link_to photo.copyright, 
+	                     absolute_url(photo.source), 
+	                     target: '_blank',
+	                     class: 'source-link') %>
+  </div>
 <% end %>

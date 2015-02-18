@@ -134,6 +134,116 @@ p.alert-info{
 }
 
 
+/* Tags
+=================================================================== */
+
+.tags{
+  display: block;
+  width: 100%;
+  padding: 0 14px 10px;
+  margin: 0;
+  background: @colorSecondary;
+  font-size: 0.875em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  li{
+    list-style: none;
+    float: left;
+
+    &.clearfix{
+      float: none;
+      clear: both; 
+    }
+  }
+
+  .tag{
+    background: white;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 18px 0 23px;
+    position: relative;
+    margin: 0 8px 6px 0;
+    text-decoration: none;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+
+    &::before {
+      background: @colorSecondary;
+      border-radius: 10px;
+      box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+      content: '';
+      height: 6px;
+      left: 10px;
+      position: absolute;
+      width: 6px;
+      top: 10px;
+    }
+
+    &::after {
+      background: @colorSecondary;
+      border-bottom: 13px solid transparent;
+      border-left: 10px solid white;
+      border-top: 13px solid transparent;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &:hover{
+      color: @colorGray !important;
+      background: @colorHeaderLink;
+
+      &::after {
+        border-left-color: @colorHeaderLink;
+      }
+    }
+  }
+}
+
+.posts.full.picture .tags{
+  padding: 0 0 18px;
+}
+
+.posts .post .post-content .tags{
+  padding: 0 0 10px;
+  background: none;
+
+  .tag{
+    background: @colorSecondary;
+
+    &::before,
+    &::after {
+      background: white;
+    }
+    &::after {
+      border-left-color: @colorSecondary;
+    }
+
+    &:hover{
+      color: #242424 !important;
+      background: @colorHeaderLink;
+
+      &::after {
+        border-left-color: @colorHeaderLink;
+      }
+    }
+  }
+}
+
+#wall.topic .tags{
+  display: none;
+}
+
+
 /* Social sharing
 =================================================================== */
 .sharing-right{

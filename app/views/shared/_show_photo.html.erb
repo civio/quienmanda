@@ -2,11 +2,15 @@
 <div class="<%= item.extra_wide? ? 'span6': 'span3' %> item photo">
   <div class="picture">
     <%= link_to image_tag(item.file.url(item.extra_wide ? :full : :small)), item, class: 'image' %>
+   
     <div class="description">
-      <p>
-        <%= link_to raw(item.footer), item %>
-      </p>
-      <%= render 'shared/show_photo_credit', photo: item %>
+      <% unless item.footer.blank? %>
+      <p><%= link_to raw(item.footer), item %></p>
+      <% end %>
+      <div class="picture-meta">
+        <%= render 'shared/show_photo_credit', photo: item %>
+        <%= render 'shared/show_tags', item: item %>
+      </div>
       <%= render 'shared/show_admin_links', :item => item %>
     </div>
   </div>  

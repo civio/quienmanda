@@ -23,6 +23,9 @@
     a:hover {
       text-decoration: underline;
     }
+    .credits{
+      margin-bottom: 1em;
+    }
     .photo-external-link{
       color: #8aa304;
     }
@@ -53,7 +56,13 @@
   <div class="picture">
     <%= image_tag(@photo.file.url(:full), width: '100%', id: 'photo', class: 'photo annotatable', :data => { :photoid => @photo.id, :readonly => (can? :manage, @photo) ? 'false' : 'true' }) %>
 
-    <%= render 'shared/photo_footer', photo: @photo, external_link: true %>
+    <%= render 'shared/photo_footer', photo: @photo %>
+
+    <%= render 'shared/show_photo_credit', photo: @photo %>
+
+    <%= link_to @photo, class: 'photo-external-link', target: '_blank' do %>
+      Ver la imagen en el Fotomandón <i class="icon-chevron-right"></i>
+    <% end %>
   </div>
 
   <%= javascript_include_tag "widget/widget", "data-turbolinks-track" => true %>

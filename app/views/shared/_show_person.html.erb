@@ -6,10 +6,11 @@
       <h4>
         <%= link_to item.short_or_long_name, person_path(item) %>
       </h4>
+      <% unless item.description.blank? %>
       <p>
         <%= item.description %>
       </p>
-
+      <% end %>
       <%= render 'shared/show_admin_links', :item => item %>
     </div>
   </div>  

@@ -17,7 +17,10 @@
       <p>
         <%= link_to item.lead, post_path(item) unless item.lead.blank? %>
       </p>
-      <%= render 'shared/show_photo_credit', photo: item.photo %>
+      <div class="picture-meta">
+        <%= render 'shared/show_photo_credit', photo: item.photo %>
+        <%= render 'shared/show_tags', item: item %>
+      </div>
       <%= render 'shared/show_admin_links', :item => item %>
     </div>
   </div>  

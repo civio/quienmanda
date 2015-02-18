@@ -137,6 +137,99 @@ p.alert-info {
   background: #eef2ea;
   margin: 0 auto;
 }
+/* Tags
+=================================================================== */
+.tags {
+  display: block;
+  width: 100%;
+  padding: 0 14px 10px;
+  margin: 0;
+  background: #dde4cd;
+  font-size: 0.875em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.tags li {
+  list-style: none;
+  float: left;
+}
+.tags li.clearfix {
+  float: none;
+  clear: both;
+}
+.tags .tag {
+  background: white;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 18px 0 23px;
+  position: relative;
+  margin: 0 8px 6px 0;
+  text-decoration: none;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+.tags .tag::before {
+  background: #dde4cd;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+.tags .tag::after {
+  background: #dde4cd;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid white;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.tags .tag:hover {
+  color: #515151 !important;
+  background: #a8c315;
+}
+.tags .tag:hover::after {
+  border-left-color: #a8c315;
+}
+.posts.full.picture .tags {
+  padding: 0 0 18px;
+}
+.posts .post .post-content .tags {
+  padding: 0 0 10px;
+  background: none;
+}
+.posts .post .post-content .tags .tag {
+  background: #dde4cd;
+}
+.posts .post .post-content .tags .tag::before,
+.posts .post .post-content .tags .tag::after {
+  background: white;
+}
+.posts .post .post-content .tags .tag::after {
+  border-left-color: #dde4cd;
+}
+.posts .post .post-content .tags .tag:hover {
+  color: #242424 !important;
+  background: #a8c315;
+}
+.posts .post .post-content .tags .tag:hover::after {
+  border-left-color: #a8c315;
+}
+#wall.topic .tags {
+  display: none;
+}
 /* Social sharing
 =================================================================== */
 .sharing-right {
@@ -926,17 +1019,23 @@ html[xmlns] .slides {
   color: #515151;
   font-size: 0.938em;
   line-height: 1.5em;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 #wall .item .picture .description p {
-  padding: 8px 14px;
+  padding: 2px 14px 0;
+}
+#wall .item .picture .description .picture-meta {
+  padding-top: 10px;
+  background: #dde4cd;
+}
+#wall .item .picture .description .picture-meta .tags {
+  padding-bottom: 4px;
 }
 #wall .item .picture .description .credits {
   display: block;
   width: 100%;
-  padding: 10px 14px;
-  margin: 10px 0 0;
-  background: #dde4cd;
+  padding: 0 14px 10px;
+  margin: 0;
   font-size: 0.875em;
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
@@ -1002,6 +1101,10 @@ html[xmlns] .slides {
   font-family: 'Libre Baskerville', serif;
   font-weight: bold;
   line-height: 1em;
+}
+#wall .item.people .picture .description,
+#wall .item.organization .picture .description {
+  padding-bottom: 5px;
 }
 #wall.mixed .item .picture .description .credits {
   position: relative;
@@ -1286,8 +1389,9 @@ html[xmlns] .slides {
 }
 #wrapper .posts .post .post-content .post-meta {
   color: #666;
-  padding: 0 0 12px;
+  padding: 10px 0;
   margin: -10px 0 0;
+  border-top: 1px solid #dde4cd;
 }
 #wrapper .posts .post .post-content .post-meta a {
   font-family: 'Libre Baskerville', serif !important;
@@ -1295,13 +1399,15 @@ html[xmlns] .slides {
   text-decoration: none;
 }
 #wrapper .posts .post .post-content .post-meta a:hover {
-  color: #6bb21b;
+  color: #666;
+  text-decoration: underline;
 }
 #wrapper .posts .post .post-content .post-description {
   color: #515151;
   overflow: hidden;
   background: url(/images/moustache.gif) no-repeat bottom center;
-  padding-bottom: 12px;
+  padding: 30px 0 12px;
+  border-top: 1px solid #dde4cd;
 }
 #wrapper .posts .post .post-content .post-description a {
   border-bottom: 1px dotted #6bb21b;
@@ -1409,18 +1515,22 @@ html[xmlns] .slides {
   width: 90%;
   margin: 0 auto;
 }
-#wrapper .posts.full.picture .picture-footer,
-#wrapper .posts.full.picture .credits,
+#wrapper .posts.full.picture .picture-footer {
+  padding: 24px;
+  margin: 0;
+}
+#wrapper .posts.full.picture .picture-meta,
 #wrapper .posts.full.picture .admin-link {
   padding: 24px 24px 0;
   margin: 0;
 }
+#wrapper .posts.full.picture .picture-meta {
+  background: #dde4cd;
+}
 #wrapper .posts.full.picture .credits {
   color: #515151;
-  padding: 24px;
-  margin-top: 24px;
+  padding: 0 0 24px;
   font-size: 0.875em;
-  background: #dde4cd;
   text-shadow: none;
 }
 #wrapper .posts.full.picture .credits a {
