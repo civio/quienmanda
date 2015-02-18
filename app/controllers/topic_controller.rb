@@ -7,7 +7,7 @@ class TopicController < ApplicationController
 
       @title = topic ? topic.title : params[:id].gsub('-', ' ')
 
-      if topic and topic.description.blank?
+      if topic and !topic.description.blank?
         @description = topic.description 
       end
       	
