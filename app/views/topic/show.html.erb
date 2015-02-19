@@ -10,6 +10,16 @@
 </div>
 <% end %>
 
+<% if @entity %>
+  <div id="wrapper" class="topic-viz">
+    <div class="row-fluid">
+      <div id="wrapper" class="full span12">
+        <%= render 'shared/show_entity_viz', path: entity_path(@entity) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <!-- start: Articles -->
 <% if !@posts.empty? %>
 <div id="wrapper">

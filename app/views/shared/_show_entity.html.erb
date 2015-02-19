@@ -34,39 +34,7 @@
     </div>
 
     <div id="wrapper" class="full span9">
-
-      <div id="viz-container" data-path="<%= entity_path(entity) %>">
-
-        <div id="visualization-controls">
-          <a href="#" id="control-fullscreen" data-toggle="tooltip" data-placement='bottom' data-original-title='Ver a pantalla completa'>
-            <i class="icon-fullscreen"></i>
-          </a>
-          <a href="#" id="control-fullscreen-exit" data-toggle="tooltip" data-placement='bottom' data-original-title='Salir de pantalla completa'>
-            <i class="icon-resize-small"></i>
-          </a>
-          <a href="#" id="control-zoom-in" data-toggle="tooltip" data-placement='bottom' data-original-title='Acercar la visualización'>
-            <i class="icon-zoom-in"></i>
-          </a>
-          <a href="#" id="control-zoom-out" data-toggle="tooltip" data-placement='bottom' data-original-title='Alejar la visualización'>
-            <i class="icon-zoom-out"></i>
-          </a>
-          <a href="#" id="control-zoom-reset" data-toggle="tooltip" data-placement='bottom' data-original-title='Volver a la posición inicial'>
-            <i class="icon-repeat"></i>
-          </a>
-          <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o qué tipo de relación les une (líneas) pasa el puntero por encima de ellos.'>
-            <i class="icon-question-sign"></i>
-          </a>
-        </div>
-
-        <div id="visualization-legend">    
-          <div class="legend">
-            <span class="legend-organizations"><i class="icon-circle"></i> Organizaciones</span>
-            <span class="legend-people"><i class="icon-circle"></i> Personas</span>
-          </div>
-        </div>
-
-        <div id="infobox"></div>
-      </div>
+      <%= render 'shared/show_entity_viz', path: entity_path(entity) %>
     </div>
   </div>
 </div>

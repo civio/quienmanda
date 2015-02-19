@@ -1852,12 +1852,23 @@ html[xmlns] .slides {
 #page-title.topic h2 {
   font-size: 2.5em;
 }
+#page-title.topic {
+  padding-bottom: 16px;
+}
 .topic-description {
   color: #515151;
   font-size: 1.25em;
   line-height: 1.5em;
   text-align: center;
+  margin-top: 16px;
+}
+#wrapper.topic-viz {
   margin-top: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+#wrapper.topic-viz #wrapper.full {
+  position: relative;
 }
 /* Viz Container */
 #viz-container {

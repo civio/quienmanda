@@ -233,6 +233,14 @@ RailsAdmin.config do |config|
       field :title
       field :description
     end
+
+    edit do
+      field :title
+      field :description
+      field :entity
+      field :slug
+      field :published
+    end
   end
 
 
