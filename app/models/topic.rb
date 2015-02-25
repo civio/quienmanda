@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  has_one :entity
+  belongs_to :entity  # Don't get confused, we _have_ an entity
 
 	validates :title, presence: true, uniqueness: true
 
