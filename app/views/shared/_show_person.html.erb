@@ -1,4 +1,8 @@
+<% if !small.nil? %>
+<div class="span2 item people">
+<% else %>
 <div class="span3 item people">
+<% end %>
   <div class="picture">
     <%= link_to image_tag(item.avatar.url ? item.avatar.url : 'avatar.png'), 
                 person_path(item), class: 'image' %>

@@ -1238,6 +1238,10 @@ html[xmlns] .slides {
 #wrapper .title.photo:before {
   background-position: 0 -72px;
 }
+#wrapper .title.people:before,
+#wrapper .title.organization:before {
+  background-position: 0 -135px;
+}
 #wrapper .all-btn {
   margin: 24px 0 64px;
   text-align: right;
@@ -1855,6 +1859,40 @@ html[xmlns] .slides {
 #page-title.topic {
   padding-bottom: 16px;
   margin-top: 60px;
+}
+#wall.topic .item.people h4,
+#wall.topic .item.organization h4 {
+  font-size: 1.125em;
+  padding: 10px;
+}
+#wall.topic .item.people h4:before,
+#wall.topic .item.organization h4:before {
+  display: none;
+}
+#wall.topic .item.people .picture .description,
+#wall.topic .item.organization .picture .description {
+  font-size: 0.875em;
+  line-height: 1.375em;
+}
+#wall.topic .item.people .picture .description p,
+#wall.topic .item.organization .picture .description p {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+#wall.topic .item.people .picture .description p:before,
+#wall.topic .item.organization .picture .description p:before {
+  float: left;
+  content: "";
+  display: block;
+  width: 3px;
+  height: 1.375em;
+  border-left: 1px solid #6bb21b;
+  border-right: 1px solid #6bb21b;
+  margin-right: 8px;
+}
+#wall.topic .item.people .picture .description .admin-link:before,
+#wall.topic .item.organization .picture .description .admin-link:before {
+  display: none;
 }
 .quien-manda-en {
   position: absolute;

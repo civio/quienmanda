@@ -1,6 +1,6 @@
 <!-- start: Page Title -->
 <div id="page-title" class="topic centered">
-  <div class="quien-manda-en">Quien Manda <span>en</span></div>
+  <div class="quien-manda-en">Quién Manda <span>en</span></div>
   <h2><%= @title %></h2>
 </div>
 <!-- end: Page Title -->
@@ -20,6 +20,23 @@
     </div>
   </div>
 <% end %>
+
+<!-- start: Related Entities -->
+<% if !@related_entities.empty? %>
+<div id="wrapper">
+  <div class="title people"><p>Protagonistas</p></div>
+  <div id="wall" class="row-fluid post topic"> 
+    <% @related_entities.each do |entity| %>
+      <% if entity.person? %>
+      <%= render '/shared/show_person', :item => entity, :small => true %>
+      <% else %>
+      <%= render '/shared/show_organization', :item => entity, :small => true %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<!-- end: Articles -->
 
 <!-- start: Articles -->
 <% if !@posts.empty? %>

@@ -22,6 +22,8 @@ class Entity < ActiveRecord::Base
     slug
   end
 
+  acts_as_taggable
+
   # Priorities
   PRIORITIES = [PRIORITY_HIGH = '1', PRIORITY_MEDIUM = '2', PRIORITY_LOW = '3']
   def priority_enum

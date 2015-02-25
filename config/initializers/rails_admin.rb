@@ -102,6 +102,10 @@ RailsAdmin.config do |config|
           default_value Entity::PRIORITY_MEDIUM
         end
         field :avatar
+        field :tag_list do
+          label "Tags"
+          partial 'tag_list_with_suggestions'
+        end
       end
       group :social_media do
         label "Social media / web"
