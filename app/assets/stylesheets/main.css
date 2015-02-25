@@ -1854,6 +1854,29 @@ html[xmlns] .slides {
 }
 #page-title.topic {
   padding-bottom: 16px;
+  margin-top: 60px;
+}
+.quien-manda-en {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  right: 0;
+  color: #8aa304;
+  font-size: 1.125em;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.quien-manda-en > span {
+  color: #515151;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  text-transform: lowercase;
+  font-weight: 400;
+  padding-left: 0.25em;
 }
 .topic-description {
   color: #515151;
