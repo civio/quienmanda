@@ -1737,7 +1737,7 @@ html[xmlns] .slides {
   padding: 6px 12px;
 }
 /* Entities
-=================================================================== */
+  =================================================================== */
 #wrapper.people .full.span3,
 #wrapper.people .full.span9 {
   position: relative;
@@ -1803,7 +1803,7 @@ html[xmlns] .slides {
   color: #6bb21b;
 }
 /* Relations
-=================================================================== */
+  =================================================================== */
 #relations-table-toggle {
   float: right;
   background: #fff;
@@ -1852,7 +1852,7 @@ html[xmlns] .slides {
   background: #e4eadf;
 }
 /* Topics
-=================================================================== */
+  =================================================================== */
 #page-title.topic h2 {
   font-size: 2.5em;
 }
@@ -2317,6 +2317,9 @@ li:hover .admin-action {
   #wrapper .sidebar.span4 .related-entities-navigation {
     margin: 24px 64px;
   }
+  #wall.topic .item.people {
+    width: 14.8%;
+  }
   #viz-container {
     height: 490px;
   }
@@ -2400,6 +2403,9 @@ li:hover .admin-action {
   #wall .item.span6 {
     width: 100%;
   }
+  #wall.topic .item.people {
+    width: 31.6%;
+  }
   #wrapper .sidebar.span4 .related-entities-navigation {
     font-size: 0.913em;
     margin: 24px 16px;
@@ -2449,5 +2455,8 @@ li:hover .admin-action {
   #wall .item.span3,
   #wall .item.span4 {
     width: 100%;
+  }
+  #wall.topic .item.people {
+    width: 48%;
   }
 }
