@@ -33,7 +33,7 @@ jQuery.noConflict();
     /* -------------------- Setup visualization --------------- */
     if( hasVis ){
       graph = new NetworkGraph("#viz-container", "#infobox");
-      graph.loadNode( $('#viz-container').data('path') );
+      graph.loadRootNode( $('#viz-container').data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
         $('#viz-container').toggleClass('fullscreen');
         graph.resize();
