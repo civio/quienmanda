@@ -1,0 +1,21 @@
+<!-- start: Page Title -->
+<div id="page-title">
+  <h2><%= @title %></h2>
+</div>
+<!-- end: Page Title -->
+
+<!--start: Wrapper-->
+<div id="wrapper">
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid post">
+            
+    <% @topics.each do |topic| %>
+      <%= render '/shared/show_topic', :item => topic %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+
+</div>
+<!-- end: Wrapper  -->

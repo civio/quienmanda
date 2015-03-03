@@ -6,8 +6,10 @@ class CreateTopics < ActiveRecord::Migration
       t.string :slug
       t.boolean :published, null: false, default: false
       t.references :entity, index: true
+      t.references :photo, index: true
       t.timestamps
     end
     add_column :entities, :topic_id, :integer
+    add_column :photos, :topic_id, :integer
   end
 end

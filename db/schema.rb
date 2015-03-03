@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150213171742) do
     t.date     "date"
     t.text     "notes"
     t.boolean  "extra_wide"
+    t.integer  "topic_id"
   end
 
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
@@ -188,11 +189,13 @@ ActiveRecord::Schema.define(version: 20150213171742) do
     t.string   "slug"
     t.boolean  "published",   default: false, null: false
     t.integer  "entity_id"
+    t.integer  "photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "topics", ["entity_id"], name: "index_topics_on_entity_id", using: :btree
+  add_index "topics", ["photo_id"], name: "index_topics_on_photo_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

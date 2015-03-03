@@ -241,6 +241,7 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :description
+      field :photo
       field :entity
       field :slug
       field :published

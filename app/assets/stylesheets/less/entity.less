@@ -1,221 +1,138 @@
-  /* Entities
-  =================================================================== */
+/* Entities
+=================================================================== */
 
-  #wrapper.people{
+#wrapper.people{
 
-    .full.span3,
-    .full.span9{
+  .full.span3,
+  .full.span9{
 
-      position: relative;
-      padding: 0;
-      border: none;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-    }
-
-    .full.span3{
-
-      .picture{
-        padding: 3px;
-        img{ width: 100%; }
-      }
-
-      .title{
-        color: @colorGray;
-        font-family: @fontBaskerville;
-        font-size: 1.125em;
-        font-weight: bold;
-        line-height: 1.5em;
-        border-bottom: 1px solid @colorTextGreen;
-        margin: 10px 12px 0;
-        padding-bottom: 10px;
-
-        &:before{
-          display: none;
-        };
-      }
-
-      .description{
-        color: darken( @colorGray, 10% );
-        border-top: 1px solid @colorTextGreen;
-        font-size: 0.938em;
-        margin: 3px 12px 12px;
-        padding-top: 12px;
-      }
-
-      .alert.alert-info{
-        margin: 12px;
-        padding: 16px;
-      }
-
-      .admin-link{
-        position: absolute;
-        bottom: 3px;
-        right: 3px;
-      }
-    }
+    position: relative;
+    padding: 0;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
   }
 
-  .entity-links{
+  .full.span3{
 
-    display: block;
-    width: 100%;
-    background: @colorSidebar;
-    height: 40px;
-
-    ul{
-      display: block;
-      text-align: center;
+    .picture{
+      padding: 3px;
+      img{ width: 100%; }
     }
 
-    li{
-      float: none;
-      display: inline;
-      line-height: 40px;
-      font-size: 1.25em;
-    }
-
-    a:hover {
-      text-decoration: none;
-      color: @colorTextGreen;
-    }
-  }
-
-
-  /* Relations
-  =================================================================== */
-
-  #relations-table-toggle{
-    float: right;
-    background: #fff;
-    color: @colorLinkGreen;
-    padding: 8px 14px;
-    text-shadow: none;
-    font-size: 0.875em;
-    font-weight: normal;
-    margin-bottom: 24px;
-    .box-shadow( 0px 1px 6px rgba(0, 0, 0, 0.3) );
-  }
-
-  #relations-list{
-    clear: both;
-    float: none;
-    background: none;
-
-    .footable-sortable{ 
-
-      font-size: 0.938em;
-      color: @colorLinkGreen;
-
-      .footable-sort-indicator{ color: #3f3f3f; }
-    }
-
-    .footable-sorted{ color: #3f3f3f; }
-
-
-    tr{
-      
-      td{
-        color: @colorGray;
-        font-size: 0.938em;
-
-        a:hover{
-          color: @colorLinkGreen;
-          text-decoration: none;
-        };
-      }
-    }
-
-    .table th{ border-bottom: 1px solid #c4ccbd; }
-
-    .table td{
-      border-top: 1px solid #eef2ea;
-      border-bottom: 1px solid #eef2ea;
-    }
-
-    .table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th{ background: #e4eadf; }
-  }
-
-
-  /* Topics
-  =================================================================== */
-
-  #page-title.topic h2{
-    font-size: 2.5em;
-  }
-
-  #page-title.topic{
-    padding-bottom: 16px;
-    margin-top: 60px;
-  }
-
-  #wall.topic .item.people,
-  #wall.topic .item.organization{
-
-    h4{
+    .title{
+      color: @colorGray;
+      font-family: @fontBaskerville;
       font-size: 1.125em;
-      padding: 10px;
+      font-weight: bold;
+      line-height: 1.5em;
+      border-bottom: 1px solid @colorTextGreen;
+      margin: 10px 12px 0;
+      padding-bottom: 10px;
 
       &:before{
         display: none;
-      }
+      };
     }
 
-    .picture .description{
-      font-size: 0.875em;
-      line-height: 1.375em;
+    .description{
+      color: darken( @colorGray, 10% );
+      border-top: 1px solid @colorTextGreen;
+      font-size: 0.938em;
+      margin: 3px 12px 12px;
+      padding-top: 12px;
+    }
 
-      p{
-        padding-right: 10px;
-        padding-left: 10px;
-        .titleBorder();
-      }
+    .alert.alert-info{
+      margin: 12px;
+      padding: 16px;
+    }
 
-      .admin-link:before{
-        display: none;
-      }
+    .admin-link{
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
     }
   }
+}
 
-  .quien-manda-en{
-    position: absolute;
-    top: -26px;
-    left: 0;
-    right: 0;
-    color: @colorLinkGreen;
-    font-size: 1.125em;
-    font-family: @fontDroid;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
+.entity-links{
+
+  display: block;
+  width: 100%;
+  background: @colorSidebar;
+  height: 40px;
+
+  ul{
+    display: block;
     text-align: center;
-    font-weight: 600;
-    text-shadow: 0 1px 0 #ffffff;
-
-    > span{
-      color: @colorGray;
-      font-family: @fontBaskerville;
-      font-style: italic;
-      text-transform: lowercase;
-      font-weight: 400;
-      padding-left: 0.25em;
-    }
   }
 
-  .topic-description{
-    color: @colorGray;
+  li{
+    float: none;
+    display: inline;
+    line-height: 40px;
     font-size: 1.25em;
-    line-height: 1.5em;
-    text-align: center;
-    margin-top: 16px;
   }
 
-  #wrapper.topic-viz{
-    margin-top: 30px;
-    margin-right: 10px;
-    margin-left: 10px;
+  a:hover {
+    text-decoration: none;
+    color: @colorTextGreen;
+  }
+}
 
-    #wrapper.full{
-      position: relative;
+
+/* Relations
+=================================================================== */
+
+#relations-table-toggle{
+  float: right;
+  background: #fff;
+  color: @colorLinkGreen;
+  padding: 8px 14px;
+  text-shadow: none;
+  font-size: 0.875em;
+  font-weight: normal;
+  margin-bottom: 24px;
+  .box-shadow( 0px 1px 6px rgba(0, 0, 0, 0.3) );
+}
+
+#relations-list{
+  clear: both;
+  float: none;
+  background: none;
+
+  .footable-sortable{ 
+
+    font-size: 0.938em;
+    color: @colorLinkGreen;
+
+    .footable-sort-indicator{ color: #3f3f3f; }
+  }
+
+  .footable-sorted{ color: #3f3f3f; }
+
+
+  tr{
+    
+    td{
+      color: @colorGray;
+      font-size: 0.938em;
+
+      a:hover{
+        color: @colorLinkGreen;
+        text-decoration: none;
+      };
     }
   }
+
+  .table th{ border-bottom: 1px solid #c4ccbd; }
+
+  .table td{
+    border-top: 1px solid #eef2ea;
+    border-bottom: 1px solid #eef2ea;
+  }
+
+  .table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th{ background: #e4eadf; }
+}

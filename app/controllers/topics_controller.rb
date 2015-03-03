@@ -1,4 +1,12 @@
-class TopicController < ApplicationController
+class TopicsController < ApplicationController
+  etag { can? :manage, Topic } # Don't cache admin content together with the rest
+
+  # GET /topic
+  def index
+    @title = 'Temas'
+    @topics = Topic.all
+    #@topics = (can? :manage, Topic) ? Topic.all : Topic.published
+  end
 
   # GET /topic/1
   def show

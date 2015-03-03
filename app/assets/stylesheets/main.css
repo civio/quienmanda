@@ -367,7 +367,7 @@ body > header {
   position: absolute;
   left: 84px;
   right: 232px;
-  padding-left: 140px;
+  padding-left: 146px;
   margin: 0;
   background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
 }
@@ -379,7 +379,7 @@ body > header {
   font-family: 'Economica', sans-serif;
   font-weight: 700;
   font-size: 1.375em;
-  padding: 16px;
+  padding: 16px 10px;
   text-shadow: 0 1px 0 #ffffff;
   -webkit-transition: color 0.3s ease-in-out;
   -moz-transition: color 0.3s ease-in-out;
@@ -993,7 +993,8 @@ html[xmlns] .slides {
 #wall .item .picture {
   position: relative;
 }
-#wall .item .picture a.image {
+#wall .item .picture a.image,
+#wall .item .picture .image {
   display: block;
   width: 100%;
   height: auto;
@@ -1003,7 +1004,8 @@ html[xmlns] .slides {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#wall .item .picture a.image:hover {
+#wall .item .picture a.image:hover,
+#wall .item .picture .image:hover {
   filter: alpha(opacity=80);
   -moz-opacity: 0.8;
   -khtml-opacity: 0.8;
@@ -1737,7 +1739,7 @@ html[xmlns] .slides {
   padding: 6px 12px;
 }
 /* Entities
-  =================================================================== */
+=================================================================== */
 #wrapper.people .full.span3,
 #wrapper.people .full.span9 {
   position: relative;
@@ -1803,7 +1805,7 @@ html[xmlns] .slides {
   color: #6bb21b;
 }
 /* Relations
-  =================================================================== */
+=================================================================== */
 #relations-table-toggle {
   float: right;
   background: #fff;
@@ -1853,6 +1855,54 @@ html[xmlns] .slides {
 }
 /* Topics
   =================================================================== */
+#wall .item.topic .picture {
+  display: block;
+  padding: 5px;
+}
+#wall .item.topic .picture .image {
+  padding: 0;
+  height: 100%;
+}
+#wall .item.topic h3 {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-size: 1.5em;
+  text-align: center;
+  color: white;
+  margin-top: -0.5em;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6), 0px 2px 8px rgba(0, 0, 0, 0.3), 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+#wall .item.topic .hover {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: black;
+  filter: alpha(opacity=10);
+  -moz-opacity: 0.1;
+  -khtml-opacity: 0.1;
+  opacity: 0.1;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+#wall .item.topic .picture:hover .hover {
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+}
 #page-title.topic h2 {
   font-size: 2.5em;
 }
