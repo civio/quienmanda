@@ -19,7 +19,20 @@ jQuery.noConflict();
 
 
     /* -------------------- Setup home slider --------------------- */
-    $('#flex1').flexslider();
+    if ($('#home-slider-list').length) {
+
+      $('#home-slider').carousel('pause');
+
+      $('#home-slider-list .item a').click(function(e){
+        e.preventDefault();
+        if( $(this).hasClass('active') ) return true;
+        $('#home-slider-list .active').removeClass('active');
+        $(this).addClass('active');
+        $('#home-slider').carousel( parseInt($(this).attr('href').substr(6), 0) );
+      });
+    }
+
+    //$('#flex1').flexslider();
 
     /* -------------------- Setup layouts --------------------- */
     $wall = $('#wall, .extra-wall');
@@ -31,7 +44,7 @@ jQuery.noConflict();
     });
 
     /* -------------------- Setup visualization --------------- */
-    if( hasVis ){
+    if (hasVis) {
       graph = new NetworkGraph("#viz-container", "#infobox");
       graph.loadRootNode( $('#viz-container').data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
@@ -47,7 +60,7 @@ jQuery.noConflict();
     }
 
     /* -------------------- Setup photo --------------------- */
-    if( hasPhoto ){
+    if (hasPhoto) {
       anno.setProperties({ hi_stroke: '#6bb21b', });
       anno.addHandler('onMouseOverAnnotation', onAnnoHover);
       anno.addPlugin('RESTStorage', {
