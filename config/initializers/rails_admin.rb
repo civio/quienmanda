@@ -244,6 +244,7 @@ RailsAdmin.config do |config|
       field :photo
       field :entity
       field :slug
+      field :featured
       field :published
     end
   end

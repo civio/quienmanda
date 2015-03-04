@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213171742) do
+ActiveRecord::Schema.define(version: 20150304152043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150213171742) do
     t.integer  "photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "featured",    default: false
   end
 
   add_index "topics", ["entity_id"], name: "index_topics_on_entity_id", using: :btree
