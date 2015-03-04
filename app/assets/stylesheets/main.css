@@ -659,8 +659,138 @@ body > header {
 }
 /* Home Page
 =================================================================== */
+.subtitle {
+  position: relative;
+  text-align: center;
+  margin: 30px 0;
+}
+.subtitle h2 {
+  display: inline;
+  font-size: 1.5em;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  background: #dee5d8;
+  padding: 0 10px;
+}
+.subtitle:after {
+  position: absolute;
+  display: block;
+  content: "";
+  z-index: -1;
+  top: 50%;
+  left: 0;
+}
+.subtitle:after {
+  width: auto;
+  height: 3px;
+  top: 20px !important;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #6bb21b;
+  border-bottom: 1px solid #6bb21b;
+}
 .slider.span7.nogutter {
   width: 59.57446809%;
+}
+.home-slider-container {
+  padding: 5px 5px 0;
+  margin-bottom: 70px;
+  background: #f9f9f9;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+}
+#home-slider {
+  float: left;
+  width: 70%;
+  margin: 0;
+}
+#home-slider .carousel-inner > .item {
+  max-height: 470px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+#home-slider .carousel-inner > .item > img,
+#home-slider .carousel-inner > .item > a > img {
+  width: 100%;
+  height: auto;
+}
+#home-slider .carousel-caption {
+  background: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 0 #ffffff;
+}
+#home-slider .carousel-caption p {
+  color: #000;
+  font-size: 0.913em;
+  margin-top: 8px;
+}
+#home-slider .carousel-caption a h3 {
+  font-size: 1.375em;
+  font-family: 'Libre Baskerville', serif;
+}
+#home-slider .carousel-caption a h3:before {
+  float: left;
+  content: "";
+  display: block;
+  width: 3px;
+  height: 1.375em;
+  border-left: 1px solid #6bb21b;
+  border-right: 1px solid #6bb21b;
+  margin-right: 8px;
+}
+#home-slider .carousel-caption a:hover {
+  text-decoration: none;
+}
+#home-slider .carousel-caption a:hover h3 {
+  color: #8aa304;
+}
+#home-slider .carousel-control {
+  display: none;
+}
+#home-slider-list {
+  float: right;
+  width: 30%;
+}
+#home-slider-list .item {
+  margin: 0 0 5px 5px;
+}
+#home-slider-list .item > a {
+  font-family: 'Libre Baskerville', serif;
+  display: block;
+  position: relative;
+  height: 114px;
+  margin: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  background: #eef2ea;
+}
+#home-slider-list .item > a p {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+#home-slider-list .item > a p span {
+  display: table-cell;
+  vertical-align: middle;
+}
+#home-slider-list .item > a:hover,
+#home-slider-list .item > a:focus {
+  color: #414141;
+  text-decoration: none;
+  background: #e9eee1;
+}
+#home-slider-list .item > a.active {
+  background: #dde4cd;
+}
+#home-slider-list .item .carousel-caption {
+  padding: 10px 12px;
+}
+#home-slider-list.slides-5 .item > a {
+  height: 90px;
+}
+#home-slider-list.slides-6 .item > a {
+  height: 74px;
 }
 #homepage-slider {
   padding-top: 42px;

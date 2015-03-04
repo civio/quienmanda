@@ -8,4 +8,6 @@ class Topic < ActiveRecord::Base
 	def to_param
 	  slug
 	end
+
+  scope :published, -> { where(published: true) }
 end

@@ -1,54 +1,81 @@
-<!--start: row-fluid -->
-<div class="row-fluid">
+<div class="subtitle">
+  <h2>Un mapa del poder en España, con fuentes verificables y listo para investigar y compartir</h2>
+</div>
 
-  <!--start: Wrapper-->
-  <!-- start: Flexslider -->
-  <div id="homepage-slider" class="slider span7 nogutter">
-    <div id="flex1" class="flexslider home">
-      <ul class="slides">
-        
-        <% @highlights.each do |post| %>
-        <li>
+<div class="home-slider-container">
+
+  <!-- Home slider -->
+  <div id="home-slider" class="carousel slide">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <% i = 0 %>
+      <% @post_highlights.each do |post| %>
+        <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
+        <div class="<%= itemClass %>">
           <%= link_to post do %>
             <%= image_tag( post.photo && !post.photo.file.url.blank? ? post.photo.file.url(:full) : 'avatar.png') %>
           <% end %>
-          <div class="slide-caption n">
+          <div class="carousel-caption">
             <%= link_to post do %>
               <h3><%= post.title %></h3>
             <% end %>
-            <p>
-              <%= post.lead %>
-            </p>
-            <p>
-              <%= render 'shared/show_photo_credit', photo: post.photo %>
-            </p>
+            <p><%= post.lead %></p>
           </div>
-        </li>
-        <% end %>
+        </div>
+        <% i += 1 %>
+      <% end %>
 
-      </ul>
+      <% @topic_highlights.each do |topic| %>
+        <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
+        <div class="<%= itemClass %>">
+          <%= link_to topic do %>
+            <%= image_tag( topic.photo && !topic.photo.file.url.blank? ? topic.photo.file.url(:full) : 'avatar.png') %>
+          <% end %>
+          <div class="carousel-caption">
+            <%= link_to topic do %>
+              <h3><%= topic.title %></h3>
+              <% unless topic.description.blank? %>
+                <p><%= topic.description %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <% i += 1 %>
+      <% end %>
     </div>
-  </div>
-  <!-- end: Flexslider -->
-  <!-- end: Wrapper  -->  
 
-  <!--start: Wrapper-->
-  <div id="homepage-lead" class="span5">
-    <h3>Participa</h3>
-    <p>Envíanos imágenes que muestren vínculos entre empresarios y políticos para nuestro fotomandón o sugiere historias interesantes. Escríbenos a <a href="mailto:contacto@civio.es">contacto@civio.es</a>.</p>
-    <p>Además, <a href="http://civio.es/dona/" target="_blank"><strong>puedes ayudarnos a seguir investigando y aportando datos fiables con una donación.</strong></a></p>
-    <h3><a href="/posts/pero-que-es-esto">¿Pero qué es esto?</a></h3>
-    <p>
-      Quién Manda es un mapa del poder en España desarrollado por <a href="http://www.civio.es" target="_blank"><strong>Civio</strong></a> con tres objetivos: poner luz sobre esos vínculos, que se regule el lobby y que se publiquen las agendas de trabajo completas de los cargos públicos. Todo lo que encuentres en esta web está documentado, puedes comprobarlo tú mismo.
-    </p>
-    <p>
-      Si quieres saber más: <a href="/posts/pero-que-es-esto#que">¿Qué es Quién Manda?</a> <a href="/posts/pero-que-es-esto#como">¿Cómo se ha hecho?</a> <a href="/posts/pero-que-es-esto#quienes">¿Quiénes estamos detrás?</a> Y, lo más importante, <a href="/posts/pero-que-es-esto#porque">¿por qué hacemos esto?</a>
-    </p>
+    <!-- Controls -->
+    <a class="carousel-control left" href="#home-slider" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#home-slider" data-slide="next">&rsaquo;</a>
   </div>
-  <!-- end: Wrapper  -->  
 
+  <div id="home-slider-list" class="slides-<%= @highlights_items %>">
+    <% i = 0 %>
+    <% @post_highlights.each do |post| %>
+      <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
+      <div class="item">
+        <a href="#item-<%= i %>" class="<%= itemClass %>">
+          <p><span><%= post.title %></span></p>
+        </a>
+      </div>
+      <% i += 1 %>
+    <% end %>
+
+    <% @topic_highlights.each do |topic| %>
+      <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
+      <div class="item">
+        <a href="#item-<%= i %>" class="<%= itemClass %>">
+          <p><span><%= topic.title %></span></p>
+        </a>
+      </div>
+      <% i += 1 %>
+    <% end %>
+  </div>
+
+  <div class="clearfix"></div>
 </div>
-<!--end: row-fluid -->
+
 
 <!--start: Wrapper-->
 <div id="wrapper">
