@@ -14,7 +14,9 @@
         <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
         <div class="<%= itemClass %>">
           <%= link_to post do %>
+          <div class="img-cont">
             <%= image_tag( post.photo && !post.photo.file.url.blank? ? post.photo.file.url(:full) : 'avatar.png') %>
+          </div>
           <% end %>
           <div class="carousel-caption">
             <%= link_to post do %>
@@ -30,7 +32,9 @@
         <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
         <div class="<%= itemClass %>">
           <%= link_to topic do %>
+            <div class="img-cont">
             <%= image_tag( topic.photo && !topic.photo.file.url.blank? ? topic.photo.file.url(:full) : 'avatar.png') %>
+            </div>
           <% end %>
           <div class="carousel-caption">
             <%= link_to topic do %>
@@ -56,7 +60,7 @@
       <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
       <div class="item">
         <a href="#item-<%= i %>" class="<%= itemClass %>">
-          <p><span><%= post.title %></span></p>
+          <div><p><span class="icon icon-post"></span><%= post.title %></p></div>
         </a>
       </div>
       <% i += 1 %>
@@ -66,7 +70,7 @@
       <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
       <div class="item">
         <a href="#item-<%= i %>" class="<%= itemClass %>">
-          <p><span><%= topic.title %></span></p>
+          <div><p><span class="icon icon-topic"></span><%= topic.title %></p></div>
         </a>
       </div>
       <% i += 1 %>

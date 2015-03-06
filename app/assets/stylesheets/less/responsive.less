@@ -12,6 +12,14 @@
     }
   }
 
+  #home-slider-list .item > a{
+    padding: 0 15px;
+
+    > div p{
+      padding-left: 50px;
+    }
+  }
+
   #homepage-lead {
     padding-right: 30px;
     padding-left: 30px;
@@ -91,6 +99,26 @@
     button{ margin-right: 10px; }
   }
 
+  .subtitle:after{
+    display: none;
+  }
+
+  #home-slider{
+    width: 100%;
+
+    .carousel-inner > .item > a{
+      height: 450px;
+    }
+
+    .carousel-control{
+      display: block;
+    }
+  }
+
+  #home-slider-list{
+    display: none;
+  }
+
   #homepage-lead,
   #homepage-slider{
     width: 100%;
@@ -153,6 +181,10 @@
     margin-right: 12px;
   }
 
+  #home-slider .carousel-inner > .item > a{
+    height: 380px;
+  }
+
   body{
     padding: 0;
   }
@@ -182,6 +214,14 @@
 /* Small Mobile Sizes (devices and browser)
 ====================================================================== */
 @media only screen and (max-width: 520px) {
+
+  #home-slider .carousel-inner > .item > a{
+    height: 300px;
+  }
+
+  #home-slider .carousel-caption {
+    position: static;
+  }
 
   #wall .item.span3,
   #wall .item.span4{
