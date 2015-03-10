@@ -53,7 +53,7 @@ function NetworkGraph(selector, infobox) {
   var connectedNodes = {};  // Convenience data, to highlight neighbours
 
   // D3.js selectors, available for tick() method
-  var nodeRoot,
+  var nodeRootUrl,
       node,
       path,
       text;
@@ -84,6 +84,7 @@ function NetworkGraph(selector, infobox) {
   // Load the root node
   this.loadRootNode = function(url) {
     loadNode(url);
+    nodeRootUrl = url;
   };
 
   // Zoom controls
@@ -162,7 +163,7 @@ function NetworkGraph(selector, infobox) {
   // NODE METHODS
 
   // Load a node .json & add its related nodes & links
-  function loadNode(url, posx, posy, isChild) {
+  function loadNode(url, posx, posy) {
     // If a position is given, preposition child nodes around that.
     // Otherwise just put them in the middle of the screen
     if(typeof(posx)==='undefined') posx = centerx;
@@ -178,7 +179,7 @@ function NetworkGraph(selector, infobox) {
 
       // Add the retrieved nodes to the network graph
       $j.each(data.nodes, function(key, node) {
-        addNode(node, url, posx, posy, isChild);
+        addNode(node, url, posx, posy);
       });
 
       // Add the retrieved links to the network graph
@@ -205,15 +206,20 @@ function NetworkGraph(selector, infobox) {
   // Remove related nodes & its links
   function unloadNode(url) {
     $j.each(nodes, function(key,node) {
-      // Check for each node if is related to node to unload
-      if (node.related_nodes == url){
-        // Remove links from this node
-        $j.each(links, function(key,link) {
-            if (link.source.url == node.url || link.target.url == node.url){
-              removeLink(link);
-            }
-        });
-        removeNode(node);
+      // filter all nodes to get only nodes loadedBy url
+      if (node.url !== url && node.url !== nodeRootUrl && node.loadedBy && node.loadedBy.indexOf(url) > -1) {
+        // check if node has been loadedBy other nodes
+        if (node.loadedBy.length < 2) {
+          // Remove links from this node
+          $j.each(links, function(key,link) {
+              if (link.source.url == node.url || link.target.url == node.url){
+                removeLink(link);
+              }
+          });
+          removeNode(node);
+        }
+        // update node.loadedBy
+        node.loadedBy.splice(node.loadedBy.indexOf(url), 1);
       }
     });
 
@@ -225,31 +231,13 @@ function NetworkGraph(selector, infobox) {
   }
 
   // Add a node
-  function addNode(node, url, posx, posy, isChild) {
+  function addNode(node, url, posx, posy) {
     presetNode(node, posx, posy);
-    if (isChild) { node.related_nodes = url; }
     nodes[node.url] = nodes[node.url] || node;
-
-    /*
-    nodeIsChild = isChild && (node.url !== url) && (node.url !== nodeRoot.url );
-
-    // actualizar node
-    if (nodes[node.url]) {
-      if (nodeIsChild) {
-        (nodes[node.url].related_nodes = (nodes[node.url].related_nodes || [])).push( url );  // add parent to node object
-      }
+    // update loadedBy array
+    if (node.url !== url && node.url !== nodeRootUrl) {
+      (nodes[node.url].loadedBy = (nodes[node.url].loadedBy || [])).push( url );
     }
-    // inicializar node
-    else {
-      presetNode(node, posx, posy);
-      if (nodeIsChild) {
-        (node.related_nodes = (node.related_nodes || [])).push( url );  // add parent to node object
-      }
-      nodes[node.url] = node;
-    }
-
-    console.log( node.url, nodes[node.url].related_nodes );
-    */
   }
 
   // Remove a node
@@ -299,7 +287,6 @@ function NetworkGraph(selector, infobox) {
       node['fixed'] = true;
       node['x'] = posx;
       node['y'] = posy;
-      nodeRoot = node;
     } else {
       var angle = 2 * Math.PI * Math.random();
       node['x'] = posx + linkDistance * Math.sin(angle);
@@ -358,7 +345,7 @@ function NetworkGraph(selector, infobox) {
         .select('image')
           .attr("xlink:href", "/img/less-sign.png");
       d.fixed = true;                         // Fix after 'exploding', feels better
-      loadNode(d.url, d.x, d.y, true);        // add linked nodes
+      loadNode(d.url, d.x, d.y);        // add linked nodes
 
     } else if ( d['expanded'] ) {
       d['expandable'] = true;
