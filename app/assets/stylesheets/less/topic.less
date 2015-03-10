@@ -6,11 +6,34 @@
   .picture{
     display: block;
     padding: 5px;
-  }
+    height: 210px;
 
-  .picture .image{
-    padding: 0;
-    height: 100%;
+    .image-container{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      .image{
+        position:absolute;
+        top:-50%;
+        left:-50%;
+        width:200%;
+        height:200%;
+
+        img{
+          position:absolute;
+          margin:auto;
+          width: auto;
+          min-width:50%;
+          min-height:50%;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+        }
+      }
+    }
   }
 
   h3{

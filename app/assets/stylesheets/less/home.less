@@ -127,11 +127,15 @@
     //padding: 5px;
     margin: 0 0 5px 5px;
 
+    &:nth-child(n+7){
+      display: none;
+    }
+
     > a{
       font-family: @fontBaskerville;
       display: block;
       position: relative;
-      height: 114px;
+      height: 74px;
       margin: 0;
       padding: 0 10px;
       overflow: hidden;
@@ -183,14 +187,14 @@
     }
   }
 
+  &.slides-4{
+    .item > a{
+      height: 114px;
+    }
+  }
   &.slides-5{
     .item > a{
       height: 90px;
-    }
-  }
-  &.slides-6{
-    .item > a{
-      height: 74px;
     }
   }
 }

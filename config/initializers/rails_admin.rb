@@ -245,6 +245,7 @@ RailsAdmin.config do |config|
       field :entity
       field :slug
       field :featured
+      field :featured_order
       field :published
     end
   end

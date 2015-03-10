@@ -1,20 +1,13 @@
 <% if item.published or (can? :manage, item) %>
 <div class="<%= defined?(width) ? width : 'span4' %> item topic">
   <a href="<%= topic_path(item) %>" class="picture">
-
-    <%= image_tag(item.photo && item.photo.file.url(:small), class: 'image' )%>
-
-    <span class="hover"></span>
-
-    <h3><%= item.title %></h3>
-
-    <% unless item.description.blank? %>
-    <!--
-    <div class="description">
-      <p class="span6 offset3"><%= item.description %></p>
+    <div class="image-container">
+      <div class="image">
+        <%= image_tag(item.photo && item.photo.file.url(:small))%>
+      </div>
     </div>
-    -->
-    <% end %>
+    <span class="hover"></span>
+    <h3><%= item.title %></h3>
   </a>  
 </div>
 <% end %>

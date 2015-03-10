@@ -4,10 +4,10 @@ class WelcomeController < ApplicationController
   def index    
     # Highlight manually curated articles in the frontpage
     @post_highlights = (can? :manage, Post) ? Post.all : Post.published
-    @post_highlights = @post_highlights.where(featured: true).includes(:photo).order("published_at desc").limit(1)
+    @post_highlights = @post_highlights.where(featured: true).includes(:photo).order("published_at desc").limit(5)
 
     @topic_highlights = (can? :manage, Topic) ? Topic.all : Topic.published
-    @topic_highlights = @topic_highlights.where(featured: true).limit(4)
+    @topic_highlights = @topic_highlights.where(featured: true).order("featured_order ASC").limit(4)
 
     @highlights_items = @post_highlights.size + @topic_highlights.size
 
@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
 
     # Show the latests posts...
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    @posts = @posts.where(featured: false).includes(:photo).order("published_at DESC").limit(4)
+    @posts = @posts.where(featured: false).includes(:photo).order("published_at DESC").limit(5)
 
     # ...and photos
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published

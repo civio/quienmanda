@@ -777,11 +777,14 @@ body > header {
 #home-slider-list .item {
   margin: 0 0 5px 5px;
 }
+#home-slider-list .item:nth-child(n+7) {
+  display: none;
+}
 #home-slider-list .item > a {
   font-family: 'Libre Baskerville', serif;
   display: block;
   position: relative;
-  height: 114px;
+  height: 74px;
   margin: 0;
   padding: 0 10px;
   overflow: hidden;
@@ -824,11 +827,11 @@ body > header {
 #home-slider-list .item .carousel-caption {
   padding: 10px 12px;
 }
+#home-slider-list.slides-4 .item > a {
+  height: 114px;
+}
 #home-slider-list.slides-5 .item > a {
   height: 90px;
-}
-#home-slider-list.slides-6 .item > a {
-  height: 74px;
 }
 /* Wall
 =================================================================== */
@@ -1772,10 +1775,31 @@ body > header {
 #wall .item.topic .picture {
   display: block;
   padding: 5px;
+  height: 210px;
 }
-#wall .item.topic .picture .image {
-  padding: 0;
+#wall .item.topic .picture .image-container {
+  position: relative;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+#wall .item.topic .picture .image-container .image {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+#wall .item.topic .picture .image-container .image img {
+  position: absolute;
+  margin: auto;
+  width: auto;
+  min-width: 50%;
+  min-height: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 #wall .item.topic h3 {
   display: block;
