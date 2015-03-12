@@ -1,7 +1,13 @@
 <div class="span3 item people">
   <div class="picture">
-    <%= link_to image_tag(item.avatar.url ? item.avatar.url : 'avatar.png'), 
-                organization_path(item), class: 'image' %>
+    <% 
+      if defined? show_square_picture and show_square_picture
+        picture = image_tag(item.avatar.url ? item.avatar.url(:square) : 'avatar-square.png')
+      else
+        picture = image_tag(item.avatar.url ? item.avatar.url() : 'avatar.png')
+      end
+    %>
+    <%= link_to picture, organization_path(item), class: 'image' %>
     <div class="description">
       <h4>
         <% if !item.short_name.nil? && !item.short_name.blank? %>

@@ -28,9 +28,9 @@
   <div id="wall" class="row-fluid post topic"> 
     <% @related_entities.each do |entity| %>
       <% if entity.person? %>
-      <%= render '/shared/show_person', :item => entity %>
+      <%= render '/shared/show_person', item: entity, show_square_picture: true %>
       <% else %>
-      <%= render '/shared/show_organization', :item => entity %>
+      <%= render '/shared/show_organization', item: entity, show_square_picture: true %>
       <% end %>
     <% end %>
   </div>
