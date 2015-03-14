@@ -31,12 +31,8 @@ class TopicsController < ApplicationController
     end
 
     @related_entities = Entity.tagged_with(topic_id)
-
-    @posts = Post.tagged_with(topic_id)
-    @posts = @posts.order("published_at DESC")
-
-    @photos = Photo.tagged_with(topic_id)
-    @photos =  @photos.order("updated_at DESC")
+    @posts = Post.tagged_with(topic_id).order("published_at DESC")
+    @photos = Photo.tagged_with(topic_id).order("updated_at DESC")
   end
 
 end
