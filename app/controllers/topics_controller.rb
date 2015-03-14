@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
 
   # GET /topic/1
   def show
-  	topic = Topic.find_by_slug(params[:id])
+    topic = Topic.find_by_slug(params[:id])
     topic_id = params[:id].gsub('-', ' ')
 
     @title = topic ? topic.title : topic_id
@@ -24,15 +24,15 @@ class TopicsController < ApplicationController
         @entity = Entity.find(topic.entity_id)
       end
     end
-    	
+
     authorize! :read, Entity
     @related_entities = Entity.tagged_with(topic_id)
 
     authorize! :read, Post
     @posts = Post.tagged_with(topic_id)
-  	@posts = @posts.order("published_at DESC")
+    @posts = @posts.order("published_at DESC")
 
-  	authorize! :read, Photo
+    authorize! :read, Photo
     @photos = Photo.tagged_with(topic_id)
     @photos =  @photos.order("updated_at DESC")
   end
