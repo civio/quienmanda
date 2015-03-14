@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314162522) do
+ActiveRecord::Schema.define(version: 20150314163212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,9 +193,6 @@ ActiveRecord::Schema.define(version: 20150314162522) do
     t.boolean  "featured",       default: false
     t.integer  "featured_order", default: 0
   end
-
-  add_index "topics", ["entity_id"], name: "index_topics_on_entity_id", using: :btree
-  add_index "topics", ["photo_id"], name: "index_topics_on_photo_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
