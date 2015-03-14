@@ -4,8 +4,7 @@ class TopicsController < ApplicationController
   # GET /topic
   def index
     @title = 'Temas'
-    @topics = Topic.all
-    #@topics = (can? :manage, Topic) ? Topic.all : Topic.published
+    @topics = (can? :manage, Topic) ? Topic.all : Topic.published
   end
 
   # GET /topic/1
