@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
 
     # If it does exist, retrieve the extra information
     if topic
-      authorize! :read, @post   # Check it's been published
+      authorize! :read, topic   # Check it's been published
       if !topic.description.blank?
         @description = topic.description 
       end
