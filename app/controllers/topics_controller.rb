@@ -9,13 +9,19 @@ class TopicsController < ApplicationController
   end
 
   # GET /topic/1
+  # The topic may or may not exist, which can be a bit confusing, for historical reasons.
+  # If no topic exists, we just show photos, post and entities with that given tag.
+  # If the topic does exist, we additionally show a main entity, and a description.
+  # This behaviour is inspired by the way Stack Overflow tag pages work.
   def show
+    # Look for the topic
     topic = Topic.find_by_slug(params[:id])
     topic_id = params[:id].gsub('-', ' ')
-
     @title = topic ? topic.title : topic_id
 
-    if topic 
+    # If it does exist, retrieve the extra information
+    if topic
+      authorize! :read, @post   # Check it's been published
       if !topic.description.blank?
         @description = topic.description 
       end
