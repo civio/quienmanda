@@ -11,8 +11,6 @@ class WelcomeController < ApplicationController
 
     @highlights_items = @post_highlights.size + @topic_highlights.size
 
-    # @highlights = @topic_highlights.merge( @post_highlights )
-
     # Show the latests posts...
     @posts = (can? :manage, Post) ? Post.all : Post.published
     @posts = @posts.where(featured: false).includes(:photo).order("published_at DESC").limit(5)
