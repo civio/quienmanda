@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309180544) do
+ActiveRecord::Schema.define(version: 20150314162522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20150309180544) do
     t.string   "web_page"
     t.string   "open_corporates_page"
     t.string   "youtube_page"
-    t.integer  "topic_id"
   end
 
   add_index "entities", ["person"], name: "index_entities_on_person", using: :btree
@@ -101,7 +100,6 @@ ActiveRecord::Schema.define(version: 20150309180544) do
     t.date     "date"
     t.text     "notes"
     t.boolean  "extra_wide"
-    t.integer  "topic_id"
   end
 
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
