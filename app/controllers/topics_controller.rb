@@ -15,6 +15,8 @@ class TopicsController < ApplicationController
   def show
     # Look for the topic
     topic = Topic.find_by_slug(params[:id])
+    # TODO: Do we need this? In which cases exactly? The fact that we use tags on photos and
+    # entities to relate them to a Topic, which is a proper model, makes this messy.
     topic_id = params[:id].gsub('-', ' ')
     @title = topic ? topic.title : topic_id
 
