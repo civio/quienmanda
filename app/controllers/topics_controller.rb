@@ -30,14 +30,11 @@ class TopicsController < ApplicationController
       end
     end
 
-    authorize! :read, Entity
     @related_entities = Entity.tagged_with(topic_id)
 
-    authorize! :read, Post
     @posts = Post.tagged_with(topic_id)
     @posts = @posts.order("published_at DESC")
 
-    authorize! :read, Photo
     @photos = Photo.tagged_with(topic_id)
     @photos =  @photos.order("updated_at DESC")
   end
