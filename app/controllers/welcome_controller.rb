@@ -19,6 +19,11 @@ class WelcomeController < ApplicationController
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
     @photos = @photos.order("updated_at DESC").limit(6)
  
+    # XXX: Set the max age to 10 minutes as a stop gag while we sort out the whole caching
+    # approach. At the moment we cache things for too long under some scenarios.
+    response.headers["Cache-Control"] = "max-age=600"
+    # FIXME: Should check published_at of both topics and posts. But make it so the
+    # web doesn't break if there're none of them.    
     fresh_when  last_modified: [#@highlights.maximum(:published_at), 
                                 @posts.maximum(:published_at), 
                                 @photos.maximum(:updated_at)].max, 
