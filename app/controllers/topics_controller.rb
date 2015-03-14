@@ -20,13 +20,13 @@ class TopicsController < ApplicationController
 
     # If it does exist, retrieve the extra information
     if topic
-      authorize! :read, topic   # Check it's been published
+      authorize! :read, topic       # Check it's been published
       if !topic.description.blank?
         @description = topic.description 
       end
       if topic.entity_id
-        authorize! :read, Entity
         @entity = Entity.find(topic.entity_id)
+        authorize! :read, @entity   # Should be public if the topic also is, but just in case
       end
     end
 
