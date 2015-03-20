@@ -234,8 +234,9 @@ RailsAdmin.config do |config|
   config.model 'Topic' do
     list do
       field :published, :toggle
+      field :featured, :toggle
+      field :featured_order
       field :title
-      field :description
     end
 
     edit do
