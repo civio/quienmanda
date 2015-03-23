@@ -15,38 +15,34 @@
 //= require_directory ../annotorious
 //= require_directory .
 
-
 jQuery.noConflict();
 
 var $photo,
-	embeded;
+    embeded;
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function($) {
+  embeded = new pym.Child();
 
-	embeded = new pym.Child();
+  $photo = $('#photo');
 
-	$photo = $('#photo');
+  imagesLoaded( $photo, function( instance ) {
+    anno.makeAnnotatable(document.getElementById('photo'));
 
-	imagesLoaded( $photo, function( instance ){
-
-		anno.makeAnnotatable(document.getElementById('photo'));
-
-		// Setup Annotorious
-		anno.setProperties({ hi_stroke: '#6bb21b', });
-		anno.addHandler('onMouseOverAnnotation', onAnnoHover);
-		anno.addPlugin('RESTStorage', {
-			base_url: '/photos/'+$photo.data('photoid')+'/annotations',
-			read_only: $photo.data('readonly')
-		});
+    // Setup Annotorious
+    anno.setProperties({ hi_stroke: '#6bb21b', });
+    anno.addHandler('onMouseOverAnnotation', onAnnoHover);
+    anno.addPlugin('RESTStorage', {
+      base_url: '/photos/'+$photo.data('photoid')+'/annotations',
+      read_only: $photo.data('readonly')
+    });
 
     embeded.sendHeight();
-		$(window).bind("resize", onResizeHandler);
-	});
-	
-	// On Resize handler 
-	function onResizeHandler(){
+    $(window).bind("resize", onResizeHandler);
+  });
 
-		anno.reset();
+  // On Resize handler 
+  function onResizeHandler() {
+    anno.reset();
     anno.addPlugin('RESTStorage', {
       base_url: '/photos/'+$photo.data('photoid')+'/annotations',
       read_only: $photo.data('readonly')
@@ -54,9 +50,9 @@ jQuery(document).ready(function($){
     $('.annotorious-es-plugin-load-outer').hide();
 
     embeded.sendHeight();
-	}
+  }
 
-	// On Annotorious Mouse Over Handler
+  // On Annotorious Mouse Over Handler
   function onAnnoHover(e) {
     if( e.K === undefined ) return true;
 
