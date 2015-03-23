@@ -39,6 +39,7 @@ jQuery(document).ready(function($){
 			read_only: $photo.data('readonly')
 		});
 
+    embeded.sendHeight();
 		$(window).bind("resize", onResizeHandler);
 	});
 	
@@ -46,28 +47,28 @@ jQuery(document).ready(function($){
 	function onResizeHandler(){
 
 		anno.reset();
-        anno.addPlugin('RESTStorage', {
-          base_url: '/photos/'+$photo.data('photoid')+'/annotations',
-          read_only: $photo.data('readonly')
-        });
-        $('.annotorious-es-plugin-load-outer').hide();
+    anno.addPlugin('RESTStorage', {
+      base_url: '/photos/'+$photo.data('photoid')+'/annotations',
+      read_only: $photo.data('readonly')
+    });
+    $('.annotorious-es-plugin-load-outer').hide();
 
-        embeded.sendHeight();
+    embeded.sendHeight();
 	}
 
 	// On Annotorious Mouse Over Handler
-    function onAnnoHover(e) {
-      if( e.K === undefined ) return true;
+  function onAnnoHover(e) {
+    if( e.K === undefined ) return true;
 
-      var $annoPopup = $('.annotorious-popup');
+    var $annoPopup = $('.annotorious-popup');
 
-      // Align title right if its placed at the right half of the picture
-      if( e.K.shapes[0].geometry.x > 0.5 ){
-        $annoPopup.css('left', $annoPopup.position().left - $annoPopup.width() - 16 + (e.K.shapes[0].geometry.width*$('.annotorious-annotationlayer').width()) );
-      }
-
-      if( $photo.data('readonly') ){
-        $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
-      }
+    // Align title right if its placed at the right half of the picture
+    if( e.K.shapes[0].geometry.x > 0.5 ){
+      $annoPopup.css('left', $annoPopup.position().left - $annoPopup.width() - 16 + (e.K.shapes[0].geometry.width*$('.annotorious-annotationlayer').width()) );
     }
+
+    if( $photo.data('readonly') ){
+      $('.annotorious-popup-buttons').remove(); // Hide edit buttons if is read only
+    }
+  }
 });
