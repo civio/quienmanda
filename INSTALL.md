@@ -63,6 +63,7 @@ You can now deploy and start the app:
 Docker latest version needed to run this.
 
 How to use docker in Mac: https://docs.docker.com/installation/mac/
+
 How to use docker in Windows: https://docs.docker.com/installation/windows/
 
 Use the script launch-docker-env.sh in the root of the project to launch the enviroment.
@@ -75,4 +76,9 @@ This will:
 * And launch finally a container running the actual app from the code in your computer, called quienmanda-app
 
 Warning: The db container will continue running in the background after we finish the script.
-i        Run "docker stop quienmanda-db && docker rm quienmanda-db" to remove it
+
+Run:
+
+    "docker stop quienmanda-db && docker rm quienmanda-db"
+
+to remove it
