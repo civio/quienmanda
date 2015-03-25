@@ -10,7 +10,8 @@ if [ $? -eq 1 ]; then
 fi
 
 #Modify config files for dev env
-sed -i 's/*default/*docker/g' config/database.yml
+sed -i.bak 's/*default/*docker/g' config/database.yml
+rm config/database.yml.bak || /bin/true
 cp config/application.yml-example config/application.yml || /bin/true
 
 #Setup database
