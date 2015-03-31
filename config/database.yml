@@ -1,38 +1,35 @@
-development:
+docker: &docker
   adapter: postgresql
-  database: qm_development
+  pool: 5
+  username: postgres
+  password: <%= ENV['POSTGRESQL_ENV_POSTGRES_PASSWORD'] %>
+  host: <%= ENV['POSTGRESQL_PORT_5432_TCP_ADDR'] %>
+  port: <%= ENV['POSTGRESQL_PORT_5432_TCP_PORT'] %>
+  timeout: 5000
+
+default: &default
+  adapter: postgresql
   username: qm
   password: 
   host: localhost
   pool: 5
   timeout: 5000
 
-profile:
-  adapter: postgresql
+development:
+  <<: *default
   database: qm_development
-  username: qm
-  password: 
-  host: localhost
-  pool: 5
-  timeout: 5000
+
+profile:
+  <<: *default
+  database: qm_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
+  <<: *default
   database: qm_test
-  username: qm
-  password: 
-  host: localhost
-  pool: 5
-  timeout: 5000
 
 production:
-  adapter: postgresql
+  <<: *default
   database: qm_production
-  username: qm
-  password: 
-  host: localhost
-  pool: 5
-  timeout: 5000
