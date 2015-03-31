@@ -58,27 +58,17 @@ You can now deploy and start the app:
 
     $ heroku apps:open
 
-### Deploying wit docker
+### Deploying with docker
 
-Docker latest version needed to run this.
+A recent version of Docker is needed to run the following. You can install Docker in many operating operating systems, including [OS X](https://docs.docker.com/installation/mac/) and [Windows](https://docs.docker.com/installation/windows/).
 
-How to use docker in Mac: https://docs.docker.com/installation/mac/
+Use the script `launch-docker-env.sh` in the root of the project to launch the enviroment. This will:
 
-How to use docker in Windows: https://docs.docker.com/installation/windows/
+* Build a new image `quienmanda-app with Ruby 2.0 and Ruby on Rails 4.0.
+* Launch a PostgreSQL docker container named `quienmanda-db`.
+* Populate the database.
+* And launch finally a container running the actual app from the code in your computer, called `quienmanda-app`.
 
-Use the script launch-docker-env.sh in the root of the project to launch the enviroment.
+Warning: The database container will continue running in the background after we finish the script. In order to stop it and delete it, run:
 
-This will:
-
-* Build a new image quienmanda-app with Ruby on rails 2.0
-* Launch a docker container with postgresql called quienmanda-db
-* Then populate the database
-* And launch finally a container running the actual app from the code in your computer, called quienmanda-app
-
-Warning: The db container will continue running in the background after we finish the script.
-
-Run:
-
-    "docker stop quienmanda-db && docker rm quienmanda-db"
-
-to remove it
+    $ docker stop quienmanda-db && docker rm quienmanda-db
