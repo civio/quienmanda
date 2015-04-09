@@ -67,6 +67,17 @@ jQuery.noConflict();
         base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
         read_only: $('#photo').data('readonly')
       });
+
+      // Setup Embed Btn
+      if( $('.embed-btn').length > 0 ){
+        var embedId = $('.embed-btn').attr('href').substring(1);
+        $('.embed-code input').val('<div id="quienmanda-embed-'+embedId+'"></div><script src="http://quienmanda.es/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-'+embedId+'", "http://quienmanda.es/photos/'+embedId+'?widget=1", {});</script>');
+        $('.embed-btn').click(function(e){
+          e.preventDefault();
+          $('.embed-code').toggle().focus();
+          $('.embed-code input').select();
+        });
+      }
     }
 
     // On Annotorious Mouse Over Handler
