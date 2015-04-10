@@ -2098,13 +2098,16 @@ g.node circle {
   stroke-width: 0px;
 }
 g.node.root circle {
-  stroke-width: 3px;
   stroke: black;
   fill: black !important;
 }
 g.node.root text {
   fill: #666;
   font-weight: 600;
+}
+.topic-viz g.node.root text {
+  fill: black;
+  text-shadow: 0 1px 0 #eef2ea, 0 0 3px #eef2ea, 0 0 6px #eef2ea;
 }
 g.node image {
   display: none;

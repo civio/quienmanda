@@ -158,7 +158,6 @@ g.node circle {
 g.node.root{
 
   circle {
-    stroke-width: 3px;
     stroke: black; // #a6b398;
     fill: black !important;
   }
@@ -167,6 +166,12 @@ g.node.root{
     fill: #666;
     font-weight: 600;
   }
+}
+
+// Highlight root node in Topic Visualization
+.topic-viz g.node.root text{
+  fill: black;
+  text-shadow: 0 1px 0 @colorHeader, 0 0 3px @colorHeader, 0 0 6px @colorHeader;
 }
 
 g.node image {
