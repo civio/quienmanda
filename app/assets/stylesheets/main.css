@@ -1452,6 +1452,7 @@ body > header {
 }
 #wrapper .posts.full.picture .picture-meta {
   background: #dde4cd;
+  min-height: 52px;
 }
 #wrapper .posts.full.picture .credits {
   float: left;
@@ -1459,6 +1460,7 @@ body > header {
   padding: 0 0 24px;
   font-size: 0.875em;
   line-height: 24px;
+  min-height: 24px;
   text-shadow: none;
 }
 #wrapper .posts.full.picture .credits a {
