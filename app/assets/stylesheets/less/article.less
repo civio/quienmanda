@@ -563,6 +563,33 @@
       margin: 0;
       bottom: -28px;
     }
+
+    .annotorious-editor-text{
+      font-size: 12px;
+    }
+
+    // Annotorious Autocomplete
+    .annotorious-autocomplete-results{
+        position: absolute;
+        top: 22px;
+        width: 240px;
+        max-height: 240px;
+        overflow-y: scroll;
+
+        > a{
+          display: block;
+          padding: 4px;
+          font-size: 12px;
+          background: @colorHeader;
+          border-top: 1px solid @colorBody;
+
+          &.hover,
+          &:hover{
+            background: white;
+            text-decoration: none;
+          }
+        }
+    }
   }
 
   .sidebar.span4{

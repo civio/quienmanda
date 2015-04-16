@@ -1522,6 +1522,28 @@ body > header {
   margin: 0;
   bottom: -28px;
 }
+#wrapper .posts.full.picture .annotorious-editor-text {
+  font-size: 12px;
+}
+#wrapper .posts.full.picture .annotorious-autocomplete-results {
+  position: absolute;
+  top: 22px;
+  width: 240px;
+  max-height: 240px;
+  overflow-y: scroll;
+}
+#wrapper .posts.full.picture .annotorious-autocomplete-results > a {
+  display: block;
+  padding: 4px;
+  font-size: 12px;
+  background: #eef2ea;
+  border-top: 1px solid #dee5d8;
+}
+#wrapper .posts.full.picture .annotorious-autocomplete-results > a.hover,
+#wrapper .posts.full.picture .annotorious-autocomplete-results > a:hover {
+  background: white;
+  text-decoration: none;
+}
 #wrapper .sidebar.span4 {
   width: 34.04255319%;
   margin-left: 0;
