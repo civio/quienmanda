@@ -178,7 +178,7 @@ jQuery.noConflict();
       });
     }
 
-    // On Annotation is created we reset the plugin tu update info
+    // On Annotation changes, reload the page to show the updated info
     function onAnnoReload(e) {
       window.location.reload();
     }
