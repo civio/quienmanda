@@ -1373,6 +1373,9 @@ body > header {
 #wrapper .posts .post.related-posts .post-date {
   display: none;
 }
+#wrapper .posts .post.related-posts .description {
+  display: none;
+}
 #wrapper .posts .post.related-posts .title {
   color: #515151;
   font-size: 1.625em;
