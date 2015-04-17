@@ -64,7 +64,6 @@ jQuery.noConflict();
       anno.setProperties({ hi_stroke: '#6bb21b', });
       anno.addHandler('onMouseOverAnnotation', onAnnoHover);
       anno.addHandler('onEditorShown', onAnnoEditorShown);
-      //$(document).on('AnnoRESTStorageCreated', onAnnoCreated);  // AnnoRESTStorageCreated is a Custom Event triggered by Annotorious RESTStorage Plugin
       anno.addHandler('onAnnotationCreated', onAnnoReload);
       anno.addHandler('onAnnotationUpdated', onAnnoReload);
       anno.addHandler('onAnnotationRemoved', onAnnoReload);
@@ -182,14 +181,6 @@ jQuery.noConflict();
     // On Annotation is created we reset the plugin tu update info
     function onAnnoReload(e) {
       window.location.reload();
-      /*
-      anno.reset();
-      anno.addPlugin('RESTStorage', {
-        base_url: '/photos/'+$('#photo').data('photoid')+'/annotations',
-        read_only: $('#photo').data('readonly')
-      });
-      $('.annotorious-es-plugin-load-outer').hide();
-      */
     }
 
 
