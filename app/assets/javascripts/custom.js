@@ -102,7 +102,6 @@ jQuery.noConflict();
 
     // On Annotorious Editor is Shown to create a new or edit an existing annotation
     function onAnnoEditorShown(e) {
-
       var people,
           $input = $('.annotorious-editor .annotorious-editor-text'),
           $results = $('<div class="annotorious-autocomplete-results"></div>');
@@ -114,22 +113,18 @@ jQuery.noConflict();
 
       $('.annotorious-editor').append( $results );
 
-      // Create new Annotation
-      if (!e) {
-        $input.attr('placeholder','Añade una persona...');
-      }
-      // Edit existing Annotation
-      else {
+      if (!e) {   // Create new Annotation
+        $input.attr('placeholder', 'Añade una persona...');
+      } else {    // Edit existing Annotation
         $input.val( e.name );
       }
 
       // Listen KeyUp Event
       $input.bind( 'keyup', function(e) {
-
         var index,
             code = e.keyCode;
 
-        // code is Enter:  seleccionar el link marcado 
+        // code == Enter:  select highlighted item
         if (code == 13) {
           if ($results.children().size() > 0) {
             index = $results.children().index( $results.children('.hover') );
@@ -137,7 +132,7 @@ jQuery.noConflict();
             $results.children().eq(index).trigger('click');
           }
         }
-        // code is Arrows: moverse por los links
+        // code == up/down arrows: move along items
         else if (code == 40 || code == 38) {
           if ($results.children().size() > 0) {
             index = $results.children().index( $results.children('.hover') );
@@ -145,21 +140,22 @@ jQuery.noConflict();
             index = (code == 38) ? index-1 : index+1;
             if (index >= $results.children().size()) {
               index = 0;
-            }
-            else if (index < 0) {
+            } else if (index < 0) {
               index = $results.children().size()-1;
             }
             $results.children().eq(index).addClass('hover');
           }
         }
-        // code is a letter: ejecutar el autocompletar
+        // code == a letter: do autocomplete
         else {
           var filter = $(this).val().toLowerCase();
+
           // Skip if there's no text
           if (filter.trim() === ''){
             $results.empty();
             return;
           }
+
           // Filter people
           if (people) {
             var peopleFiltered = people.filter( function (val,key) { return (val.name.toLowerCase().indexOf(filter) === 0); } );
@@ -167,6 +163,7 @@ jQuery.noConflict();
             $.each( peopleFiltered, function( key,val ) {
               $results.append('<a href="#">'+val.name+'</a>');
             });
+
             // Select suggested Person on click
             $results.find('a').click(function(e){
               e.preventDefault();
