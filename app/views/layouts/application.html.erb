@@ -21,6 +21,15 @@
   <meta property="og:image" content="<%= @fb_image_url %>"/>
   <meta property="og:description" content="<%= @fb_description %>"/>
 
+  <%# Twitter Photo Card Metatags (https://dev.twitter.com/cards/types/photo) %>
+  <% if @photo and @photo.file %>
+  <meta name="twitter:card" content="photo" />
+  <meta name="twitter:site" content="@quien_manda" />
+  <meta name="twitter:title" content="<%= @title %>" />
+  <meta name="twitter:image" content="<%= @photo.file.url(:full) %>" />
+  <meta name="twitter:url" content="<%= request.original_url %>" />
+  <% end %>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%# Conditional CSRF as suggested by http://xyzpub.com/en/ruby-on-rails/3.2/http_caching.html %>
