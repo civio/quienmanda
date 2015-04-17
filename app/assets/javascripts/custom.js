@@ -107,7 +107,7 @@ jQuery.noConflict();
           $results = $('<div class="annotorious-autocomplete-results"></div>');
 
       // Get .json with all people list
-      $.getJSON( '/people.json', function(data) {
+      $.getJSON( '/entities.json', function(data) {
         people = data;
       });
 

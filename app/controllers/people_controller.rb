@@ -9,14 +9,7 @@ class PeopleController < ApplicationController
     @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
     if stale?(last_modified: @people.maximum(:updated_at), :public => current_user.nil?)
-      respond_to do |format|
-        format.json do
-          @people = @people.order("updated_at DESC")
-        end
-        format.html do
-          @people = @people.order("updated_at DESC").page(params[:page]).per(12)
-        end
-      end
+      @people = @people.order("updated_at DESC").page(params[:page]).per(12)
     end
   end
 

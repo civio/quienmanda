@@ -5,6 +5,12 @@ include ApplicationHelper
 class EntitiesController < ApplicationController
   etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
+  # Define entities.json used to populate autocomplete box in photo annotations
+  def index
+    @entities = (can? :manage, Entity) ? Entity : Entity.published
+    @entities = @entities.order("updated_at DESC")
+  end
+
   def show
     entity = Entity.find_by_slug(params[:id])
     if stale?(entity, :public => current_user.nil?)

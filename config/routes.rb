@@ -40,7 +40,7 @@ Quienmanda::Application.routes.draw do
   get '/search' => 'search#search', :as => 'search'
 
   # We add this route just so ShowInApp works in Rails Admin
-  resources :entities, only: [:show]
+  resources :entities, only: [:index, :show]
 
   root 'welcome#index'
 
