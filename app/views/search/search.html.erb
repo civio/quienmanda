@@ -7,3 +7,5 @@
 <!-- end: Page Title -->
 
 <%= render '/shared/mixed_wall', items: @results.map {|r| r.searchable } %>
+
+<%= paginate @results %>
