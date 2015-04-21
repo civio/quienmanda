@@ -102,14 +102,9 @@ jQuery.noConflict();
 
     // On Annotorious Editor is Shown to create a new or edit an existing annotation
     function onAnnoEditorShown(e) {
-      var people,
+      var people = null,
           $input = $('.annotorious-editor .annotorious-editor-text'),
           $results = $('<div class="annotorious-autocomplete-results"></div>');
-
-      // Get .json with all people list
-      $.getJSON( '/entities.json', function(data) {
-        people = data;
-      });
 
       $('.annotorious-editor').append( $results );
 
@@ -118,6 +113,12 @@ jQuery.noConflict();
       } else {    // Edit existing Annotation
         $input.val( e.name );
       }
+
+      // Get .json with all people list
+      $.getJSON( '/entities.json', function(data) {
+        people = data;
+        $input.trigger( 'keyup' );  // force keyup event when entities.json is loaded
+      });
 
       // Listen KeyUp Event
       $input.bind( 'keyup', function(e) {
@@ -148,6 +149,9 @@ jQuery.noConflict();
         }
         // code == a letter: do autocomplete
         else {
+
+          if( people === null ) return;
+
           var filter = $(this).val().toLowerCase();
 
           // Skip if there's no text
@@ -157,20 +161,18 @@ jQuery.noConflict();
           }
 
           // Filter people
-          if (people) {
-            var peopleFiltered = people.filter( function (val,key) { return (val.name.toLowerCase().indexOf(filter) === 0); } );
-            $results.empty();
-            $.each( peopleFiltered, function( key,val ) {
-              $results.append('<a href="#">'+val.name+'</a>');
-            });
+          var peopleFiltered = people.filter( function (val,key) { return (val.name.toLowerCase().indexOf(filter) !== -1 ); });
+          $results.empty();
+          $.each( peopleFiltered, function( key,val ) {
+            $results.append('<a href="#">'+val.name+'</a>');
+          });
 
-            // Select suggested Person on click
-            $results.find('a').click(function(e){
-              e.preventDefault();
-              $input.val( $(this).html() ).focus();
-              $results.empty();
-            });
-          }
+          // Select suggested Person on click
+          $results.find('a').click(function(e){
+            e.preventDefault();
+            $input.val( $(this).html() ).focus();
+            $results.empty();
+          });
         }
       });
     }
