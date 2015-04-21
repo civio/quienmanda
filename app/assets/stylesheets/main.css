@@ -1480,8 +1480,6 @@ body > header {
   text-decoration: none;
 }
 #wrapper .posts.full.picture .embed-btn {
-  /* Hide temporarily */
-  display: none;
   float: right;
   color: #515151;
   font-size: 0.875em;
