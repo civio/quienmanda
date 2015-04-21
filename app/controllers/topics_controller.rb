@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
   def index
     @title = 'Temas'
     @topics = (can? :manage, Topic) ? Topic.all : Topic.published
+    @topics = @topics.order("updated_at DESC")
   end
 
   # GET /topic/1
