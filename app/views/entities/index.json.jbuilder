@@ -1,5 +1,9 @@
 json.array!(@entities) do |entity|
-  json.extract! entity, :name, :short_name
+  if entity.short_name? 
+    json.set! :name, entity.short_name
+  else
+    json.set! :name, entity.name
+  end
   if entity.person? 
     json.url person_url(entity, format: :json)
   else
