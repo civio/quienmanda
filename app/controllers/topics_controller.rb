@@ -36,6 +36,10 @@ class TopicsController < ApplicationController
     @related_entities = Entity.tagged_with(topic_id)
     @posts = Post.tagged_with(topic_id).order("published_at DESC")
     @photos = Photo.tagged_with(topic_id).order("updated_at DESC")
+
+    # Facebook Open Graph metadata
+    @fb_description = @description
+    @fb_image_url = topic.photo.file.url(:full) unless topic.photo.nil? or topic.photo.file.nil?
   end
 
 end
