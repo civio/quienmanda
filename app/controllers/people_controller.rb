@@ -24,6 +24,10 @@ class PeopleController < ApplicationController
       # Facebook Open Graph metadata
       @fb_description = @person.description unless @person.description.blank?
       @fb_image_url = @person.avatar.url() unless @person.avatar.nil?
+
+      # Twitter Summary Card metadata
+      @tw_card_summary = @fb_description
+      @tw_card_photo = @fb_image_url
     end
   end
 

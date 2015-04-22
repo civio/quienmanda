@@ -54,6 +54,9 @@ class PostsController < ApplicationController
       # Facebook Open Graph metadata
       @fb_description = @post.lead unless @post.lead.blank?
       @fb_image_url = @post.photo.file.url(:full) unless @post.photo.nil? or @post.photo.file.nil?
+
+      # Twitter Photo Card metadata
+      @tw_card_photo = @fb_image_url
     end
   end
 

@@ -24,6 +24,10 @@ class OrganizationsController < ApplicationController
       # Facebook Open Graph metadata
       @fb_description = @organization.description unless @organization.description.blank?
       @fb_image_url = @organization.avatar.url() unless @organization.avatar.nil?
+
+      # Twitter Summary Card metadata
+      @tw_card_summary = @fb_description
+      @tw_card_photo = @fb_image_url
     end
   end
 

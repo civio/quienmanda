@@ -40,6 +40,9 @@ class TopicsController < ApplicationController
     # Facebook Open Graph metadata
     @fb_description = @description
     @fb_image_url = topic.photo.file.url(:full) unless topic.photo.nil? or topic.photo.file.nil?
+
+    # Twitter Photo Card metadata
+    @tw_card_photo = @fb_image_url
   end
 
 end

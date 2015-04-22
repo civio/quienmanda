@@ -29,6 +29,9 @@ class PhotosController < ApplicationController
       # Facebook Open Graph metadata
       @fb_description = @photo.footer unless @photo.footer.blank?
       @fb_image_url = @photo.file.url(:full) unless @photo.file.nil?
+
+      # Twitter Photo Card metadata
+      @tw_card_photo = @fb_image_url
     end
   end
 

@@ -21,12 +21,20 @@
   <meta property="og:image" content="<%= @fb_image_url %>"/>
   <meta property="og:description" content="<%= @fb_description %>"/>
 
-  <%# Twitter Photo Card Metatags (https://dev.twitter.com/cards/types/photo) %>
-  <% if @photo and @photo.file %>
+  <%# Twitter Summary Card Metatags for people & organizations (https://dev.twitter.com/cards/types/summary) %>
+  <% if @tw_card_summary %>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@quien_manda" />
+  <meta name="twitter:title" content="<%= @title %>" />
+  <meta name="twitter:image" content="<%= @tw_card_photo %>" />
+  <meta name="twitter:description" content="<%= @tw_card_summary %>" />
+  <meta name="twitter:url" content="<%= request.original_url %>" />
+  <%# Twitter Photo Card Metatags for photos, posts & topics (https://dev.twitter.com/cards/types/photo) %>
+  <% elsif @tw_card_photo %>
   <meta name="twitter:card" content="photo" />
   <meta name="twitter:site" content="@quien_manda" />
   <meta name="twitter:title" content="<%= @title %>" />
-  <meta name="twitter:image" content="<%= @photo.file.url(:full) %>" />
+  <meta name="twitter:image" content="<%= @tw_card_photo %>" />
   <meta name="twitter:url" content="<%= request.original_url %>" />
   <% end %>
 
