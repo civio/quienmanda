@@ -5,13 +5,11 @@
   <div id="wall" class="row-fluid mixed">
             
     <% items.each do |item| %>
-      <%= render partial_name(item), :item => item %>
+      <%= render partial_name(item), :item => item, :span => 'span4' %>
     <% end %>
 
   </div>
   <!-- end: Portfolio -->
-  
-  <%= paginate items if items.respond_to? :current_page %>
 
 </div>
 <!-- end: Wrapper  -->
