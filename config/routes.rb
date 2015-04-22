@@ -39,7 +39,8 @@ Quienmanda::Application.routes.draw do
   # Global search
   get '/search' => 'search#search', :as => 'search'
 
-  # We add this route just so ShowInApp works in Rails Admin
+  # We add 'index' for the autocomplete in annotations
+  # We add 'show' so ShowInApp works in Rails Admin
   resources :entities, only: [:index, :show]
 
   root 'welcome#index'
