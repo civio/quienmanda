@@ -47,6 +47,17 @@
     background: @colorBody;
   }
 
+  // Hide Title Icon on Search Titles
+  &.search{
+    &:before{
+      display: none;
+    }
+
+    h2{
+      margin-left: 0;
+    }
+  }
+
   &.photo:before{
     background-position: 0 -72px; 
   }

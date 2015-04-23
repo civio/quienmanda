@@ -147,3 +147,61 @@
     position: relative;
   }
 }
+
+/* Topic in Mixed Wall */
+#wall.mixed .item.topic{
+
+  .hover{
+    display: none;
+  }
+
+  h3{
+    position: relative;
+    padding-left: 3px;
+    margin: 12px 12px 8px 70px;
+    color: @colorGray;
+    font-size: 1.25em;
+    line-height: 1.375em;
+    height: auto;
+    border-left: 1px solid @colorTextGreen;
+    text-align: left;
+    text-shadow: none;
+
+    &:before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -70px;
+      width: 62px;
+      height: 63px;
+      overflow: hidden;
+      background: url(/images/sprites.png) no-repeat 0 -199px transparent;
+    }
+
+    a{
+        display: block;
+        min-height: 64px;
+        padding-left: 12px;
+        border-left: 1px solid @colorTextGreen;
+    }
+  }
+  
+  .image-container{
+    position: static;
+    height: auto;
+    padding: 5px;
+
+    .image{
+      position: static;
+      width: 100%;
+      height: auto;
+
+      img{
+        position: static;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

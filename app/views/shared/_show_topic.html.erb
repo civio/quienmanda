@@ -1,5 +1,16 @@
 <% if item.published or (can? :manage, item) %>
 <div class="<%= defined?(width) ? width : 'span4' %> item topic">
+  <%# Template for mixed wall %>
+  <% if defined? mixed and mixed %>
+    <h3><a href="<%= topic_path(item) %>" title="<%= item.title %>"><%= item.title %></a></h3>
+    <div class="image-container">
+      <a class="image" href="<%= topic_path(item) %>" title="<%= item.title %>">
+        <%= image_tag(item.photo && item.photo.file.url(:small))%>
+      </a>
+    </div>
+  </a>
+  <%# Template for Topics home %>
+  <% else %>
   <a href="<%= topic_path(item) %>" class="picture">
     <div class="image-container">
       <div class="image">
@@ -9,5 +20,6 @@
     <span class="hover"></span>
     <h3><%= item.title %></h3>
   </a>  
+  <% end %>
 </div>
 <% end %>
