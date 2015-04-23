@@ -55,6 +55,17 @@ class PhotosController < ApplicationController
     render :index
   end
 
+  # POST /photos/id/vote
+  def vote
+    authorize! :manage, Photo
+    photo = Photo.find(params[:id])
+    puts photo
+    if stale?(photo, :public => current_user.nil?)
+      photo.vote_by :voter => current_user
+    end
+    redirect_to photo_path(photo)
+  end
+
   private
     def set_photo
       @photo = Photo.includes(:related_entities, :annotations).find(params[:id])

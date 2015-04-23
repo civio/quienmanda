@@ -64,6 +64,7 @@ gem 'font-awesome-rails', "~> 3.2.1.2"  # Force version change after CDN cache i
 gem 'unicode_utils'
 gem 'rails-i18n', '~> 4.0.0.pre'
 gem 'nokogiri'
+gem 'acts_as_votable', '~> 0.10.0'
 
 # Admin interface
 gem 'rails_admin'

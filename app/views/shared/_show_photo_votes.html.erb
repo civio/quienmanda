@@ -1,0 +1,7 @@
+<% unless photo.nil? %>
+  <% if current_user.nil? or current_user.voted_for? @photo %>
+    <div class="vote-btn"><i class="icon-fontello-thumbs-up-alt"></i>Me gusta<span><%= @photo.votes_for.size %></span></div>
+  <% else %>
+    <a class="vote-btn" href="<%= photo_path(@photo)+'/vote/' %>" title="Me gusta esta foto"><i class="icon-fontello-thumbs-up-alt"></i>Me gusta<span><%= @photo.votes_for.size %></span></a>
+  <% end %>
+<% end %>

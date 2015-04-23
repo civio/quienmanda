@@ -66,6 +66,14 @@ select,
 textarea {
   font-family: 'Open Sans', sans-serif;
 }
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
 /* Layout
 =================================================================== */
 body > .container {
@@ -1457,17 +1465,15 @@ body > header {
 }
 #wrapper .posts.full.picture .picture-meta,
 #wrapper .posts.full.picture .admin-link {
-  padding: 24px 24px 0;
+  padding: 20px 24px 0;
   margin: 0;
 }
 #wrapper .posts.full.picture .picture-meta {
   background: #dde4cd;
-  min-height: 52px;
 }
 #wrapper .posts.full.picture .credits {
-  float: left;
   color: #515151;
-  padding: 0 0 24px;
+  padding: 0 0 20px;
   font-size: 0.875em;
   line-height: 24px;
   min-height: 24px;
@@ -1486,26 +1492,52 @@ body > header {
   color: #515151;
   text-decoration: none;
 }
+#wrapper .posts.full.picture .vote-btn {
+  clear: left;
+  color: #515151;
+  float: left;
+  font-size: 0.875em;
+  background: #eef2e6;
+  line-height: 28px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+#wrapper .posts.full.picture .vote-btn span {
+  display: inline-block;
+  color: #8aa304;
+  padding: 0 6px;
+  margin-left: 8px;
+  border-left: 1px solid #dde4cd;
+  font-weight: bold;
+}
+#wrapper .posts.full.picture .vote-btn .icon-fontello-thumbs-up-alt {
+  color: #8aa304;
+  font-size: 1.25em;
+}
+#wrapper .posts.full.picture a.vote-btn:hover {
+  color: #8aa304;
+  text-decoration: none;
+  background: white;
+}
 #wrapper .posts.full.picture .embed-btn {
-  float: right;
+  float: left;
   color: #515151;
   font-size: 0.875em;
   line-height: 24px;
   background: #eef2e6;
   padding: 2px 10px;
+  margin-bottom: 20px;
 }
 #wrapper .posts.full.picture .embed-btn:hover,
 #wrapper .posts.full.picture .embed-btn:focus {
   color: #8aa304;
   text-decoration: none;
+  background: white;
 }
-#wrapper .posts.full.picture .embed-btn span {
-  float: right;
-  display: block;
-  width: 24px;
-  height: 24px;
-  margin-left: 10px;
-  background: url(/images/icon-embed.png) no-repeat 0 0 transparent;
+#wrapper .posts.full.picture .embed-btn .icon-fontello-code {
+  font-size: 1.25em;
+  color: #8aa304;
 }
 #wrapper .posts.full.picture .embed-code {
   display: none;
@@ -1526,6 +1558,7 @@ body > header {
 }
 #wrapper .posts.full.picture .tags {
   clear: both;
+  width: 100%;
 }
 #wrapper .posts.full.picture .sharing-buttons {
   position: relative;
@@ -2607,4 +2640,347 @@ li:hover .admin-action {
   #wall.topic .item.people {
     width: 48%;
   }
+}
+/* Fontello */
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?58475828');
+  src: url('../font/fontello.eot?58475828#iefix') format('embedded-opentype'), url('../font/fontello.woff?58475828') format('woff'), url('../font/fontello.ttf?58475828') format('truetype'), url('../font/fontello.svg?58475828#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello2.svg?58475828#fontello') format('svg');
+  }
+}
+*/
+[class^="icon-fontello-"]:before,
+[class*=" icon-fontello-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+.icon-fontello-wikipedia:before {
+  content: '\e800';
+}
+/* '' */
+.icon-fontello-flickr:before {
+  content: '\e801';
+}
+/* '' */
+.icon-fontello-linkedin:before {
+  content: '\e802';
+}
+/* '' */
+.icon-fontello-rss:before {
+  content: '\e803';
+}
+/* '' */
+.icon-fontello-twitter:before {
+  content: '\e804';
+}
+/* '' */
+.icon-fontello-youtube:before {
+  content: '\e805';
+}
+/* '' */
+.icon-fontello-vimeo:before {
+  content: '\e806';
+}
+/* '' */
+.icon-fontello-facebook:before {
+  content: '\e807';
+}
+/* '' */
+.icon-fontello-tumblr:before {
+  content: '\e808';
+}
+/* '' */
+.icon-fontello-instagram:before {
+  content: '\e809';
+}
+/* '' */
+.icon-fontello-lkdto:before {
+  content: '\e80a';
+}
+/* '' */
+.icon-fontello-link:before {
+  content: '\e80b';
+}
+/* '' */
+.icon-fontello-thumbs-up-alt:before {
+  content: '\e80c';
+}
+/* '' */
+.icon-fontello-code:before {
+  content: '\e80d';
+}
+/* '' */
+/* Footable */
+@font-face {
+  font-family: 'footable';
+  src: url('/font/footable2.eot');
+  src: url('/font/footable2.eot?#iefix') format('embedded-opentype'), url('/font/footable2.woff') format('woff'), url('/font/footable2.ttf') format('truetype'), url('/font/footable2.svg#footable') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'footable';
+    src: url('/font/footable2.svg#footable') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+.footable {
+  width: 100%;
+}
+.footable.breakpoint > tbody > tr.footable-detail-show > td {
+  border-bottom: 0;
+}
+.footable.breakpoint > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e001";
+}
+.footable.breakpoint > tbody > tr:hover:not(.footable-row-detail) {
+  cursor: pointer;
+}
+.footable.breakpoint > tbody > tr > td.footable-cell-detail {
+  background: #eee;
+  border-top: 0;
+}
+.footable.breakpoint > tbody > tr > td > span.footable-toggle {
+  display: inline-block;
+  font-family: 'footable';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 5px;
+  font-size: 14px;
+  color: #888888;
+}
+.footable.breakpoint > tbody > tr > td > span.footable-toggle:before {
+  content: "\e000";
+}
+.footable.breakpoint.toggle-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e005";
+}
+.footable.breakpoint.toggle-circle > tbody > tr > td > span.footable-toggle:before {
+  content: "\e004";
+}
+.footable.breakpoint.toggle-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e003";
+}
+.footable.breakpoint.toggle-circle-filled > tbody > tr > td > span.footable-toggle:before {
+  content: "\e002";
+}
+.footable.breakpoint.toggle-square > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e007";
+}
+.footable.breakpoint.toggle-square > tbody > tr > td > span.footable-toggle:before {
+  content: "\e006";
+}
+.footable.breakpoint.toggle-square-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e009";
+}
+.footable.breakpoint.toggle-square-filled > tbody > tr > td > span.footable-toggle:before {
+  content: "\e008";
+}
+.footable.breakpoint.toggle-arrow > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e00f";
+}
+.footable.breakpoint.toggle-arrow > tbody > tr > td > span.footable-toggle:before {
+  content: "\e011";
+}
+.footable.breakpoint.toggle-arrow-small > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e013";
+}
+.footable.breakpoint.toggle-arrow-small > tbody > tr > td > span.footable-toggle:before {
+  content: "\e015";
+}
+.footable.breakpoint.toggle-arrow-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e01b";
+}
+.footable.breakpoint.toggle-arrow-circle > tbody > tr > td > span.footable-toggle:before {
+  content: "\e01d";
+}
+.footable.breakpoint.toggle-arrow-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e00b";
+}
+.footable.breakpoint.toggle-arrow-circle-filled > tbody > tr > td > span.footable-toggle:before {
+  content: "\e00d";
+}
+.footable.breakpoint.toggle-arrow-tiny > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e01f";
+}
+.footable.breakpoint.toggle-arrow-tiny > tbody > tr > td > span.footable-toggle:before {
+  content: "\e021";
+}
+.footable.breakpoint.toggle-arrow-alt > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+  content: "\e017";
+}
+.footable.breakpoint.toggle-arrow-alt > tbody > tr > td > span.footable-toggle:before {
+  content: "\e019";
+}
+.footable.breakpoint.toggle-medium > tbody > tr > td > span.footable-toggle {
+  font-size: 18px;
+}
+.footable.breakpoint.toggle-large > tbody > tr > td > span.footable-toggle {
+  font-size: 24px;
+}
+.footable > thead > tr > th {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.footable > thead > tr > th.footable-sortable:hover {
+  cursor: pointer;
+}
+.footable > thead > tr > th.footable-sorted > span.footable-sort-indicator:before {
+  content: "\e013";
+}
+.footable > thead > tr > th.footable-sorted-desc > span.footable-sort-indicator:before {
+  content: "\e012";
+}
+.footable > thead > tr > th > span.footable-sort-indicator {
+  display: inline-block;
+  font-family: 'footable';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  padding-left: 5px;
+}
+.footable > thead > tr > th > span.footable-sort-indicator:before {
+  content: "\e022";
+}
+.footable > tfoot .pagination {
+  margin: 0;
+}
+.footable.no-paging .hide-if-no-paging {
+  display: none;
+}
+.footable-row-detail-inner {
+  display: table;
+}
+.footable-row-detail-row {
+  display: table-row;
+  line-height: 1.5em;
+}
+.footable-row-detail-group {
+  display: block;
+  line-height: 2em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.footable-row-detail-name {
+  display: table-cell;
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+.footable-row-detail-value {
+  display: table-cell;
+}
+/* Social Links
+=================================================================== */
+[class^="social-"],
+[class*="social-"] {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  *margin-right: .3em;
+  line-height: 40px;
+  vertical-align: text-top;
+  background-image: url("../img/icons/social-icons-set.v2.png");
+  background-position: 40px 40px;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+/* Retina Display Hack */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  [class^="social-"],
+  [class*="social-"] {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: text-top;
+    background-image: url("../img/icons/social-icons-set@2x.v2.png");
+    background-position: 40px 40px;
+    background-repeat: no-repeat;
+    background-size: 400px 320px;
+  }
+}
+.social-twitter {
+  background-position: -80px 0px;
+}
+.social-twitter:hover {
+  background-position: -80px -40px;
+  background-color: #48c4d2;
+}
+.social-twitter2 {
+  background-position: -160px 0px;
+}
+.social-twitter2:hover {
+  background-position: -160px -40px;
+  background-color: #48c4d2;
+}
+.social-facebook {
+  background-position: -200px 0px;
+}
+.social-facebook:hover {
+  background-position: -200px -40px;
+  background-color: #3b5998;
+}
+.social-googleplus {
+  background-position: -360px -240px;
+}
+.social-googleplus:hover {
+  background-position: -360px -280px;
+  background-color: #d94a39;
+}
+.social-meneame {
+  background-position: -320px -80px;
+}
+.social-meneame:hover {
+  background-position: -320px -120px;
+  background-color: #FF6400;
 }

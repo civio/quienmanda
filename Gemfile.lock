@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.2)
       rails (>= 3, < 5)
+    acts_as_votable (0.10.0)
     arel (4.0.2)
     bcrypt (3.1.7)
     builder (3.1.4)
@@ -281,6 +282,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-action_caching
   acts-as-taggable-on
+  acts_as_votable (~> 0.10.0)
   cancan
   carrierwave
   charlock_holmes_bundle_icu

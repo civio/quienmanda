@@ -22,8 +22,10 @@
 
         <div class="picture-meta">
           <%= render 'shared/show_photo_credit', photo: @photo %>
+          <%= render 'shared/show_photo_votes', photo: @photo %>
           <%= render 'shared/show_photo_embed', photo: @photo %>
           <%= render 'shared/show_tags', item: @photo %>
+          <div class="clearfix"></div>
         </div>
 
         <%= render 'shared/show_admin_links', item: @photo %>

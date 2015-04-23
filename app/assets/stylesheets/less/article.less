@@ -489,19 +489,17 @@
 
     .picture-meta,
     .admin-link{
-      padding: 24px 24px 0;
+      padding: 20px 24px 0;
       margin: 0;
     }
 
     .picture-meta{
       background: @colorSecondary;
-      min-height: 52px;
     }
 
     .credits{
-      float: left;
       color: @colorGray;
-      padding: 0 0 24px;
+      padding: 0 0 20px;
       font-size: 0.875em;
       line-height: 24px;
       min-height: 24px;
@@ -523,27 +521,57 @@
       }
     }
 
+    .vote-btn{
+      clear: left;
+      color: @colorGray;
+      float: left;
+      font-size: 0.875em;
+      background: mix( white, @colorSecondary, 50% );
+      line-height: 28px;
+      padding-left: 5px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+
+      span{
+        display: inline-block;
+        color: @colorLinkGreen;
+        padding: 0 6px;
+        margin-left: 8px;
+        border-left: 1px solid @colorSecondary;
+        font-weight: bold;
+      }
+
+      .icon-fontello-thumbs-up-alt{
+        color: @colorLinkGreen;
+        font-size: 1.25em;
+      }
+    }
+
+    a.vote-btn:hover{
+      color: @colorLinkGreen;
+      text-decoration: none;
+      background: white;
+    }
+
     .embed-btn{
-      float: right;
+      float: left;
       color: @colorGray;
       font-size: 0.875em;
       line-height: 24px;
       background: mix( white, @colorSecondary, 50% );
       padding: 2px 10px;
+      margin-bottom: 20px;
 
       &:hover,
       &:focus{
         color: @colorLinkGreen;
         text-decoration: none;
+        background: white;
       }
 
-      span{
-        float: right;
-        display: block;
-        width: 24px;
-        height: 24px;
-        margin-left: 10px;
-        background: url(/images/icon-embed.png) no-repeat 0 0 transparent;
+      .icon-fontello-code{
+        font-size: 1.25em;
+        color: @colorLinkGreen;
       }
     }
 
@@ -569,6 +597,7 @@
 
     .tags{
       clear: both;
+      width: 100%;
     }
 
     .sharing-buttons{

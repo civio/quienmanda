@@ -1,10 +1,10 @@
+<% unless photo.nil? or photo.copyright.blank? %>
 <div class="credits">
-  <% unless photo.nil? or photo.copyright.blank? %>
 	Foto: <%= photo.source.blank? ? 
 	            photo.copyright :
 	            (link_to photo.copyright, 
 	                     absolute_url(photo.source), 
 	                     target: '_blank',
 	                     class: 'source-link') %>
-  <% end %>
 </div>
+<% end %>

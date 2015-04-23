@@ -32,8 +32,6 @@ jQuery.noConflict();
       });
     }
 
-    //$('#flex1').flexslider();
-
     /* -------------------- Setup layouts --------------------- */
     $wall = $('#wall, .extra-wall');
     $wall.imagesLoaded(function() {
