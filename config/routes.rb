@@ -1,7 +1,12 @@
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
 Quienmanda::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }, :skip => [:sessions]
+  devise_scope :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    get 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   get '/admin/import' => 'import#index', :as => 'import_index'
   post '/admin/import/upload' => 'import#upload', :as => 'import_upload'

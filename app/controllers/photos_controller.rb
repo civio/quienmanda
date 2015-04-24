@@ -57,7 +57,6 @@ class PhotosController < ApplicationController
 
   # POST /photos/id/vote
   def vote
-    authorize! :manage, Photo
     photo = Photo.find(params[:id])
     puts photo
     if stale?(photo, :public => current_user.nil?)

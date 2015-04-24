@@ -30,5 +30,16 @@
         </div>
       </div>
     </div>
+
+    <div class="user-navbar">
+      <%# User is logged out %>
+      <% if current_user.nil? %>
+        <a href="/login" title="Login">Login</a>
+      <%# User is logged in %>
+      <% else %>
+        <a href="/logout" title="Logout">Logout</a>
+        <p>Hola <%= current_user.name %>!</p>
+      <% end %>
+    </div>
   </div>
 </header>

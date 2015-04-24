@@ -66,6 +66,10 @@ gem 'rails-i18n', '~> 4.0.0.pre'
 gem 'nokogiri'
 gem 'acts_as_votable', '~> 0.10.0'
 
+# Users login
+gem 'omniauth'
+gem 'omniauth-twitter'
+
 # Admin interface
 gem 'rails_admin'
 gem 'rails_admin_toggleable'

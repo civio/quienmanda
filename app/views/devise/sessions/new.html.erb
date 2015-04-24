@@ -14,30 +14,18 @@
   <div class="row-fluid">
     
     <div id="login-form" class="span12">
-
-      <%# Hide Twitter/FB login temporarily, until implemented
       <div class="page-title-small">
-
         <h3>use your account</h3>
-
       </div>
 
-      <a href="" class="facebook_connect">
-        <div class="img"><i class="icon-facebook"></i></div>
-        <div class="text">Login with Facebook</div>
-      </a>
-      <a href="" class="twitter_connect">
+      <a href="<%= user_omniauth_authorize_path(:twitter) %>" class="twitter_connect">
         <div class="img"><i class="icon-twitter"></i></div>
-        <div class="text">Login with Twitter</div>
+        <div class="text">Sign in with Twitter</div>
       </a>
       
       <div class="page-title-small">
-
         <h3>or</h3>
-
       </div>
-      %>
-      &nbsp;
       
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 

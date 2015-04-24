@@ -11,6 +11,10 @@ body > header{
   .box-shadow( ~'0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05)' );
 }
 
+header > .container{
+  position: relative;
+}
+
 .nav-collapse.collapse {
   left: 0;
   top: 83px;
@@ -161,5 +165,24 @@ body > header{
     }
 
     &:hover .icon-search{ color: @colorGray; }
+  }
+}
+
+.user-navbar{
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  font-size: 0.875em;
+
+  > a{
+    float: right;
+    color: @colorHeaderLink;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+
+  >p{
+    float: right;
+    color: @colorGray;
   }
 }
