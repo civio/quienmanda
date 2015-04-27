@@ -490,19 +490,33 @@ header > .container {
 }
 .user-navbar {
   position: absolute;
-  top: 12px;
+  top: 15px;
   right: 8px;
   font-size: 0.875em;
 }
 .user-navbar > a {
   float: right;
-  color: #a8c315;
-  font-weight: 600;
+  color: #515151;
   margin-left: 6px;
+  line-height: 1em;
+  font-weight: 600;
+}
+.user-navbar > a:hover {
+  color: #a8c315;
+  text-decoration: none;
+}
+.user-navbar .icon-fontello-user:before {
+  color: #a8c315;
 }
 .user-navbar > p {
   float: right;
   color: #515151;
+  line-height: 1em;
+  padding-right: 6px;
+  border-right: 1px solid #a8c315;
+}
+.user-navbar strong {
+  font-weight: 600;
 }
 /* Footer
 =================================================================== */
@@ -2709,6 +2723,9 @@ li:hover .admin-action {
 /* Small Mobile Sizes (devices and browser)
 ====================================================================== */
 @media only screen and (max-width: 520px) {
+  .user-navbar > p {
+    display: none;
+  }
   #home-slider .carousel-inner > .item > a {
     height: 300px;
   }
@@ -2825,6 +2842,10 @@ li:hover .admin-action {
   content: '\e80d';
 }
 /* '' */
+.icon-fontello-user:before {
+  content: '\e80e';
+}
+/* '' */
 /* Footable */
 @font-face {
   font-family: 'footable';

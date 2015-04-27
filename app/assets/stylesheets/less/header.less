@@ -170,19 +170,36 @@ header > .container{
 
 .user-navbar{
   position: absolute;
-  top: 12px;
+  top: 15px;
   right: 8px;
   font-size: 0.875em;
 
   > a{
     float: right;
-    color: @colorHeaderLink;
-    font-weight: 600;
+    color: @colorGray;
     margin-left: 6px;
+    line-height: 1em;
+    font-weight: 600;
+
+    &:hover{
+      color: @colorHeaderLink;
+      text-decoration: none;
+    }
   }
 
-  >p{
+  .icon-fontello-user:before{
+    color: @colorHeaderLink;
+  }
+
+  > p{
     float: right;
     color: @colorGray;
+    line-height: 1em;
+    padding-right: 6px;
+    border-right: 1px solid @colorHeaderLink;
+  }
+
+  strong{
+    font-weight: 600;
   }
 }
