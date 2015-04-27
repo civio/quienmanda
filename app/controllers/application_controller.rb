@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
 
   # After successful login, go to admin page
   def after_sign_in_path_for(resource)
-    rails_admin.dashboard_path
+    if current_user.admin?
+      rails_admin.dashboard_path  # Redirect admin users to admin dashboard
+    else
+      '/' # We need to check if we login from photomaton voting in order to redirect to the original photomaton url
+    end
   end
 
   before_action :set_locale
