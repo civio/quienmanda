@@ -1,5 +1,5 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= defined?(width) ? width : 'span4' %> item topic">
+<div class="<%= defined?(span) ? span : 'span4' %> item topic">
   <%# Template for mixed wall %>
   <% if defined? mixed and mixed %>
     <h3><a href="<%= topic_path(item) %>" title="<%= item.title %>"><%= item.title %></a></h3>

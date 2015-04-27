@@ -157,13 +157,14 @@
 
   h3{
     position: relative;
-    padding-left: 3px;
-    margin: 12px 12px 8px 70px;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 12px 12px 8px 68px;
     color: @colorGray;
     font-size: 1.25em;
     line-height: 1.375em;
     height: auto;
-    border-left: 1px solid @colorTextGreen;
     text-align: left;
     text-shadow: none;
 
@@ -171,19 +172,19 @@
       content: "";
       display: block;
       position: absolute;
-      top: 0;
-      left: -70px;
+      top: 12px;
+      left: 6px;
       width: 62px;
       height: 63px;
       overflow: hidden;
-      background: url(/images/sprites.png) no-repeat 0 -199px transparent;
+      background: url(/images/sprites-medium.png) no-repeat 0 -174px transparent;
     }
 
     a{
-        display: block;
-        min-height: 64px;
-        padding-left: 12px;
-        border-left: 1px solid @colorTextGreen;
+      display: block;
+      min-height: 58px;
+      padding-left: 12px;
+      border: none;
     }
   }
   

@@ -866,6 +866,7 @@ header > .container {
 /* Wall
 =================================================================== */
 #wall .item {
+  position: relative;
   padding: 0;
   margin: 0 0 24px;
   border: none;
@@ -881,15 +882,15 @@ header > .container {
   font-weight: 700 !important;
   line-height: 1.375em;
   padding-left: 3px;
-  margin: 12px 12px 8px 64px;
-  min-height: 64px;
+  margin: 12px 12px 8px 58px;
+  min-height: 56px;
   border-left: 1px solid #6bb21b;
 }
 #wall .item h2 a,
 #wall .item h3 a {
   display: block;
-  min-height: 64px;
-  padding-left: 12px;
+  min-height: 56px;
+  padding-left: 10px;
   border-left: 1px solid #6bb21b;
 }
 #wall .item h2 {
@@ -912,11 +913,11 @@ header > .container {
 }
 #wall .item .post-date {
   position: absolute;
-  top: 0;
+  top: 12px;
   left: 0;
   width: auto;
   height: auto;
-  padding: 0 20px;
+  padding: 0 18px;
   margin: 0;
   text-align: center;
 }
@@ -924,7 +925,7 @@ header > .container {
 #wall .item .post-date .month {
   display: block;
   color: #515151;
-  font-size: 1.375em;
+  font-size: 1.25em;
   line-height: 1.375em;
 }
 #wall .item .post-date .day {
@@ -961,23 +962,28 @@ header > .container {
   -moz-border-radius: 0;
   border-radius: 0;
 }
-#wall .item .picture .description {
+#wall .item .picture .description,
+#wall .item .picture .description-top {
   color: #515151;
   font-size: 0.938em;
   line-height: 1.5em;
   margin-top: 2px;
 }
-#wall .item .picture .description p {
+#wall .item .picture .description p,
+#wall .item .picture .description-top p {
   padding: 2px 14px 0;
 }
-#wall .item .picture .description .picture-meta {
+#wall .item .picture .description .picture-meta,
+#wall .item .picture .description-top .picture-meta {
   padding-top: 10px;
   background: #dde4cd;
 }
-#wall .item .picture .description .picture-meta .tags {
+#wall .item .picture .description .picture-meta .tags,
+#wall .item .picture .description-top .picture-meta .tags {
   padding-bottom: 4px;
 }
-#wall .item .picture .description .credits {
+#wall .item .picture .description .credits,
+#wall .item .picture .description-top .credits {
   display: block;
   width: 100%;
   padding: 0 14px 10px;
@@ -989,15 +995,18 @@ header > .container {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#wall .item .picture .description .credits a {
+#wall .item .picture .description .credits a,
+#wall .item .picture .description-top .credits a {
   color: #8aa304;
   text-decoration: underline;
 }
-#wall .item .picture .description .credits a:hover {
+#wall .item .picture .description .credits a:hover,
+#wall .item .picture .description-top .credits a:hover {
   color: #515151;
   text-decoration: none;
 }
-#wall .item .picture .description .admin-link {
+#wall .item .picture .description .admin-link,
+#wall .item .picture .description-top .admin-link {
   position: absolute;
   bottom: 0;
   right: 10px;
@@ -1024,14 +1033,17 @@ header > .container {
 #wall.photo .item .picture .description p.admin-link {
   font-family: 'Open Sans', sans-serif;
 }
-#wall .item.people h4,
-#wall .item.organization h4 {
+#wall .item.people h3,
+#wall .item.organization h3 {
   font-size: 1.125em;
+  margin: 0;
   padding: 8px 8px 8px 14px;
-  line-height: 1.375em;
+  min-height: 0;
+  line-height: 1.5em;
+  border: none;
 }
-#wall .item.people h4:before,
-#wall .item.organization h4:before {
+#wall .item.people h3:before,
+#wall .item.organization h3:before {
   float: left;
   content: "";
   display: block;
@@ -1041,12 +1053,16 @@ header > .container {
   border-right: 1px solid #6bb21b;
   margin-right: 8px;
 }
-#wall .item.people h4 a,
-#wall .item.organization h4 a {
+#wall .item.people h3 a,
+#wall .item.organization h3 a {
+  display: inline;
   font-size: 1em;
   font-family: 'Libre Baskerville', serif;
   font-weight: bold;
   line-height: 1em;
+  min-height: 0;
+  padding-left: 0;
+  border: none;
 }
 #wall .item.people .picture .description,
 #wall .item.organization .picture .description {
@@ -1055,26 +1071,69 @@ header > .container {
 #wall.mixed .item .post-date {
   display: none;
 }
-#wall.mixed .item h3 {
+#wall.mixed .item h3,
+#wall.mixed .item .picture .description-top {
   margin-left: 74px;
+  line-height: 1.375em;
+  padding: 0 0 0 3px;
+  margin: 12px 8px 8px 68px;
+  border: none;
 }
-#wall.mixed .item h3:before {
+#wall.mixed .item h3 a,
+#wall.mixed .item .picture .description-top a {
+  display: block;
+  min-height: 58px;
+  padding-left: 10px;
+  border: none;
+}
+#wall.mixed .item h3:before,
+#wall.mixed .item .picture .description-top:before {
   content: "";
   display: block !important;
   position: absolute;
-  top: 0;
+  top: 12px;
   left: 6px;
-  width: 62px;
-  height: 63px;
+  width: 56px;
+  height: 58px;
   overflow: hidden;
+  padding-right: 6px;
   border: none;
-  background: url(/images/sprites.png) no-repeat 0 -8px transparent;
+  background: url(/images/sprites-medium.png) no-repeat 0 0 transparent;
 }
-#wall.mixed .item.photo h3:before {
-  background-position: 0 -72px;
+#wall.mixed .item h3:after,
+#wall.mixed .item .picture .description-top:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 68px;
+  width: 3px;
+  height: 58px;
+  border-right: 1px solid #6bb21b;
+  border-left: 1px solid #6bb21b;
+}
+#wall.mixed .item .picture .description-top {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+#wall.mixed .item .picture .description-top:before {
+  height: 57px;
+  background-position: 0 -58px;
+}
+#wall.mixed .item .picture .description-top p {
+  padding: 0;
+}
+#wall.mixed .item.people h3,
+#wall.mixed .item.organization h3 {
+  font-size: 1.25em;
+}
+#wall.mixed .item.people h3 a,
+#wall.mixed .item.organization h3 a {
+  line-height: 1.375em;
 }
 #wall.mixed .item.people h3:before {
-  background-position: 0 -135px;
+  background-position: 0 -115px;
 }
 /* Articles Page
 =================================================================== */
@@ -2056,13 +2115,14 @@ header > .container {
 }
 #wall.mixed .item.topic h3 {
   position: relative;
-  padding-left: 3px;
-  margin: 12px 12px 8px 70px;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 12px 12px 8px 68px;
   color: #515151;
   font-size: 1.25em;
   line-height: 1.375em;
   height: auto;
-  border-left: 1px solid #6bb21b;
   text-align: left;
   text-shadow: none;
 }
@@ -2070,18 +2130,18 @@ header > .container {
   content: "";
   display: block;
   position: absolute;
-  top: 0;
-  left: -70px;
+  top: 12px;
+  left: 6px;
   width: 62px;
   height: 63px;
   overflow: hidden;
-  background: url(/images/sprites.png) no-repeat 0 -199px transparent;
+  background: url(/images/sprites-medium.png) no-repeat 0 -174px transparent;
 }
 #wall.mixed .item.topic h3 a {
   display: block;
-  min-height: 64px;
+  min-height: 58px;
   padding-left: 12px;
-  border-left: 1px solid #6bb21b;
+  border: none;
 }
 #wall.mixed .item.topic .image-container {
   position: static;
@@ -2498,6 +2558,9 @@ li:hover .admin-action {
   }
   #viz-container {
     height: 490px;
+  }
+  #wall.mixed .item {
+    width: 23.076923076923077%;
   }
 }
 /* Lower than 979 (tablets devices)

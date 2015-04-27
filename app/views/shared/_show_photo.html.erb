@@ -1,11 +1,22 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= item.extra_wide? ? 'span6': 'span3' %> item photo">
-  <div class="picture">
+<div class="<%= (defined? span) ? span : item.extra_wide? ? 'span6' : 'span3' %> item photo">
+  <div class="picture span">
+
+    <% if defined? mixed and mixed %>
+    <div class="description-top">
+      <% unless item.footer.blank? %>
+      <p><%= link_to raw(item.footer), item %></p>
+      <% end %>
+    </div>
+    <% end %>
+
     <%= link_to image_tag(item.file.url(item.extra_wide ? :full : :small)), item, class: 'image' %>
    
     <div class="description">
-      <% unless item.footer.blank? %>
-      <p><%= link_to raw(item.footer), item %></p>
+      <% unless defined? mixed and mixed %>
+        <% unless item.footer.blank? %>
+        <p><%= link_to raw(item.footer), item %></p>
+        <% end %>
       <% end %>
       <div class="picture-meta">
         <%= render 'shared/show_photo_credit', photo: item %>
