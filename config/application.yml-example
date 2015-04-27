@@ -13,6 +13,10 @@ FORCE_S3_IN_DEV: false
 # Used only in production
 NEW_RELIC_KEY: put-your-new-relic-key-here
 
+# OAuth Twitter Keys
+OAUTH_TWITTER_KEY: put-your-twitter-key-here
+OAUTH_TWITTER_SECRET: put-your-twitter-secrete-here
+
 # Optional. Used to extract references from post contents
 DOMAIN_NAME: quienmanda.es
 
