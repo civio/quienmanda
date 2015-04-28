@@ -1611,7 +1611,7 @@ header > .container {
   margin-bottom: 20px;
   margin-right: 10px;
 }
-#wrapper .posts.full.picture .vote-btn span {
+#wrapper .posts.full.picture .vote-btn .vote {
   display: inline-block;
   color: #8aa304;
   padding: 0 6px;
@@ -1623,7 +1623,8 @@ header > .container {
   color: #8aa304;
   font-size: 1.25em;
 }
-#wrapper .posts.full.picture a.vote-btn:hover {
+#wrapper .posts.full.picture a.vote-btn:hover,
+#wrapper .posts.full.picture a.vote-btn:focus {
   color: #8aa304;
   text-decoration: none;
   background: white;

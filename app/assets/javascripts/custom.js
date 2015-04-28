@@ -80,6 +80,28 @@ jQuery.noConflict();
           $('.embed-code input').select();
         });
       }
+
+      // Vote up/down via ajax
+      if ($('.vote-up, .vote-down').length > 0) {
+        $('.vote-btn').click( function(e) {
+          e.preventDefault();
+          var $voteBtn = $(this);
+          var action = ($voteBtn.hasClass('vote-up')) ? '/vote-up/' : '/vote-down/';
+          $.post( $(this).data('path')+action, function(data) {
+            if (data && data.status === 'ok') {
+              $voteBtn.find('.vote').html( data.votes );
+              if ($voteBtn.hasClass('vote-up')) {
+                $voteBtn.removeClass('vote-up').addClass('vote-down');
+                $voteBtn.find('.txt').html( 'Ya no me gusta' );
+              }
+              else{
+                $voteBtn.removeClass('vote-down').addClass('vote-up');
+                $voteBtn.find('.txt').html( 'Me gusta' );
+              }
+            }
+          });
+        });
+      }
     }
 
     // On Annotorious Mouse Over Handler

@@ -61,8 +61,11 @@ class PhotosController < ApplicationController
     puts photo
     if stale?(photo, :public => current_user.nil?)
       photo.liked_by current_user
+      respond_to do |format|
+        msg = { :status => "ok", :votes => photo.get_likes.size }
+        format.json  { render :json => msg }
+      end
     end
-    redirect_to photo_path(photo)
   end
 
   # POST /photos/id/vote-down
@@ -71,8 +74,11 @@ class PhotosController < ApplicationController
     puts photo
     if stale?(photo, :public => current_user.nil?)
       photo.unliked_by current_user
+      respond_to do |format|
+        msg = { :status => "ok", :votes => photo.get_likes.size }
+        format.json  { render :json => msg }
+      end
     end
-    redirect_to photo_path(photo)
   end
 
   private

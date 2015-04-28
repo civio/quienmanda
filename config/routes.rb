@@ -36,8 +36,8 @@ Quienmanda::Application.routes.draw do
     end
     collection do
       get 'tagged/:tag_name', :action => 'tagged', :as => 'tagged'
-      get ':id/vote-up', :action => 'vote_up', :as => 'vote_up'
-      get ':id/vote-down', :action => 'vote_down', :as => 'vote_down'
+      post ':id/vote-up', :action => 'vote_up', :as => 'vote_up'
+      post ':id/vote-down', :action => 'vote_down', :as => 'vote_down'
     end
   end
 
