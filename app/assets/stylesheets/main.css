@@ -1478,64 +1478,80 @@ header > .container {
   background: #dde4cd;
 }
 #wrapper .posts .post.related-posts .post-date {
-  display: none;
+  position: absolute;
+  top: 12px;
+  left: 0;
+  margin: 0;
+  padding: 0 18px;
+  background: none;
 }
 #wrapper .posts .post.related-posts .description {
   display: none;
 }
 #wrapper .posts .post.related-posts .title {
   color: #515151;
-  font-size: 1.625em;
+  font-size: 1.75em;
   font-family: 'Economica', sans-serif;
   font-weight: bold;
-  text-transform: lowercase;
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto 30px;
   padding: 18px 0 24px;
 }
 #wrapper .posts .post.related-posts .title:before {
-  display: none;
+  width: 56px;
+  height: 58px;
+  margin-right: 12px;
+  background-image: url(/images/sprites-medium.png);
+  background-position: 0 0;
 }
 #wrapper .posts .post.related-posts .row-fluid {
-  width: 92%;
-  margin: 14px 0 0 32px;
+  width: auto;
+  margin: 14px 32px 0;
 }
 #wrapper .posts .post.related-posts .item {
+  float: left;
   background: #fff;
-  width: 48%;
+  width: 100%;
+  margin-bottom: 32px;
   margin-right: 2%;
-  margin-bottom: 16px;
   padding: 0;
   -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);
 }
-#wrapper .posts .post.related-posts .item .picture {
-  margin: 4px;
-  padding: 0;
-  position: relative;
-  min-height: 72px;
+#wrapper .posts .post.related-posts .item a {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 #wrapper .posts .post.related-posts .item h3 {
-  font-size: 1em;
+  font-size: 1.25em;
   font-family: 'Libre Baskerville', serif !important;
   font-weight: bold !important;
-  padding: 3px 0 3px 110px;
   line-height: 1.375em;
+  padding-left: 3px;
+  margin: 12px 12px 8px 58px;
+  min-height: 56px;
+  border-left: 1px solid #8aa304;
 }
 #wrapper .posts .post.related-posts .item h3 a {
+  display: block;
   color: #515151;
+  min-height: 56px;
+  padding-left: 10px;
+  border-left: 1px solid #8aa304;
 }
-#wrapper .posts .post.related-posts .item a.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 72px;
-  overflow: hidden;
+#wrapper .posts .post.related-posts .item h3 a:hover {
+  color: #8aa304;
+  text-decoration: none;
 }
-#wrapper .posts .post.related-posts .item a.image img {
-  width: 100px;
+#wrapper .posts .post.related-posts .item a.image:hover {
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
 }
 #wrapper .posts .post.related-posts .item .description {
   clear: both;
@@ -2575,6 +2591,10 @@ li:hover .admin-action {
   }
   #wall.mixed .item {
     width: 23.076923076923077%;
+  }
+  #wrapper .posts .post.related-posts .item {
+    width: 48%;
+    margin-bottom: 16px;
   }
 }
 /* Lower than 979 (tablets devices)
