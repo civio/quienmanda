@@ -55,12 +55,22 @@ class PhotosController < ApplicationController
     render :index
   end
 
-  # POST /photos/id/vote
-  def vote
+  # POST /photos/id/vote-up
+  def vote_up
     photo = Photo.find(params[:id])
     puts photo
     if stale?(photo, :public => current_user.nil?)
-      photo.vote_by :voter => current_user
+      photo.liked_by current_user
+    end
+    redirect_to photo_path(photo)
+  end
+
+  # POST /photos/id/vote-down
+  def vote_down
+    photo = Photo.find(params[:id])
+    puts photo
+    if stale?(photo, :public => current_user.nil?)
+      photo.unliked_by current_user
     end
     redirect_to photo_path(photo)
   end
