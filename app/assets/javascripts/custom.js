@@ -55,6 +55,26 @@ jQuery.noConflict();
       $('#control-zoom-reset').click(function() { graph.zoomReset(); return false; });
       $('#control-help').click(function() { return false; });
       $('#visualization-controls a').tooltip();
+
+      // Setup timesheet
+      if ($('#entity-timesheet').size() > 0) {
+
+        var items = [];
+
+        $('#relations-list tbody tr.self').each(function(){
+          var td = $(this).children('td');
+          var date1 = td.eq(4).html();
+          var date2 = td.eq(5).html();
+          if( date1 === '' && date2 === '' ) return;
+          date1 = ( date1 !== '' ) ? date1.split('-') : ['2012','01'];
+          date2 = ( date2 !== '' ) ? date2.split('-') : ['2015','01'];
+          items.push( [date1[1]+'/'+date1[0], date2[1]+'/'+date2[0], td.eq(1).html()+' '+td.eq(2).html(), 'lorem'] );
+        });
+
+        $('#entity-timesheet').height( 5+28+(items.length*32) );
+
+        new Timesheet('entity-timesheet', 2015, 2015, items);
+      }
     }
 
     /* -------------------- Setup photo --------------------- */

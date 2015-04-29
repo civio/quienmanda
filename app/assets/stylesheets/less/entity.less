@@ -136,3 +136,59 @@
 
   .table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th{ background: #e4eadf; }
 }
+
+#entity-timesheet{
+  width: 100%;
+  margin-top: 30px;
+  background: @colorHeader;
+  overflow: hidden;
+  border-color: transparent;
+
+  &.timesheet{
+
+    .scale section{
+      font-family: @fontDroid;
+      font-size: 12px;
+      color: @colorGray;
+      border-color: @colorBody;
+      border-left-style: solid;
+      //font-weight: 600;
+    }
+
+    .data{
+      font-family: @fontDroid;
+      overflow: visible;
+
+      li{
+        height: auto;
+
+        .bubble{
+          float: none;
+          top: 0;
+          background: @colorHeaderLink;
+        }
+
+        .date{
+          display: none;
+          color: @colorGray;
+          font-size: 12px;
+          line-height: 16px;
+        }
+
+        .label{
+          line-height: 16px;
+          color: @colorGray;
+          padding-left: 6px;
+          padding-right: 6px;
+          text-shadow: none;
+          background: white;
+          margin-right: 6px;
+        }
+
+        &:hover .date{
+          display: inline;
+        }
+      }
+    }
+  }
+}

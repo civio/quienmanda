@@ -1992,6 +1992,50 @@ header > .container {
 #relations-list .table-striped tbody > tr:nth-child(odd) > th {
   background: #e4eadf;
 }
+#entity-timesheet {
+  width: 100%;
+  margin-top: 30px;
+  background: #eef2ea;
+  overflow: hidden;
+  border-color: transparent;
+}
+#entity-timesheet.timesheet .scale section {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #515151;
+  border-color: #dee5d8;
+  border-left-style: solid;
+}
+#entity-timesheet.timesheet .data {
+  font-family: 'Open Sans', sans-serif;
+  overflow: visible;
+}
+#entity-timesheet.timesheet .data li {
+  height: auto;
+}
+#entity-timesheet.timesheet .data li .bubble {
+  float: none;
+  top: 0;
+  background: #a8c315;
+}
+#entity-timesheet.timesheet .data li .date {
+  display: none;
+  color: #515151;
+  font-size: 12px;
+  line-height: 16px;
+}
+#entity-timesheet.timesheet .data li .label {
+  line-height: 16px;
+  color: #515151;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-shadow: none;
+  background: white;
+  margin-right: 6px;
+}
+#entity-timesheet.timesheet .data li:hover .date {
+  display: inline;
+}
 /* Topics
   =================================================================== */
 #wall .item.topic .picture {
