@@ -139,20 +139,24 @@
 
 #entity-timesheet{
   width: 100%;
-  margin-top: 30px;
+  margin-bottom: 30px;
   background: @colorHeader;
-  overflow: hidden;
-  border-color: transparent;
+  overflow-x: scroll;
+  border: 1px solid white;
+
 
   &.timesheet{
 
-    .scale section{
-      font-family: @fontDroid;
-      font-size: 12px;
-      color: @colorGray;
-      border-color: @colorBody;
-      border-left-style: solid;
-      //font-weight: 600;
+    .scale{
+
+      section{
+        font-family: @fontDroid;
+        font-size: 12px;
+        line-height: 28px;
+        color: @colorGray;
+        border-left: none;
+        border-right: 1px solid @colorBody;
+      }
     }
 
     .data{
@@ -169,24 +173,34 @@
         }
 
         .date{
-          display: none;
-          color: @colorGray;
+          visibility: hidden;
+          color: @colorLinkGreen;
           font-size: 12px;
           line-height: 16px;
+          font-weight: 600;
+          padding-right: 5px;
+          background: @colorHeader;
         }
 
         .label{
           line-height: 16px;
           color: @colorGray;
-          padding-left: 6px;
-          padding-right: 6px;
+          padding-left: 5px;
+          padding-right: 5px;
           text-shadow: none;
           background: white;
-          margin-right: 6px;
+          margin-right: 5px;
+          margin-left: 1px;
+          border-radius: 0;
+
+          a:hover{
+            color: @colorLinkGreen;
+            text-decoration: none;
+          }
         }
 
         &:hover .date{
-          display: inline;
+          visibility: visible;
         }
       }
     }

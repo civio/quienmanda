@@ -65,13 +65,14 @@ jQuery.noConflict();
           var td = $(this).children('td');
           var date1 = td.eq(4).html();
           var date2 = td.eq(5).html();
-          if( date1 === '' && date2 === '' ) return;
-          date1 = ( date1 !== '' ) ? date1.split('-') : ['2012','01'];
-          date2 = ( date2 !== '' ) ? date2.split('-') : ['2015','01'];
+          var now = new Date();
+          if( date1 === '' ) return;
+          date1 = date1.split('-');
+          date2 = ( date2 !== '' ) ? date2.split('-') : [now.getFullYear(), now.getMonth()+1];
           items.push( [date1[1]+'/'+date1[0], date2[1]+'/'+date2[0], td.eq(1).html()+' '+td.eq(2).html(), 'lorem'] );
         });
 
-        $('#entity-timesheet').height( 5+28+(items.length*32) );
+        $('#entity-timesheet').height( 16+28+(items.length*32) );
 
         new Timesheet('entity-timesheet', 2015, 2015, items);
       }

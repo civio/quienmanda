@@ -56,7 +56,7 @@
     }
 
     this.container.className = 'timesheet color-scheme-default';
-    this.container.innerHTML = '<div class="scale">' + html.join('') + '</div>';
+    this.container.innerHTML = '<div class="scale" style="width:'+(60*(this.year.max-this.year.min+1))+'px">' + html.join('') + '</div>';
   };
 
   /**

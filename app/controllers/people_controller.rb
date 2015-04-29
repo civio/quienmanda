@@ -20,6 +20,7 @@ class PeopleController < ApplicationController
     if stale?(@people, :public => current_user.nil?)
       @title = @person.short_or_long_name
       @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
+      @relations = @relations.order("relations.from ASC")
 
       # Facebook Open Graph metadata
       @fb_description = @person.description unless @person.description.blank?

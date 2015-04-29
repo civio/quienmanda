@@ -39,11 +39,11 @@
   </div>
 </div>
 
-<%= render 'shared/relations_list', item: entity, list: @relations %>
-
 <% if current_user and current_user.admin? %>
 <%= render 'shared/show_entity_timesheet', path: entity_path(entity) %>
 <% end %>
+
+<%= render 'shared/relations_list', item: entity, list: @relations %>
 
 <%= render 'shared/mixed_wall', 
             items: entity.related_posts+entity.related_photos, 

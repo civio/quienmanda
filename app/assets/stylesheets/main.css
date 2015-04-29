@@ -1994,17 +1994,18 @@ header > .container {
 }
 #entity-timesheet {
   width: 100%;
-  margin-top: 30px;
+  margin-bottom: 30px;
   background: #eef2ea;
-  overflow: hidden;
-  border-color: transparent;
+  overflow-x: scroll;
+  border: 1px solid white;
 }
 #entity-timesheet.timesheet .scale section {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
+  line-height: 28px;
   color: #515151;
-  border-color: #dee5d8;
-  border-left-style: solid;
+  border-left: none;
+  border-right: 1px solid #dee5d8;
 }
 #entity-timesheet.timesheet .data {
   font-family: 'Open Sans', sans-serif;
@@ -2019,22 +2020,31 @@ header > .container {
   background: #a8c315;
 }
 #entity-timesheet.timesheet .data li .date {
-  display: none;
-  color: #515151;
+  visibility: hidden;
+  color: #8aa304;
   font-size: 12px;
   line-height: 16px;
+  font-weight: 600;
+  padding-right: 5px;
+  background: #eef2ea;
 }
 #entity-timesheet.timesheet .data li .label {
   line-height: 16px;
   color: #515151;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   text-shadow: none;
   background: white;
-  margin-right: 6px;
+  margin-right: 5px;
+  margin-left: 1px;
+  border-radius: 0;
+}
+#entity-timesheet.timesheet .data li .label a:hover {
+  color: #8aa304;
+  text-decoration: none;
 }
 #entity-timesheet.timesheet .data li:hover .date {
-  display: inline;
+  visibility: visible;
 }
 /* Topics
   =================================================================== */
