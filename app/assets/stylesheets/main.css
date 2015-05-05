@@ -97,8 +97,14 @@ body > .container {
 }
 /* General
 =================================================================== */
-p.alert-info {
-  margin: 0;
+.alert-info {
+  background: #eef2ea;
+  border: 1px solid #b0c08b;
+  color: #414141;
+  padding: 2px 8px;
+  margin: 15px 0;
+  font-weight: 600;
+  font-size: 0.875em;
 }
 .tooltip {
   text-shadow: none;
@@ -1915,8 +1921,9 @@ header > .container {
   padding-top: 12px;
 }
 #wrapper.people .full.span3 .alert.alert-info {
-  margin: 12px;
-  padding: 16px;
+  margin: 15px 12px;
+  padding: 8px 12px;
+  border-radius: 0;
 }
 #wrapper.people .full.span3 .admin-link {
   position: absolute;

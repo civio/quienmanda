@@ -67,8 +67,12 @@
 
   <div class="container">
     <!-- TODO: Move these into pages -->
+    <% unless notice.nil? %>
     <p class="alert-info"><%= notice %></p>
+    <% end %>
+    <% unless alert.nil? %>
     <p class="alert-info"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </div>
 
