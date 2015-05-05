@@ -521,8 +521,13 @@ header > .container {
   padding-right: 6px;
   border-right: 1px solid #a8c315;
 }
-.user-navbar strong {
+.user-navbar a {
+  color: #515151;
   font-weight: 600;
+}
+.user-navbar a:hover {
+  color: #a8c315;
+  text-decoration: none;
 }
 /* Footer
 =================================================================== */

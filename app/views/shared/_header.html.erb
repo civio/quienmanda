@@ -38,7 +38,7 @@
       <%# User is logged in %>
       <% else %>
         <a data-method="delete" href="/logout" rel="nofollow" title="Logout">Logout <i class="icon-fontello-user"></i></a>
-        <p>Hola <strong><%= current_user.name %></strong>!</p>
+        <p>Hola <a href="/users/<%= current_user.id %>/" title="Mi perfíl"><%= current_user.name %></a></p>
       <% end %>
     </div>
   </div>

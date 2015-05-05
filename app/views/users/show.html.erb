@@ -1,0 +1,19 @@
+<div id="page-title" class="centered">
+  <h2><%= @user.name %></h2>
+</div>
+
+<!--start: Wrapper-->
+<div id="wrapper">
+
+  <div class="title photo">
+    <p>Mis favoritas del Fotomandón</p>
+  </div>
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row-fluid post">
+    <% @user.find_liked_items.each do |photo| %>
+      <%= render '/shared/show_photo', :item => photo %>
+    <% end %>
+  </div>
+
+</div>

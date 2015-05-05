@@ -7,6 +7,8 @@ Quienmanda::Application.routes.draw do
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
+  # Add user profile page
+  resources :users, :only => [:show]
 
   get '/admin/import' => 'import#index', :as => 'import_index'
   post '/admin/import/upload' => 'import#upload', :as => 'import_upload'
