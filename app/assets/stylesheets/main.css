@@ -2116,6 +2116,11 @@ header > .container {
   -khtml-opacity: 0.5;
   opacity: 0.5;
 }
+#wall .item.topic .admin-link {
+  position: absolute;
+  bottom: 4px;
+  right: 12px;
+}
 #page-title.topic h2 {
   font-size: 2.5em;
 }
