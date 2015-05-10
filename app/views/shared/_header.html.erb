@@ -34,11 +34,11 @@
     <div class="user-navbar">
       <%# User is logged out %>
       <% if current_user.nil? %>
-        <a href="/login" rel="nofollow" title="Login">Login <i class="icon-fontello-user"></i></a>
+        <a href="<%= new_user_session_path %>" rel="nofollow" title="Login">Login <i class="icon-fontello-user"></i></a>
       <%# User is logged in %>
       <% else %>
-        <a data-method="delete" href="/logout" rel="nofollow" title="Logout">Logout <i class="icon-fontello-user"></i></a>
-        <p>Hola <a href="/users/<%= current_user.id %>/" title="Mi perfíl"><%= current_user.name %></a></p>
+        <a data-method="delete" href="<%= destroy_user_session_path %>" rel="nofollow" title="Logout">Logout <i class="icon-fontello-user"></i></a>
+        <p>Hola <%= link_to current_user.name, user_path(current_user), title: 'Mi perfil' %></p>
       <% end %>
     </div>
   </div>
