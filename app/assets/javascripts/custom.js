@@ -43,7 +43,7 @@ jQuery.noConflict();
 
     /* -------------------- Setup visualization --------------- */
     if (hasVis) {
-      graph = new NetworkGraph("#viz-container", "#infobox");
+      graph = new NetworkGraph("#viz-container", "#infobox", "#control-history-undo", "#control-history-redo", getUrlParameter('history'));
       graph.loadRootNode( $('#viz-container').data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
         $('#viz-container').toggleClass('fullscreen');
@@ -53,8 +53,21 @@ jQuery.noConflict();
       $('#control-zoom-in').click(function() { graph.zoomIn(); return false; });
       $('#control-zoom-out').click(function() { graph.zoomOut(); return false; });
       $('#control-zoom-reset').click(function() { graph.zoomReset(); return false; });
+      $('#control-history-undo').click(function() { if (!$(this).hasClass('disabled')) { graph.historyUndo(); } return false; });
+      $('#control-history-redo').click(function() { if (!$(this).hasClass('disabled')) { graph.historyRedo(); } return false; });
       $('#control-help').click(function() { return false; });
       $('#visualization-controls a').tooltip();
+
+      // Setup Embed Btn
+      if ($('#control-embed').length > 0) {
+        var embedId = $('#control-embed').attr('href').substring(1);
+        $('#control-embed').click(function(e){
+          e.preventDefault();
+          embedStr = '<iframe src="http://localhost:3000/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
+          $('.embed-code').toggle().focus();
+          $('.embed-code input').val(embedStr).select();
+        });
+      }
 
       // Setup timesheet
       if ($('#entity-timesheet').size() > 0) {
@@ -260,12 +273,26 @@ jQuery.noConflict();
       $(this).css('border', 'none');
     });
 
+    // Get URL Parameters
+    function getUrlParameter(sParam)
+    {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) 
+      {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+          return sParameterName[1];
+        }
+      }
+    }   
   });
 
 
   /* -------------------- Resize --------------------- */
   function onResize(e) {
-   
+
     if ($cont && contWidth !== $cont.width()) {
 
       contWidth = $cont.width();
