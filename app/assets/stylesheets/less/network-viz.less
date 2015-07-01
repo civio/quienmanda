@@ -1,5 +1,6 @@
 /* Viz Container */
 #viz-container{
+  position: relative;
   background: @colorHeader;
   border: 3px solid #f9f9f9;
   height: 450px;
@@ -22,29 +23,82 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: @colorHeader;
+  border-top: 1px solid @colorBody;
+  border-bottom: 1px solid @colorBody;
+  border-left: 1px solid @colorBody;
+  //background: @colorHeader; 
 
   a{
-    .opacity( 0.75 );
+    display: block;
+    float: left;
+    width: 28px;
+    line-height: 27px;
+    font-size: 0.875em;
+    text-align: center;
+    border-right: 1px solid @colorBody;
+    background: white;
+
+    i{
+      .opacity( 0.75 );
+    }
 
     &:hover,
     &:focus{
-      .opacity( 1 );
       text-decoration: none;
-    }
-  } 
-}
+      background: @colorHeader;
 
-#control-fullscreen-exit{
-  display: none;
+      i{
+        .opacity( 1 );
+      }
+    }
+
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:focus{
+      cursor: default;
+
+      i{
+        .opacity( 0.5 );
+      }
+    }
+  }
+
+  #control-fullscreen-exit{
+    display: none;
+  }
+
+  .embed-code{
+    display: none;
+    clear: both;
+    position: absolute;
+    top: 27px;
+    left: -1px;
+    padding: 10px 24px 0 10px;
+    font-size: 0.75em;
+    background: mix( white, @colorSecondary, 50% );
+    border: 1px solid @colorBody;
+
+    p{
+      color: @colorGray;
+      font-size: 0.875em;
+      text-align: center;
+    }
+
+    input{
+      width: 100%;
+      background: white;
+    }
+  }
 }
 
 #viz-container.fullscreen{
-  #control-fullscreen{
-    display: none;
-  }
-  #control-fullscreen-exit{
-    display: inline;
+  #visualization-controls{
+    #control-fullscreen{
+      display: none;
+    }
+    #control-fullscreen-exit{
+      display: block;
+    }
   }
 }
 
@@ -81,15 +135,22 @@
   right: 14px;
   color: @colorGray;
   background: #fff;
-  padding: 4px 12px;
+  border: 1px solid @colorBody;
 
   .legend {
     font-size: 0.813em;
-    display: inline-block;
-    margin: 0 auto;
+    //display: inline-block;
+    //margin: 0 auto;
+
+    span{
+      display: block;
+      float: left;
+      padding: 3px 10px 4px;
+      margin: 0;
+    }
 
     .legend-organizations {
-      margin-right: 20px;
+      border-right: 1px solid @colorBody;
     }
 
     .legend-people i {

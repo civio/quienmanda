@@ -80,6 +80,10 @@ body > .container {
   position: relative;
   margin-top: 145px;
 }
+body > .container.container-widget {
+  width: 100%;
+  margin: 0;
+}
 #wrapper {
   margin-top: 48px;
   margin-bottom: 30px;
@@ -2262,6 +2266,7 @@ header > .container {
 }
 /* Viz Container */
 #viz-container {
+  position: relative;
   background: #eef2ea;
   border: 3px solid #f9f9f9;
   height: 450px;
@@ -2281,9 +2286,21 @@ header > .container {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: #eef2ea;
+  border-top: 1px solid #dee5d8;
+  border-bottom: 1px solid #dee5d8;
+  border-left: 1px solid #dee5d8;
 }
 #visualization-controls a {
+  display: block;
+  float: left;
+  width: 28px;
+  line-height: 27px;
+  font-size: 0.875em;
+  text-align: center;
+  border-right: 1px solid #dee5d8;
+  background: white;
+}
+#visualization-controls a i {
   filter: alpha(opacity=75);
   -moz-opacity: 0.75;
   -khtml-opacity: 0.75;
@@ -2291,20 +2308,57 @@ header > .container {
 }
 #visualization-controls a:hover,
 #visualization-controls a:focus {
+  text-decoration: none;
+  background: #eef2ea;
+}
+#visualization-controls a:hover i,
+#visualization-controls a:focus i {
   filter: alpha(opacity=100);
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
-  text-decoration: none;
 }
-#control-fullscreen-exit {
+#visualization-controls a.disabled,
+#visualization-controls a.disabled:hover,
+#visualization-controls a.disabled:focus {
+  cursor: default;
+}
+#visualization-controls a.disabled i,
+#visualization-controls a.disabled:hover i,
+#visualization-controls a.disabled:focus i {
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+}
+#visualization-controls #control-fullscreen-exit {
   display: none;
 }
-#viz-container.fullscreen #control-fullscreen {
+#visualization-controls .embed-code {
+  display: none;
+  clear: both;
+  position: absolute;
+  top: 27px;
+  left: -1px;
+  padding: 10px 24px 0 10px;
+  font-size: 0.75em;
+  background: #eef2e6;
+  border: 1px solid #dee5d8;
+}
+#visualization-controls .embed-code p {
+  color: #515151;
+  font-size: 0.875em;
+  text-align: center;
+}
+#visualization-controls .embed-code input {
+  width: 100%;
+  background: white;
+}
+#viz-container.fullscreen #visualization-controls #control-fullscreen {
   display: none;
 }
-#viz-container.fullscreen #control-fullscreen-exit {
-  display: inline;
+#viz-container.fullscreen #visualization-controls #control-fullscreen-exit {
+  display: block;
 }
 /* Pop-up */
 #pop-up {
@@ -2334,15 +2388,19 @@ header > .container {
   right: 14px;
   color: #515151;
   background: #fff;
-  padding: 4px 12px;
+  border: 1px solid #dee5d8;
 }
 #visualization-legend .legend {
   font-size: 0.813em;
-  display: inline-block;
-  margin: 0 auto;
+}
+#visualization-legend .legend span {
+  display: block;
+  float: left;
+  padding: 3px 10px 4px;
+  margin: 0;
 }
 #visualization-legend .legend .legend-organizations {
-  margin-right: 20px;
+  border-right: 1px solid #dee5d8;
 }
 #visualization-legend .legend .legend-people i {
   color: #60A300;
