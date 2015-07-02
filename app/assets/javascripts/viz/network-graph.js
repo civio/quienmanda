@@ -20,6 +20,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   // History to store actions over graph
   var history = new NetworkHistory(undoBtn, redoBtn);
+  var historyArr = [];
 
   // I keep track of panning+zooming and use the 'drag' behaviour plus two buttons.
   // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
@@ -38,6 +39,8 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       .call(d3.behavior.drag().on("drag", onDrag).on("dragend", onDragEnd))
       .append("g");   // Removing this breaks zooming/panning
 
+  rescale();  // translate svg
+
   // Force layout configuration
   var force = d3.layout.force()
       .on("tick", tick)
@@ -50,7 +53,6 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   // Node drag behaviour
   var drag = force.drag()
       .on("dragstart", onNodeDragStart)
-      .on("drag", onNodeDragMove)
       .on("dragend", onNodeDragEnd);
   var drag_x = 0;
   var drag_y = 0;
@@ -91,8 +93,8 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   // Load the root node
   this.loadRootNode = function(url) {
-    loadNode(url);
     nodeRootUrl = url;
+    loadNode(url);
   };
 
   // Zoom controls
@@ -156,7 +158,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
     }
   }
 
-  function historySetup( params ) {
+  function setHistoryArray( params ) {
     var args;
     params = params.split('!');
     params.forEach(function(d){
@@ -169,10 +171,22 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
         }
       });
       if(d[0]){
-        //console.log(d[0],args);
-        //historyCall(d[0],args,false);
+        historyArr.push({action:d[0],args:args});
       }
     });
+  }
+
+  function historySetup() {
+    var d, url;
+    while (historyArr.length > 0) {
+      url = historyArr[0].args.url;
+      if (url !== undefined && nodes[url] === undefined) {
+        return; // We try to apply an action to an element that is not yet loaded
+      } else {
+        d = historyArr.shift();
+        historyCall(d.action,d.args,false);
+      }
+    }
   }
 
   // Resize visualization
@@ -236,10 +250,11 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   // Load a node .json & add its related nodes & links
   function loadNode(url, posx, posy) {
+
     // If a position is given, preposition child nodes around that.
     // Otherwise just put them in the middle of the screen
-    if(typeof(posx)==='undefined') posx = centerx;
-    if(typeof(posy)==='undefined') posy = centery;
+    if(typeof(posx)==='undefined') posx = 0;
+    if(typeof(posy)==='undefined') posy = 0;
 
     var spinner = showSpinner();
 
@@ -273,8 +288,11 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       spinner.stop();
       display();
 
-      if (historyParams !== undefined && historyParams !== '') {
-        historySetup( decodeURIComponent(historyParams) );
+      if (url === nodeRootUrl && historyParams !== undefined && historyParams !== '') {
+        setHistoryArray( decodeURIComponent(historyParams) );
+        historySetup();
+      } else if(historyArr.length > 0) {  // Check if we have actions waiting to be called
+        historySetup();
       }
     });
   }
@@ -369,7 +387,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   function contractNode(node) {
     node['expandable'] = true;
-    node['expanded'] = false; 
+    node['expanded'] = false;
     getNodeByUrl(node.url)                     // Update class & change image icon (plus)
       .attr('class', getNodeClass)
       .select('image')
@@ -434,22 +452,19 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   // Node drag handlers
   function onNodeDragStart(d) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
-  }
-  function onNodeDragMove(d) {
-    // fix the node position when the node is dragged
-    // (used to do this at dragend, but a double click would confuse it)
-    d.fixed = true;
-    drag_x += d3.event.dx;
-    drag_y += d3.event.dy;
+    drag_x = d.x;
+    drag_y = d.y;
   }
   function onNodeDragEnd(d) {
-    if (drag_x === 0 && drag_y === 0){ return; } // Skip if has no translation
+    if (drag_x === d.x && drag_y === d.y){ return; } // Skip if has no translation
+    
     // add nodeMove action to history
     history.add({
       action: 'nodeMove',
-      args: { url:d.url, x: drag_x, y:drag_y }
+      args: { url:d.url, x:drag_x, y:drag_y, dx:drag_x-d.x, dy:drag_y-d.y, fixed:d.fixed }
     });
-    drag_x = drag_y = 0;
+    // fix the node position when the node is dragged
+    d.fixed = true;
   }
 
   // Node click handler
@@ -536,10 +551,10 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   // HISTORY METHODS
 
   function nodeMove(args, undo) {
-    var nodeTranslate = d3.transform(getNodeByUrl(args.url).attr('transform')).translate;
     var node = nodes[args.url];
-    node.x = node.px = (undo === true) ? nodeTranslate[0] - args.x : nodeTranslate[0] + args.x;
-    node.y = node.py = (undo === true) ? nodeTranslate[1] - args.y : nodeTranslate[1] + args.y;
+    node.x = node.px = (undo === true) ? +args.x : (+args.x) - (+args.dx);
+    node.y = node.py = (undo === true) ? +args.y : (+args.y) - (+args.dy);
+    node.fixed = (undo === true) ? args.fixed : true;
     force.start();  // Restart force layout to update position
   }
 
@@ -552,6 +567,8 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   }
 
   function viewportMove(args, undo) {
+    args.x = +args.x;
+    args.y = +args.y;
     if (undo === true) {
       viewport_x -= args.x;
       viewport_y -= args.y;
@@ -603,7 +620,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   // Update translate/scale of canvas
   function rescale() {
-    svg.attr("transform", "translate(" + (viewport_origin_x + viewport_x) + ","+ (viewport_origin_y + viewport_y) +")scale("+scale+")");
+    svg.attr("transform", "translate(" + (centerx + viewport_origin_x + viewport_x) + ","+ (centery + viewport_origin_y + viewport_y) +")scale("+scale+")");
   }
 
   // Add node label to infobox on hover
