@@ -138,6 +138,11 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       str += '!';
     });
 
+    // add scale if is not one
+    if (scale !== 1) {
+      str += 'scale¡s,'+scale+'!';
+    }
+
     return encodeURIComponent(str);
   };
 
@@ -154,6 +159,10 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
         break;
       case 'viewportMove':
         viewportMove(args, undo);
+        break;
+      case 'scale':
+        scale = +args.s;
+        rescale();
         break;
     }
   }
