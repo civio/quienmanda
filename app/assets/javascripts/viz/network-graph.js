@@ -36,7 +36,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
       .attr("height", height)
-      .call(d3.behavior.drag().on("drag", onDrag).on("dragend", onDragEnd))
+      .call(d3.behavior.drag().on("drag", onDrag).on("dragstart", onDragStart).on("dragend", onDragEnd))
       .append("g");   // Removing this breaks zooming/panning
 
   rescale();  // translate svg
@@ -448,6 +448,9 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
     rescale();
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
   }
+  function onDragStart() {
+    d3.select(svg.node().parentNode).style('cursor','move');
+  }
   function onDragEnd() {
     if (viewport_dx === 0 && viewport_dy === 0){ return; } // Skip if viewport has no translation
     // add viewportMove action to history
@@ -456,6 +459,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       args: { x: viewport_dx, y:viewport_dy }
     });
     viewport_dx = viewport_dy = 0;
+    d3.select(svg.node().parentNode).style('cursor','default');
   }
 
   // Node drag handlers
