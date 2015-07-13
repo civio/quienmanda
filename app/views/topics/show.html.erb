@@ -15,7 +15,7 @@
   <div id="wrapper" class="topic-viz">
     <div class="row-fluid">
       <div id="wrapper" class="full span12">
-        <%= render 'shared/show_entity_viz', path: entity_path(@entity) %>
+        <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug %>
       </div>
     </div>
   </div>

@@ -3,7 +3,11 @@ include ApplicationHelper
 # Redirect to the appropriate People or Organizations controller.
 # This exists basically so RailsAdmin can do ShowInApp for Entities.
 class EntitiesController < ApplicationController
+  before_action :set_entity, only: [:show]
+
   etag { can? :manage, Entity } # Don't cache admin content together with the rest
+
+  layout proc { |controller| controller.request.params[:widget].blank? ? 'application' : 'widget-viz' }
 
   # Define entities.json used to populate autocomplete box in photo annotations
   def index
@@ -12,24 +16,34 @@ class EntitiesController < ApplicationController
   end
 
   def show
-    entity = Entity.find_by_slug(params[:id])
-    if stale?(entity, :public => current_user.nil?)
+    authorize! :read, @entity
+    if stale?(@entity, :public => current_user.nil?)
       respond_to do |format|
         format.html do
-          redirect_to entity.person? ? person_path(entity) : organization_path(entity)
+          if params[:widget]
+            # Set response headers to allow widget being embedded cross-domain
+            # See http://stackoverflow.com/questions/16561066/ruby-on-rails-4-app-not-works-in-iframe
+            response.headers['X-Frame-Options'] = 'ALLOWALL'
+          else
+            redirect_to @entity.person? ? person_path(@entity) : organization_path(@entity)
+          end
         end
         # TODO: I should change the JS client to use just the plain show/ action
         # returning JSON, but for now a custom method is needed...
         format.json do
-          authorize! :read, entity
-          relations = (can? :manage, Entity) ? entity.relations : entity.relations.published
-          render json: generate_graph_data(entity, relations)
+          relations = (can? :manage, Entity) ? @entity.relations : @entity.relations.published
+          render json: generate_graph_data(@entity, relations)
         end
       end
     end
   end
 
+
   private
+  def set_entity
+    @entity = Entity.find_by_slug(params[:id])
+  end
+
   # Network graph visualization
   # TODO: Very early times for this. Will eventually be refactored somewhere else
   def add_node_if_needed(nodes, entity, root: false)
@@ -46,16 +60,16 @@ class EntitiesController < ApplicationController
   end
 
   def relation_as_hash(relation)
-    { 
-      id: relation.id,
-      source: entity_path(relation.source),
-      target: entity_path(relation.target),
-      type: relation.relation_type.description,
-      via: relation.sources.map{|s| absolute_url(s) },
-      from: relation.from,
-      to: relation.to,
-      at: relation.at
-    }
+  { 
+    id: relation.id,
+    source: entity_path(relation.source),
+    target: entity_path(relation.target),
+    type: relation.relation_type.description,
+    via: relation.sources.map{|s| absolute_url(s) },
+    from: relation.from,
+    to: relation.to,
+    at: relation.at
+  }
   end
 
   def add_child_relations(links, node)

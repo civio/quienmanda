@@ -139,12 +139,43 @@
 }
 
 #entity-timesheet{
+  position: relative;
   width: 100%;
   margin-bottom: 30px;
   background: @colorHeader;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px solid white;
 
+
+  .timesheet-arrow{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background: white;
+    opacity: 0.5;
+    cursor: pointer;
+    .transition( opacity 0.3s ease-out );
+
+    > i{
+      position: absolute;
+      top: 50%;
+      margin-top: -0.5em;
+      margin-left: 0.6em;
+      font-size: 2em;
+      color: @colorHeaderLink;
+      .transition( margin-left 0.3s ease-out );
+    }
+
+    &:hover{
+      opacity: 0.6;
+      > i{
+        margin-left: 0.75em;
+      }
+    }
+  }
 
   &.timesheet{
 
@@ -197,6 +228,10 @@
           a:hover{
             color: @colorLinkGreen;
             text-decoration: none;
+          }
+
+          .edit{
+            display: none;
           }
         }
 

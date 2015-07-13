@@ -2,7 +2,7 @@
 // (see https://learn.jquery.com/using-jquery-core/avoid-conflicts-other-libraries/)
 $j = jQuery.noConflict();
 
-function NetworkGraph(selector, infobox) {
+function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   var _this = this;
 
@@ -18,6 +18,10 @@ function NetworkGraph(selector, infobox) {
   var color = d3.scale.ordinal().range(category2).domain([1,2]);
   var infobox = d3.select(infobox);
 
+  // History to store actions over graph
+  var history = new NetworkHistory(undoBtn, redoBtn);
+  var historyArr = [];
+
   // I keep track of panning+zooming and use the 'drag' behaviour plus two buttons.
   // The mousewheel behaviour of the 'zoom' behaviour was annoying, and couldn't 
   // find a way of disabling it.
@@ -26,12 +30,16 @@ function NetworkGraph(selector, infobox) {
   var viewport_origin_y = 0;
   var viewport_x = 0;
   var viewport_y = 0;
+  var viewport_dx = 0;
+  var viewport_dy = 0;
 
   var svg = d3.select(selector).append("svg")
       .attr("width", width)
       .attr("height", height)
-      .call(d3.behavior.drag().on("drag", onDrag))
+      .call(d3.behavior.drag().on("drag", onDrag).on("dragstart", onDragStart).on("dragend", onDragEnd))
       .append("g");   // Removing this breaks zooming/panning
+
+  rescale();  // translate svg
 
   // Force layout configuration
   var force = d3.layout.force()
@@ -45,7 +53,9 @@ function NetworkGraph(selector, infobox) {
   // Node drag behaviour
   var drag = force.drag()
       .on("dragstart", onNodeDragStart)
-      .on("drag", onNodeDragMove);
+      .on("dragend", onNodeDragEnd);
+  var drag_x = 0;
+  var drag_y = 0;
 
   // Visualization data
   var nodes = {};
@@ -83,8 +93,8 @@ function NetworkGraph(selector, infobox) {
 
   // Load the root node
   this.loadRootNode = function(url) {
-    loadNode(url);
     nodeRootUrl = url;
+    loadNode(url);
   };
 
   // Zoom controls
@@ -102,6 +112,91 @@ function NetworkGraph(selector, infobox) {
     viewport_y = 0;
     rescale();
   };
+
+  // History Undo/redo
+  this.historyUndo = function() {
+    var item = history.undo();
+    historyCall( item.action, item.args, true );
+  };
+  this.historyRedo = function() {
+    var item = history.redo();
+    historyCall( item.action, item.args, false );
+  };
+  this.getHistoryParams = function(){
+    var str = '',
+        done = history.getDone();
+
+    // convert history.done array in a string like that:
+    // "action1|argKey,argValue|argKey,argValue|argKey,argValue!action2|argKey,argValue!"
+    done.forEach(function(d){
+      str += d.action;
+      for (var key in d.args) {
+        if (d.args.hasOwnProperty(key)) {
+          str += '¡'+key+','+d.args[key];
+        }
+      }
+      str += '!';
+    });
+
+    // add scale if is not one
+    if (scale !== 1) {
+      str += 'scale¡s,'+scale+'!';
+    }
+
+    return encodeURIComponent(str);
+  };
+
+  function historyCall( action, args, undo ) {
+    switch (action) {
+      case 'nodeMove':
+        nodeMove(args, undo);
+        break;
+      case 'nodeExpand':
+        nodeExpand(args, undo);
+        break;
+      case 'nodeContract':
+        nodeExpand(args, !undo);
+        break;
+      case 'viewportMove':
+        viewportMove(args, undo);
+        break;
+      case 'scale':
+        scale = +args.s;
+        rescale();
+        break;
+    }
+  }
+
+  function setHistoryArray( params ) {
+    var args;
+    params = params.split('!');
+    params.forEach(function(d){
+      args = {};
+      d = d.split('¡');
+      d.forEach(function(e,i){
+        if (i>0) {
+          e = e.split(',');
+          args[e[0]] = e[1];
+        }
+      });
+      if(d[0]){
+        historyArr.push({action:d[0],args:args});
+      }
+    });
+  }
+
+  function historySetup() {
+    var d, url;
+    while (historyArr.length > 0) {
+      url = historyArr[0].args.url;
+      if (url !== undefined && nodes[url] === undefined) {
+        return; // We try to apply an action to an element that is not yet loaded
+      } else {
+        d = historyArr.shift();
+        historyCall(d.action,d.args,false);
+      }
+    }
+  }
 
   // Resize visualization
   this.resize = function() {
@@ -164,10 +259,11 @@ function NetworkGraph(selector, infobox) {
 
   // Load a node .json & add its related nodes & links
   function loadNode(url, posx, posy) {
+
     // If a position is given, preposition child nodes around that.
     // Otherwise just put them in the middle of the screen
-    if(typeof(posx)==='undefined') posx = centerx;
-    if(typeof(posy)==='undefined') posy = centery;
+    if(typeof(posx)==='undefined') posx = 0;
+    if(typeof(posy)==='undefined') posy = 0;
 
     var spinner = showSpinner();
 
@@ -200,6 +296,13 @@ function NetworkGraph(selector, infobox) {
 
       spinner.stop();
       display();
+
+      if (url === nodeRootUrl && historyParams !== undefined && historyParams !== '') {
+        setHistoryArray( decodeURIComponent(historyParams) );
+        historySetup();
+      } else if(historyArr.length > 0) {  // Check if we have actions waiting to be called
+        historySetup();
+      }
     });
   }
 
@@ -242,7 +345,7 @@ function NetworkGraph(selector, infobox) {
 
   // Remove a node
   function removeNode(node) {
-    var nodeToDelete = d3.select('#node'+node.url.replace(/\//g,'-'));
+    var nodeToDelete = getNodeByUrl(node.url);
 
     // Check if node to delete has child to remove recursively
     if( nodeToDelete.classed('expanded') ){
@@ -278,6 +381,28 @@ function NetworkGraph(selector, infobox) {
             "node root" :
             (node['expandable'] ? "node expandable" :
             (node['expanded'] ? "node expanded" : "node") );
+  }
+
+  function expandNode(node) {
+    node['expandable'] = false;                // Not anymore expandable
+    node['expanded'] = true;                   // Expanded    
+    getNodeByUrl(node.url)                     // Update class & change image icon (less)
+      .attr('class', getNodeClass)
+      .select('image')
+        .attr("xlink:href", "/img/less-sign.png");
+    node.fixed = true;                         // Fix after 'exploding', feels better
+    loadNode(node.url, node.x, node.y);        // add linked nodes
+  }
+
+  function contractNode(node) {
+    node['expandable'] = true;
+    node['expanded'] = false;
+    getNodeByUrl(node.url)                     // Update class & change image icon (plus)
+      .attr('class', getNodeClass)
+      .select('image')
+        .attr("xlink:href", "/img/plus-sign.png");
+    node.fixed = false;
+    unloadNode(node.url);                      // remove linked nodes
   }
 
   // When load a node, put the related nodes randomly in a circle around 
@@ -318,44 +443,64 @@ function NetworkGraph(selector, infobox) {
   function onDrag() {
     viewport_x += d3.event.dx;
     viewport_y += d3.event.dy;
+    viewport_dx += d3.event.dx;
+    viewport_dy += d3.event.dy;
     rescale();
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
+  }
+  function onDragStart() {
+    d3.select(svg.node().parentNode).style('cursor','move');
+  }
+  function onDragEnd() {
+    if (viewport_dx === 0 && viewport_dy === 0){ return; } // Skip if viewport has no translation
+    // add viewportMove action to history
+    history.add({
+      action: 'viewportMove',
+      args: { x: viewport_dx, y:viewport_dy }
+    });
+    viewport_dx = viewport_dy = 0;
+    d3.select(svg.node().parentNode).style('cursor','default');
   }
 
   // Node drag handlers
   function onNodeDragStart(d) {
     d3.event.sourceEvent.stopPropagation(); // silence other listeners
+    drag_x = d.x;
+    drag_y = d.y;
   }
-  function onNodeDragMove(d) {
+  function onNodeDragEnd(d) {
+    if (drag_x === d.x && drag_y === d.y){ return; } // Skip if has no translation
+    
+    // add nodeMove action to history
+    history.add({
+      action: 'nodeMove',
+      args: { url:d.url, x:drag_x, y:drag_y, dx:drag_x-d.x, dy:drag_y-d.y, fixed:d.fixed }
+    });
     // fix the node position when the node is dragged
-    // (used to do this at dragend, but a double click would confuse it)
     d.fixed = true;
   }
 
   // Node click handler
   function onNodeClick(d) {
+
     if (d3.event.defaultPrevented) return;  // click suppressed
   
     // Check if expand or contract
     if ( d['expandable'] ) {
-      d['expandable'] = false;                // Not anymore expandable
-      d['expanded'] = true;                   // Expanded
-      d3.select( d3.event.target.parentNode ) // Update class & change image icon (less)
-        .attr('class', getNodeClass)
-        .select('image')
-          .attr("xlink:href", "/img/less-sign.png");
-      d.fixed = true;                         // Fix after 'exploding', feels better
-      loadNode(d.url, d.x, d.y);        // add linked nodes
+      expandNode(d);
+      // add nodeExpand action to history
+      history.add({
+        action: 'nodeExpand',
+        args: { url:d.url }
+      });
 
     } else if ( d['expanded'] ) {
-      d['expandable'] = true;
-      d['expanded'] = false;
-      d3.select( d3.event.target.parentNode ) // Update class & change image icon (plus)
-        .attr('class', getNodeClass)
-        .select('image')
-          .attr("xlink:href", "/img/plus-sign.png");
-      d.fixed = false;
-      unloadNode(d.url);                      // remove linked nodes
+      contractNode(d);
+      // add nodeContract action to history
+      history.add({
+        action: 'nodeContract',
+        args: { url:d.url }
+      });
     }
   }
 
@@ -416,19 +561,50 @@ function NetworkGraph(selector, infobox) {
     highlightRelatedNodes(link.source, 1);   // Fade-in the whole graph
   }
 
+  // HISTORY METHODS
+
+  function nodeMove(args, undo) {
+    var node = nodes[args.url];
+    node.x = node.px = (undo === true) ? +args.x : (+args.x) - (+args.dx);
+    node.y = node.py = (undo === true) ? +args.y : (+args.y) - (+args.dy);
+    node.fixed = (undo === true) ? args.fixed : true;
+    force.start();  // Restart force layout to update position
+  }
+
+  function nodeExpand(args, undo) {
+    if (undo === true) {
+      contractNode( nodes[args.url] );
+    } else {
+      expandNode( nodes[args.url] );
+    }
+  }
+
+  function viewportMove(args, undo) {
+    args.x = +args.x;
+    args.y = +args.y;
+    if (undo === true) {
+      viewport_x -= args.x;
+      viewport_y -= args.y;
+    } else {
+      viewport_x += args.x;
+      viewport_y += args.y;
+    }
+    rescale();
+  }
+
   // AUXILIAR METHODS
 
   // Load spinner, using spin.js
   function showSpinner() {
     var opts = {
-      lines: 13, // The number of lines to draw
-      length: 20, // The length of each line
-      width: 12, // The line thickness
-      radius: 45, // The radius of the inner circle
-      corners: 0.7, // Corner roundness (0..1)
+      lines: 12, // The number of lines to draw
+      length: 15, // The length of each line
+      width: 8, // The line thickness
+      radius: 22, // The radius of the inner circle
+      corners: 0.5, // Corner roundness (0..1)
       rotate: 59, // The rotation offset
       direction: 1, // 1: clockwise, -1: counterclockwise
-      color: '#000', // #rgb or #rrggbb or array of colors
+      color: '#414141', // #rgb or #rrggbb or array of colors
       speed: 1, // Rounds per second
       trail: 63, // Afterglow percentage
       shadow: false, // Whether to render a shadow
@@ -457,7 +633,7 @@ function NetworkGraph(selector, infobox) {
 
   // Update translate/scale of canvas
   function rescale() {
-    svg.attr("transform", "translate(" + (viewport_origin_x + viewport_x) + ","+ (viewport_origin_y + viewport_y) +")scale("+scale+")");
+    svg.attr("transform", "translate(" + (centerx + viewport_origin_x + viewport_x) + ","+ (centery + viewport_origin_y + viewport_y) +")scale("+scale+")");
   }
 
   // Add node label to infobox on hover
@@ -497,5 +673,9 @@ function NetworkGraph(selector, infobox) {
     return  connectedNodes[a.url + "," + b.url] ||
             connectedNodes[b.url + "," + a.url] ||
             a.url == b.url;
+  }
+
+  function getNodeByUrl(url) {
+    return d3.select('#node'+url.replace(/\//g,'-'));
   }
 }
