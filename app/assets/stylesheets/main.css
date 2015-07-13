@@ -2009,11 +2009,47 @@ header > .container {
   background: #e4eadf;
 }
 #entity-timesheet {
+  position: relative;
   width: 100%;
   margin-bottom: 30px;
   background: #eef2ea;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px solid white;
+}
+#entity-timesheet .timesheet-arrow {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: white;
+  opacity: 0.5;
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+#entity-timesheet .timesheet-arrow > i {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  margin-left: 0.6em;
+  font-size: 2em;
+  color: #a8c315;
+  -webkit-transition: margin-left 0.3s ease-out;
+  -moz-transition: margin-left 0.3s ease-out;
+  -o-transition: margin-left 0.3s ease-out;
+  -ms-transition: margin-left 0.3s ease-out;
+  transition: margin-left 0.3s ease-out;
+}
+#entity-timesheet .timesheet-arrow:hover {
+  opacity: 0.6;
+}
+#entity-timesheet .timesheet-arrow:hover > i {
+  margin-left: 0.75em;
 }
 #entity-timesheet.timesheet .scale section {
   font-family: 'Open Sans', sans-serif;
@@ -2058,6 +2094,9 @@ header > .container {
 #entity-timesheet.timesheet .data li .label a:hover {
   color: #8aa304;
   text-decoration: none;
+}
+#entity-timesheet.timesheet .data li .label .edit {
+  display: none;
 }
 #entity-timesheet.timesheet .data li:hover .date {
   visibility: visible;

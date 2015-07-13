@@ -28,6 +28,7 @@
           <% if can? :manage, Relation %>
             <%= link_to raw('<span class="label"><i class="icon-edit"></i></span>'),
                         rails_admin.edit_path(id: relation.id, model_name: relation.class.name), 
+                        class: 'edit',
                         target: '_blank' %>
           <% end %>
             <%= link_to relation.source.short_or_long_name, 

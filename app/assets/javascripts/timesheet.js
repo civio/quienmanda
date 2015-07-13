@@ -107,7 +107,7 @@
     this.start = start;
     this.end = end;
     this.widthMonth = wMonth;
-    console.log('bubble', this.widthMonth);
+    //console.log('bubble', start + ' / ' + end);
   };
   
   /**

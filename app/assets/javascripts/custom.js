@@ -73,21 +73,25 @@ jQuery.noConflict();
       if ($('#entity-timesheet').size() > 0) {
 
         var items = [];
+        var td, date1, date2, now, txt;
 
-        $('#relations-list tbody tr.self').each(function(){
-          var td = $(this).children('td');
-          var date1 = td.eq(4).html();
-          var date2 = td.eq(5).html();
-          var now = new Date();
+        $('#relations-list tbody tr').each(function(){
+          td = $(this).children('td');
+          date1 = td.eq(4).html();
+          date2 = td.eq(5).html();
           if( date1 === '' ) return;
+          now = new Date();
+          str = ($(this).hasClass('self')) ? td.eq(1).html()+' '+td.eq(2).html() : td.eq(0).html()+' '+td.eq(1).html()+' '+td.eq(2).html();
           date1 = date1.split('-');
           date2 = ( date2 !== '' ) ? date2.split('-') : [now.getFullYear(), now.getMonth()+1];
-          items.push( [date1[1]+'/'+date1[0], date2[1]+'/'+date2[0], td.eq(1).html()+' '+td.eq(2).html(), 'lorem'] );
+          items.push( [date1[1]+'/'+date1[0], date2[1]+'/'+date2[0], str, 'lorem'] );
         });
 
         $('#entity-timesheet').height( 16+28+(items.length*32) );
 
         new Timesheet('entity-timesheet', 2015, 2015, items);
+
+        $('#entity-timesheet').append('<div class="timesheet-arrow"><i class="icon-chevron-right"></i></div>');
       }
     }
 
