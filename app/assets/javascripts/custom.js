@@ -64,7 +64,7 @@ jQuery.noConflict();
         var embedId = $('#control-embed').attr('href').substring(1);
         $('#control-embed').click(function(e){
           e.preventDefault();
-          embedStr = '<iframe src="http://localhost:3000/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
+          embedStr = '<iframe src="http://quienmanda.es/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
           $('.embed-code').toggle().focus();
           $('.embed-code input').val(embedStr).select();
         });
