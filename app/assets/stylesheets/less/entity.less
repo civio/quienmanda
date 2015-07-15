@@ -138,24 +138,20 @@
   .table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th{ background: #e4eadf; }
 }
 
-#entity-timesheet{
+#entity-timesheet-container{
   position: relative;
-  width: 100%;
+  padding: 3px;
+  background: white;
   margin-bottom: 30px;
-  background: @colorHeader;
-  overflow-x: auto;
-  border: 1px solid white;
-
+  .boxStyle();
 
   .timesheet-arrow{
-    display: none;
     position: absolute;
     top: 0;
-    right: 0;
-    width: 60px;
+    width: 62px;
     height: 100%;
     background: white;
-    opacity: 0.5;
+    opacity: 0;
     cursor: pointer;
     .transition( opacity 0.3s ease-out );
 
@@ -168,14 +164,36 @@
       color: @colorHeaderLink;
       .transition( margin-left 0.3s ease-out );
     }
+  }
 
-    &:hover{
-      opacity: 0.6;
-      > i{
-        margin-left: 0.75em;
-      }
+  .timesheet-arrow-right{
+    right: 0;
+    &:hover > i{
+      margin-left: 0.7em;
     }
   }
+  .timesheet-arrow-left{
+    left: 0;
+    visibility: hidden;
+    &:hover > i{
+      margin-left: 0.5em;
+    }
+  }
+
+  &:hover .timesheet-arrow{
+    opacity: 0.5;
+
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+}
+
+#entity-timesheet{
+  width: 100%;
+  height: auto;
+  background: @colorHeader;
+  overflow-x: auto;
 
   &.timesheet{
 
@@ -196,34 +214,52 @@
       overflow: visible;
 
       li{
-        height: auto;
+        margin: 0;
+        height: 33px;
 
         .bubble{
+          position: static;
           float: none;
-          top: 0;
+          height: 8px;
+          border-radius: 0;
           background: @colorHeaderLink;
+        }
+
+        &.now .bubble:after{
+          content: '';
+          float: right;
+          width: 3px;
+          height: 8px;
+          margin-right: -11px;
+          border-right: 2px solid @colorHeaderLink;
+          border-left: 3px solid @colorHeaderLink;
         }
 
         .date{
           visibility: hidden;
           color: @colorLinkGreen;
           font-size: 12px;
-          line-height: 16px;
+          line-height: 22px;
           font-weight: 600;
-          padding-right: 5px;
+          padding: 1px 6px;
           background: @colorHeader;
         }
 
+        .label-container{
+          position: absolute;
+          top: 7px;
+          left: 0;
+        }
+
         .label{
-          line-height: 16px;
+          line-height: 20px;
           color: @colorGray;
-          padding-left: 5px;
-          padding-right: 5px;
+          padding: 0 5px 2px;
           text-shadow: none;
           background: white;
-          margin-right: 5px;
-          margin-left: 1px;
+          margin: 0;
           border-radius: 0;
+          border: 1px solid mix(@colorHeaderLink, @colorHeader, 50%);
 
           a:hover{
             color: @colorLinkGreen;
@@ -235,8 +271,13 @@
           }
         }
 
-        &:hover .date{
-          visibility: visible;
+        &:hover {
+          .date{
+            visibility: visible;
+          }
+          .label{
+            border: 1px solid @colorHeaderLink;
+          }
         }
       }
     }

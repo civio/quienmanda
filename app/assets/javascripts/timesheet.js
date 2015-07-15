@@ -10,7 +10,7 @@
     this.data = [];
     this.year = {
       min: min,
-      max: max
+      max: max,
     };
 
     this.parse(data || []);
@@ -28,18 +28,23 @@
   Timesheet.prototype.insertData = function() {
     var html = [];
     var widthMonth = this.container.querySelector('.scale section').offsetWidth;
+    var middleYear = this.year.min+((this.year.max-this.year.min)*0.5);
+    var cur, bubble, lineClass, line;
 
     for (var n = 0, m = this.data.length; n < m; n++) {
-      var cur = this.data[n];
-      var bubble = new Bubble(widthMonth, this.year.min, cur.start, cur.end);
+      cur = this.data[n];
+      bubble = new Bubble(widthMonth, this.year.min, cur.start, cur.end);
 
-      var line = [
+      lineClass = (bubble.end && bubble.end.isNow) ? ' class="now"' : '';
+      line = [
         '<span style="width: ' + bubble.getWidth() + 'px" class="bubble bubble-' + (cur.type || 'default') + '" data-duration="' + (cur.end ? Math.round((cur.end-cur.start)/1000/60/60/24/39) : '') + '"></span>',
+        '<div class="label-container">',
         '<span class="label">' + cur.label + '</span>',
-        '<span class="date">' + bubble.getDateLabel() + '</span> '
-      ].join('');
+        '<span class="date">' + bubble.getDateLabel() + '</span>',
+        '</div> ',
+      ];
 
-      html.push('<li style="margin-left: ' + bubble.getStartOffset() + 'px">' + line + '</li>');
+      html.push('<li' + lineClass + ' style="margin-left: ' + bubble.getStartOffset() + 'px; width: ' + bubble.getWidth() + 'px">' + line.join('') + '</li>');
     }
 
     this.container.innerHTML += '<ul class="data">' + html.join('') + '</ul>';
@@ -63,13 +68,19 @@
    * Parse data string
    */
   Timesheet.prototype.parseDate = function(date) {
-    if (date.indexOf('/') === -1) {
-      date = new Date(parseInt(date, 10), 0, 1);
-      date.hasMonth = false;
-    } else {
-      date = date.split('/');
-      date = new Date(parseInt(date[1], 10), parseInt(date[0], 10)-1, 1);
+    if (date === 'now') {
+      date = new Date();
       date.hasMonth = true;
+      date.isNow = true;
+    } else {
+      if (date.indexOf('-') === -1) {
+        date = new Date(parseInt(date, 10), 0, 1);
+        date.hasMonth = false;
+      } else {
+        date = date.split('-');
+        date = new Date(parseInt(date[0], 10), parseInt(date[1], 10)-1, parseInt(date[2], 10));
+        date.hasMonth = true;
+      }
     }
 
     return date;
@@ -105,9 +116,8 @@
   var Bubble = function(wMonth, min, start, end) {
     this.min = min;
     this.start = start;
-    this.end = end;
+    this.end = (start.getTime() !== end.getTime()) ? end : null;
     this.widthMonth = wMonth;
-    //console.log('bubble', start + ' / ' + end);
   };
   
   /**
@@ -168,8 +178,8 @@
    */
   Bubble.prototype.getDateLabel = function() {
     return [
-      (this.start.hasMonth ? this.formatMonth(this.start.getMonth() + 1) + '/' : '' ) + this.start.getFullYear(),
-      (this.end ? '-' + ((this.end.hasMonth ? this.formatMonth(this.end.getMonth() + 1) + '/' : '' ) + this.end.getFullYear()) : '')
+      this.start.getFullYear() + (this.start.hasMonth ? '-' + this.formatMonth(this.start.getMonth() + 1) : '' ) + '-' + this.formatMonth(this.start.getDate()),
+      (this.end ? ' | ' + ( (this.end.isNow) ? 'actualidad' : (this.end.getFullYear() + (this.end.hasMonth ? '-' + this.formatMonth(this.end.getMonth() + 1) : '' ) + '-' + this.formatMonth(this.start.getDate()))) : '')
     ].join('');
   };
 

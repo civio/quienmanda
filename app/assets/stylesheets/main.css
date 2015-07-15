@@ -2008,23 +2008,23 @@ header > .container {
 #relations-list .table-striped tbody > tr:nth-child(odd) > th {
   background: #e4eadf;
 }
-#entity-timesheet {
+#entity-timesheet-container {
   position: relative;
-  width: 100%;
+  padding: 3px;
+  background: white;
   margin-bottom: 30px;
-  background: #eef2ea;
-  overflow-x: auto;
-  border: 1px solid white;
+  background: #f9f9f9;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
 }
-#entity-timesheet .timesheet-arrow {
-  display: none;
+#entity-timesheet-container .timesheet-arrow {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 60px;
+  width: 62px;
   height: 100%;
   background: white;
-  opacity: 0.5;
+  opacity: 0;
   cursor: pointer;
   -webkit-transition: opacity 0.3s ease-out;
   -moz-transition: opacity 0.3s ease-out;
@@ -2032,7 +2032,7 @@ header > .container {
   -ms-transition: opacity 0.3s ease-out;
   transition: opacity 0.3s ease-out;
 }
-#entity-timesheet .timesheet-arrow > i {
+#entity-timesheet-container .timesheet-arrow > i {
   position: absolute;
   top: 50%;
   margin-top: -0.5em;
@@ -2045,11 +2045,30 @@ header > .container {
   -ms-transition: margin-left 0.3s ease-out;
   transition: margin-left 0.3s ease-out;
 }
-#entity-timesheet .timesheet-arrow:hover {
-  opacity: 0.6;
+#entity-timesheet-container .timesheet-arrow-right {
+  right: 0;
 }
-#entity-timesheet .timesheet-arrow:hover > i {
-  margin-left: 0.75em;
+#entity-timesheet-container .timesheet-arrow-right:hover > i {
+  margin-left: 0.7em;
+}
+#entity-timesheet-container .timesheet-arrow-left {
+  left: 0;
+  visibility: hidden;
+}
+#entity-timesheet-container .timesheet-arrow-left:hover > i {
+  margin-left: 0.5em;
+}
+#entity-timesheet-container:hover .timesheet-arrow {
+  opacity: 0.5;
+}
+#entity-timesheet-container:hover .timesheet-arrow:hover {
+  opacity: 0.7;
+}
+#entity-timesheet {
+  width: 100%;
+  height: auto;
+  background: #eef2ea;
+  overflow-x: auto;
 }
 #entity-timesheet.timesheet .scale section {
   font-family: 'Open Sans', sans-serif;
@@ -2064,32 +2083,48 @@ header > .container {
   overflow: visible;
 }
 #entity-timesheet.timesheet .data li {
-  height: auto;
+  margin: 0;
+  height: 33px;
 }
 #entity-timesheet.timesheet .data li .bubble {
+  position: static;
   float: none;
-  top: 0;
+  height: 8px;
+  border-radius: 0;
   background: #a8c315;
+}
+#entity-timesheet.timesheet .data li.now .bubble:after {
+  content: '';
+  float: right;
+  width: 3px;
+  height: 8px;
+  margin-right: -11px;
+  border-right: 2px solid #a8c315;
+  border-left: 3px solid #a8c315;
 }
 #entity-timesheet.timesheet .data li .date {
   visibility: hidden;
   color: #8aa304;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 22px;
   font-weight: 600;
-  padding-right: 5px;
+  padding: 1px 6px;
   background: #eef2ea;
 }
+#entity-timesheet.timesheet .data li .label-container {
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
 #entity-timesheet.timesheet .data li .label {
-  line-height: 16px;
+  line-height: 20px;
   color: #515151;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0 5px 2px;
   text-shadow: none;
   background: white;
-  margin-right: 5px;
-  margin-left: 1px;
+  margin: 0;
   border-radius: 0;
+  border: 1px solid #cbdb80;
 }
 #entity-timesheet.timesheet .data li .label a:hover {
   color: #8aa304;
@@ -2100,6 +2135,9 @@ header > .container {
 }
 #entity-timesheet.timesheet .data li:hover .date {
   visibility: visible;
+}
+#entity-timesheet.timesheet .data li:hover .label {
+  border: 1px solid #a8c315;
 }
 /* Topics
   =================================================================== */

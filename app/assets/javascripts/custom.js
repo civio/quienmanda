@@ -7,7 +7,8 @@ jQuery.noConflict();
       contWidth = 0,
       hasPhoto = false,
       hasVis = false,
-      graph;
+      graph,
+      timesheet;
 
   jQuery(document).ready( function($) {
 
@@ -70,29 +71,7 @@ jQuery.noConflict();
       }
 
       // Setup timesheet
-      if ($('#entity-timesheet').size() > 0) {
-
-        var items = [];
-        var td, date1, date2, now, txt;
-
-        $('#relations-list tbody tr').each(function(){
-          td = $(this).children('td');
-          date1 = td.eq(4).html();
-          date2 = td.eq(5).html();
-          if( date1 === '' ) return;
-          now = new Date();
-          str = ($(this).hasClass('self')) ? td.eq(1).html()+' '+td.eq(2).html() : td.eq(0).html()+' '+td.eq(1).html()+' '+td.eq(2).html();
-          date1 = date1.split('-');
-          date2 = ( date2 !== '' ) ? date2.split('-') : [now.getFullYear(), now.getMonth()+1];
-          items.push( [date1[1]+'/'+date1[0], date2[1]+'/'+date2[0], str, 'lorem'] );
-        });
-
-        $('#entity-timesheet').height( 16+28+(items.length*32) );
-
-        new Timesheet('entity-timesheet', 2015, 2015, items);
-
-        $('#entity-timesheet').append('<div class="timesheet-arrow"><i class="icon-chevron-right"></i></div>');
-      }
+      timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
     }
 
     /* -------------------- Setup photo --------------------- */
@@ -278,19 +257,16 @@ jQuery.noConflict();
     });
 
     // Get URL Parameters
-    function getUrlParameter(sParam)
-    {
+    function getUrlParameter(sParam) {
       var sPageURL = window.location.search.substring(1);
       var sURLVariables = sPageURL.split('&');
-      for (var i = 0; i < sURLVariables.length; i++) 
-      {
+      for (var i = 0; i < sURLVariables.length; i++) {
         var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
+        if (sParameterName[0] == sParam) {
           return sParameterName[1];
         }
       }
-    }   
+    }
   });
 
 
@@ -319,6 +295,9 @@ jQuery.noConflict();
       // Resize visualization
       if (hasVis) {
         graph.resize();
+        if (timesheet) {
+          timesheet.onResize();
+        }
       }
     }
     else if (hasVis && $('#viz-container').hasClass('fullscreen')) {
