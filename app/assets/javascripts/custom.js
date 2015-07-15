@@ -64,7 +64,7 @@ jQuery.noConflict();
         var embedId = $('#control-embed').attr('href').substring(1);
         $('#control-embed').click(function(e){
           e.preventDefault();
-          embedStr = '<iframe src="http://quienmanda.es/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
+          embedStr = '<iframe src="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
           $('.embed-code').toggle().focus();
           $('.embed-code input').val(embedStr).select();
         });
@@ -90,7 +90,7 @@ jQuery.noConflict();
       // Setup Embed Btn
       if ($('.embed-btn').length > 0) {
         var embedId = $('.embed-btn').attr('href').substring(1);
-        $('.embed-code input').val('<div id="quienmanda-embed-'+embedId+'"></div><script src="http://quienmanda.es/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-'+embedId+'", "http://quienmanda.es/photos/'+embedId+'?widget=1", {});</script>');
+        $('.embed-code input').val('<div id="quienmanda-embed-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/photos/'+embedId+'?widget=1", {});</script>');
         $('.embed-btn').click(function(e){
           e.preventDefault();
           $('.embed-code').toggle().focus();
