@@ -43,12 +43,12 @@ function TimesheeManager(selector, selectorContainer, selectorList) {
       date1 = td.eq(4).html();
       date2 = td.eq(5).html();
       dateAt = td.eq(6).html();
-      if( date1 === '' && dateAt === '' ) return;
       str = ($j(this).hasClass('self')) ? td.eq(1).html()+' '+td.eq(2).html() : td.eq(0).html()+' '+td.eq(1).html()+' '+td.eq(2).html();
       
       if (dateAt !== '') {
         items.push( [dateAt, dateAt, str, 'lorem'] );
       } else {
+        date1 = ( date1 !== '' ) ? date1 : 'nostart';
         date2 = ( date2 !== '' ) ? date2 : 'now';
         items.push( [date1, date2, str, 'lorem'] );
       }

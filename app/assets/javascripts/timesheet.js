@@ -35,7 +35,10 @@
       cur = this.data[n];
       bubble = new Bubble(widthMonth, this.year.min, cur.start, cur.end);
 
-      lineClass = (bubble.end && bubble.end.isNow) ? ' class="now"' : '';
+      lineClass = '';
+      if (bubble.start && bubble.start.hasNoStart)  lineClass += 'nostart ';
+      if (bubble.end && bubble.end.isNow)           lineClass += 'now';
+
       line = [
         '<span style="width: ' + bubble.getWidth() + 'px" class="bubble bubble-' + (cur.type || 'default') + '" data-duration="' + (cur.end ? Math.round((cur.end-cur.start)/1000/60/60/24/39) : '') + '"></span>',
         '<div class="label-container">',
@@ -44,7 +47,7 @@
         '</div> ',
       ];
 
-      html.push('<li' + lineClass + ' style="margin-left: ' + bubble.getStartOffset() + 'px; width: ' + bubble.getWidth() + 'px">' + line.join('') + '</li>');
+      html.push('<li class="' + lineClass + '" style="margin-left: ' + bubble.getStartOffset() + 'px; width: ' + bubble.getWidth() + 'px">' + line.join('') + '</li>');
     }
 
     this.container.innerHTML += '<ul class="data">' + html.join('') + '</ul>';
@@ -72,6 +75,9 @@
       date = new Date();
       date.hasMonth = true;
       date.isNow = true;
+    } else if (date === 'nostart') {
+      date = new Date();
+      date.hasNoStart = true;
     } else {
       if (date.indexOf('-') === -1) {
         date = new Date(parseInt(date, 10), 0, 1);
@@ -90,11 +96,12 @@
    * Parse passed data
    */
   Timesheet.prototype.parse = function(data) {
-    for (var n = 0, m = data.length; n<m; n++) {
-      var beg = this.parseDate(data[n][0]);
-      var end = data[n].length === 4 ? this.parseDate(data[n][1]) : null;
-      var lbl = data[n].length === 4 ? data[n][2] : data[n][1];
-      var cat = data[n].length === 4 ? data[n][3] : data[n].length === 3 ? data[n][2] : 'default';
+    var n, beg ,end, lbl, cat;
+    for (n = 0, m = data.length; n<m; n++) {
+      beg = this.parseDate(data[n][0]);
+      end = data[n].length === 4 ? this.parseDate(data[n][1]) : null;
+      lbl = data[n].length === 4 ? data[n][2] : data[n][1];
+      cat = data[n].length === 4 ? data[n][3] : data[n].length === 3 ? data[n][2] : 'default';
 
       if (beg.getFullYear() < this.year.min) {
         this.year.min = beg.getFullYear();
@@ -107,6 +114,13 @@
       }
 
       this.data.push({start: beg, end: end, label: lbl, type: cat});
+    }
+
+    for (n = 0, m = this.data.length; n<m; n++) {
+      if (this.data[n].start && this.data[n].start.hasNoStart) {
+        this.data[n].start = new Date(this.year.min, 0, 1);
+        this.data[n].start.hasNoStart = true;
+      }
     }
   };
   
@@ -178,7 +192,7 @@
    */
   Bubble.prototype.getDateLabel = function() {
     return [
-      this.start.getFullYear() + (this.start.hasMonth ? '-' + this.formatMonth(this.start.getMonth() + 1) : '' ) + '-' + this.formatMonth(this.start.getDate()),
+      (this.start.hasNoStart ? '?' : this.start.getFullYear() + (this.start.hasMonth ? '-' + this.formatMonth(this.start.getMonth() + 1) : '' ) + '-' + this.formatMonth(this.start.getDate())),
       (this.end ? ' | ' + ( (this.end.isNow) ? 'actualidad' : (this.end.getFullYear() + (this.end.hasMonth ? '-' + this.formatMonth(this.end.getMonth() + 1) : '' ) + '-' + this.formatMonth(this.start.getDate()))) : '')
     ].join('');
   };

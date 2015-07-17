@@ -2093,14 +2093,26 @@ header > .container {
   border-radius: 0;
   background: #a8c315;
 }
+#entity-timesheet.timesheet .data li.nostart .bubble:before,
 #entity-timesheet.timesheet .data li.now .bubble:after {
   content: '';
   float: right;
   width: 3px;
   height: 8px;
-  margin-right: -11px;
   border-right: 2px solid #a8c315;
   border-left: 3px solid #a8c315;
+}
+#entity-timesheet.timesheet .data li.nostart .bubble {
+  margin-left: 11px;
+}
+#entity-timesheet.timesheet .data li.nostart .bubble:before {
+  float: left;
+  margin-left: -11px;
+  border-right-width: 3px;
+  border-left-width: 2px;
+}
+#entity-timesheet.timesheet .data li.now .bubble:after {
+  margin-right: -11px;
 }
 #entity-timesheet.timesheet .data li .date {
   visibility: hidden;

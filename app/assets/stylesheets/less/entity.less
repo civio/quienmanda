@@ -225,14 +225,28 @@
           background: @colorHeaderLink;
         }
 
+        &.nostart .bubble:before,
         &.now .bubble:after{
           content: '';
           float: right;
           width: 3px;
           height: 8px;
-          margin-right: -11px;
           border-right: 2px solid @colorHeaderLink;
           border-left: 3px solid @colorHeaderLink;
+        }
+
+        &.nostart .bubble{
+          margin-left: 11px;
+          &:before{
+            float: left;
+            margin-left: -11px;
+            border-right-width: 3px;
+            border-left-width: 2px;
+          }
+        }
+
+        &.now .bubble:after{
+          margin-right: -11px;
         }
 
         .date{
