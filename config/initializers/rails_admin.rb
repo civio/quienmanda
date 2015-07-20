@@ -269,7 +269,7 @@ RailsAdmin.config do |config|
         field :title
         field :lead
         field :content, :ck_editor do 
-          help 'Puedes insertar códigos como: [dc url="..."] [qm url="..." text="..."] [gdocs url="..."]'
+          help 'Puedes insertar códigos como: [dc url="..."] [qm url="..."] [qmviz url="..."] [gdocs url="..."]'
         end
         field :author do
           inverse_of :posts
