@@ -7,9 +7,7 @@
 </head>
 <body>
   <div class="container container-widget">
-    <div id="wrapper" class="full">
-      <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug %>
-    </div>
+    <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug, widget: @entity.short_or_long_name %>
   </div>
 </body>
 </html>

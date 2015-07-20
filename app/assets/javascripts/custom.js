@@ -71,7 +71,9 @@ jQuery.noConflict();
       }
 
       // Setup timesheet
-      timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
+      if ($('#entity-timesheet').size() > 0) {
+        timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
+      }
     }
 
     /* -------------------- Setup photo --------------------- */

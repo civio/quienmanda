@@ -84,6 +84,25 @@ body > .container.container-widget {
   width: 100%;
   margin: 0;
 }
+.container-widget #qm-logo a {
+  display: block;
+  position: absolute;
+  bottom: 14px;
+  right: 10px;
+  z-index: 99;
+  color: #515151;
+  font-size: 0.75em;
+  padding-right: 20px;
+  line-height: 11px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 white;
+  background: url(/images/quien-manda_logo_widget.png) no-repeat right center transparent;
+}
+.container-widget #qm-logo a:hover,
+.container-widget #qm-logo a:focus {
+  color: #8aa304;
+  text-decoration: none;
+}
 #wrapper {
   margin-top: 48px;
   margin-bottom: 30px;
@@ -155,6 +174,14 @@ body > .container.container-widget {
   background: #eef2ea;
   margin: 0 auto;
   padding: 10px 10px 5px;
+}
+.quienmanda-embed-viz-wrapper {
+  margin: 0 1px;
+  background: #f9f9f9;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+  background: #eef2ea;
 }
 /* Tags
 =================================================================== */
@@ -1644,24 +1671,45 @@ header > .container {
   text-decoration: none;
   background: white;
 }
-#wrapper .posts.full.picture .embed-btn {
+#wrapper .posts.full.picture .embed-btn,
+#wrapper .posts.full.picture .upload-btn {
   float: left;
   color: #515151;
   font-size: 0.875em;
   line-height: 24px;
   background: #eef2e6;
-  padding: 2px 10px;
+  padding: 2px 8px;
   margin-bottom: 20px;
+  margin-right: 10px;
 }
 #wrapper .posts.full.picture .embed-btn:hover,
-#wrapper .posts.full.picture .embed-btn:focus {
+#wrapper .posts.full.picture .upload-btn:hover,
+#wrapper .posts.full.picture .embed-btn:focus,
+#wrapper .posts.full.picture .upload-btn:focus {
   color: #8aa304;
   text-decoration: none;
   background: white;
 }
-#wrapper .posts.full.picture .embed-btn .icon-fontello-code {
+#wrapper .posts.full.picture .embed-btn .icon-upload,
+#wrapper .posts.full.picture .upload-btn .icon-upload,
+#wrapper .posts.full.picture .embed-btn .icon-fontello-code,
+#wrapper .posts.full.picture .upload-btn .icon-fontello-code {
   font-size: 1.25em;
   color: #8aa304;
+}
+#wrapper .posts.full.picture .embed-btn .icon-upload:before,
+#wrapper .posts.full.picture .upload-btn .icon-upload:before,
+#wrapper .posts.full.picture .embed-btn .icon-fontello-code:before,
+#wrapper .posts.full.picture .upload-btn .icon-fontello-code:before {
+  margin-top: 0.2em;
+}
+#wrapper .posts.full.picture .embed-btn .icon-upload,
+#wrapper .posts.full.picture .upload-btn .icon-upload {
+  margin-right: 0.1em;
+}
+#wrapper .posts.full.picture .embed-btn .icon-fontello-code:before,
+#wrapper .posts.full.picture .upload-btn .icon-fontello-code:before {
+  margin-left: 0;
 }
 #wrapper .posts.full.picture .embed-code {
   display: none;
@@ -2357,7 +2405,6 @@ header > .container {
 #viz-container {
   position: relative;
   background: #eef2ea;
-  border: 3px solid #f9f9f9;
   height: 450px;
 }
 #viz-container.fullscreen {
@@ -2373,8 +2420,8 @@ header > .container {
 #visualization-controls {
   font-size: 20px;
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 10px;
+  left: 10px;
   border-top: 1px solid #dee5d8;
   border-bottom: 1px solid #dee5d8;
   border-left: 1px solid #dee5d8;
@@ -2473,8 +2520,8 @@ header > .container {
 /* Legend */
 #visualization-legend {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   color: #515151;
   background: #fff;
   border: 1px solid #dee5d8;
@@ -2500,9 +2547,9 @@ header > .container {
 /* Infobox */
 #infobox {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
-  right: 14px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
   font-size: 14px;
 }
 #infobox i {
@@ -2535,6 +2582,10 @@ header > .container {
 #infobox a:hover {
   background: #dee5d8;
   text-decoration: none;
+}
+/* Avoid infobox to overlap qm-logo in wiget */
+.container-widget #infobox {
+  right: 115px;
 }
 /* Visualization elements */
 g.node circle {

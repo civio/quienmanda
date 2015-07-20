@@ -2,7 +2,7 @@
 #viz-container{
   position: relative;
   background: @colorHeader;
-  border: 3px solid #f9f9f9;
+  //border: 3px solid #f9f9f9;
   height: 450px;
 
   &.fullscreen{
@@ -21,8 +21,8 @@
 #visualization-controls {
   font-size: 20px;
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 10px;
+  left: 10px;
   border-top: 1px solid @colorBody;
   border-bottom: 1px solid @colorBody;
   border-left: 1px solid @colorBody;
@@ -131,8 +131,8 @@
 /* Legend */
 #visualization-legend {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   color: @colorGray;
   background: #fff;
   border: 1px solid @colorBody;
@@ -166,9 +166,9 @@
 /* Infobox */
 #infobox {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
-  right: 14px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
   font-size: 14px;
 
   i {
@@ -210,6 +210,10 @@
   }
 }
 
+/* Avoid infobox to overlap qm-logo in wiget */
+.container-widget #infobox { 
+  right: 115px;
+}
 
 /* Visualization elements */
 g.node circle {
