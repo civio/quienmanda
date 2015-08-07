@@ -360,6 +360,20 @@ iframe.quienmanda-embed body {
 .annotorious-annotationlayer .annotorious-popup .annotorious-popup-text p {
   margin: 5px 0 0;
 }
+/* Modal
+=================================================================== */
+.modal {
+  background: #eef2ea;
+  border: none;
+  border-radius: 0;
+}
+.modal-footer {
+  background: #dde4cd;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 /* Header
 =================================================================== */
 body > header {
@@ -1939,6 +1953,97 @@ header > .container {
 .pagination ul > li > span {
   font-size: 0.913em;
   padding: 6px 12px;
+}
+#upload-photo-modal {
+  /*
+  .modal-body{
+    overflow: hidden;
+
+    form{
+      height: 0;
+      margin: 0;
+    }
+  }
+  */
+}
+#upload-photo-modal .modal-body {
+  padding: 0;
+}
+#upload-photo-modal form {
+  margin: 0;
+}
+#upload-photo-modal form fieldset {
+  margin: 2px 10px;
+}
+#upload-photo-modal form legend {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+#upload-photo-modal form input,
+#upload-photo-modal form textarea {
+  border-radius: 0;
+}
+#upload-photo-modal form .control-group {
+  color: #515151;
+}
+#upload-photo-modal form .help-block {
+  font-size: 0.75em;
+  margin: 0;
+  line-height: 1.5em;
+}
+#upload-photo-modal #upload-photo-btn-select {
+  display: block;
+  margin: 30px auto 10px;
+  border: 1px solid #8aa304;
+  padding: 2px 8px;
+  line-height: 24px;
+  color: #515151;
+  background: white;
+}
+#upload-photo-modal #upload-photo-btn-select .icon-file {
+  color: #8aa304;
+  margin-right: 0.1em;
+}
+#upload-photo-modal #upload-photo-btn-select:hover {
+  color: #8aa304;
+}
+#upload-photo-modal .modal-footer .btn {
+  color: #515151;
+  border: none;
+  background: #eef2ea;
+  padding: 2px 8px;
+  line-height: 24px;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+#upload-photo-modal .modal-footer .btn .icon {
+  font-size: 1.25em;
+  margin-right: 0.1em;
+  color: #8aa304;
+}
+#upload-photo-modal .modal-footer .btn .icon:before {
+  vertical-align: middle;
+}
+#upload-photo-modal .modal-footer .btn:hover {
+  color: #8aa304;
+}
+#upload-photo-modal .modal-footer .btn.btn-primary {
+  color: #515151;
+  text-shadow: none;
+  background: white;
+}
+#upload-photo-modal .modal-footer .btn.btn-primary:hover {
+  color: #8aa304;
+}
+#upload-photo-modal .modal-footer .btn.btn-primary.disabled {
+  background: #eef2ea;
+  opacity: 0.5;
+}
+#upload-photo-modal .modal-footer .btn.btn-primary.disabled:hover {
+  color: #515151;
 }
 /* Entities
 =================================================================== */

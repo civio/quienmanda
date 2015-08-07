@@ -23,6 +23,9 @@
         <div class="picture-meta">
           <%= render 'shared/show_photo_credit', photo: @photo %>
           <%= render 'shared/show_photo_votes', photo: @photo %>
+          <% if current_user and current_user.admin? %>
+          <%= render 'shared/show_photo_upload', photo: @photo %>
+          <% end %>
           <%= render 'shared/show_photo_embed', photo: @photo %>
           <%= render 'shared/show_tags', item: @photo %>
           <div class="clearfix"></div>
@@ -47,3 +50,7 @@
   </div>
 
 </div>
+
+<% if current_user and current_user.admin? %>
+<%= render 'shared/show_photo_upload_modal', photo: @photo %>
+<% end %>
