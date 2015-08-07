@@ -7,8 +7,9 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   var _this = this;
 
   // Basic D3.js SVG container setup
-  var width = $j(selector).width(),
-      height = $j(selector).height(),
+  var $cont = $j(selector),
+      width = $cont.width(),
+      height = $cont.height(),
       centerx = width / 2,
       centery = height / 2,
       linkDistance = height * 0.2,
@@ -90,6 +91,10 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
 
   /*** PUBLIC mehods ***/
+
+  this.getCont = function(){
+    return $cont;
+  };
 
   // Load the root node
   this.loadRootNode = function(url) {
@@ -201,8 +206,9 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
   // Resize visualization
   this.resize = function() {
 
-    width = $j(selector).width();
-    height = $j(selector).height();
+    width = $cont.width();
+    height = $cont.height();
+
     viewport_origin_x = (width * 0.5) - centerx;
     viewport_origin_y = (height * 0.5) - centery;
     linkDistance = height * 0.2;
@@ -614,7 +620,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       top: 'auto', // Top position relative to parent in px
       left: 'auto' // Left position relative to parent in px
     };
-    return new Spinner(opts).spin($j(selector)[0]);
+    return new Spinner(opts).spin($cont[0]);
   }
 
   // Force layout iteration

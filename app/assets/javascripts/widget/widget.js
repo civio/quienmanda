@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require ../jquery.imagesloaded.js
+//= require ./pym.min.js
 //= require_directory ../annotorious
-//= require_directory .
 
 jQuery.noConflict();
 

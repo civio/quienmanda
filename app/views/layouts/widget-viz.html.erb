@@ -2,11 +2,11 @@
 <html>
 <head>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "widget/widget-viz-child", "data-turbolinks-track" => true %>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Economica:700,400italic|Libre+Baskerville:700,400italic">
 </head>
 <body>
-  <div class="container container-widget">
+  <div class="container container-widget embeded-viz">
     <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug, widget: @entity.short_or_long_name %>
   </div>
 </body>

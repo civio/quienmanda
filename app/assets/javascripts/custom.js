@@ -14,7 +14,7 @@ jQuery.noConflict();
 
     $cont = $('body > .container');
     contWidth = $cont.width();
-    
+  
     hasPhoto = $('#photo').length > 0;        // check if there is a photo entity
     hasVis = $('#viz-container').length > 0;  // check if there is a visualization
 
@@ -35,19 +35,21 @@ jQuery.noConflict();
 
     /* -------------------- Setup layouts --------------------- */
     $wall = $('#wall, .extra-wall');
-    $wall.imagesLoaded(function() {
-      $wall.packery({
-        itemSelector: '.item',
-        columnWidth: $wall.width() / 12
+    if ($wall.length){
+      $wall.imagesLoaded(function() {
+        $wall.packery({
+          itemSelector: '.item',
+          columnWidth: $wall.width() / 12
+        });
       });
-    });
+    }
 
     /* -------------------- Setup visualization --------------- */
     if (hasVis) {
       graph = new NetworkGraph("#viz-container", "#infobox", "#control-history-undo", "#control-history-redo", getUrlParameter('history'));
-      graph.loadRootNode( $('#viz-container').data('path') );
+      graph.loadRootNode( graph.getCont().data('path') );
       $('#control-fullscreen, #control-fullscreen-exit').click(function() {
-        $('#viz-container').toggleClass('fullscreen');
+        graph.getCont().toggleClass('fullscreen');
         graph.resize();
         return false;
       });
@@ -60,18 +62,20 @@ jQuery.noConflict();
       $('#visualization-controls a').tooltip();
 
       // Setup Embed Btn
-      if ($('#control-embed').length > 0) {
-        var embedId = $('#control-embed').attr('href').substring(1);
+      if ($('#control-embed').length) {
+        var embedId = $('#control-embed').attr('href').substring(1),
+            embedStr = '<div id="quienmanda-embed-viz-'+embedId+'" class="quienmanda-embed-viz" data-url="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'"></div><script async src="'+window.location.protocol+'//'+window.location.host+'/javascripts/widget-viz.js" charset="utf-8"></script>';
+            //embedStr = '<div id="quienmanda-embed-viz-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-viz-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'", {}); ';
         $('#control-embed').click(function(e){
           e.preventDefault();
-          embedStr = '<iframe src="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
+          //embedStr = '<iframe src="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
           $('.embed-code').toggle().focus();
           $('.embed-code input').val(embedStr).select();
         });
       }
 
       // Setup timesheet
-      if ($('#entity-timesheet').size() > 0) {
+      if ($('#entity-timesheet').length) {
         timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
       }
     }
@@ -90,18 +94,18 @@ jQuery.noConflict();
       });
 
       // Setup Embed Btn
-      if ($('.embed-btn').length > 0) {
-        var embedId = $('.embed-btn').attr('href').substring(1);
-        $('.embed-code input').val('<div id="quienmanda-embed-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/photos/'+embedId+'?widget=1", {});</script>');
+      if ($('.embed-btn').length) {
+        var embedId = $('.embed-btn').attr('href').substring(1),
+            embedStr = '<div id="quienmanda-embed-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/photos/'+embedId+'?widget=1", {});</script>';
         $('.embed-btn').click(function(e){
           e.preventDefault();
           $('.embed-code').toggle().focus();
-          $('.embed-code input').select();
+          $('.embed-code input').val( embedStr ).select();
         });
       }
 
       // Vote up/down via ajax
-      if ($('.vote-up, .vote-down').length > 0) {
+      if ($('.vote-up, .vote-down').length) {
         $('.vote-btn').click( function(e) {
           e.preventDefault();
           var $voteBtn = $(this);
@@ -121,6 +125,44 @@ jQuery.noConflict();
           });
         });
       }
+    
+      /*
+      // Upload Photo Btn
+      $('#upload-photo-btn-select').click(function(e){
+        e.preventDefault();
+        console.log('click upload!');
+        $('#upload-photo-file').change(function(e){
+
+          //console.log(e.target.files[0]);
+          $('#upload-photo-btn-select').hide();
+          $('#preview-upload-photo').attr('src', URL.createObjectURL(event.target.files[0]));
+          $('#upload-photo-modal .modal-footer .btn-primary').removeClass('disabled');
+
+        }).trigger('click');
+      });
+
+      $('#upload-photo-btn-upload').click(function(){
+        $('#upload-photo-form').submit();
+      });
+
+      $('#upload-photo-modal').on('show', function(){
+        $('#upload-photo-btn-select').show();
+        $('#preview-upload-photo').attr('src', '');
+        $('#upload-photo-modal .modal-footer .btn-primary').addClass('disabled');
+      });
+
+      // Upload Photo Form
+      $('#upload-photo-form').ajaxForm({
+        //dataType: "script",
+        success: uploadPhotoFormSuccess,
+        //error: ajaxFormSuccessHandler
+      });
+      */
+    }
+
+    function uploadPhotoFormSuccess(responseText, statusText, xhr, $form) {
+      console.log('upload form success!');
+      console.log(responseText, statusText, xhr, $form);
     }
 
     // On Annotorious Mouse Over Handler
@@ -166,7 +208,7 @@ jQuery.noConflict();
 
         // code == Enter:  select highlighted item
         if (code == 13) {
-          if ($results.children().size() > 0) {
+          if ($results.children().length) {
             index = $results.children().index( $results.children('.hover') );
             index = (index > 0) ? index : 0;
             $results.children().eq(index).trigger('click');
@@ -174,7 +216,7 @@ jQuery.noConflict();
         }
         // code == up/down arrows: move along items
         else if (code == 40 || code == 38) {
-          if ($results.children().size() > 0) {
+          if ($results.children().length) {
             index = $results.children().index( $results.children('.hover') );
             $results.children().removeClass('hover');
             index = (code == 38) ? index-1 : index+1;
@@ -235,7 +277,7 @@ jQuery.noConflict();
     });
 
     // Related entities sidebar
-    if ( $('.extra-related-entity').length > 0 ) {
+    if ($('.extra-related-entity').length) {
       $('#related-entities-toggle').click(function(){
         $('.extra-related-entity').slideToggle();
         $('#related-entities-toggle').hide();
@@ -250,7 +292,9 @@ jQuery.noConflict();
     });
 
     // FooTable
-    $('.footable').footable();
+    if ($('.footable').length) {
+      $('.footable').footable();
+    }
 
     // Newsletter subscription
     $('#mce-EMAIL, #mce-EMAIL-footer').click(function() {
@@ -280,9 +324,11 @@ jQuery.noConflict();
       contWidth = $cont.width();
 
       // Update packery column width
-      $wall.packery({
-        columnWidth: $wall.width() / 12
-      });
+      if ($wall.length) {
+        $wall.packery({
+          columnWidth: $wall.width() / 12
+        });
+      }
 
       // Reset Annotorious
       if (hasPhoto) {
@@ -302,7 +348,8 @@ jQuery.noConflict();
         }
       }
     }
-    else if (hasVis && $('#viz-container').hasClass('fullscreen')) {
+    else if (hasVis && graph.getCont().hasClass('fullscreen')) {
+      console.log('resize!');
       graph.resize();   // always resize when visualization is fullscreen 
     }
   }
