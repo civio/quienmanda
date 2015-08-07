@@ -16,19 +16,10 @@ module Shortcodes
       url =~ /photos\/(\d+)/
       photo_id = $1
 
-#       template = <<TEMPLATE
-# <div id="quienmanda-embed-#{photo_id}" class="quienmanda-embed-wrapper">
-# <iframe src="#{url}?widget=1" scrolling="no" marginheight="0" frameborder="0" width="100%" height="450px"></iframe>
-# </div>
-# TEMPLATE
-#       template
-
       template = <<TEMPLATE
 <div id="quienmanda-embed-#{photo_id}" class="quienmanda-embed-wrapper"></div>
 <script type="text/javascript" src="/javascripts/pym.min.js"></script>
-<script>
-    var pymParent = new pym.Parent('quienmanda-embed-#{photo_id}', '#{url}?widget=1', {});
-</script>
+<script>var pymParent = new pym.Parent('quienmanda-embed-#{photo_id}', '#{url}?widget=1', {});</script>
 TEMPLATE
       template
 
@@ -51,19 +42,20 @@ TEMPLATE
     end
 
     def render
+      # Get entity id to uniquely identify each embed
+      url =~ /entities\/([^?]*)/
+      entity_id = $1
 
       unless url.include? "?widget=1"
       template = <<TEMPLATE
-<div class="quienmanda-embed-viz-wrapper">
-<iframe src="#{url}?widget=1" scrolling="no" marginheight="0" frameborder="0" width="100%" height="450px"></iframe>
-</div>
+<div id="quienmanda-embed-viz-#{entity_id}" class="quienmanda-embed-viz" data-url="#{url}?widget=1"></div>
+<script async src="/javascripts/widget-viz.js" charset="utf-8"></script>
 TEMPLATE
       template
       else
       template = <<TEMPLATE
-<div class="quienmanda-embed-viz-wrapper">
-<iframe src="#{url}" scrolling="no" marginheight="0" frameborder="0" width="100%" height="450px"></iframe>
-</div>
+<div id="quienmanda-embed-viz-#{entity_id}" class="quienmanda-embed-viz" data-url="#{url}"></div>
+<script async src="/javascripts/widget-viz.js" charset="utf-8"></script>
 TEMPLATE
       template
       end
