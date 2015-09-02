@@ -23,17 +23,15 @@
     <a href="#" id="control-history-redo" class="disabled" data-toggle="tooltip" data-placement='bottom' data-original-title='Rehacer la última acción'>
       <i class="icon-step-forward"></i>
     </a>
-    <a href="#<%= slug %>" id="control-embed" data-toggle="tooltip" data-placement='bottom' data-original-title='Código para embeber la visualización'>
+    <% unless (defined? widget) %>
+    <a href="#embed-code-modal" id="control-embed" data-url="<%= slug %>" data-toggle="modal" data-placement='bottom' data-original-title='Código para embeber la visualización'>
       <i class="icon-fontello-code"></i>
     </a>
+    <% end %>
     <% end %>
     <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o qué tipo de relación les une (líneas) pasa el puntero por encima de ellos.'>
       <i class="icon-question-sign"></i>
     </a>
-    <div class="embed-code">
-      <p>Copia el siguiente código y pégalo en tu web para insertar este gráfico</p>
-      <input type="text" autofocus="">
-    </div>
   </div>
 
   <div id="visualization-legend">    

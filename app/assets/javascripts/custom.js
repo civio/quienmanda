@@ -63,14 +63,17 @@ jQuery.noConflict();
 
       // Setup Embed Btn
       if ($('#control-embed').length) {
-        var embedId = $('#control-embed').attr('href').substring(1),
-            embedStr = '<div id="quienmanda-embed-viz-'+embedId+'" class="quienmanda-embed-viz" data-url="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'"></div><script async src="'+window.location.protocol+'//'+window.location.host+'/javascripts/widget-viz.js" charset="utf-8"></script>';
-            //embedStr = '<div id="quienmanda-embed-viz-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-viz-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'", {}); ';
+        var embedId = $('#control-embed').data('url');
         $('#control-embed').click(function(e){
           e.preventDefault();
-          //embedStr = '<iframe src="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="456px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
-          $('.embed-code').toggle().focus();
-          $('.embed-code input').val(embedStr).select();
+          embedIframe = '<iframe src="'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>';
+          embedScript = '<div id="quienmanda-embed-viz-'+embedId+'"></div><script src="'+window.location.protocol+'//'+window.location.host+'/javascripts/pym.min.js" type="text/javascript"></script><script type="text/javascript">var pymParent = new pym.Parent("quienmanda-embed-viz-'+embedId+'", "'+window.location.protocol+'//'+window.location.host+'/entities/'+embedId+'?widget=1&history='+graph.getHistoryParams()+'", {});</script>';
+          $('#embed-code-modal #iframe-input').val( embedIframe );
+          $('#embed-code-modal #script-input').val( embedScript );
+        });
+        // Select textarea text on click
+        $('#embed-code-modal textarea').click(function(e){
+          $(this).select();
         });
       }
 
@@ -100,7 +103,11 @@ jQuery.noConflict();
         $('.embed-btn').click(function(e){
           e.preventDefault();
           $('.embed-code').toggle().focus();
-          $('.embed-code input').val( embedStr ).select();
+          $('.embed-code textarea').val( embedStr );
+        });
+        // Select input text on click
+        $('.embed-code textarea').click(function(e){
+          $(this).select();
         });
       }
 
@@ -349,7 +356,6 @@ jQuery.noConflict();
       }
     }
     else if (hasVis && graph.getCont().hasClass('fullscreen')) {
-      console.log('resize!');
       graph.resize();   // always resize when visualization is fullscreen 
     }
   }

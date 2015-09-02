@@ -1730,7 +1730,7 @@ header > .container {
   clear: both;
   position: relative;
   top: -16px;
-  padding: 10px 24px 0 10px;
+  padding: 10px 15px 5px;
   background: #eef2e6;
 }
 #wrapper .posts.full.picture .embed-code p {
@@ -1738,9 +1738,14 @@ header > .container {
   font-size: 0.875em;
   text-align: center;
 }
-#wrapper .posts.full.picture .embed-code input {
+#wrapper .posts.full.picture .embed-code textarea {
+  box-sizing: border-box;
+  padding: 6px 10px;
   width: 100%;
-  background: white;
+  height: 76px;
+  resize: none;
+  cursor: auto;
+  border-radius: 0;
 }
 #wrapper .posts.full.picture .tags {
   clear: both;
@@ -2044,6 +2049,38 @@ header > .container {
 }
 #upload-photo-modal .modal-footer .btn.btn-primary.disabled:hover {
   color: #515151;
+}
+.nav-tabs > li > a:hover {
+  background: transparent;
+  border-color: transparent;
+}
+#embed-code-modal .modal-header .close {
+  position: absolute;
+  right: 15px;
+  z-index: 90;
+}
+#embed-code-modal .modal-body {
+  padding-top: 0;
+}
+#embed-code-modal .tab-content {
+  color: #515151;
+  background: white;
+  padding: 15px;
+  font-size: 0.875em;
+  border: 1px solid #ddd;
+}
+#embed-code-modal .tab-content p {
+  text-align: center;
+}
+#embed-code-modal .tab-content textarea {
+  box-sizing: border-box;
+  padding: 6px 10px;
+  margin: 5px 0 0;
+  width: 100%;
+  height: 76px;
+  resize: none;
+  cursor: auto;
+  border-radius: 0;
 }
 /* Entities
 =================================================================== */
