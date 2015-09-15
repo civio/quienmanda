@@ -9,7 +9,19 @@ class PeopleController < ApplicationController
     @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
     if stale?(last_modified: @people.maximum(:updated_at), :public => current_user.nil?)
-      @people = @people.order("updated_at DESC").page(params[:page]).per(12)
+      respond_to do |format|
+        format.html do
+          @people = @people.order("updated_at DESC").page(params[:page]).per(12)
+        end
+        # For JSON API render all photos if there is no 'page' param
+        format.json do
+          if params[:page].blank?
+            @people = @people.order("updated_at DESC")
+          else
+            @people = @people.order("updated_at DESC").page(params[:page]).per(12)
+          end
+        end
+      end
     end
   end
 

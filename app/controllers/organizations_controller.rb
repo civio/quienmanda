@@ -9,7 +9,19 @@ class OrganizationsController < ApplicationController
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
     if stale?(last_modified: @organizations.maximum(:updated_at), :public => current_user.nil?)
-      @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)
+      respond_to do |format|
+        format.html do
+          @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)
+        end
+        # For JSON API render all photos if there is no 'page' param
+        format.json do
+          if params[:page].blank?
+            @organizations = @organizations.order("updated_at DESC")
+          else
+            @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)
+          end
+        end
+      end
     end
   end
 

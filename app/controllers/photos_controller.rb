@@ -11,7 +11,19 @@ class PhotosController < ApplicationController
   def index
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
     if stale?(last_modified: @photos.maximum(:updated_at), :public => current_user.nil?)
-      @photos = @photos.order("updated_at DESC").page(params[:page]).per(15)
+      respond_to do |format|
+        format.html do
+          @photos = @photos.order("updated_at DESC").page(params[:page]).per(15)
+        end
+        # For JSON API render all photos if there is no 'page' param
+        format.json do
+          if params[:page].blank?
+            @photos = @photos.order("updated_at DESC")
+          else
+            @photos = @photos.order("updated_at DESC").page(params[:page]).per(15)
+          end
+        end
+      end
     end
   end
 

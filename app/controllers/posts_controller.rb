@@ -10,8 +10,23 @@ class PostsController < ApplicationController
   def index
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
-    @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
-    fresh_when etag: @posts, :public => current_user.nil?
+    
+    respond_to do |format|
+      format.html do
+        @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
+        fresh_when etag: @posts, :public => current_user.nil?
+      end
+      # For JSON API render all post if there is no 'page' param
+      format.json do
+        
+        if params[:page].blank?
+          @posts = @posts.order("published_at DESC").includes(:photo)
+        else
+          @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
+        end
+        fresh_when etag: @posts, :public => current_user.nil?
+      end
+    end
   end
 
   # GET /posts/1

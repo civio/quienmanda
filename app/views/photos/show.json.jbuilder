@@ -1,1 +1,1 @@
-json.extract! @photo, :footer, :file
+json.extract! @photo, :date, :footer, :file, :copyright, :source, :tag_list, :related_entities
