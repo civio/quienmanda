@@ -30,6 +30,9 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible. Read more: https://github.com/cyu/rack-cors
+gem 'rack-cors', :require => 'rack/cors'
+
 # Serve assets in Heroku and handle logging
 gem 'rails_12factor', group: :production
 

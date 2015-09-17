@@ -22,5 +22,14 @@ module Quienmanda
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
     config.i18n.available_locales = [:es, :en]
+
+    # Config rack-cors to allow JSON request for any domain. 
+    # Read more: https://github.com/cyu/rack-cors#rails
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get]
+      end
+    end
   end
 end
