@@ -1,4 +1,6 @@
-<div id="viz-container" data-path="<%= path %>">
+<% embedded_from_class = params[:embedded_from].blank? ? '' : params[:embedded_from] %>
+
+<div id="viz-container" class="<%= embedded_from_class %>" data-path="<%= path %>">
 
   <div id="visualization-controls">
     <a href="#" id="control-fullscreen" data-toggle="tooltip" data-placement='bottom' data-original-title='Ver a pantalla completa'>
