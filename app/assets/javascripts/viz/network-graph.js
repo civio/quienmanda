@@ -15,8 +15,6 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
       linkDistance = height * 0.2,
       isFullscreen = false;
 
-  var category2 = [ "#60A300", "#A9C300" ]; //[ "#CE7A20", "#814607" ];
-  var color = d3.scale.ordinal().range(category2).domain([1,2]);
   var infobox = d3.select(infobox);
 
   // History to store actions over graph
@@ -368,8 +366,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
     node.append("circle")
       .on("mouseover", onNodeMouseOver)
       .on("mouseout", onNodeMouseOut)
-      .attr("r", 9)
-      .style("fill", function(d) { return color(d.group); });
+      .attr("r", 9);
 
     // We add an image with a expand sign; will be visible only when applicable
     node.append("image")
@@ -383,10 +380,15 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
 
   // Get the node class (root|expandable|expanded)
   function getNodeClass(node) {
-    return node.root ?
-            "node root" :
-            (node['expandable'] ? "node expandable" :
-            (node['expanded'] ? "node expanded" : "node") );
+    
+    var nodeClass = node.root ?
+                    "node root" :
+                    (node['expandable'] ? "node expandable" :
+                    (node['expanded'] ? "node expanded" : "node") );
+
+    nodeClass += ' cat-'+node.group;
+
+    return nodeClass;
   }
 
   function expandNode(node) {

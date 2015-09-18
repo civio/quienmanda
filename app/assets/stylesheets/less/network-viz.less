@@ -1,3 +1,6 @@
+@personColor: #60A300; // #CE7A20;
+@organizationColor: #A9C300; // #814607;
+
 /* Viz Container */
 #viz-container{
   position: relative;
@@ -15,7 +18,6 @@
     z-index: 9900;
   }
 }
-
 
 /* Controls */
 #visualization-controls {
@@ -154,10 +156,10 @@
     }
 
     .legend-people i {
-      color: #60A300; // #CE7A20;
+      color: @personColor;
     }
     .legend-organizations i {
-      color: #A9C300; // #814607;
+      color: @organizationColor;
     }
   }
 }
@@ -254,6 +256,12 @@ g.node.expanded image {
   display: inline;
 }
 
+g.node.cat-1 circle{
+  fill: @personColor;
+}
+g.node.cat-2 circle{
+  fill: @organizationColor;
+}
 
 path.link {
   fill: none;
@@ -262,7 +270,7 @@ path.link {
 
   &:hover{
     fill: none;
-    stroke: #60A300;
+    stroke: @personColor;
     stroke-width: 3px;
   }
 }
@@ -274,4 +282,35 @@ marker {
 text {
   font-size: 12px;
   pointer-events: none;
+}
+
+// QCLO embed styles
+
+#viz-container.qclo{
+
+  @personColorQCLO: darken( #F15A24, 10% );
+  @organizationColorQCLO: lighten( #F15A24, 5% );
+
+  background: lighten( #f7f1d7, 3% );
+
+  #visualization-legend .legend {
+    
+    .legend-people i {
+      color: @personColorQCLO;
+    }
+    .legend-organizations i {
+      color: @organizationColorQCLO;
+    }
+  }
+
+  g.node.cat-1 circle{
+    fill: @personColorQCLO;
+  }
+  g.node.cat-2 circle{
+    fill: @organizationColorQCLO;
+  }
+
+  path.link:hover{
+    stroke: @personColorQCLO;
+  }
 }
