@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  belongs_to :author, foreign_key: :author_id, class_name: User
+
   has_many :annotations, dependent: :delete_all
   has_many :related_entities, -> { order('priority asc') }, through: :annotations, source: :entity
 
@@ -19,6 +21,7 @@ class Photo < ActiveRecord::Base
   acts_as_votable
 
   scope :published, -> { where(published: true) }
+  scope :validated, -> { where(validated: true) }
 
   # Navigate across photo objects
   scope :next, ->(photo) { where("updated_at > ?", photo.updated_at).order("updated_at ASC") }

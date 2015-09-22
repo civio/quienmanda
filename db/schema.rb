@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424111241) do
+ActiveRecord::Schema.define(version: 20150922150805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,8 +100,11 @@ ActiveRecord::Schema.define(version: 20150424111241) do
     t.date     "date"
     t.text     "notes"
     t.boolean  "extra_wide"
+    t.boolean  "validated",  default: true,  null: false
+    t.integer  "author_id"
   end
 
+  add_index "photos", ["author_id"], name: "index_photos_on_author_id", using: :btree
   add_index "photos", ["published"], name: "index_photos_on_published", using: :btree
 
   create_table "posts", force: true do |t|

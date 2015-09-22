@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:twitter]
 
   has_many :posts, foreign_key: :author_id
+  has_many :photos, foreign_key: :author_id
 
   acts_as_voter
 

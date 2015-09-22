@@ -180,9 +180,11 @@ RailsAdmin.config do |config|
     list do
       field :published, :toggle
       field :needs_work
+      field :validated
       field :file
       field :footer
-      field :tag_list
+      field :author
+      #field :tag_list
       field :updated_at
     end
 
@@ -193,6 +195,9 @@ RailsAdmin.config do |config|
         field :footer
         field :copyright
         field :source
+        field :author do
+          inverse_of :photos
+        end
         field :date do
           strftime_format "%d/%m/%Y"
         end
@@ -208,6 +213,9 @@ RailsAdmin.config do |config|
           default_value false
         end
         field :needs_work do
+          default_value true
+        end
+        field :validated do
           default_value true
         end
         field :related_posts do
