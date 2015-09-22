@@ -124,8 +124,8 @@ body > .container.container-widget {
   background: #eef2ea;
   border: 1px solid #b0c08b;
   color: #414141;
-  padding: 2px 8px;
-  margin: 15px 0;
+  padding: 12px 20px;
+  margin: 20px 0;
   font-weight: 600;
   font-size: 0.875em;
 }
@@ -1973,6 +1973,7 @@ header > .container {
 }
 #upload-photo-modal .modal-body {
   padding: 0;
+  max-height: 450px;
 }
 #upload-photo-modal form {
   margin: 0;
@@ -1981,9 +1982,12 @@ header > .container {
   margin: 2px 10px;
 }
 #upload-photo-modal form legend {
+  color: #8aa304;
   text-align: center;
   font-size: 18px;
-  margin-bottom: 0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-color: white;
 }
 #upload-photo-modal form input,
 #upload-photo-modal form textarea {

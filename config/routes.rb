@@ -43,6 +43,8 @@ Quienmanda::Application.routes.draw do
     end
   end
 
+  post 'photos' => 'photos#create', :as => 'photos_create'
+
   resources :topics, only: [:index, :show]
 
   # Global search

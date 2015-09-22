@@ -1,18 +1,59 @@
-<% unless photo.nil? %>
+<% unless photo.nil? or current_user.nil? %>
+          
   <div id="upload-photo-modal" class="modal hide fade" tabindex="-1" aria-hidden="true">
     <div class="modal-body">
-      <!--
-      <button id="upload-photo-btn-select"><i class="icon-file"></i> Selecciona una foto de tu ordenador</button>
-      <img id="preview-upload-photo">
-      -->
+      <%= form_for Photo.new, html: {class: "form-horizontal"} do |f| %>
+        <fieldset>
+          <legend>Sube una foto al Fotomandón</legend>
 
+          <input type="hidden" id="photo_author_id" name="photo[author_id]" value="<%= current_user.id %>" />
+
+          <div class="control-group">
+            <label class="control-label" for="photo_file">Imágen</label>
+            <div class="controls">
+              <%= f.file_field(:file, accept: 'image/png,image/gif,image/jpeg') %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" class="control-label" for="photo_footer">Footer</label>
+            <div class="controls">
+               <%= f.text_area(:footer, cols: 48, rows: 3) %>
+              <span class="help-block">Opcional</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" class="control-label" for="photo_copyright">Copyright</label>
+            <div class="controls">
+              <%= f.text_field(:copyright, size: 50, maxlength: 255) %>
+              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" class="control-label" for="photo_source">Fuente</label>
+            <div class="controls">
+              <%= f.url_field(:source, size: 50, maxlength: 255) %>
+              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
+        </div>
+      <% end %>
+      
+      <!--
       <form id="upload-photo-form" class="form-horizontal" action="/admin/photo/new" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
         <fieldset>
           <legend>Sube una foto al Fotomandón</legend>
           <input name="utf8" type="hidden" value="✓">
           <input name="authenticity_token" type="hidden" value="HU/zijKlhavgEtdo2u5RpldY3kl0bqpp3Icoh3TTfr4=">
           <div class="control-group">
-            <label class="control-label" for="photo_file">File</label>
+            <label class="control-label" for="photo_file">Imágen</label>
             <div class="controls">
               <input data-fileupload="true" id="photo_file" name="photo[file]" type="file">
             </div>
@@ -32,7 +73,7 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_source">Source</label>
+            <label class="control-label" class="control-label" for="photo_source">Fuente</label>
             <div class="controls">
               <input id="photo_source" maxlength="255" name="photo[source]" size="50" type="text">
               <span class="help-block">Opcional. Hasta 255 carácteres.</span>
@@ -40,23 +81,12 @@
           </div>
         </fieldset>
         <div class="modal-footer">
-          <button class="btn btn-primary" data-disable-with="Save" name="_save" type="submit"><i class="icon-white icon-ok"></i> Guardar</button>
+          <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
           <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
         </div>
       </form>
-
-      <!--
-      <form id="upload-photo-form" action="<%= url_for(:only_path => false) %>.json" enctype="multipart/form-data" method="GET">
-        <input id="upload-photo-file" type="file" name="upload-photo-file" style="visibility: hidden">
-        <input type="submit" value="send" style="visibility: hidden">
-      </form>
       -->
+    
     </div>
-    <!--
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon icon-remove"></i> Cancelar</button>
-      <button id="upload-photo-btn-upload" class="btn btn-primary disabled"><i class="icon icon-upload"></i> Subir foto</button>
-    </div>
-    -->
   </div>
 <% end %>

@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = (can? :manage, Photo) ? Photo.all : Photo.published
+    @photos = (can? :manage, Photo) ? Photo.all : Photo.published.validated
     if stale?(last_modified: @photos.maximum(:updated_at), :public => current_user.nil?)
       respond_to do |format|
         format.html do
@@ -44,6 +44,21 @@ class PhotosController < ApplicationController
 
       # Twitter Photo Card metadata
       @tw_card_photo = @fb_image_url
+    end
+  end
+
+  # POST /photos/
+  def create
+    @photo = Photo.new(photo_params)
+    @photo.published = true
+    @photo.validated = false
+    if @photo.save
+      # Handle a successful save.
+      flash.now[:alert] = "Tu foto se ha enviado con éxito. Te avisaremos cuando la validemos y la hagamos visible para todos los usuarios."
+      render :show
+    else
+      flash.now[:alert] = "Ha habido un problema en el envío de tu foto. Prueba de nuevo más tarde."
+      redirect_to photos_path()
     end
   end
 
@@ -98,5 +113,9 @@ class PhotosController < ApplicationController
 
     def set_title
       @title = 'El Fotomandón'
+    end
+
+    def photo_params
+      params.require(:photo).permit(:author_id, :file, :footer, :copyright, :source)
     end
 end
