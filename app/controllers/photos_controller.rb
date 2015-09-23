@@ -9,7 +9,9 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = (can? :manage, Photo) ? Photo.all : Photo.published.validated
+    @photos = (can? :manage, Photo) ? Photo.all :
+              (current_user.nil?) ? Photo.published.validated : Photo.published.authored_by_user( current_user.id )
+
     if stale?(last_modified: @photos.maximum(:updated_at), :public => current_user.nil?)
       respond_to do |format|
         format.html do
@@ -52,12 +54,13 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.published = true
     @photo.validated = false
+
     if @photo.save
       # Handle a successful save.
       flash.now[:alert] = "Tu foto se ha enviado con éxito. Te avisaremos cuando la validemos y la hagamos visible para todos los usuarios."
       render :show
     else
-      flash.now[:alert] = "Ha habido un problema en el envío de tu foto. Prueba de nuevo más tarde."
+      flash[:alert] = "Ha habido un problema en el envío de tu foto. Prueba de nuevo más tarde."
       redirect_to photos_path()
     end
   end

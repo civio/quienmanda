@@ -22,6 +22,7 @@ class Photo < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
   scope :validated, -> { where(validated: true) }
+  scope :authored_by_user, -> ( user_id ) { where("validated = true or author_id = #{user_id}") }
 
   # Navigate across photo objects
   scope :next, ->(photo) { where("updated_at > ?", photo.updated_at).order("updated_at ASC") }
