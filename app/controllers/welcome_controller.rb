@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
-  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+  etag { current_user }         # Pages vary depending on whether user is logged on
+  etag { can? :manage, Entity } # Pages seen as admin may look different
 
   def index    
     # Highlight manually curated articles in the frontpage
@@ -19,10 +20,9 @@ class WelcomeController < ApplicationController
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published
     @photos = @photos.order("updated_at DESC").limit(6)
  
-    # FIXME: Should check published_at of both topics and posts. But make it so the
-    # web doesn't break if there're none of them.    
-    fresh_when  last_modified: [#@highlights.maximum(:published_at), 
-                                @posts.maximum(:published_at), 
-                                @photos.maximum(:updated_at)].max
+    # FIXME: Should check that web doesn't break if there're none of them, i.e. without seed data.   
+    fresh_when  etag: [ @highlights,
+                        @posts,
+                        @photos]
   end
 end
