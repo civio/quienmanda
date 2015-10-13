@@ -1,6 +1,6 @@
 <% unless photo.nil? %>
   <% if current_user.nil? %>
-    <a class="vote-btn" href="<%= new_user_session_path(:redirect => request.fullpath) %>" title="Me gusta esta foto"><i class="icon-fontello-thumbs-up-alt"></i><span class="txt">Me gusta</span><span class="vote"><%= @photo.votes_for.size %></span></a>
+    <a class="vote-btn" href="<%= new_user_session_path(:redirect => request.fullpath+'/vote-up') %>" title="Me gusta esta foto"><i class="icon-fontello-thumbs-up-alt"></i><span class="txt">Me gusta</span><span class="vote"><%= @photo.votes_for.size %></span></a>
   <% elsif current_user.voted_for? @photo %>
     <a class="vote-btn vote-down" href="#" data-path="<%= photo_path(@photo) %>" title="Ya no me gusta esta foto"><i class="icon-fontello-thumbs-up-alt"></i><span class="txt">Ya no me gusta</span><span class="vote"><%= @photo.get_likes.size %></span></a>
   <% else %>

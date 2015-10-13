@@ -41,13 +41,6 @@ class PhotosController < ApplicationController
         response.headers['X-Frame-Options'] = 'ALLOWALL'
       end
 
-      # Check session redirect tu vote up the photo after user login
-      if session[:redirect] 
-        photo_id = session[:redirect].split('/').last
-        photo = Photo.find(photo_id)
-        photo.liked_by current_user
-      end
-
       # Facebook Open Graph metadata
       @fb_description = @photo.footer unless @photo.footer.blank?
       @fb_image_url = @photo.file.url(:full) unless @photo.file.nil?
@@ -91,6 +84,13 @@ class PhotosController < ApplicationController
     authorize! :manage, Photo
     @photos = Photo.tagged_with(params[:tag_name]).page(params[:page]).per(15)
     render :index
+  end
+
+  # GET /photos/id/vote-up
+  def vote_up_get
+    photo = Photo.find(params[:id])
+    photo.liked_by current_user
+    redirect_to photo_path( photo )
   end
 
   # POST /photos/id/vote-up

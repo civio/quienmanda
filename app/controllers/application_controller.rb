@@ -22,10 +22,12 @@ class ApplicationController < ActionController::Base
 
   # After successful login, go to admin page
   def after_sign_in_path_for(resource)
-    if current_user.admin?
+    if session[:redirect]
+      session[:redirect]  # Is exist session redirect we use it to redirect
+    elsif current_user.admin?
       rails_admin.dashboard_path  # Redirect admin users to admin dashboard
     else
-      session[:redirect] || root_path # We check if we login from photomaton voting in order to redirect to the original photomaton url
+      root_path # We check if we login from photomaton voting in order to redirect to the original photomaton url
     end
   end
 
