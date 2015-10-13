@@ -90,6 +90,7 @@ class PhotosController < ApplicationController
   def vote_up
     photo = Photo.find(params[:id])
     photo.liked_by current_user
+    photo.touch
     respond_to do |format|
       msg = { :status => "ok", :votes => photo.get_likes.size }
       format.json  { render :json => msg }
@@ -100,6 +101,7 @@ class PhotosController < ApplicationController
   def vote_down
     photo = Photo.find(params[:id])
     photo.unliked_by current_user
+    photo.touch
     respond_to do |format|
       msg = { :status => "ok", :votes => photo.get_likes.size }
       format.json  { render :json => msg }
