@@ -1,10 +1,12 @@
 class TopicsController < ApplicationController
-  etag { can? :manage, Topic } # Don't cache admin content together with the rest
+  etag { current_user }         # Pages vary depending on whether user is logged on
+  etag { can? :manage, Topic }  # Pages seen as admin may look different
 
   # GET /topic
   def index
     @title = 'Temas'
     @topics = (can? :manage, Topic) ? Topic.all : Topic.published
+    fresh_when  etag: @topics
     @topics = @topics.order("updated_at DESC")
   end
 
