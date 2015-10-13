@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   def index
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
-    if stale?(last_modified: @organizations.maximum(:updated_at), :public => current_user.nil?)
+    if stale?(last_modified: @organizations.maximum(:updated_at))
       respond_to do |format|
         format.html do
           @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)
@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     authorize! :read, @organization
-    if stale?(@organization, :public => current_user.nil?)
+    if stale?(@organization)
       @title = @organization.short_or_long_name
       @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
 

@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   def index
     @title = 'Personas'
     @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
-    if stale?(last_modified: @people.maximum(:updated_at), :public => current_user.nil?)
+    if stale?(last_modified: @people.maximum(:updated_at))
       respond_to do |format|
         format.html do
           @people = @people.order("updated_at DESC").page(params[:page]).per(12)
@@ -29,7 +29,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     authorize! :read, @person
-    if stale?(@people, :public => current_user.nil?)
+    if stale?(@people)
       @title = @person.short_or_long_name
       @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
       @relations = @relations.order("relations.from ASC")

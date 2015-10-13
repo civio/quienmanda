@@ -7,7 +7,7 @@ class AnnotationsController < ApplicationController
   def index
     authorize! :read, @photo
     @annotations = @photo.annotations
-    fresh_when etag: @annotations, public: true
+    fresh_when etag: @annotations
   end
 
   # GET /annotations/1.json

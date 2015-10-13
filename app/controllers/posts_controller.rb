@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html do
         @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
-        fresh_when etag: @posts, :public => current_user.nil?
+        fresh_when etag: @posts
       end
       # For JSON API render all post if there is no 'page' param
       format.json do
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
         else
           @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
         end
-        fresh_when etag: @posts, :public => current_user.nil?
+        fresh_when etag: @posts
       end
     end
   end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     authorize! :read, @post
-    if stale?(@post, :public => current_user.nil?)
+    if stale?(@post)
       @title = @post.title
 
       # Get related entities and posts from content

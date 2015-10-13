@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+    class WelcomeController < ApplicationController
   etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
   def index    
@@ -23,7 +23,6 @@ class WelcomeController < ApplicationController
     # web doesn't break if there're none of them.    
     fresh_when  last_modified: [#@highlights.maximum(:published_at), 
                                 @posts.maximum(:published_at), 
-                                @photos.maximum(:updated_at)].max, 
-                public: current_user.nil?
+                                @photos.maximum(:updated_at)].max
   end
 end

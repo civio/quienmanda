@@ -17,7 +17,7 @@ class EntitiesController < ApplicationController
 
   def show
     authorize! :read, @entity
-    if stale?(@entity, :public => current_user.nil?)
+    if stale?(@entity)
       respond_to do |format|
         format.html do
           if params[:widget]
