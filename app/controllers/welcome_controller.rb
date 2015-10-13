@@ -1,4 +1,4 @@
-    class WelcomeController < ApplicationController
+class WelcomeController < ApplicationController
   etag { can? :manage, Entity } # Don't cache admin content together with the rest
 
   def index    
