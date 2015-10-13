@@ -22,3 +22,7 @@ DOMAIN_NAME: quienmanda.es
 
 # Optional. Content Delivery Network
 # CDN_HOST: http://foobar.cloudfront.net
+
+# Optional. OAuth Twitter Keys for Twitter authentication
+OAUTH_TWITTER_KEY: put-your-key-here
+OAUTH_TWITTER_SECRET: put-your-key-here
