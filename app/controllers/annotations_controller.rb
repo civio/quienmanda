@@ -13,6 +13,7 @@ class AnnotationsController < ApplicationController
   # GET /annotations/1.json
   def show
     authorize! :read, @photo
+    fresh_when etag: @annotation
   end
 
   # POST /annotations.json

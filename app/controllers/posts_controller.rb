@@ -3,7 +3,8 @@ require 'shortcodes/all'  # Needed (for now) to handle the built-in shortcodes
 class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
-  etag { can? :manage, Post } # Don't cache admin content together with the rest
+  etag { current_user }         # Pages vary depending on whether user is logged on
+  etag { can? :manage, Post }   # Pages seen as admin may look different
 
   # GET /posts
   # GET /posts.json
@@ -11,20 +12,19 @@ class PostsController < ApplicationController
     @title = 'Artículos'
     @posts = (can? :manage, Post) ? Post.all : Post.published
     
-    respond_to do |format|
-      format.html do
-        @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
-        fresh_when etag: @posts
-      end
-      # For JSON API render all post if there is no 'page' param
-      format.json do
-        
-        if params[:page].blank?
-          @posts = @posts.order("published_at DESC").includes(:photo)
-        else
+    if stale?(@posts)
+      respond_to do |format|
+        format.html do
           @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
         end
-        fresh_when etag: @posts
+        # For JSON API render all post if there is no 'page' param
+        format.json do
+          if params[:page].blank?
+            @posts = @posts.order("published_at DESC").includes(:photo)
+          else
+            @posts = @posts.order("published_at DESC").includes(:photo).page(params[:page]).per(9)
+          end
+        end
       end
     end
   end

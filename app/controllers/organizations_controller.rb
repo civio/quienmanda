@@ -1,14 +1,15 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show]
 
-  etag { can? :manage, Entity } # Don't cache admin content together with the rest
+  etag { current_user }         # Pages vary depending on whether user is logged on
+  etag { can? :manage, Entity } # Pages seen as admin may look different
 
   # GET /organizations
   # GET /organizations.json
   def index
     @title = 'Organizaciones'
     @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
-    if stale?(last_modified: @organizations.maximum(:updated_at))
+    if stale?(etag: @organizations)
       respond_to do |format|
         format.html do
           @organizations = @organizations.order("updated_at DESC").page(params[:page]).per(12)

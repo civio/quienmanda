@@ -2,7 +2,8 @@ class PhotosController < ApplicationController
   before_action :set_title
   before_action :set_photo, only: [:show, :next, :previous]
 
-  etag { can? :manage, Photo } # Don't cache admin content together with the rest
+  etag { current_user }         # Pages vary depending on whether user is logged on
+  etag { can? :manage, Photo }  # Pages seen as admin may look different
 
   layout proc { |controller| controller.request.params[:widget].blank? ? 'application' : 'widget' }
 
@@ -12,7 +13,7 @@ class PhotosController < ApplicationController
     @photos = (can? :manage, Photo) ? Photo.all :
               (current_user.nil?) ? Photo.published.validated : Photo.published.authored_by_user( current_user.id )
 
-    if stale?(last_modified: @photos.maximum(:updated_at))
+    if stale?(etag: @photos)
       respond_to do |format|
         format.html do
           @photos = @photos.order("updated_at DESC").page(params[:page]).per(15)

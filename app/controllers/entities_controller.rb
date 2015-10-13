@@ -40,6 +40,7 @@ class EntitiesController < ApplicationController
 
 
   private
+
   def set_entity
     @entity = Entity.find_by_slug(params[:id])
   end
