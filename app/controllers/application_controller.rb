@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Store session for redirect param 
+  # See https://stackoverflow.com/questions/8559088/rails-devise-pass-url-to-login
+  before_filter :store_location
+
+  def store_location
+    session[:redirect] = params[:redirect] if params[:redirect]
+  end
+
   # Add extra parameters to the basic Devise user registration
   # See https://github.com/plataformatec/devise#strong-parameters
   before_filter :configure_permitted_parameters, if: :devise_controller?
@@ -17,7 +25,7 @@ class ApplicationController < ActionController::Base
     if current_user.admin?
       rails_admin.dashboard_path  # Redirect admin users to admin dashboard
     else
-      '/' # We need to check if we login from photomaton voting in order to redirect to the original photomaton url
+      session[:redirect] || root_path # We check if we login from photomaton voting in order to redirect to the original photomaton url
     end
   end
 
