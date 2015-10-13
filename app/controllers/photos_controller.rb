@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
   # GET /photos/1.json
   def show
     authorize! :read, @photo
-    if stale?(@photo)
+    if stale?([@photo, @photo.get_likes])
       # Set response headers to allow widget being embedded cross-domain
       # See http://stackoverflow.com/questions/16561066/ruby-on-rails-4-app-not-works-in-iframe
       if params[:widget]
@@ -90,7 +90,6 @@ class PhotosController < ApplicationController
   def vote_up
     photo = Photo.find(params[:id])
     photo.liked_by current_user
-    photo.touch
     respond_to do |format|
       msg = { :status => "ok", :votes => photo.get_likes.size }
       format.json  { render :json => msg }
@@ -101,7 +100,6 @@ class PhotosController < ApplicationController
   def vote_down
     photo = Photo.find(params[:id])
     photo.unliked_by current_user
-    photo.touch
     respond_to do |format|
       msg = { :status => "ok", :votes => photo.get_likes.size }
       format.json  { render :json => msg }
