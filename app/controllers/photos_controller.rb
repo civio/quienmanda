@@ -89,24 +89,20 @@ class PhotosController < ApplicationController
   # POST /photos/id/vote-up
   def vote_up
     photo = Photo.find(params[:id])
-    if stale?(photo)
-      photo.liked_by current_user
-      respond_to do |format|
-        msg = { :status => "ok", :votes => photo.get_likes.size }
-        format.json  { render :json => msg }
-      end
+    photo.liked_by current_user
+    respond_to do |format|
+      msg = { :status => "ok", :votes => photo.get_likes.size }
+      format.json  { render :json => msg }
     end
   end
 
   # POST /photos/id/vote-down
   def vote_down
     photo = Photo.find(params[:id])
-    if stale?(photo)
-      photo.unliked_by current_user
-      respond_to do |format|
-        msg = { :status => "ok", :votes => photo.get_likes.size }
-        format.json  { render :json => msg }
-      end
+    photo.unliked_by current_user
+    respond_to do |format|
+      msg = { :status => "ok", :votes => photo.get_likes.size }
+      format.json  { render :json => msg }
     end
   end
 
