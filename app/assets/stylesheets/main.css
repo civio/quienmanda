@@ -3478,72 +3478,102 @@ li:hover .admin-action {
 .footable-row-detail-value {
   display: table-cell;
 }
-/* Social Links
+/* Social sharing
 =================================================================== */
-[class^="social-"],
-[class*="social-"] {
+.sharing-buttons {
+  margin: 25px 0 0 -10px;
+  padding: .5em;
+  text-align: center;
+}
+.sharing-right {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  margin: 0;
+}
+.sharing-right .sharing-buttons {
+  padding-right: 0;
+  padding-left: 15px;
+  background: #dee5d8;
+}
+.sharing-buttons-toolbox {
+  margin: 0;
+  text-align: center;
+}
+.sharing-buttons-toolbox li {
   display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+  *zoom: 1;
+  list-style: none;
+  list-style-type: none;
+  margin: 0 .25em .25em 0;
+  vertical-align: middle;
+}
+.sharing-button {
+  display: block;
   width: 40px;
   height: 40px;
   *margin-right: .3em;
   line-height: 40px;
   vertical-align: text-top;
+  background-color: white;
   background-image: url("../img/icons/social-icons-set.v2.png");
   background-position: 40px 40px;
   background-repeat: no-repeat;
+  cursor: pointer;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  text-indent: -999em;
+  overflow: hidden;
+  text-align: left;
+  direction: ltr;
+  box-shadow: 0 0 0 3px rgba(121, 207, 24, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.49) inset;
 }
-/* Retina Display Hack */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  [class^="social-"],
-  [class*="social-"] {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    vertical-align: text-top;
+  .sharing-button {
     background-image: url("../img/icons/social-icons-set@2x.v2.png");
-    background-position: 40px 40px;
-    background-repeat: no-repeat;
     background-size: 400px 320px;
   }
 }
-.social-twitter {
+.sharing-button span {
+  background: none!important;
+}
+.sharing-button:hover {
+  background-color: #79cf18;
+}
+.sharing-button-twitter {
   background-position: -80px 0px;
 }
-.social-twitter:hover {
+.sharing-button-twitter:hover {
   background-position: -80px -40px;
   background-color: #48c4d2;
 }
-.social-twitter2 {
-  background-position: -160px 0px;
-}
-.social-twitter2:hover {
-  background-position: -160px -40px;
-  background-color: #48c4d2;
-}
-.social-facebook {
+.sharing-button-facebook {
   background-position: -200px 0px;
 }
-.social-facebook:hover {
+.sharing-button-facebook:hover {
   background-position: -200px -40px;
   background-color: #3b5998;
 }
-.social-googleplus {
+.sharing-button-googleplus {
   background-position: -360px -240px;
 }
-.social-googleplus:hover {
+.sharing-button-googleplus:hover {
   background-position: -360px -280px;
   background-color: #d94a39;
 }
-.social-meneame {
+.sharing-button-meneame {
   background-position: -320px -80px;
 }
-.social-meneame:hover {
+.sharing-button-meneame:hover {
   background-position: -320px -120px;
   background-color: #FF6400;
 }

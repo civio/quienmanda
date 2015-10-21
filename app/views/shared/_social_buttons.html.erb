@@ -1,21 +1,16 @@
 <div class="sharing-buttons">
-  <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-517186c134d68dc8"></script>
-  <script>
-      var addthis_config =
-      {
-          // ui_508_compliant: true,
-          ui_language: 'es',
-          services_exclude: 'formspring, stumbleupon, reddit, blogger, gmail',        
-          ui_header_color: '#666',
-          ui_header_background: '#fff',
-          // data_track_clickback: true
-          // ui_use_css: false
-      }
-  </script>       
-  <ul class="addthis_toolbox addthis_default_style addthis_16x16_style addthis_button_expanded">
-      <li><a class="addthis_button_twitter social-twitter"></a></li>
-      <li><a class="addthis_button_facebook social-facebook"></a></li>
-      <li><a class="addthis_button_google_plusone_share social-googleplus"></a></li>
-      <li><a class="addthis_button_meneame social-meneame"></a></li>
+  <ul class="sharing-buttons-toolbox">
+    <li>
+      <a class="sharing-button sharing-button-twitter social-twitter" onclick="window.open('https://twitter.com/intent/tweet?url=<%= request.original_url %>&amp;text=<%= @title %> - Quién Manda - Un proyecto de @Civio','_blank','height=260,width=400')" href="javascript: void(0)" title="Compartir en Twitter">Compartir en Twitter</a>
+    </li>
+    <li>
+      <a class="sharing-button sharing-button-facebook social-facebook" onclick="window.open('https://www.facebook.com/dialog/share?app_id=<%= Rails.configuration.facebook_app_id %>&amp;display=popup&amp;href=<%= request.original_url %>&amp;redirect_uri=<%= request.original_url %>','_blank','height=400,width=400')" href="javascript: void(0)" title="Compartir en Facebook">Compartir en Facebook</a>
+    </li>
+    <li>
+      <a class="sharing-button sharing-button-googleplus social-googleplus" onclick="window.open('https://plus.google.com/share?url=<%= request.original_url %>','_blank','height=400,width=500')" href="javascript: void(0)" title="Compartir en Google+">Compartir en Google+</a>
+    </li>
+    <li>
+      <a class="sharing-button sharing-button-meneame social-meneame" onclick="window.open('http://www.meneame.net/submit.php?url=<%= request.original_url %>','_blank','height=400,width=500')" href="javascript: void(0)" title="Compartir en Menéame">Compartir en Menéame</a>
+    </li>
   </ul>
 </div>
