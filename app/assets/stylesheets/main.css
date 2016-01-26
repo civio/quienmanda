@@ -2560,7 +2560,7 @@ header > .container {
   bottom: 0;
   left: 0;
   height: 100%;
-  z-index: 9900;
+  z-index: 1040;
 }
 /* Controls */
 #visualization-controls {
