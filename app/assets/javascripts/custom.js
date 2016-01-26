@@ -79,7 +79,11 @@ jQuery.noConflict();
 
       // Setup timesheet
       if ($('#entity-timesheet').length) {
-        timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
+        var timesheet = TimesheeManager('#entity-timesheet', '#entity-timesheet-container', '#relations-list tbody tr');
+        // Hide Timesheet Container if has no items or only one
+        if (timesheet.items.length < 2) {
+          $('#entity-timesheet-container').hide();
+        }
       }
     }
 

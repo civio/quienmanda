@@ -27,6 +27,7 @@
    */
   Timesheet.prototype.insertData = function() {
     var html = [];
+    if (this.container.querySelector('.scale section') === null) return;
     var widthMonth = this.container.querySelector('.scale section').offsetWidth;
     var middleYear = this.year.min+((this.year.max-this.year.min)*0.5);
     var cur, bubble, lineClass, line;
