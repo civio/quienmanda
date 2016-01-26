@@ -6,7 +6,8 @@ function TimesheeManager(selector, selectorContainer, selectorList) {
 
   var $timesheet = $j(selector),
       $timesheetCont = $j(selectorContainer),
-      scrollHeight;
+      scrollHeight,
+      items;
 
 
   _this.onResize = function(){
@@ -35,8 +36,9 @@ function TimesheeManager(selector, selectorContainer, selectorList) {
 
   function setup(selectorList){
 
-    var items = [],
-        td, date1, date2, txt;
+    _this.items = [];
+
+    var td, date1, date2, txt;
 
     $j(selectorList).each(function(){
       td = $j(this).children('td');
@@ -44,19 +46,25 @@ function TimesheeManager(selector, selectorContainer, selectorList) {
       date2 = td.eq(5).html();
       dateAt = td.eq(6).html();
       if( date1 === '' && dateAt === '' ) return;   // skip dates without init date
-      str = ($j(this).hasClass('self')) ? td.eq(1).html()+' '+td.eq(2).html() : td.eq(0).html()+' '+td.eq(1).html()+' '+td.eq(2).html();
-      
+      // Setup bubble text
+      str = ($j(this).hasClass('self'))
+        // Setup text for People: relation + to ("presidente/a de Banco Santander")
+        ? td.eq(1).html()+' '+td.eq(2).html()
+        // Setup text for Organization: from + relation ("Emilio Botín : presidente/a")
+        // Remove prepositions at the end of relation (a,al,de,en,para,por)
+        : td.eq(0).html().trim()+': '+td.eq(1).html().replace(/ (a|al|de|en|para|por)$/i, '');
+    
       if (dateAt !== '') {
-        items.push( [dateAt, dateAt, str, 'lorem'] );
+        _this.items.push( [dateAt, dateAt, str, 'lorem'] );
       } else {
         date2 = ( date2 !== '' ) ? date2 : 'now';
-        items.push( [date1, date2, str, 'lorem'] );
+        _this.items.push( [date1, date2, str, 'lorem'] );
       }
     });
 
-    var firstDate = items[0][0].split('-')[0];
+    var firstDate = (_this.items[0]) ? _this.items[0][0].split('-')[0] : _this.items[0];
 
-    new Timesheet(selector.substring(1), firstDate, firstDate, items);
+    var timesheet = new Timesheet(selector.substring(1), firstDate, firstDate, _this.items);
 
     $timesheetCont.find('.timesheet-arrow').click(onClickArrow);
     $timesheet.scroll(onScroll);
