@@ -33,6 +33,7 @@ class OrganizationsController < ApplicationController
     if stale?(@organization)
       @title = @organization.short_or_long_name
       @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
+      @relations = @relations.order("relations.from ASC")
 
       # Facebook Open Graph metadata
       @fb_description = @organization.description unless @organization.description.blank?
