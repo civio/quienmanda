@@ -472,6 +472,16 @@
       }
     }
 
+    .post-end-image{
+      
+      margin: 2*$grid-gutter-width;
+      @include transition( opacity 0.3s ease-out );
+
+      > a:hover{
+        opacity: 0.85;
+      }
+    }
+
     &.comments {
 
       padding: 30px 0 20px;
@@ -884,10 +894,6 @@
 .post-description a:hover {
   text-decoration: none;
   border-bottom: 1px black solid;
-}
-
-.post-end-image > a:hover{
-  opacity: 0.85;
 }
 
 .pagination {
