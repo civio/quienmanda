@@ -475,10 +475,13 @@
     .post-end-image{
       
       margin: 2*$grid-gutter-width;
-      @include transition( opacity 0.3s ease-out );
 
-      > a:hover{
-        opacity: 0.85;
+      > a{
+        @include transition( opacity 0.3s ease-out );
+
+        &:hover{
+          opacity: 0.85;
+        }
       }
     }
 
