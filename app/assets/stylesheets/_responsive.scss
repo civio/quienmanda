@@ -4,11 +4,11 @@
 @media (min-width: 1200px) {
 
   .navbar .nav{ 
-    right: 232px; 
-    padding-left: 210px;
+    right: 232px;
+    padding-left: 190px;
 
     >li > a{
-      padding: 16px 20px;
+      padding: 16px;
     }
   }
 
@@ -66,17 +66,17 @@
     left: auto;
     right: 0;
     height: 0;
-    .box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
+    @include box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
   }
 
   .navbar .btn-navbar{
     top: 80px;
     margin: 0;
     border-left: none;
-    background: @colorSidebar; 
+    background: $colorSidebar; 
 
     &:before{ display: none; };
-    &:hover{ background: @colorBody; };
+    &:hover{ background: $colorBody; };
   }
 
   .navbar .nav{
@@ -87,7 +87,7 @@
     left: auto;
 
     >li{ 
-      border-bottom: 2px solid @colorBody;
+      border-bottom: 2px solid $colorBody;
 
       &:first-child > a{ 
         padding-top: 15px;

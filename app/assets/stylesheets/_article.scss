@@ -37,14 +37,14 @@
   }
 
   h2{
-    font-family: @fontEconomica;
+    font-family: $fontBaskerville;
     display: inline-block;
     padding: 0 16px 0 0;
     margin: 0 0 0 80px;
-    color: @colorGray;
+    color: $colorGray;
     font-size: 2.25em;
     font-weight: bold !important;
-    background: @colorBody;
+    background: $colorBody;
   }
 
   // Hide Title Icon on Search Titles
@@ -126,13 +126,13 @@
       display: inline-block;
       padding: 0;
       margin: 0 0 0 20px;
-      color: @colorGray;
-      font-family: @fontEconomica;
-      font-size: 2em;
-      font-weight: bold;
-      text-transform: lowercase;
-      text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
-      background: @colorBody;
+      color: $colorGray;
+      font-family: $fontEconomica;
+      font-size: 1.5em;
+      font-weight: 600;
+      //text-transform: lowercase;
+      //text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
+      background: $colorBody;
       padding-right: 18px;
     }
 
@@ -151,18 +151,18 @@
       text-align: right;
       
       a{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         font-size: 1.375em;
-        font-family: @fontBaskerville;
+        font-family: $fontBaskerville;
         font-style: italic;
-        background: @colorHeader;
+        background: $colorHeader;
         padding: 10px 24px;
         border-top: 1px dotted #999;
         border-bottom: 1px dotted #999;
         letter-spacing: -0.01em;
 
         &:hover{
-          background: @colorSecondary;
+          background: $colorSecondary;
           text-decoration: none;
           -webkit-transition: background 0.4s ease-out;
           -moz-transition: background 0.4s ease-out;
@@ -186,7 +186,7 @@
     padding: 0;
     margin-bottom: 32px;
     z-index: 60;
-    .boxStyle();
+    @include boxStyle();
   }
 
   .posts.span8{
@@ -196,17 +196,12 @@
   .posts .post{
 
     position: relative;
-    margin: 0 0 24px;
-    padding: 20px 0;
+    margin: 0 0 32px;
+    padding: 32px 0 0;
     text-align: left;
-    line-height: 24px;
-
-    &.first {
-      margin-top: -20px;
-    }
 
     .picture{
-      padding: 3px;
+      margin: 0 64px;
 
       img{
         -webkit-border-radius: 0;
@@ -217,11 +212,11 @@
 
     .picture-footer,
     .credits{
-      color: @colorGray;
+      color: $colorGray;
       font-size: 0.875em;
       text-shadow: none;
-      background: @colorSecondary;
-      margin: 0;
+      background: $colorSecondary;
+      margin: 0 64px;
     }
 
     .picture-footer{
@@ -232,11 +227,11 @@
       padding: 0 12px 12px;
 
       a{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         text-decoration: underline;
 
         &:hover{
-          color: @colorGray;
+          color: $colorGray;
           text-decoration: none;
         };
       }
@@ -244,96 +239,72 @@
 
     .row-fluid{ 
       width: 90%;
-      margin: 14px auto 22px; 
+      margin: 64px; 
     }
 
-    .post-title{
+    h2.post-title{
+      color: $colorGray;
+      font-family: $fontBaskerville !important;
+      font-size: 2.25em;
+      font-weight: 700;
+      line-height: 1.375em;
+      margin: 0 64px 32px;
+      padding-left: 3px;
+      border-left: 1px solid $colorTextGreen;
+      //@include titleBorder();
 
-      margin: 32px 32px 36px 104px;
-      border-left: 1px solid @colorTextGreen;
-
-      h2{
-        color: @colorGray;
-        font-family: @fontBaskerville !important;
-        font-size: 1.375em;
-        font-weight: bold !important;
-        line-height: 1.375em;
-        text-align: left;
-        margin: 0 0 0 3px;
-        padding-left: 12px;
-        border-left: 1px solid @colorTextGreen;
-      }
-    }
-
-
-    .info {
-      width: 100px;
-      float: left;
-    }
-
-    
-    .post-date{
-      display: block;
-      padding: 10px 0;
-      margin: 32px 12px 0 32px;
-      background: @colorHeader;
-      text-align: center;
-
-      .day,
-      .month,
-      .year{
+      span{
         display: block;
+        padding-left: 16px;
+        border-left: 1px solid $colorTextGreen;
       }
+    }
 
-      .day{
-        color: @colorGray;
-        font-size: 1.25em;
-        font-family: @fontBaskerville;
-      }
-
-      .month{
-        color: @colorGray;
-        font-size: 1.375em;
-        font-family: @fontEconomica;
-        text-transform: uppercase;
-        padding: 4px 0;
-      }
-
-      .year{
-        color: @colorGray;
-        font-size: 0.875em;
-        font-family: @fontBaskerville;
-      }
+    h3.post-title{
+      color: $colorGray;
+      font-family: $fontBaskerville !important;
+      font-size: 1.75em;
+      font-weight: 600;
+      line-height: 1.375em;
+      margin: 32px 64px;
+      //@include titleBorder();
     }
 
     .post-content{
   
       clear: both;
       float: none;
-      padding: 0 32px;
-      margin: 0;
-      font-size: 0.938em;  
+      margin: 0 64px;
+      padding: 0;
+      border-top: 1px solid $colorBody;
+      //font-size: 0.938em;  
 
       p{
-        margin: 0 0 15px;
+        margin: 0 0 16px;
       }
 
       h2{
-        font-family: @fontEconomica !important;
+        font-family: $fontBaskerville !important;
         font-weight: 700;
-        font-size: 25px;
-        margin: 25px 0px 0px;
-        line-height: 30px;
+        font-size: 1.375em;
+        margin: 32px 0px;
+        line-height: 1.25em;
       }
 
       .post-meta{
-        color: #666;
-        padding: 10px 0;
-        margin: -10px 0 0;
-        border-top: 1px solid @colorSecondary;
+        float: left;
+        color: $colorGray;
+        padding: 16px 0;
+        margin: 0;
+        //border-top: 1px solid $colorBody;
+
+        .post-meta-author {
+          color: $colorTitle;
+          font-weight: 600;
+        }
 
         a{
-          font-family: @fontBaskerville !important;
+          font-family: $fontBaskerville !important;
           font-style: italic;
           text-decoration: none;
 
@@ -341,20 +312,36 @@
         }
       }
 
+      .tags{
+        float: right;
+        clear: none;
+        width: auto;
+        padding: 12px 0 0;
+
+        .tag{
+          margin-right: 0;
+          margin-left: 8px;
+        }
+      }
+
       .post-description {
-        
-        color: @colorGray;
+        clear: both;
+        color: $colorGray;
+        font-size: 1.25em;
+        line-height: 1.5em;
         overflow: hidden;
         background: url(/images/moustache.gif) no-repeat bottom center;
-        padding: 30px 0 12px;
-        border-top: 1px solid @colorSecondary;
+        padding: 32px 0 16px;
+        border-top: 1px solid $colorBody;
 
         a{
-          border-bottom: 1px dotted @colorTextGreen;
+          color: $colorLinkGreen;
+          font-weight: 600;
+          border-bottom: 1px dotted $colorLinkGreen;
 
           &:hover{
-            border-bottom: 1px solid #333;
-            color: #000;
+            color: $colorTitle;
+            border-bottom: 1px solid $colorTitle;
           }
         }
 
@@ -367,9 +354,10 @@
         }
 
         li{
-          padding-left: 40px;
+          padding-left: 38px;
           padding-bottom: 16px;
-          background: url(/images/list-moustache.gif) no-repeat 0px 7px;
+          line-height: 1.5em;
+          background: url(/images/list-moustache.gif) no-repeat 0px 12px;
         }
       }
     }  
@@ -378,7 +366,7 @@
       width: 100%;
       background: transparent;
       position: absolute;
-      bottom: -56px;
+      bottom: -96px;
       margin: 0;
       z-index: 10;
     }
@@ -386,7 +374,7 @@
     &.related-posts,
     &.comments {
       margin: 0;
-      background: @colorSecondary;
+      background: $colorSecondary;
     }
 
     &.related-posts{
@@ -403,9 +391,9 @@
       .description{ display: none; }
 
       .title{
-        color: @colorGray;
+        color: $colorGray;
         font-size: 1.75em;
-        font-family: @fontEconomica;
+        font-family: $fontEconomica;
         font-weight: bold;
         //text-transform: lowercase;
         width: 90%;
@@ -447,30 +435,30 @@
 
         h3{
           font-size: 1.25em;
-          font-family: @fontBaskerville !important;
+          font-family: $fontBaskerville !important;
           font-weight: bold !important;
           line-height: 1.375em;
           padding-left: 3px;
           margin: 12px 12px 8px 58px;
           min-height: 56px;
-          border-left: 1px solid @colorLinkGreen;
+          border-left: 1px solid $colorLinkGreen;
 
           a{
             display: block;
-            color: @colorGray;
+            color: $colorGray;
             min-height: 56px;
             padding-left: 10px;
-            border-left: 1px solid @colorLinkGreen;
+            border-left: 1px solid $colorLinkGreen;
 
             &:hover{
-              color: @colorLinkGreen;
+              color: $colorLinkGreen;
               text-decoration: none;
             }
           }
         }
 
         a.image:hover{
-          .opacity( 0.8 );
+          @include opacity( 0.8 );
         }        
 
         .description{
@@ -509,11 +497,11 @@
     }
 
     .picture-meta{
-      background: @colorSecondary;
+      background: $colorSecondary;
     }
 
     .credits{
-      color: @colorGray;
+      color: $colorGray;
       padding: 0 0 20px;
       font-size: 0.875em;
       line-height: 24px;
@@ -521,7 +509,7 @@
       text-shadow: none;
 
       a{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         text-decoration: underline;
         -webkit-transition: color 0.3s ease-out;
         -moz-transition: color 0.3s ease-out;
@@ -530,7 +518,7 @@
         transition: color 0.3s ease-out;
 
         &:hover{
-          color: @colorGray;
+          color: $colorGray;
           text-decoration: none;
         }
       }
@@ -538,33 +526,33 @@
 
     .vote-btn{
       clear: left;
-      color: @colorGray;
+      color: $colorGray;
       float: left;
-      font-size: 0.875em;
-      background: mix( white, @colorSecondary, 50% );
-      line-height: 28px;
-      padding-left: 5px;
+      //font-size: 0.875em;
+      background: mix( white, $colorSecondary, 50% );
+      line-height: 32px;
+      padding-left: 8px;
       margin-bottom: 20px;
       margin-right: 10px;
 
       .vote{
         display: inline-block;
-        color: @colorLinkGreen;
-        padding: 0 6px;
+        color: $colorLinkGreen;
+        padding: 0 8px;
         margin-left: 8px;
-        border-left: 1px solid @colorSecondary;
+        border-left: 1px solid $colorSecondary;
         font-weight: bold;
       }
 
       .icon-fontello-thumbs-up-alt{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         font-size: 1.25em;
       }
     }
 
     a.vote-btn:hover,
     a.vote-btn:focus{
-      color: @colorLinkGreen;
+      color: $colorLinkGreen;
       text-decoration: none;
       background: white;
     }
@@ -572,17 +560,17 @@
     .embed-btn,
     .upload-btn{
       float: left;
-      color: @colorGray;
-      font-size: 0.875em;
-      line-height: 24px;
-      background: mix( white, @colorSecondary, 50% );
-      padding: 2px 8px;
+      color: $colorGray;
+      //font-size: 0.875em;
+      line-height: 32px;
+      background: mix( white, $colorSecondary, 50% );
+      padding: 0 8px;
       margin-bottom: 20px;
       margin-right: 10px;
 
       &:hover,
       &:focus{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         text-decoration: none;
         background: white;
       }
@@ -590,7 +578,7 @@
       .icon-upload,
       .icon-fontello-code{
         font-size: 1.25em;
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
 
         &:before{
           margin-top: 0.2em;
@@ -612,10 +600,10 @@
       position: relative;
       top: -16px;
       padding: 10px 15px 5px;
-      background: mix( white, @colorSecondary, 50% );
+      background: mix( white, $colorSecondary, 50% );
 
       p{
-        color: @colorGray;
+        color: $colorGray;
         font-size: 0.875em;
         text-align: center;
       }
@@ -658,8 +646,8 @@
           display: block;
           padding: 4px;
           font-size: 12px;
-          background: @colorHeader;
-          border-top: 1px solid @colorBody;
+          background: $colorHeader;
+          border-top: 1px solid $colorBody;
 
           &.hover,
           &:hover{
@@ -670,9 +658,9 @@
     }
   }
 
-  .sidebar.span4{
+  .sidebar{
 
-    width: 100 - 65.95744680851064%;
+    //width: 100 - 65.95744680851064%;
     margin-left: 0;
     background: none;
     border: none;
@@ -724,7 +712,7 @@
 
       p{
         width: 100%;
-        color: @colorGray;
+        color: $colorGray;
         font-weight: bold;
         text-align: center;
       }
@@ -734,37 +722,39 @@
     .related-entities{
 
       position: relative;
-      padding: 0 24px 24px;
+      margin-top: 32px;
+      padding: 0 24px 8px;
       overflow: hidden;
-      background: url(/images/sidebar-pattern.gif) repeat 0 0 @colorSidebar;
+      background: $colorSidebar;
+      //background: url(/images/sidebar-pattern.gif) repeat 0 0 $colorSidebar;
       -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-       -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-          box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+      -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+         box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
 
-      &:before{
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 1px;
-        height: 100%;
+      // &:before{
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 1px;
+      //   height: 100%;
 
-        .box-shadow( 0px 0px 12px rgba(0, 0, 0, 1) );
-      };
+      //   @include box-shadow( 0px 0px 12px rgba(0, 0, 0, 1) );
+      // };
 
       h3{
-        font-family: @fontEconomica !important;
-        font-size: 1.625em;
+        font-family: $fontBaskerville !important;
+        font-size: 1.5em;
         font-weight: bold !important;
-        padding: 24px 0 36px;
+        padding: 24px 0;
 
         &:before{
           content: '';
           position: absolute;
-          top: 40px;
-          left: 148px;
-          right: 0;
+          top: 38px;
+          left: 190px;
+          right: 16px;
           height: 3px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
@@ -772,9 +762,8 @@
       }
 
       li{
-
-        float: none;
-        clear: both;
+        //float: left;
+        //width: 25%;
         margin-bottom: 24px;
         list-style: none;
         min-height: 74px;
@@ -783,37 +772,51 @@
         /* Expandir/colapsar entidades relacionadas en el sidebar */
         &.extra-related-entity {
           display: none;
-        } 
+        }
 
-        @pictureW: 68px;
+        &:nth-child(4n+1){
+          clear: both;
+          margin-left: 0;
+          //border: 1px solid red;
+        }
+
+        $pictureW: 68px;
 
         .picture{
           position: absolute;
           //float: left;
-          width: @pictureW;
-          height: @pictureW;
+          width: $pictureW;
+          height: $pictureW;
+          padding: 0;
+          margin: 0;
           //margin-right: 12px;
           border: 3px solid #fff;
         }
 
         .content{
 
-          color: @colorGray;
+          color: $colorGray;
           text-shadow: none;
-          margin-left: @pictureW + 16;
+          margin-left: $pictureW + 14;
+          margin-right: 8px;
 
           a{
             display: block;
             width: 100%;
-            color: @colorLinkGreen;
-            font-weight: bold;
+            color: $colorLinkGreen;
+            font-weight: 600;
+            margin-bottom: 2px;
 
             &:hover{
               text-decoration: none;
-              color: @colorGray;
+              color: $colorGray;
             };
           }
-
+          
+          small{
+            font-size: 0.875em;
+            line-height: 1.25em;
+          }
         }
 
         .admin-link{
@@ -837,12 +840,12 @@
       width: 100%;
       padding: 10px 0;
       text-align: center;
-      font-family: @fontBaskerville;
-      font-style: italic;
-      font-size: 1.25em;
-      font-weight: normal;
-      color: #a8c315;
-      background: #eef2ea;
+      //font-family: $fontBaskerville;
+      //font-style: italic;
+      font-size: 1.125em;
+      font-weight: 600;
+      color: $colorLinkGreen;
+      background: $colorHeader;
       text-shadow: none;
       text-transform: lowercase;
       z-index: 90;
@@ -851,25 +854,25 @@
       -moz-border-radius: 0;
       border-radius: 0;
 
-      -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-       -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-          box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+      // -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+      //  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
+      //     box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
 
       &:hover{
-        color: @colorGray;
+        color: $colorTitle;
       }
 
-      &:before{
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 1px;
-        height: 100%;
+      // &:before{
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 1px;
+      //   height: 100%;
 
-        .box-shadow( 0px 0px 12px rgba(0, 0, 0, 1) );
-      }
+      //   @include box-shadow( 0px 0px 12px rgba(0, 0, 0, 1) );
+      // }
     }
   }
 }
@@ -881,6 +884,10 @@
 .post-description a:hover {
   text-decoration: none;
   border-bottom: 1px black solid;
+}
+
+.post-end-image > a:hover{
+  opacity: 0.85;
 }
 
 .pagination {
@@ -909,7 +916,7 @@
     }
 
     legend{
-      color: @colorLinkGreen;
+      color: $colorLinkGreen;
       text-align: center;
       font-size: 18px;
       font-weight: 600;
@@ -925,7 +932,7 @@
     }
 
     .control-group{
-      color: @colorGray;
+      color: $colorGray;
     }
 
     .help-block{    
@@ -949,36 +956,36 @@
   #upload-photo-btn-select{
     display: block;
     margin: 30px auto 10px;
-    border: 1px solid @colorLinkGreen;
+    border: 1px solid $colorLinkGreen;
     padding: 2px 8px;
     line-height: 24px;
-    color: @colorGray;
+    color: $colorGray;
     background: white;
 
     .icon-file{
-      color: @colorLinkGreen;
+      color: $colorLinkGreen;
       margin-right: 0.1em;
     }
 
     &:hover{
-      color: @colorLinkGreen;
+      color: $colorLinkGreen;
     }
   }
 
   .modal-footer{
     .btn{
-      color: @colorGray;
+      color: $colorGray;
       border: none;
-      background: @colorHeader;
+      background: $colorHeader;
       padding: 2px 8px;
       line-height: 24px;
       border-radius: 0;
-      .box-shadow( none );
+      @include box-shadow( none );
 
       .icon{
         font-size: 1.25em;
         margin-right: 0.1em;
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
 
         &:before{
           vertical-align: middle;
@@ -986,26 +993,26 @@
       }
 
       &:hover{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
       }
     }
 
     .btn.btn-primary{
-      color: @colorGray;
+      color: $colorGray;
       text-shadow: none;
       background: white;
 
       &:hover{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
       }
 
       &.disabled{
-        //color: @colorGray;
-        background: @colorHeader; // mix( @colorHeader, @colorSecondary, 50% );
+        //color: $colorGray;
+        background: $colorHeader; // mix( $colorHeader, $colorSecondary, 50% );
         opacity: 0.5;
 
         &:hover{
-          color: @colorGray;
+          color: $colorGray;
         }
       }
     }
@@ -1030,7 +1037,7 @@
   }
 
   .tab-content{
-    color: @colorGray;
+    color: $colorGray;
     background: white;
     padding: 15px;
     font-size: 0.875em;

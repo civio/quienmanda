@@ -1,10 +1,10 @@
-@personColor: #60A300; // #CE7A20;
-@organizationColor: #A9C300; // #814607;
+$personColor: #60A300; // #CE7A20;
+$organizationColor: #A9C300; // #814607;
 
 /* Viz Container */
 #viz-container{
   position: relative;
-  background: @colorHeader;
+  background: $colorHeader;
   //border: 3px solid #f9f9f9;
   height: 450px;
 
@@ -25,10 +25,10 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  border-top: 1px solid @colorBody;
-  border-bottom: 1px solid @colorBody;
-  border-left: 1px solid @colorBody;
-  //background: @colorHeader; 
+  border-top: 1px solid $colorBody;
+  border-bottom: 1px solid $colorBody;
+  border-left: 1px solid $colorBody;
+  //background: $colorHeader; 
 
   a{
     display: block;
@@ -37,20 +37,20 @@
     line-height: 27px;
     font-size: 0.875em;
     text-align: center;
-    border-right: 1px solid @colorBody;
+    border-right: 1px solid $colorBody;
     background: white;
 
     i{
-      .opacity( 0.75 );
+      @include opacity( 0.75 );
     }
 
     &:hover,
     &:focus{
       text-decoration: none;
-      background: @colorHeader;
+      background: $colorHeader;
 
       i{
-        .opacity( 1 );
+        @include opacity( 1 );
       }
     }
 
@@ -60,7 +60,7 @@
       cursor: default;
 
       i{
-        .opacity( 0.5 );
+        @include opacity( 0.5 );
       }
     }
   }
@@ -77,11 +77,11 @@
     left: -1px;
     padding: 10px 24px 0 10px;
     font-size: 0.75em;
-    background: mix( white, @colorSecondary, 50% );
-    border: 1px solid @colorBody;
+    background: mix( white, $colorSecondary, 50% );
+    border: 1px solid $colorBody;
 
     p{
-      color: @colorGray;
+      color: $colorGray;
       font-size: 0.875em;
       text-align: center;
     }
@@ -135,9 +135,9 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  color: @colorGray;
+  color: $colorGray;
   background: #fff;
-  border: 1px solid @colorBody;
+  border: 1px solid $colorBody;
 
   .legend {
     font-size: 0.813em;
@@ -152,14 +152,14 @@
     }
 
     .legend-organizations {
-      border-right: 1px solid @colorBody;
+      border-right: 1px solid $colorBody;
     }
 
     .legend-people i {
-      color: @personColor;
+      color: $personColor;
     }
     .legend-organizations i {
-      color: @organizationColor;
+      color: $organizationColor;
     }
   }
 }
@@ -189,10 +189,10 @@
   }
 
   a{
-    background: white;  // @colorSidebar;
+    background: white;  // $colorSidebar;
     padding: 2px 8px;
     border-radius: 4px;
-    border: 1px solid @colorBody;
+    border: 1px solid $colorBody;
 
     strong{
       font-weight: 600; 
@@ -202,11 +202,11 @@
       //display: none;
       margin-left: 6px;
       font-size: 0.913em;
-      //color: @colorTextGreen;
+      //color: $colorTextGreen;
     }
 
     &:hover{
-      background: @colorBody;
+      background: $colorBody;
       text-decoration: none;
     }
   }
@@ -238,7 +238,7 @@ g.node.root{
 // Highlight root node in Topic Visualization
 .topic-viz g.node.root text{
   fill: black;
-  text-shadow: 0 1px 0 @colorHeader, 0 0 3px @colorHeader, 0 0 6px @colorHeader;
+  text-shadow: 0 1px 0 $colorHeader, 0 0 3px $colorHeader, 0 0 6px $colorHeader;
 }
 
 g.node image {
@@ -257,10 +257,10 @@ g.node.expanded image {
 }
 
 g.node.cat-1 circle{
-  fill: @personColor;
+  fill: $personColor;
 }
 g.node.cat-2 circle{
-  fill: @organizationColor;
+  fill: $organizationColor;
 }
 
 path.link {
@@ -270,7 +270,7 @@ path.link {
 
   &:hover{
     fill: none;
-    stroke: @personColor;
+    stroke: $personColor;
     stroke-width: 3px;
   }
 }
@@ -288,29 +288,29 @@ text {
 
 #viz-container.qclo{
 
-  @personColorQCLO: darken( #F15A24, 10% );
-  @organizationColorQCLO: lighten( #F15A24, 5% );
+  $personColorQCLO: darken( #F15A24, 10% );
+  $organizationColorQCLO: lighten( #F15A24, 5% );
 
   background: lighten( #f7f1d7, 3% );
 
   #visualization-legend .legend {
     
     .legend-people i {
-      color: @personColorQCLO;
+      color: $personColorQCLO;
     }
     .legend-organizations i {
-      color: @organizationColorQCLO;
+      color: $organizationColorQCLO;
     }
   }
 
   g.node.cat-1 circle{
-    fill: @personColorQCLO;
+    fill: $personColorQCLO;
   }
   g.node.cat-2 circle{
-    fill: @organizationColorQCLO;
+    fill: $organizationColorQCLO;
   }
 
   path.link:hover{
-    stroke: @personColorQCLO;
+    stroke: $personColorQCLO;
   }
 }

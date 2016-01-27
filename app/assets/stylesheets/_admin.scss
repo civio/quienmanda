@@ -1,0 +1,190 @@
+
+/* Login Form
+=================================================================== */
+
+#wrapper.login-container{
+  margin-top: 40px;
+  min-width: 360px;
+}
+
+.admin #wrapper.full{
+  margin-top: 40px;
+
+  .span12{
+    padding: 10px 20px 0;
+  }
+}
+
+#login-form{
+  padding: 8px 22px;
+
+  .page-title-small {
+    position: relative;
+    padding: 5px 0px;
+    text-align: center;
+    z-index: 10;
+
+    h3{
+      display: inline-block;
+      font-family: $fontEconomica;
+      color: rgba(180,180,180,0.8);
+      text-shadow: 0px 1px 0px rgba(255,255,255,0.4),0 0 0px rgba(0,0,0,0.2);
+      font-size: 20px;
+    }
+  }
+}
+
+.facebook_connect,
+.twitter_connect{
+  display:block;
+  width: 100%;
+  height: 38px;
+  overflow:hidden;
+  margin: 5px 0px 5px -1px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 4px;
+
+  &:hover {
+    color: #f0f0f0;
+    text-decoration: none;
+  }
+
+  .img {
+    display: block;
+    float: left;
+    border-right: 1px solid rgba(0,0,0,.1);
+    width: 50px;
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .text {
+    border-left: 1px solid rgba(255,255,255,.1);
+    text-align: center;
+    display: block;
+    margin-left: 51px;
+  }
+}
+
+.facebook_connect {
+  border: 1px solid #00549f;
+  text-shadow: 0px 1px 1px #03327b;
+  background: #0d77be;
+  @include gradient-vertical(rgba(13,119,190,1), rgba(13,99,170,1));
+  
+  &:hover {
+    text-shadow: 0px 0px 1px #03327b; 
+  }
+}
+
+.twitter_connect {
+  border: 1px solid #1b94bc;
+  text-shadow: 0px 1px 1px #0a8ad2;
+  background: #56d4ff;
+  @include gradient-vertical(rgba(86,212,255,1), rgba(27,176,226,1));
+
+  &:hover {
+    text-shadow: 0px 0px 1px #0a8ad2; 
+  }
+}
+
+#login-form{
+
+  input[type="text"] {
+    margin-bottom: 8px;
+    font-size: 16px;
+    height: 40px;
+  }
+
+  input[type="checkbox"] {
+    margin-top: -4px;
+  }
+
+  input[type="submit"] {
+    font-weight: 600;
+  }
+
+  .remember,
+  .forgot{
+    font-size: 0.913em;
+    width: 50%;
+    line-height: 30px;
+    height: 40px;
+  }
+
+  .remember{
+    float: left;
+    text-align:left;
+  }
+
+  .forgot {
+    float: right;
+    text-align:right;
+    font-weight: 600;
+  }
+
+  .links{
+    font-size: 0.913em;
+    margin-top: 10px;
+  }
+}
+
+#error_explanation{
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #A94442;
+  background: #F2DEDE;
+  font-size: 0.913em;
+  border-radius: 4px;
+
+  h2{
+    font-size: 0.875em;
+    line-height: 2em;
+    color: #A94442;
+  }
+
+  ul{
+    margin-left: 20px;
+  }
+}
+
+/* Import Page
+=================================================================== */
+td.field-match-success {
+  background-color: #DFF0D8 !important;
+  text-shadow: none;
+}
+td.field-match-warning {
+  background-color: #FCF8E3 !important;
+  text-shadow: none;
+}
+td.field-match-error {
+  background-color: #F2DEDE !important;
+  text-shadow: none;
+}
+
+body.admin #wrapper a {
+  border-bottom: 1px black dotted;
+}
+body.admin #wrapper a:hover {
+  border-bottom: 1px black solid;
+  text-decoration: none;
+}
+
+table.table tr td span.import-actions { 
+  display:none;
+}
+table.table tr:hover td span.import-actions { 
+  display:inline-block;
+}
+
+/* Botones de edición para administradores en entidades relacionadas */
+li .admin-action {
+  display:none;
+}
+li:hover .admin-action {
+  display:inline-block;
+}

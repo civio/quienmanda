@@ -9,10 +9,10 @@
   h2{
     display: inline;
     font-size: 1.5em;
-    font-family: @fontBaskerville;
+    font-family: $fontBaskerville;
     font-style: italic;
     letter-spacing: -0.015em;
-    background: @colorBody;
+    background: $colorBody;
     padding: 0 10px;
     text-shadow: 1px 1px 0 #fdfdfd;
   }
@@ -32,8 +32,8 @@
     top: 20px !important;
     left: 0;
     right: 0;
-    border-top: 1px solid @colorTextGreen;
-    border-bottom: 1px solid @colorTextGreen;
+    border-top: 1px solid $colorTextGreen;
+    border-bottom: 1px solid $colorTextGreen;
   }
 }
 
@@ -42,7 +42,7 @@
 .home-slider-container{
   padding: 5px 5px 0;
   margin-bottom: 70px;
-  .boxStyle();
+  @include boxStyle();
 }
 
 #home-slider{
@@ -90,21 +90,22 @@
 
     p{
       color: #000;
-      font-size: 0.913em;
       margin-top: 8px;
     }
 
     a{
       h3{
-        font-size: 1.375em;
-        font-family: @fontBaskerville;
-        .titleBorder();
+        font-size: 1.75em;
+        font-family: $fontBaskerville;
+        font-weight: 600;
+        line-height: 1.5em;
+        @include titleBorder();
       }
 
       &:hover{
         text-decoration: none;
         h3{
-          color: @colorLinkGreen;
+          color: $colorLinkGreen;
         }
       }
     }
@@ -134,14 +135,16 @@
     }
 
     > a{
-      font-family: @fontBaskerville;
+      font-family: $fontBaskerville;
+      font-size: 1.25em;
+      font-weight: 600;
       display: block;
       position: relative;
       height: 74px;
       margin: 0;
       padding: 0 10px;
       overflow: hidden;
-      background: @colorHeader;
+      background: $colorHeader;
 
       > div{
         display: table;
@@ -174,13 +177,13 @@
 
       &:hover,
       &:focus{
-        color: @colorTitle;
+        color: $colorTitle;
         text-decoration: none;
-        background: mix( @colorHeader, @colorSecondary, 70% );
+        background: mix( $colorHeader, $colorSecondary, 70% );
       }
 
       &.active{
-        background: @colorSecondary;
+        background: $colorSecondary;
       }
     }
 

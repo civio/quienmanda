@@ -8,9 +8,9 @@ html {
 body{
   color: #000;
   font-size: 16px;
-  font-family: @fontDroid;
+  font-family: $fontDroid;
   font-weight: 400;
-  background: @colorBody;
+  background: $colorBody;
 }
 
 a {
@@ -22,9 +22,9 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: @colorTitle;
-  font-family: @fontDroid;
-  font-weight: normal !important;
+  color: $colorTitle;
+  font-family: $fontDroid;
+  font-weight: normal;
   margin: 0;
   padding: 0;
 }
@@ -56,10 +56,10 @@ h6 {
 
 ul, ol { margin: 0; }
 
-input, button, select, textarea{ font-family: @fontDroid; }
+input, button, select, textarea{ font-family: $fontDroid; }
 
 .clearfix{
-  .clearfix(); 
+  @include clearfix(); 
 }
 
 
@@ -82,7 +82,7 @@ body > .container.container-widget{
   bottom: 14px;
   right: 10px;
   z-index: 99;
-  color: @colorGray;
+  color: $colorGray;
   font-size: 0.75em;
   padding-right: 20px;
   line-height: 11px;
@@ -92,7 +92,7 @@ body > .container.container-widget{
 
   &:hover,
   &:focus{
-    color: @colorLinkGreen;
+    color: $colorLinkGreen;
     text-decoration: none;
   }
 }
@@ -103,7 +103,7 @@ body > .container.container-widget{
 
   &.full{ 
     margin-top: 0;
-    .boxStyle();
+    @include boxStyle();
   }
 }
 
@@ -117,9 +117,9 @@ body > .container.container-widget{
 =================================================================== */
 
 .alert-info{ 
-  background: @colorHeader;
-  border: 1px solid darken( @colorSecondary, 20% );
-  color: @colorTitle;
+  background: $colorHeader;
+  border: 1px solid darken( $colorSecondary, 20% );
+  color: $colorTitle;
   padding: 12px 20px;
   margin: 20px 0;
   font-weight: 600;
@@ -164,16 +164,16 @@ body > .container.container-widget{
 
 .quienmanda-embed-wrapper{
   max-width: 500px;
-  .boxStyle();
-  background: @colorHeader;
+  @include boxStyle();
+  background: $colorHeader;
   margin: 0 auto;
   padding: 10px 10px 5px;
 }
 
 .quienmanda-embed-viz-wrapper{
   margin: 0 1px;
-  .boxStyle();
-  background: @colorHeader;
+  @include boxStyle();
+  background: $colorHeader;
 }
 
 
@@ -185,7 +185,7 @@ body > .container.container-widget{
   width: 100%;
   padding: 0 14px 10px;
   margin: 0;
-  background: @colorSecondary;
+  background: $colorSecondary;
   font-size: 0.875em;
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
@@ -219,7 +219,7 @@ body > .container.container-widget{
     transition: none !important;
 
     &::before {
-      background: @colorSecondary;
+      background: $colorSecondary;
       border-radius: 10px;
       box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
       content: '';
@@ -231,7 +231,7 @@ body > .container.container-widget{
     }
 
     &::after {
-      background: @colorSecondary;
+      background: $colorSecondary;
       border-bottom: 13px solid transparent;
       border-left: 10px solid white;
       border-top: 13px solid transparent;
@@ -242,11 +242,11 @@ body > .container.container-widget{
     }
 
     &:hover{
-      color: @colorGray !important;
-      background: @colorHeaderLink;
+      color: $colorGray !important;
+      background: $colorHeaderLink;
 
       &::after {
-        border-left-color: @colorHeaderLink;
+        border-left-color: $colorHeaderLink;
       }
     }
   }
@@ -261,22 +261,22 @@ body > .container.container-widget{
   background: none;
 
   .tag{
-    background: @colorSecondary;
+    background: $colorSecondary;
 
     &::before,
     &::after {
       background: white;
     }
     &::after {
-      border-left-color: @colorSecondary;
+      border-left-color: $colorSecondary;
     }
 
     &:hover{
       color: #242424 !important;
-      background: @colorHeaderLink;
+      background: $colorHeaderLink;
 
       &::after {
-        border-left-color: @colorHeaderLink;
+        border-left-color: $colorHeaderLink;
       }
     }
   }
@@ -318,8 +318,6 @@ body > .container.container-widget{
 [class^="addthis_button_"] {
   height: 40px;
   width: 40px !important;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
   display: block;
   text-indent: -999em;
@@ -345,11 +343,11 @@ body > .container.container-widget{
 }
 
 .addthis_button_expanded {
-  .box-shadow( none );
+  @include box-shadow( none );
 }
 
 iframe.quienmanda-embed{
-  background: @colorHeader;
+  background: $colorHeader;
   body{ margin: 0; }
 }
 
@@ -359,13 +357,13 @@ iframe.quienmanda-embed{
 
   .annotorious-popup{
     
-    font-family: @fontDroid;
-    .border-radius( 0 );
+    font-family: $fontDroid;
+    border-radius: 0;
 
     .annotorious-popup-text{
 
       a{
-        color: @colorTextGreen;
+        color: $colorTextGreen;
         font-size: 1.125em;
         font-weight: bold;
         padding-bottom: 6px;
@@ -383,13 +381,13 @@ iframe.quienmanda-embed{
 
 
 .modal{
-  background: @colorHeader;
+  background: $colorHeader;
   border: none;
   border-radius: 0;
 }
 
 .modal-footer{
-  background: @colorSecondary;
+  background: $colorSecondary;
   border: none;
-  .box-shadow( none );
+  @include box-shadow( none );
 }

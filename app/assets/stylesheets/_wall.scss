@@ -8,36 +8,36 @@
     padding: 0;
     margin: 0 0 24px;
     border: none;
-    .boxStyle();
+    @include boxStyle();
 
     h2, h3{
-      color: @colorGray;
-      font-family: @fontBaskerville !important;
+      color: $colorGray;
+      font-family: $fontBaskerville !important;
       font-weight: 700 !important;
-      line-height: 1.375em;
+      line-height: 1.25em;
       padding-left: 3px;
-      margin: 12px 12px 8px 58px;
-      min-height: 56px;
-      border-left: 1px solid @colorTextGreen;
+      margin: 16px;
+      //min-height: 56px;
+      border-left: 1px solid $colorTextGreen;
 
       a{
         display: block;
-        min-height: 56px;
-        padding-left: 10px;
-        border-left: 1px solid @colorTextGreen;
+        //min-height: 56px;
+        padding-left: 12px;
+        border-left: 1px solid $colorTextGreen;
       }
     }
 
     h2{
-      font-size: 1.375em;
+      font-size: 1.5em;
     }
 
     h3{
-      font-size: 1.25em;
+      font-size: 1.5em;
     }
 
     a{
-      color: @colorGray;
+      color: $colorGray;
 
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
@@ -46,7 +46,7 @@
       transition: all 0.3s ease-in-out;
       
       &:hover{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         text-decoration: none;
       }
     }
@@ -65,17 +65,17 @@
       .day,
       .month{
         display: block;
-        color: @colorGray;
+        color: $colorGray;
         font-size: 1.25em;
         line-height: 1.375em;
       }
 
       .day{
-        font-family: @fontBaskerville;
+        font-family: $fontBaskerville;
       }
 
       .month{
-        font-family: @fontEconomica;
+        font-family: $fontEconomica;
         text-transform: uppercase;
         
       }
@@ -96,29 +96,29 @@
         box-sizing: border-box;
 
         &:hover{
-          .opacity( 0.8 );
+          @include opacity( 0.8 );
         }
       }
 
       a.image,
       a.image img{
-        .border-radius( 0 );
+        border-radius: 0;
       }
 
       .description,
       .description-top{
-        color: @colorGray;
-        font-size: 0.938em;
-        line-height: 1.5em;
+        color: $colorGray;
+        //font-size: 0.938em;
+        line-height: 1.375em;
         margin-top: 2px;
 
         p{ 
-          padding: 2px 14px 0;
+          padding: 2px 16px 0;
         }
 
         .picture-meta{
           padding-top: 10px;
-          background: @colorSecondary;
+          background: $colorSecondary;
 
           .tags{
             padding-bottom: 4px;
@@ -128,21 +128,21 @@
         .credits{
           display: block;
           width: 100%;
-          padding: 0 14px 10px;
+          padding: 0 16px 10px;
           margin: 0;
           font-size: 0.875em;
-          font-family: @fontDroid;
+          font-family: $fontDroid;
           font-weight: normal;
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
 
           a{
-            color: @colorLinkGreen;
+            color: $colorLinkGreen;
             text-decoration: underline;
 
             &:hover{
-              color: @colorGray;
+              color: $colorGray;
               text-decoration: none;
             };
           }
@@ -161,11 +161,13 @@
   &.photo .item{
 
     .picture .description{
-      font-family: @fontBaskerville;
-      font-weight: 700;
+      font-family: $fontDroid;
+      //font-weight: 600;
 
       > p{
-        .titleBorder();
+        font-size: 1.125em;
+        line-height: 1.375em;
+        //@include titleBorder();
       }
 
       p.credits:before,
@@ -174,7 +176,7 @@
       }
 
       p.admin-link{
-        font-family: @fontDroid;
+        font-family: $fontDroid;
       }
     }
   }
@@ -185,16 +187,16 @@
     h3{
       font-size: 1.125em;
       margin: 0;
-      padding: 8px 8px 8px 14px;
+      padding: 8px 8px 8px 16px;
       min-height: 0;
       line-height: 1.5em;
       border: none;
-      .titleBorder();
+      @include titleBorder();
 
       a{
         display: inline;
         font-size: 1em;
-        font-family: @fontBaskerville;
+        font-family: $fontBaskerville;
         font-weight: bold;
         line-height: 1em;
         min-height: 0;
@@ -251,13 +253,13 @@
         left: 68px;
         width: 3px;
         height: 58px;
-        border-right: 1px solid @colorTextGreen;
-        border-left: 1px solid @colorTextGreen;
+        border-right: 1px solid $colorTextGreen;
+        border-left: 1px solid $colorTextGreen;
       }
     }
 
     .picture .description-top{
-      font-family: @fontBaskerville;
+      font-family: $fontBaskerville;
       font-weight: bold;
       line-height: 1.5em;
 

@@ -1,7 +1,7 @@
 /* Social sharing
 =================================================================== */
 
-@grid-gutter-width: 15px;
+$grid-gutter-width: 15px;
 
 .sharing-buttons {
   margin: 25px 0 0 -10px;
@@ -12,14 +12,14 @@
 .sharing-right{
   display: none;
   position: absolute;
-  top: @grid-gutter-width;
+  top: $grid-gutter-width;
   right: 0;
   margin: 0;
 
   .sharing-buttons{
     padding-right: 0;
-    padding-left: @grid-gutter-width;
-    background: @colorBody;
+    padding-left: $grid-gutter-width;
+    background: $colorBody;
   }
 }
 
@@ -53,7 +53,7 @@
   background-repeat: no-repeat;
   cursor: pointer;
 
-  .transition( all 0.3s ease-in-out );
+  @include transition( all 0.3s ease-in-out );
 
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -70,7 +70,7 @@
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   
   .sharing-button {
-    background-image: url("../img/icons/social-icons-set@2x.v2.png");
+    background-image: url("../img/icons/social-icons-set$2x.v2.png");
     background-size: 400px 320px;
   }
 }

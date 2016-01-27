@@ -6,9 +6,9 @@ body > header{
   top: 0;
   width: 100%;
   height: 145px;
-  background: @colorHeader;
+  background: $colorHeader;
   z-index: 1000;
-  .box-shadow( ~'0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05)' );
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 }
 
 header > .container{
@@ -18,7 +18,7 @@ header > .container{
 .nav-collapse.collapse {
   left: 0;
   top: 83px;
-  background: @colorHeader;
+  background: $colorHeader;
   height: auto \9 !important;
   overflow: visible \9 !important;
   z-index: 9999;
@@ -33,7 +33,7 @@ header > .container{
   border: none;
   padding: 0px;
   margin: 0;
-  .box-shadow( none );
+  @include box-shadow( none );
 }
 
 .navbar{
@@ -63,37 +63,38 @@ header > .container{
     background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
 
     >li{
-      background: @colorHeader;
+      background: $colorHeader;
 
       > a {
-        color: @colorGray;
-        font-family: @fontEconomica;
-        font-weight: 700;
-        font-size: 1.375em;
+        color: $colorGray;
+        font-family: $fontEconomica;
+        font-weight: 600;
+        font-size: 1.25em;
+        line-height: 22px;
         padding: 16px 10px;
         text-shadow: 0 1px 0 #ffffff;
-        .transition( color 0.3s ease-in-out );
+        @include transition( color 0.3s ease-in-out );
 
         &:hover{ 
-          color: @colorHeaderLink;
+          color: $colorHeaderLink;
           background-color: transparent !important;
         }
       }
 
       &.active{
         > a{
-          color: @colorHeaderLink;
+          color: $colorHeaderLink;
 
           &:hover{
-            color: @colorGray;
-            .box-shadow( none );
+            color: $colorGray;
+            @include box-shadow( none );
           }
         }
 
         > a,
         > a:focus{
           background-color: transparent !important; 
-          .box-shadow( none );
+          @include box-shadow( none );
         }
       }
     }
@@ -104,11 +105,11 @@ header > .container{
     position: relative; 
     border: none;
     padding: 19px 16px 18px;
-    .border-radius( 0 );
+    border-radius: 0;
 
     .icon-bar {
       background: #a3a3a3 !important;
-      .box-shadow( 0 1px 0 #fff );
+      @include box-shadow( 0 1px 0 #fff );
     }
   }
 }
@@ -124,27 +125,25 @@ header > .container{
   }
 
   .search-query{
-    color: @colorGray;
+    color: $colorGray;
     width: 170px;
-    background: darken( @colorBody, 2% );
+    background: darken( $colorBody, 2% );
     padding-right: 8px;
     padding-right: 9px \9;
     padding-left: 8px;
     padding-left: 9px \9;
     /* IE7-8 doesn't have border-radius, so don't indent the padding */
     margin-bottom: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
     border-radius: 0;
     border: 1px solid #d3d9cd;
     margin-top: 3px;
     padding-top: 3px;
-    .box-shadow( none );
+    @include box-shadow( none );
 
     &:focus + button { z-index: 3; }
     &:focus{ 
       border-color: #aaa; 
-      background: @colorBody; 
+      background: $colorBody; 
     }
   }
 
@@ -157,14 +156,14 @@ header > .container{
     left: 0;
     /* IE7-8 doesn't have border-radius, so don't indent the padding */
     margin-bottom: 0;
-    .box-shadow( none );
+    @include box-shadow( none );
 
     .icon-search{
-      color: @colorHeaderLink;
+      color: $colorHeaderLink;
       font-size: 18px;
     }
 
-    &:hover .icon-search{ color: @colorGray; }
+    &:hover .icon-search{ color: $colorGray; }
   }
 }
 
@@ -176,35 +175,35 @@ header > .container{
 
   > a{
     float: right;
-    color: @colorGray;
+    color: $colorGray;
     margin-left: 6px;
     line-height: 1em;
     font-weight: 600;
 
     &:hover{
-      color: @colorHeaderLink;
+      color: $colorHeaderLink;
       text-decoration: none;
     }
   }
 
   .icon-fontello-user:before{
-    color: @colorHeaderLink;
+    color: $colorHeaderLink;
   }
 
   > p{
     float: right;
-    color: @colorGray;
+    color: $colorGray;
     line-height: 1em;
     padding-right: 6px;
-    border-right: 1px solid @colorHeaderLink;
+    border-right: 1px solid $colorHeaderLink;
   }
 
   a{
-    color: @colorGray;
+    color: $colorGray;
     font-weight: 600;
 
     &:hover{
-      color: @colorHeaderLink;
+      color: $colorHeaderLink;
       text-decoration: none;
     }
   }

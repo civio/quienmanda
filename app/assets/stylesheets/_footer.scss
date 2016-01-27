@@ -24,7 +24,7 @@
 
       .title{
         color: #FFF;
-        font-family: @fontBaskerville !important;
+        font-family: $fontBaskerville !important;
         font-size: 1.067em;
         font-style: italic;
       }
@@ -54,7 +54,7 @@
     a.partner{
 
       &:hover{
-        .opacity( 0.6 );
+        @include opacity( 0.6 );
       };
 
       img{
@@ -81,7 +81,7 @@
         a{
           width: 36px;
           height: 36px;
-          background-color: @colorOrange;
+          background-color: $colorOrange;
           -webkit-transition: background-color 0.4s ease-out;
           -moz-transition: background-color 0.4s ease-out;
           -o-transition: background-color 0.4s ease-out;
@@ -133,7 +133,7 @@
         border-radius: 0;
 
         &:focus{
-          .box-shadow( none );
+          @include box-shadow( none );
         }
       }
 
@@ -147,7 +147,7 @@
         width: 32px;
         height: 36px;
         border-color: #5BA1D7;
-        .box-shadow( none );
+        @include box-shadow( none );
 
         &:hover{
           background-color: #5BA1D7
@@ -160,16 +160,16 @@
       float: none;
       color: #fff;
       font-size: 2em;
-      font-family: @fontEconomica;
+      font-family: $fontEconomica;
       text-transform: uppercase;
       margin-top: 36px;
 
       a{
-        color: @colorOrange !important;
+        color: $colorOrange !important;
         font-size: 1em;
 
         .arroba{
-          font-family: @fontDroid;
+          font-family: $fontDroid;
         }
 
         &:hover{
@@ -202,7 +202,7 @@
     }
 
     a{
-      color: @colorTextGreen !important;
+      color: $colorTextGreen !important;
       text-decoration: underline;
 
       &:hover{
