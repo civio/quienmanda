@@ -1,3 +1,52 @@
+/* Small devices (tablets, 768px and down) */
+@media (max-width: $screen-sm-min) {
+
+  #footer{
+    text-align: center;
+
+    .about .logos{
+      float: none;
+    }
+
+    .links {
+      padding-left: 0;
+      padding-right: 0;
+     
+      h3{
+        display: none;
+      }
+    }
+
+    .form-inline{
+
+      .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+      }
+
+      .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+      }
+    }
+  }  
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+  #footer .links {
+    padding-left: 120px;
+  }
+}
+
 
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
@@ -25,9 +74,7 @@
     padding-left: 30px;
   }
 
-  #footer .links {
-    padding-left: 120px;
-  }
+  
 
   #wrapper .sidebar.span4 .related-entities-navigation{
     margin: 24px 64px;
@@ -163,19 +210,6 @@
     margin: 24px 16px;
   }
 
-  #footer .icon{
-    display: none;
-  }
-
-  #footer .about,
-  #footer .links
-  {
-    width: 50%;
-  }
-
-  #footer .links {
-    margin-left: 0;
-  }
 }
 
 /* All Mobile Sizes (devices and browser)
@@ -196,26 +230,6 @@
 
   body{
     padding: 0;
-  }
-
-  body > .container,
-  #footer > .container{
-    margin-right: 12px;
-    margin-left: 12px;
-  }
-
-  #footer .links h3{
-    display: none;
-  }
-
-  #footer .about,
-  #footer .links
-  {
-    width: 100%;
-  }
-
-  #footer .links {
-    padding-left: 0;
   }
 }
 
