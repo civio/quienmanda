@@ -33,7 +33,8 @@ class PeopleController < ApplicationController
     if stale?(@person)
       @title = @person.short_or_long_name
       @relations = (can? :manage, Entity) ? @person.relations : @person.relations.published
-      @relations = @relations.order("relations.from ASC")
+      # Order relations both by date at and by date from
+      @relations = @relations.order("greatest(relations.from, relations.at) asc")
 
       # Facebook Open Graph metadata
       @fb_description = @person.description unless @person.description.blank?
