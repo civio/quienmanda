@@ -290,7 +290,7 @@ jQuery.noConflict();
     // Related entities sidebar
     if ($('.extra-related-entity').length) {
       $('#related-entities-toggle').click(function(){
-        $('.extra-related-entity').slideToggle();
+        $('.extra-related-entity').removeClass('extra-related-entity');
         $('#related-entities-toggle').hide();
       });
     } else {

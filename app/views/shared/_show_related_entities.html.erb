@@ -13,11 +13,20 @@
 
     <h3>Protagonistas</h3>
 
-    <ul>
+    <ul class="row">
       <% entities.each_with_index do |entity, i| %>
       <%# Start displaying at least 5 related entities, always the high priority ones %>
-      <% class_str = (defined? post) ? 'col-sm-3' : '' %>
+      <% class_str = (defined? post) ? 'col-sm-6 col-md-4 col-lg-3' : '' %>
       <% class_str += ' extra-related-entity' if ( i>=8 and entity.priority!='1' ) %>
+      <% if i%4 == 0 %>
+      <hr class="visible-lg-block <%= 'extra-related-entity' if ( i>=8 and entity.priority!='1' ) %>">
+      <% end %>
+      <% if i%3 == 0 %>
+      <hr class="visible-md-block <%= 'extra-related-entity' if ( i>=8 and entity.priority!='1' ) %>">
+      <% end %>
+      <% if i%2 == 0 %>
+      <hr class="visible-sm-block <%= 'extra-related-entity' if ( i>=8 and entity.priority!='1' ) %>">
+      <% end %>
       <li class="<%= class_str %>">
         <div class="picture">
           <%= link_to entity_path(entity) do %>

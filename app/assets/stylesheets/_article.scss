@@ -39,7 +39,7 @@
   h2{
     font-family: $fontBaskerville;
     display: inline-block;
-    padding: 0 16px 0 0;
+    padding: 0 $grid-gutter-width/2 0 0;
     margin: 0 0 0 80px;
     color: $colorGray;
     font-size: 2.25em;
@@ -79,7 +79,7 @@
     h2{
       margin-right: auto;
       margin-left: auto;
-      padding-left: 16px;
+      padding-left: $grid-gutter-width/2;
     }
 
     &:before{
@@ -97,7 +97,7 @@
   .title{
 
     position: relative;
-    margin: 0 0 64px;
+    margin: 0 0 2*$grid-gutter-width;;
     
     &:before{
       display: block;
@@ -147,7 +147,7 @@
 
   .all-btn{
 
-      margin: 24px 0 64px;
+      margin: 24px 0 2*$grid-gutter-width;
       text-align: right;
       
       a{
@@ -184,7 +184,7 @@
   .sidebar{
     position: relative;
     padding: 0;
-    margin-bottom: 32px;
+    margin-bottom: $grid-gutter-width;
     z-index: 60;
     @include boxStyle();
   }
@@ -196,12 +196,12 @@
   .posts .post{
 
     position: relative;
-    margin: 0 0 32px;
-    padding: 32px 0 0;
+    margin: 0 0 $grid-gutter-width;
+    padding: $grid-gutter-width 0 0;
     text-align: left;
 
     .picture{
-      margin: 0 64px;
+      margin: 0 2*$grid-gutter-width;
 
       img{
         -webkit-border-radius: 0;
@@ -216,15 +216,15 @@
       font-size: 0.875em;
       text-shadow: none;
       background: $colorSecondary;
-      margin: 0 64px;
+      margin: 0 2*$grid-gutter-width;
     }
 
     .picture-footer{
-      padding: 10px 12px 6px;
+      padding: $grid-gutter-width/3 $grid-gutter-width/2 6px;
     }
 
     .credits{
-      padding: 0 12px 12px;
+      padding: 0 $grid-gutter-width/2 $grid-gutter-width/2;
 
       a{
         color: $colorLinkGreen;
@@ -239,7 +239,7 @@
 
     .row-fluid{ 
       width: 90%;
-      margin: 64px; 
+      margin: 2*$grid-gutter-width; 
     }
 
     h2.post-title{
@@ -248,14 +248,14 @@
       font-size: 2.25em;
       font-weight: 700;
       line-height: 1.375em;
-      margin: 0 64px 32px;
+      margin: 0 2*$grid-gutter-width $grid-gutter-width;
       padding-left: 3px;
       border-left: 1px solid $colorTextGreen;
       //@include titleBorder();
 
       span{
         display: block;
-        padding-left: 16px;
+        padding-left: $grid-gutter-width/2;
         border-left: 1px solid $colorTextGreen;
       }
     }
@@ -266,7 +266,7 @@
       font-size: 1.75em;
       font-weight: 600;
       line-height: 1.375em;
-      margin: 32px 64px;
+      margin: $grid-gutter-width 2*$grid-gutter-width;
       //@include titleBorder();
     }
 
@@ -274,27 +274,27 @@
   
       clear: both;
       float: none;
-      margin: 0 64px;
+      margin: 0 2*$grid-gutter-width;
       padding: 0;
       border-top: 1px solid $colorBody;
       //font-size: 0.938em;  
 
       p{
-        margin: 0 0 16px;
+        margin: 0 0 $grid-gutter-width/2;
       }
 
       h2{
         font-family: $fontBaskerville !important;
         font-weight: 700;
         font-size: 1.375em;
-        margin: 32px 0px;
+        margin: $grid-gutter-width 0px;
         line-height: 1.25em;
       }
 
       .post-meta{
         float: left;
         color: $colorGray;
-        padding: 16px 0;
+        padding: $grid-gutter-width/2 0;
         margin: 0;
         //border-top: 1px solid $colorBody;
 
@@ -331,7 +331,7 @@
         line-height: 1.5em;
         overflow: hidden;
         background: url(/images/moustache.gif) no-repeat bottom center;
-        padding: 32px 0 16px;
+        padding: $grid-gutter-width 0 $grid-gutter-width/2;
         border-top: 1px solid $colorBody;
 
         a{
@@ -347,7 +347,7 @@
 
         ul{
           padding-left: 12px;
-          padding-bottom: 16px;
+          padding-bottom: $grid-gutter-width/2;
           -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
           -moz-box-sizing: border-box;    /* Firefox, other Gecko */
           box-sizing: border-box;         /* Opera/IE 8+ */
@@ -355,7 +355,7 @@
 
         li{
           padding-left: 38px;
-          padding-bottom: 16px;
+          padding-bottom: $grid-gutter-width/2;
           line-height: 1.5em;
           background: url(/images/list-moustache.gif) no-repeat 0px 12px;
         }
@@ -411,14 +411,14 @@
 
       .row-fluid{
         width: auto;
-        margin: 14px 32px 0;
+        margin: $grid-gutter-width/2 $grid-gutter-width 0;
       }
 
       .item{
         float: left;
         background: #fff;
         width: 100%;
-        margin-bottom: 32px;
+        margin-bottom: $grid-gutter-width;
         margin-right: 2%;
         padding: 0;
         -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
@@ -544,7 +544,7 @@
       float: left;
       //font-size: 0.875em;
       background: mix( white, $colorSecondary, 50% );
-      line-height: 32px;
+      line-height: $grid-gutter-width;
       padding-left: 8px;
       margin-bottom: 20px;
       margin-right: 10px;
@@ -576,7 +576,7 @@
       float: left;
       color: $colorGray;
       //font-size: 0.875em;
-      line-height: 32px;
+      line-height: $grid-gutter-width;
       background: mix( white, $colorSecondary, 50% );
       padding: 0 8px;
       margin-bottom: 20px;
@@ -612,8 +612,8 @@
       display: none;
       clear: both;
       position: relative;
-      top: -16px;
-      padding: 10px 15px 5px;
+      top: -$grid-gutter-width/2;
+      padding: 10px $grid-gutter-width/2 5px;
       background: mix( white, $colorSecondary, 50% );
 
       p{
@@ -685,14 +685,14 @@
 
     .sharing-buttons{
       width: 100%;
-      margin: 16px 0 24px;
+      margin: $grid-gutter-width/2 0 24px;
       padding: 0;
     }
 
     .related-entities-navigation{
 
       position: relative;
-      margin: 24px 32px;
+      margin: 24px $grid-gutter-width;
       padding-bottom: 1px;
       line-height: 26px;
 
@@ -735,8 +735,8 @@
     .related-entities{
 
       position: relative;
-      margin-top: 32px;
-      padding: 0 24px 8px;
+      margin-top: $grid-gutter-width;
+      padding: 0 $grid-gutter-width 8px;
       overflow: hidden;
       background: $colorSidebar;
       //background: url(/images/sidebar-pattern.gif) repeat 0 0 $colorSidebar;
@@ -762,40 +762,47 @@
         font-family: $fontBaskerville !important;
         font-size: 1.5em;
         font-weight: bold !important;
-        padding: 24px 0;
-
+        padding: 20px 0;
+        
+        /*
         &:before{
           content: '';
           position: absolute;
-          top: 38px;
+          top: 44px;
           left: 190px;
-          right: 16px;
-          height: 3px;
+          right: $grid-gutter-width;
+          height: 5px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
         }
+        */
       }
+
+      hr{
+        float: none;
+        clear: both;
+        margin: 0 $grid-gutter-width/2;
+        border-color: #f0f0f0;
+      }
+
+      $pictureW: 68px;
 
       li{
         //float: left;
         //width: 25%;
-        margin-bottom: 24px;
+        //margin-bottom: $grid-gutter-width;
         list-style: none;
-        min-height: 74px;
+        min-height: $grid-gutter-width + $pictureW;
         position: relative;
-
-        /* Expandir/colapsar entidades relacionadas en el sidebar */
-        &.extra-related-entity {
-          display: none;
-        }
+        padding-top: $grid-gutter-width/2;
+        padding-bottom: $grid-gutter-width/2;
+        //border-top: 1px solid darken( $colorSidebar, 15% );
 
         &:nth-child(4n+1){
-          clear: both;
-          margin-left: 0;
-          //border: 1px solid red;
+          //clear: both;
+          //margin-left: $grid-gutter-width;
+          //padding-left: 0;
         }
-
-        $pictureW: 68px;
 
         .picture{
           position: absolute;
@@ -812,13 +819,13 @@
 
           color: $colorGray;
           text-shadow: none;
-          margin-left: $pictureW + 14;
-          margin-right: 8px;
+          margin-left: $pictureW + 10;
+          //margin-right: 8px;
 
           a{
             display: block;
             width: 100%;
-            color: $colorLinkGreen;
+            color: $colorTitle;
             font-weight: 600;
             margin-bottom: 2px;
 
@@ -830,7 +837,7 @@
           
           small{
             font-size: 0.875em;
-            line-height: 1.25em;
+            line-height: 1em;
           }
         }
 
@@ -844,7 +851,12 @@
           content: "";
           float: none;
           clear: both;
-        };
+        }
+      }
+
+      /* Expandir/colapsar entidades relacionadas en el sidebar */
+      .extra-related-entity {
+        display: none !important;
       }
     }
 
@@ -1039,7 +1051,7 @@
 
   .modal-header .close{
     position: absolute;
-    right: 15px;
+    right: $grid-gutter-width/2;;
     z-index: 90;
   }
 
@@ -1050,7 +1062,7 @@
   .tab-content{
     color: $colorGray;
     background: white;
-    padding: 15px;
+    padding: $grid-gutter-width/2;;
     font-size: 0.875em;
     border: 1px solid #ddd;
 
