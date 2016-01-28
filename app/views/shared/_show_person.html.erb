@@ -1,32 +1,38 @@
-<div class="<%= (defined? span) ? span : 'span3' %> item people">
-  <%# Put title on top if we are in a mixed wall %>
-  <% if defined? mixed and mixed %>
-  <h3>
-    <%= link_to item.short_or_long_name, person_path(item) %>
-  </h3>
-  <% end %>
-  <div class="picture">
-    <% 
-      if defined? show_square_picture and show_square_picture
-        picture = image_tag(item.avatar.url ? item.avatar.url(:square) : 'avatar-square.png')
-      else
-        picture = image_tag(item.avatar.url ? item.avatar.url() : 'avatar.png')
-      end
-    %>
-    <%= link_to picture, person_path(item), class: 'image' %>
-    <div class="description">
-      <% unless defined? mixed and mixed %>
-      <h3>
-        <%= link_to item.short_or_long_name, person_path(item) %>
-      </h3>
-      <% end %>
+<div class="item-cont <%= (defined? span) ? span : 'col-xs-12 col-sm-6 col-md-4 col-lg-3' %>"> 
+  <div class="item people">
+    <%# Put title on top if we are in a mixed wall %>
+    <% if defined? mixed and mixed %>
+    <h3>
+      <a href="<%= person_path(item) %>">
+        <span><%= item.short_or_long_name %></span>
+      </a>
+    </h3>
+    <% end %>
+    <div class="picture">
+      <% 
+        if defined? show_square_picture and show_square_picture
+          picture = image_tag(item.avatar.url ? item.avatar.url(:square) : 'avatar-square.png')
+        else
+          picture = image_tag(item.avatar.url ? item.avatar.url() : 'avatar.png')
+        end
+      %>
+      <%= link_to picture, person_path(item), class: 'image' %>
+      <div class="description">
+        <% unless defined? mixed and mixed %>
+        <h3>
+          <a href="<%= person_path(item) %>">
+            <span><%= item.short_or_long_name %></span>
+          </a>
+        </h3>
+        <% end %>
 
-      <% unless item.description.blank? %>
-      <p>
-        <%= item.description %>
-      </p>
-      <% end %>
-      <%= render 'shared/show_admin_links', :item => item %>
-    </div>
-  </div>  
+        <% unless item.description.blank? %>
+        <p>
+          <%= item.description %>
+        </p>
+        <% end %>
+        <%= render 'shared/show_admin_links', :item => item %>
+      </div>
+    </div>  
+  </div>
 </div>

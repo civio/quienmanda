@@ -1,7 +1,5 @@
 <% unless entities.empty? %>
-<div class="span4 sidebar hidden-phone">
-
-  <%= render 'shared/social_buttons' %>
+<div class="sidebar hidden-phone<%= ' span4' unless defined? post %>">
 
   <% if defined?(photo_navigation) %>
   <div class="related-entities-navigation">
@@ -18,7 +16,9 @@
     <ul>
       <% entities.each_with_index do |entity, i| %>
       <%# Start displaying at least 5 related entities, always the high priority ones %>
-      <li <%= "class='extra-related-entity'".html_safe if i>=5 and entity.priority!='1' %>>
+      <% class_str = (defined? post) ? 'span3' : '' %>
+      <% class_str += ' extra-related-entity' if ( i>=8 and entity.priority!='1' ) %>
+      <li class="<%= class_str %>">
         <div class="picture">
           <%= link_to entity_path(entity) do %>
           <%= 

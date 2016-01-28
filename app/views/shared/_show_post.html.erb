@@ -1,28 +1,33 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= (defined? span) ? span : 'span4' %> item post">
+<div class="item-cont <%= (defined? span) ? span : 'col-sm-12 col-md-4' %>"> 
+  <div class="item post">
   
-  <% if defined?(frontpage) %>
-  <h2><%= link_to item.title, post_path(item) %></h2>
-  <% else %>
-  <h3><%= link_to item.title, post_path(item) %></h3>
-  <% end %>
+    <% if defined?(frontpage) %>
+    <h2>
+      <a href="<%= post_path(item) %>">
+        <span><%= item.title %></span>
+      </a>
+    </h2>
+    <% else %>
+    <h3>
+      <a href="<%= post_path(item) %>">
+        <span><%= item.title %></span>
+      </a>
+    </h3>
+    <% end %>
 
-  <div class="post-date">
-    <span class="day"><%= item.published_at.day %></span>
-    <span class="month"><%= I18n.localize(item.published_at, :format => "%B")[0,3] %></span>
-  </div>
-
-  <div class="picture">
-    <%= link_to image_tag(item.photo && item.photo.file.url(defined?(frontpage) ? :full : :small)), item, class: 'image' %>
-    <div class="description">
-      <p>
-        <%= link_to item.lead, post_path(item) unless item.lead.blank? %>
-      </p>
-      <div class="picture-meta">
-        <%= render 'shared/show_tags', item: item %>
+    <div class="picture">
+      <%= link_to image_tag(item.photo && item.photo.file.url(defined?(frontpage) ? :full : :small)), item, class: 'image' %>
+      <div class="description">
+        <p>
+          <%= link_to item.lead, post_path(item) unless item.lead.blank? %>
+        </p>
+        <div class="picture-meta">
+          <%= render 'shared/show_tags', item: item %>
+        </div>
+        <%= render 'shared/show_admin_links', :item => item %>
       </div>
-      <%= render 'shared/show_admin_links', :item => item %>
-    </div>
-  </div>  
+    </div>  
+  </div>
 </div>
 <% end %>

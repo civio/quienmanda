@@ -3,11 +3,14 @@
 
 #wall{
 
+  .item-cont{
+    margin-bottom: $grid-gutter-width;
+  }
+
   .item{
     position: relative;
-    padding: 0;
-    margin: 0 0 24px;
-    border: none;
+    width: 100%;
+    //margin: 0 0 24px;
     @include boxStyle();
 
     h2, h3{
@@ -15,16 +18,22 @@
       font-family: $fontBaskerville !important;
       font-weight: 700 !important;
       line-height: 1.25em;
-      padding-left: 3px;
-      margin: 16px;
+      //padding-left: 3px;
+      padding: 16px;
+      margin: 0;
       //min-height: 56px;
-      border-left: 1px solid $colorTextGreen;
+      //border-left: 1px solid $colorTextGreen;
 
       a{
         display: block;
-        //min-height: 56px;
-        padding-left: 12px;
+        padding-left: 3px;
         border-left: 1px solid $colorTextGreen;
+
+        span{
+          display: block;
+          border-left: 1px solid $colorTextGreen;
+          padding-left: 8px;
+        }
       }
     }
 
@@ -122,6 +131,10 @@
 
           .tags{
             padding-bottom: 4px;
+
+            ul{
+              padding: 0;
+            }
           }
         }
 
@@ -185,23 +198,16 @@
   .item.organization{
 
     h3{
-      font-size: 1.125em;
+      font-size: 1.375em;
       margin: 0;
-      padding: 8px 8px 8px 16px;
+      padding: 8px $grid-gutter-width/2;
       min-height: 0;
-      line-height: 1.5em;
       border: none;
-      @include titleBorder();
+      //@include titleBorder();
 
       a{
-        display: inline;
-        font-size: 1em;
-        font-family: $fontBaskerville;
-        font-weight: bold;
-        line-height: 1em;
+        display: block;   
         min-height: 0;
-        padding-left: 0;
-        border: none;
       }
     }
 
@@ -219,9 +225,10 @@
     h3,
     .picture .description-top{
       margin-left: 74px;
-      line-height: 1.375em;
-      padding: 0 0 0 3px;
-      margin: 12px 8px 8px 68px;
+      line-height: 1.25em;
+      //padding: 0 0 0 3px;
+      padding: 12px 8px 8px;
+      margin: 0;
       border: none;
 
       a{
@@ -234,13 +241,11 @@
       &:before{
         content: "";
         display: block !important;
-        position: absolute;
-        top: 12px;
-        left: 6px;
-        width: 56px;
+        float: left;
+        width: 58px;
         height: 58px;
         overflow: hidden;
-        padding-right: 6px;
+        margin-right: 18px;
         border: none;
         background: url(/images/sprites-medium.png) no-repeat 0 0 transparent;
       }
@@ -250,8 +255,8 @@
         display: block;
         position: absolute;
         top: 12px;
-        left: 68px;
-        width: 3px;
+        left: 72px;
+        width: 5px;
         height: 58px;
         border-right: 1px solid $colorTextGreen;
         border-left: 1px solid $colorTextGreen;

@@ -222,6 +222,11 @@ g.node circle {
   stroke-width: 0px;
 }
 
+g.node text{
+  color: $colorGray;
+  font-size: 13px;
+}
+
 g.node.root{
 
   circle {

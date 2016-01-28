@@ -11,30 +11,32 @@
 
 <div id="wrapper" class="people">
 
-  <div class="row-fluid">
-
-    <div id="wrapper" class="full span3">       
-      <div class="picture"><%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %></div>
-      <p class="title nobackground"><%= entity.name %></p>
-      <p class="description"><%= entity.description %></p>
-      <%= render '/shared/needs_work' if entity.needs_work %>
-      <div class='entity-links'>
-        <ul>
-          <li><%= icon_link entity.web_page, 'link' %></li>
-          <li><%= icon_link entity.wikipedia_page, 'wikipedia' %></li>
-          <li><%= icon_link entity.twitter_handle, 'twitter' %></li>
-          <li><%= icon_link entity.facebook_page, 'facebook' %></li>
-          <li><%= icon_link entity.open_corporates_page, 'link' %></li>
-          <li><%= icon_link entity.flickr_page, 'flickr' %></li>
-          <li><%= icon_link entity.youtube_page, 'youtube' %></li>
-          <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
-        </ul>
+  <div class="row">
+    <div class="col-sm-3">
+      <div id="wrapper" class="full">       
+        <div class="picture"><%= image_tag(entity.avatar.url ? entity.avatar.url : 'avatar.png', class: 'image') %></div>
+        <p class="title nobackground"><%= entity.name %></p>
+        <p class="description"><%= entity.description %></p>
+        <%= render '/shared/needs_work' if entity.needs_work %>
+        <div class='entity-links'>
+          <ul>
+            <li><%= icon_link entity.web_page, 'link' %></li>
+            <li><%= icon_link entity.wikipedia_page, 'wikipedia' %></li>
+            <li><%= icon_link entity.twitter_handle, 'twitter' %></li>
+            <li><%= icon_link entity.facebook_page, 'facebook' %></li>
+            <li><%= icon_link entity.open_corporates_page, 'link' %></li>
+            <li><%= icon_link entity.flickr_page, 'flickr' %></li>
+            <li><%= icon_link entity.youtube_page, 'youtube' %></li>
+            <li><%= icon_link entity.linkedin_page, 'linkedin' %></li>
+          </ul>
+        </div>
+        <%= render 'shared/show_admin_links', item: entity %>
       </div>
-      <%= render 'shared/show_admin_links', item: entity %>
     </div>
-
-    <div id="wrapper" class="full span9">
-      <%= render 'shared/show_entity_viz', path: entity_path(entity), slug: entity.slug %>
+    <div class="col-sm-9">
+      <div id="wrapper" class="full">
+        <%= render 'shared/show_entity_viz', path: entity_path(entity), slug: entity.slug %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,9 +1,5 @@
 <!-- start: Page Title -->
-<div id="page-title" class="article single">
 
-  <h2><%= @post.title %></h2>
-
-</div>
 <!-- end: Page Title -->
     
 <!--start: Wrapper-->
@@ -12,10 +8,13 @@
   <!--start: Row -->
   <div class="row-fluid">
   
-    <div class="posts span8">
+    <div class="posts">
 
       <!-- start: Post -->
       <div class="post first last">
+        <h2 class="post-title">
+          <span><%= @post.title %></span>
+        </h2>
       
         <% if @post.show_photo_as_header and @post.photo and !@post.photo.file.url.blank? %>
         <div class="post-img picture">
@@ -24,30 +23,27 @@
         <%= render 'shared/photo_footer', photo: @post.photo %>
         <%= render 'shared/show_photo_credit', photo: @post.photo %>
         <% end %>
-        <div class="info">
-          <span class="post-date">
-            <span class="day"><%= @post.published_at.day %></span>
-            <span class="month"><%= I18n.localize(@post.published_at, :format => "%B")[0,3] %></span>
-            <span class="year"><%= @post.published_at.year %></span>
-          </span>
-        </div>
-        <div class="post-title clearfix">
-          <h2><%= @post.lead %></h2>
-        </div>
+        <div class="clearfix"></div>
+        
+        <h3 class="post-title"><%= @post.lead %></h3>
+
         <div class="post-content">
-          <div class="post-meta">Por <a href="<%= @post.author.url %>" target="_blank"><%= @post.author.name %></a></div>
+          <div class="post-meta">
+            <span class="post-meta-author"><%= @post.author.name %></span> · <span class="post-meta-date"><%= @post.published_at.day %>.<%= @post.published_at.month %>.<%= @post.published_at.year %></span> 
+          </div>
           <%= render 'shared/show_tags', item: @post %>
           <%= render 'shared/show_admin_links', item: @post %>
           <div class="post-description">
             <%= raw(@content) %>
           </div>
+
+          <%= render 'shared/show_related_entities', entities: @related_entities, post: true %>
+
         </div>
 
         <%= render 'shared/social_buttons', title: @post.title %>
 
         <%= render '/shared/ad_banner' %>
-
-        
 
       </div>
       <div class="post first last related-posts">
@@ -63,15 +59,6 @@
       <!-- end: Post -->
 
     </div>  
-
-    <%= render 'shared/show_related_entities', entities: @related_entities %>
-
-    <!-- Donate banner -->
-    <div class="span4">
-      <a href="http://www.civio.es/dona/" target="_blank">
-        <%= image_tag("/images/banner_vertical.jpg") %>
-      </a>
-    </div>
 
   </div>
   <!--end: Row -->

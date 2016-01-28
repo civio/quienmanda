@@ -38,7 +38,7 @@ jQuery.noConflict();
     if ($wall.length){
       $wall.imagesLoaded(function() {
         $wall.packery({
-          itemSelector: '.item',
+          itemSelector: '.item-cont',
           columnWidth: $wall.width() / 12
         });
       });
