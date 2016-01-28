@@ -66,6 +66,16 @@ input, button, select, textarea{ font-family: $fontDroid; }
 /* Layout
 =================================================================== */
 
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 body > .container{
   position: relative;
   margin-top: 145px;
@@ -195,12 +205,16 @@ body > .container.container-widget{
   padding: 0 14px 10px;
   margin: 0;
   background: $colorSecondary;
-  font-size: 0.875em;
-  font-family: 'Open Sans', sans-serif;
+  //font-size: 0.875em;
+  //font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
+  ul{
+    padding: 0;
+  }
 
   li{
     list-style: none;
