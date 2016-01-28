@@ -177,6 +177,15 @@ body > .container.container-widget{
 }
 
 
+.pagination{
+
+  > li.active > span{
+    font-weight: 600;
+  }
+}
+
+
+
 /* Tags
 =================================================================== */
 

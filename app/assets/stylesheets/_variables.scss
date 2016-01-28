@@ -13,6 +13,8 @@ $colorLinkGreen: #8aa304;
 $colorOrange: #ce7a20;
 $colorSecondary: #dde4cd;
 
+$link-color: $colorLinkGreen;
+
 
 //== Fonts variables
 
@@ -25,3 +27,11 @@ $fontBaskerville: 'Source Serif Pro', Georgia, serif;
 
 //** Point at which the navbar becomes uncollapsed.
 $grid-float-breakpoint:     $screen-md-min;
+
+
+//== Pagination
+
+$pagination-color:                     $link-color;
+$pagination-hover-color:               $link-color;
+$pagination-active-bg:                 $link-color;
+$pagination-active-border:             $link-color;
