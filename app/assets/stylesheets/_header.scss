@@ -15,63 +15,76 @@ header > .container{
   position: relative;
 }
 
-.nav-collapse.collapse {
+.navbar-header{
+  width: 100%;
+}
+
+.navbar-brand{
+
+  padding: 0;
+  margin: $grid-gutter-width/2 0 0;
+
+  h1{
+    display: block;
+    width: 225px;
+    height: 115px;
+    text-indent: -9999px;
+    background: url(/images/quien-manda_logo.png) no-repeat 0 0 transparent;
+  }
+
+  &:after, &:before{ display: none; }
+}
+
+.navbar-toggle{
+  position: relative; 
+  border: none;
+  padding: 19px $grid-gutter-width/2 18px;
+  border-radius: 0;
+  top: 80px;
+  right: 0;
+  margin: 0;
+  background: $colorSidebar; 
+
+  //&:before{ display: none; };
+  &:hover{ background: $colorBody; };
+
+  .icon-bar {
+    background: #a3a3a3 !important;
+    @include box-shadow( 0 1px 0 #fff );
+  }
+}
+
+
+#navbar {
+  position: absolute;
   left: 0;
-  top: 83px;
-  background: $colorHeader;
+  right: 0;
+  top: 84px;
+  padding: 0;
+  background: transparent;
   height: auto \9 !important;
   overflow: visible \9 !important;
   z-index: 9999;
-}
 
-.navbar, 
-.navbar-inner, 
-.nav,
-.navbar-inverse {
-  background: transparent !important;
-  filter: none !important;
-  border: none;
-  padding: 0px;
-  margin: 0;
-  @include box-shadow( none );
-}
-
-.navbar{
-
-  .brand{
-
-    padding: 0;
-    margin: 15px 0 0;
-
-    h1{
-      display: block;
-      width: 225px;
-      height: 115px;
-      text-indent: -9999px;
-      background: url(/images/quien-manda_logo.png) no-repeat 0 0 transparent;
-    }
-
-    &:after, &:before{ display: none; }
-  }
-
-  .nav{
+  .navbar-nav{
     position: absolute;
     left: 84px;
-    right: 232px;
-    padding-left: 146px;
+    right: 222px;
+    padding-left: 140px;
     margin: 0;
     background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
 
     >li{
       background: $colorHeader;
+      margin: 0;
 
       > a {
         color: $colorGray;
         font-family: $fontEconomica;
         font-weight: 600;
-        font-size: 1.25em;
+        font-size: 1.125em;
         line-height: 22px;
-        padding: 16px 10px;
+        padding: $grid-gutter-width/2 8px;
         text-shadow: 0 1px 0 #ffffff;
         @include transition( color 0.3s ease-in-out );
 
@@ -99,20 +112,8 @@ header > .container{
       }
     }
   }
-
-  .btn-navbar{
-  
-    position: relative; 
-    border: none;
-    padding: 19px 16px 18px;
-    border-radius: 0;
-
-    .icon-bar {
-      background: #a3a3a3 !important;
-      @include box-shadow( 0 1px 0 #fff );
-    }
-  }
 }
+
 
 #custom-search-form{
 
@@ -120,13 +121,14 @@ header > .container{
   margin-top: 10px;
   margin-right: 0;
 
-  .input-append{
-    width: 100%;
+  .form-group{
+    margin-bottom: 0;
   }
 
-  .search-query{
+  .form-control{
     color: $colorGray;
-    width: 170px;
+    width: 176px;
+    height: 32px;
     background: darken( $colorBody, 2% );
     padding-right: 8px;
     padding-right: 9px \9;
@@ -147,10 +149,10 @@ header > .container{
     }
   }
 
-  button {
+  .btn-submit{
     border: 0;
     background: none;
-    padding: 4px 8px;
+    padding: 4px 6px;
     margin-top: 5px;
     position: relative;
     left: 0;
@@ -169,8 +171,8 @@ header > .container{
 
 .user-navbar{
   position: absolute;
-  top: 15px;
-  right: 8px;
+  top: $grid-gutter-width/2;
+  right: $grid-gutter-width/2;
   font-size: 0.875em;
 
   > a{

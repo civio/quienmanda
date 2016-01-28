@@ -1,5 +1,6 @@
-/* Color variables
-=================================================================== */
+@import "bootstrap/_variables";
+
+//== Color variables
 
 $colorTitle: #414141;
 $colorHeader: #eef2ea;
@@ -12,10 +13,15 @@ $colorLinkGreen: #8aa304;
 $colorOrange: #ce7a20;
 $colorSecondary: #dde4cd;
 
-// $fontEconomica: 'Economica', sans-serif;;
-// $fontDroid: 'Open Sans', sans-serif;
-// $fontBaskerville: 'Libre Baskerville', serif;
+
+//== Fonts variables
 
 $fontEconomica: 'Source Sans Pro', Helvetica, Arial sans-serif;
 $fontDroid: 'Source Sans Pro', Helvetica, Arial sans-serif;
 $fontBaskerville: 'Source Serif Pro', Georgia, serif;
+
+
+//== Grid system
+
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-md-min;

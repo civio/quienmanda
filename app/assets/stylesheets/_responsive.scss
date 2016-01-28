@@ -1,6 +1,14 @@
 /* Small devices (tablets, 768px and down) */
 @media (max-width: $screen-sm-min) {
 
+  .navbar-toggle{
+    right: -$grid-gutter-width;
+  }
+
+  #custom-search-form .form-control{
+    display: inline-block;
+  }
+  
   #footer{
     text-align: center;
 
@@ -34,13 +42,68 @@
   }  
 }
 
+/* Small & medium devices (mobile, tables, until 992px) */
+@media (max-width: $screen-md-min) {
+
+  #navbar{
+    position: absolute;
+    top: 145px;
+    left: auto;
+    right: $grid-gutter-width/2;
+    height: auto;
+    background: $colorHeader;
+    @include box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
+
+    .navbar-nav{
+      float: none;
+      position: static;
+      padding: 0;
+      margin: 0;
+      right: auto;
+      left: auto;
+
+      >li{
+        float: none;
+        border-bottom: 2px solid $colorBody;
+
+        &:first-child > a{ 
+          padding-top: 15px;
+          border-top: none; 
+        }
+
+        a{
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+
+  #custom-search-form{
+    margin: $grid-gutter-width/2;
+  }
+}
+
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) {
 
+  
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: $screen-lg-min) {
+
+  #navbar .navbar-nav{
+    padding-left: 210px;
+
+    >li{
+      margin: 0 3px;
+
+      > a{
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
 
   #footer .links {
     padding-left: 120px;
@@ -51,15 +114,6 @@
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
 @media (min-width: 1200px) {
-
-  .navbar .nav{ 
-    right: 232px;
-    padding-left: 190px;
-
-    >li > a{
-      padding: 16px;
-    }
-  }
 
   #home-slider-list .item > a{
     padding: 0 15px;
@@ -73,8 +127,6 @@
     padding-right: 30px;
     padding-left: 30px;
   }
-
-  
 
   #wrapper .sidebar.span4 .related-entities-navigation{
     margin: 24px 64px;
@@ -102,58 +154,6 @@
 /* Lower than 979 (tablets devices)
 ====================================================================== */
 @media only screen and (max-width: 979px) {
-
-  .navbar-inverse .navbar-inner{
-    position: relative;
-  }
-
-  .nav-collapse.collapse {
-    position: absolute;
-    top: 146px;
-    left: auto;
-    right: 0;
-    height: 0;
-    @include box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
-  }
-
-  .navbar .btn-navbar{
-    top: 80px;
-    margin: 0;
-    border-left: none;
-    background: $colorSidebar; 
-
-    &:before{ display: none; };
-    &:hover{ background: $colorBody; };
-  }
-
-  .navbar .nav{
-    position: static;
-    padding: 0;
-    margin: 0;
-    right: auto;
-    left: auto;
-
-    >li{ 
-      border-bottom: 2px solid $colorBody;
-
-      &:first-child > a{ 
-        padding-top: 15px;
-        border-top: none; 
-      }
-
-      a{
-        padding: 10px 20px;
-      }
-    }
-  }
-
-  #custom-search-form{
-
-    margin-top: 18px;
-
-    .input-append{ margin-left: 20px; }
-    button{ margin-right: 10px; }
-  }
 
   .subtitle:after{
     display: none;
