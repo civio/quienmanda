@@ -6,26 +6,24 @@
 <!-- end: Page Title -->
 
 <% if @description %>
-<div class="row-fluid topic-description">
-  <p class="span6 offset3"><%= @description %></p>
+<div class="row topic-description">
+  <p class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"><%= @description %></p>
 </div>
 <% end %>
 
 <% if @entity %>
-  <div id="wrapper" class="topic-viz">
-    <div class="row-fluid">
-      <div id="wrapper" class="full span12">
-        <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug %>
-      </div>
-    </div>
+<div id="wrapper" class="topic-viz">
+  <div id="wrapper" class="full">
+    <%= render 'shared/show_entity_viz', path: entity_path(@entity), slug: @entity.slug %>
   </div>
+</div>
 <% end %>
 
 <!-- start: Related Entities -->
 <% if !@related_entities.empty? %>
 <div id="wrapper">
   <div class="title people"><p>Protagonistas</p></div>
-  <div id="wall" class="row-fluid post topic"> 
+  <div id="wall" class="row post topic"> 
     <% @related_entities.each do |entity| %>
       <% if entity.person? %>
       <%= render '/shared/show_person', item: entity, show_square_picture: true %>
@@ -42,7 +40,7 @@
 <% if !@posts.empty? %>
 <div id="wrapper">
   <div class="title article"><p>Artículos</p></div>
-  <div id="wall" class="row-fluid post topic"> 
+  <div id="wall" class="row post topic"> 
     <% @posts.each do |post| %>
       <%= render '/shared/show_post', :item => post %>
     <% end %>
@@ -55,7 +53,7 @@
 <% if !@photos.empty? %>
 <div id="wrapper">
   <div class="title photo"><p>Fotomandón</p></div>
-  <div id="wall" class="row-fluid extra-wall photo topic">
+  <div id="wall" class="row extra-wall photo topic">
     <% @photos.each do |photo| %>
       <%= render partial_name(photo), :item => photo %>
     <% end %>

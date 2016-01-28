@@ -199,11 +199,11 @@
 
       section{
         font-family: $fontDroid;
-        font-size: 12px;
-        line-height: 28px;
+        line-height: $grid-gutter-width;
         color: $colorGray;
         border-left: none;
         border-right: 1px solid $colorBody;
+        font-weight: 400;
       }
     }
 
@@ -272,6 +272,7 @@
           margin: 0;
           border-radius: 0;
           border: 1px solid mix($colorHeaderLink, $colorHeader, 50%);
+          font-weight: 400;
 
           a:hover{
             color: $colorLinkGreen;

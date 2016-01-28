@@ -86,7 +86,7 @@
       display: none;
     }
     &:after{
-      left: 12px;
+      left: 0;
     }
   }
 }
@@ -95,9 +95,8 @@
 #wrapper{
 
   .title{
-
     position: relative;
-    margin: 0 0 2*$grid-gutter-width;;
+    margin: 0 0 2*$grid-gutter-width;
     
     &:before{
       display: block;
@@ -114,10 +113,10 @@
       content: "";
       position: absolute;
       z-index: -1;
-      height: 3px;
-      top: 10px;
+      height: 5px;
+      top: 16px;
       left: 82px;
-      right: 12px;
+      right: 0;
       border-top: 1px solid #fafafa;
       border-bottom: 1px solid #fafafa;
     }
@@ -755,7 +754,14 @@
       // };
 
       ul{
-        padding: 0;
+        padding: $grid-gutter-width/2 0;
+        border-top: 1px solid #fafafa;
+
+        // This styly is only in related-entities inside posts
+        &.row{
+          padding: 0;
+          border: none;
+        }
       }
 
       h3{

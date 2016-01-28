@@ -1,19 +1,17 @@
 <!-- start: Page Title -->
-<div class="row-fluid">
 <div id="page-title" class="centered">
   <h2>Log in to your account</h2>
-</div>
 </div>
 <!-- end: Page Title -->
 
 <!--start: Wrapper-->
-<div class="row-fluid">
-<div id="wrapper" class="full login-container lr-page span4 offset4">
+<div class="row">
+<div id="wrapper" class="full login-container lr-page col-sm-4 col-sm-offset-4">
   
   <!-- start: Row -->
-  <div class="row-fluid">
+  <div class="row">
     
-    <div id="login-form" class="span12">
+    <div id="login-form" class="col-sm-12">
       <div class="page-title-small">
         <h3>use your account</h3>
       </div>
@@ -28,34 +26,28 @@
       </div>
       
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+   
+        <%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'email' %>
+          
+        <%= f.password_field :password, :class => 'form-control', :placeholder => 'password' %>
 
-        <div class="row-fluid">
-            
-          <%= f.email_field :email, :autofocus => true, :class => 'span12', :placeholder => 'email' %>
-            
-          <%= f.password_field :password, :class => 'span12', :placeholder => 'password' %>
-                          
+        <% if devise_mapping.rememberable? -%>
+        <div class="remember pull-left">
+          <%= f.check_box :remember_me, :value => '1' %> Remember me
         </div>
-        
-        <div class="row-fluid">
-            
-          <% if devise_mapping.rememberable? -%>
-          <div class="remember">
-            <%= f.check_box :remember_me, :value => '1' %> Remember me
-          </div>
-          <% end -%>
+        <% end -%>
 
-          <%- if devise_mapping.recoverable? %>
-          <div class="forgot">
-            <%= link_to "Forgot password?", new_password_path(resource_name) %>
-          </div>
-          <% end -%>
-                          
-        </div>  
+        <%- if devise_mapping.recoverable? %>
+        <div class="forgot pull-right">
+          <%= link_to "Forgot password?", new_password_path(resource_name) %>
+        </div>
+        <% end -%>
+
+        <div class="clearfix"></div>
 
         <div class="actions">
           
-          <%= f.submit "Sign in", :class => 'btn span12' %>
+          <%= f.submit "Sign in", :class => 'btn btn-primary' %>
 
           <!-- <%= render "devise/shared/links" %> -->
           

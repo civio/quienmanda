@@ -8,4 +8,6 @@
 
 <%= render '/shared/mixed_wall', items: @results.map {|r| r.searchable } %>
 
-<%= paginate @results %>
+<div class="row text-center">
+  <%= paginate @results %>
+</div>

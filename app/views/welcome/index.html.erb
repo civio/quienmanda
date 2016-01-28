@@ -87,10 +87,10 @@
   <div class="title article"><p>Artículos recientes</p></div>
 
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid">
+  <div id="wall" class="row">
             
     <% @posts.each do |post| %>
-      <%= render '/shared/show_post', :item => post, :span => 'span6', :frontpage => 'true' %>
+      <%= render '/shared/show_post', :item => post, :span => 'col-sm-6', :frontpage => 'true' %>
     <% end %>
 
   </div>
@@ -111,7 +111,7 @@
   <div class="title photo"><p>Las últimas del Fotomandón</p></div>
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid extra-wall photo">
+  <div id="wall" class="row extra-wall photo">
             
     <% @photos.each do |photo| %>
       <%= render '/shared/show_photo', :item => photo %>
