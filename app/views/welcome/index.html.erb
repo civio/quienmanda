@@ -20,7 +20,9 @@
           <% end %>
           <div class="carousel-caption">
             <%= link_to post do %>
-              <h3><%= post.title %></h3>
+              <h3>
+                <span><%= post.title %></span>
+              </h3>
             <% end %>
             <p><%= post.lead %></p>
           </div>
@@ -38,7 +40,9 @@
           <% end %>
           <div class="carousel-caption">
             <%= link_to topic do %>
-              <h3><%= topic.title %></h3>
+              <h3>
+                <span><%= topic.title %></span>
+              </h3>
               <% unless topic.description.blank? %>
                 <p><%= topic.description %></p>
               <% end %>

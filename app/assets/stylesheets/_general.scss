@@ -66,6 +66,17 @@ input, button, select, textarea{ font-family: $fontDroid; }
 /* Layout
 =================================================================== */
 
+.label.admin-action{
+  background: $colorGray;
+  padding: 3px 6px;
+  font-size: 0.625em;
+  font-weight: 600;
+}
+
+.admin-link a:hover .label.admin-action{
+  background: #333;
+}
+
 .row.no-gutters {
   margin-right: 0;
   margin-left: 0;

@@ -85,12 +85,18 @@
   }
 
   .carousel-caption{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $grid-gutter-width/2;
+    text-align: left;
     background: rgba(255,255,255,0.8);
     text-shadow: 0 1px 0 #ffffff;
 
     p{
       color: #000;
       margin-top: 8px;
+      margin-bottom: 0;
     }
 
     a{
@@ -98,8 +104,16 @@
         font-size: 1.75em;
         font-family: $fontBaskerville;
         font-weight: 600;
-        line-height: 1.5em;
-        @include titleBorder();
+        line-height: 1.25em;
+        padding-left: 3px;
+        border-left: 1px solid $colorTextGreen;
+        //@include titleBorder();
+
+        span{
+          display: block;
+          padding-left: 8px;
+          border-left: 1px solid $colorTextGreen;
+        }
       }
 
       &:hover{
@@ -137,6 +151,7 @@
     > a{
       font-family: $fontBaskerville;
       font-size: 1.25em;
+      line-height: 1.25em;
       font-weight: 600;
       display: block;
       position: relative;

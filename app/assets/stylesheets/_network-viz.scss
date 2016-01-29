@@ -270,12 +270,12 @@ g.node.cat-2 circle{
 
 path.link {
   fill: none;
-  stroke: #999; //#a6b398;
+  stroke: #aaa; // #999; //#a6b398;
   stroke-width: 2px;
 
   &:hover{
     fill: none;
-    stroke: $personColor;
+    stroke: #999; //$personColor;
     stroke-width: 3px;
   }
 }
