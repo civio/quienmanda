@@ -837,8 +837,8 @@
 
             &:hover{
               text-decoration: none;
-              color: $colorGray;
-            };
+              color: $colorTextGreen;
+            }
           }
           
           small{
@@ -929,29 +929,38 @@
   }
 }
 
+
 // Upload Photo Modal
 #upload-photo-modal{
+  background: transparent;
+
+  .modal-content{
+    background: $colorHeader;
+    border: none;
+    border-radius: 0;
+  }
 
   .modal-body{
     padding: 0;
-    max-height: 450px;
+    //max-height: 450px;
   }
 
   form{
-    margin: 0;
+     padding: 0 2*$grid-gutter-width $grid-gutter-width;
 
     fieldset{
-      margin: 2px 10px;
+      margin-bottom: $grid-gutter-width/2;
     }
 
     legend{
       color: $colorLinkGreen;
       text-align: center;
-      font-size: 18px;
+      font-size: 1.5em;
       font-weight: 600;
       //line-height: 1em;
       //padding-bottom: 15px;
-      margin-bottom: 20px;
+      padding: $grid-gutter-width/2;
+      margin-bottom: $grid-gutter-width/2;
       border-color: white;
     }
 
@@ -964,23 +973,16 @@
       color: $colorGray;
     }
 
+    .control-label{
+      font-weight: 400;
+    }
+
     .help-block{    
       font-size: 0.75em;
       margin: 0;
       line-height: 1.5em;
     }
   }
-
-  /*
-  .modal-body{
-    overflow: hidden;
-
-    form{
-      height: 0;
-      margin: 0;
-    }
-  }
-  */
 
   #upload-photo-btn-select{
     display: block;
@@ -1001,48 +1003,49 @@
     }
   }
 
-  .modal-footer{
-    .btn{
-      color: $colorGray;
-      border: none;
-      background: $colorHeader;
-      padding: 2px 8px;
-      line-height: 24px;
-      border-radius: 0;
-      @include box-shadow( none );
+  .btn{
+    color: $colorGray;
+    border: none;
+    font-size: 1em;
+    background: white;
+    padding: 2px $grid-gutter-width/2;
+    line-height: $grid-gutter-width;
+    border-radius: 0;
+    @include box-shadow( none );
 
-      .icon{
-        font-size: 1.25em;
-        margin-right: 0.1em;
-        color: $colorLinkGreen;
+    .icon{
+      font-size: 1.25em;
+      margin-right: 0.1em;
+      color: $colorLinkGreen;
 
-        &:before{
-          vertical-align: middle;
-        }
-      }
-
-      &:hover{
-        color: $colorLinkGreen;
+      &:before{
+        vertical-align: middle;
       }
     }
 
-    .btn.btn-primary{
+    &:hover{
+      color: $colorLinkGreen;
+    }
+  }
+
+  .btn.btn-primary{
+    color: white;
+    text-shadow: none;
+    background: $colorLinkGreen;
+    margin-right: 8px;
+    font-weight: 600;
+
+    &:hover{
       color: $colorGray;
-      text-shadow: none;
-      background: white;
+    }
+
+    &.disabled{
+      //color: $colorGray;
+      background: $colorHeader; // mix( $colorHeader, $colorSecondary, 50% );
+      opacity: 0.5;
 
       &:hover{
-        color: $colorLinkGreen;
-      }
-
-      &.disabled{
-        //color: $colorGray;
-        background: $colorHeader; // mix( $colorHeader, $colorSecondary, 50% );
-        opacity: 0.5;
-
-        &:hover{
-          color: $colorGray;
-        }
+        color: $colorGray;
       }
     }
   }
