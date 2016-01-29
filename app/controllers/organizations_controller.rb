@@ -35,6 +35,8 @@ class OrganizationsController < ApplicationController
       @relations = (can? :manage, Entity) ? @organization.relations : @organization.relations.published
       # Order relations both by date at and by date from
       @relations = @relations.order("greatest(relations.from, relations.at) asc")
+      
+      @related_topics = Topic.find_all_by_slug( @organization.tag_list )
 
       # Facebook Open Graph metadata
       @fb_description = @organization.description unless @organization.description.blank?
