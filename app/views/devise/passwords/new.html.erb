@@ -1,38 +1,36 @@
 <!-- start: Page Title -->
-<div class="row-fluid">
-<div id="page-title" class="span12 centered">
+<div class="row">
+<div id="page-title" class="col-sm-12 centered">
   <h2>Forgot your password?</h2>
 </div>
 </div>
 <!-- end: Page Title -->
 
 <!--start: Wrapper-->
-<div class="row-fluid">
-	<div id="wrapper" class="full login-container lr-page span4 offset4">
+<div class="row">
+	<div id="wrapper" class="full login-container lr-page col-sm-4 col-sm-offset-4">
 	  
 	  <!-- start: Row -->
-	  <div class="row-fluid">
+	  <div class="row">
 	    
-	    <div id="login-form" class="span12">
+	    <div id="login-form" class="col-sm-12">
 
 	    	<div class="page-title-small">
 	        <h3>enter your email</h3>
 	      </div>
 
 				<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-		  	<%= devise_error_messages! %>
+		  		<%= devise_error_messages! %>
 
-				<div class="row-fluid">
-					<%= f.email_field :email, :autofocus => true, :class => 'span12', :placeholder => 'email' %>
+					<%= f.email_field :email, :autofocus => true, :class => 'form-control col-sm-12', :placeholder => 'email' %>
+					<p>&nbsp;</p>
+				  <%= f.submit "Send me reset password instructions", :class => 'btn btn-primary col-sm-12' %>
+				  <p>&nbsp;</p>
+				<% end %>
 
-				  	<div><%= f.submit "Send me reset password instructions", :class => 'btn span12' %></div>
-					<% end %>
-
-					<div class="links">
-						<%= render "devise/shared/links" %>
-					</div>
+				<div class="links">
+					<%= render "devise/shared/links" %>
 				</div>
-
 			</div>
 		    
 		</div>

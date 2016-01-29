@@ -188,10 +188,6 @@
     @include boxStyle();
   }
 
-  .posts.span8{
-    background: #fff;
-  }
-
   .posts .post{
 
     position: relative;
@@ -398,70 +394,12 @@
 
       .item{
         padding: 0;
+        margin: 0;
 
         .picture{
           margin: 0;
         }
       }
-
-      /*
-      .item{
-        float: left;
-        background: #fff;
-        width: 100%;
-        margin-bottom: $grid-gutter-width;
-        margin-right: 2%;
-        padding: 0;
-        -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-        -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-        box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-
-        a{
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out;
-          -ms-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;
-        }
-
-        h3{
-          font-size: 1.25em;
-          font-family: $fontBaskerville !important;
-          font-weight: bold !important;
-          line-height: 1.375em;
-          padding-left: 3px;
-          margin: 12px 12px 8px 58px;
-          min-height: 56px;
-          border-left: 1px solid $colorLinkGreen;
-
-          a{
-            display: block;
-            color: $colorGray;
-            min-height: 56px;
-            padding-left: 10px;
-            border-left: 1px solid $colorLinkGreen;
-
-            &:hover{
-              color: $colorLinkGreen;
-              text-decoration: none;
-            }
-          }
-        }
-
-        a.image:hover{
-          @include opacity( 0.8 );
-        }        
-
-        .description{
-          clear: both;
-          float: none;
-
-          p{
-            display: none;
-          }
-        }
-      }
-      */
     }
 
     .post-end-image{

@@ -10,7 +10,7 @@
   </div>
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid post">
+  <div id="wall" class="row post">
     <% @user.find_liked_items.each do |photo| %>
       <%= render '/shared/show_photo', :item => photo %>
     <% end %>
