@@ -84,6 +84,13 @@ jQuery.noConflict();
         if (timesheet.items.length < 2) {
           $('#entity-timesheet-container').hide();
         }
+        else{
+          $(window).scroll(function(){
+            var top = $(window).scrollTop() - $('#entity-timesheet').offset().top;
+            top = (top >= 0) ? top : 0;
+            $('#entity-timesheet .scale').css('top', top);
+          });
+        }
       }
     }
 
