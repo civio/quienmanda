@@ -1,8 +1,6 @@
 <!-- start: Page Title -->
 <div id="page-title" class="people single">
-
   <h2><%= entity.short_or_long_name %></h2>
-
 </div>
 <!-- end: Page Title -->
 <div class="sharing-right">
@@ -48,7 +46,7 @@
 <%= render 'shared/relations_list', item: entity, list: @relations %>
 
 <%= render 'shared/mixed_wall', 
-            items: entity.related_posts+entity.related_photos, 
+            items: @related_topics+entity.related_posts+entity.related_photos,
             extra_wrapper_css: 'tight' %>
 
 <%= render 'shared/show_embed_code_modal' %>

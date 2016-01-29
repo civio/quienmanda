@@ -4,7 +4,7 @@
   <!-- start: Portfolio -->
   <div id="wall" class="row">
     <% items.each do |item| %>
-      <%= render partial_name(item), :item => item, :span => ( item.class.name == 'Post' ) ? 'col-sm-12 col-md-6 col-lg-6' : 'col-sm-6 col-md-4 col-lg-3' %>
+      <%= render partial_name(item), :item => item, :span => ( item.class.name == 'Post' || item.class.name == 'Topic' ) ? 'col-sm-12 col-md-4 col-lg-6' : 'col-sm-6 col-md-4 col-lg-3' %>
     <% end %>
 
   </div>
