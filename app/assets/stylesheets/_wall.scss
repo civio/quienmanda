@@ -19,7 +19,7 @@
       font-weight: 700 !important;
       line-height: 1.25em;
       //padding-left: 3px;
-      padding: 16px;
+      padding: $grid-gutter-width/2;
       margin: 0;
       //min-height: 56px;
       //border-left: 1px solid $colorTextGreen;
@@ -122,7 +122,7 @@
         margin-top: 2px;
 
         p{ 
-          padding: 2px 16px 0;
+          padding: 2px $grid-gutter-width/2 0;
         }
 
         .picture-meta{
@@ -141,7 +141,7 @@
         .credits{
           display: block;
           width: 100%;
-          padding: 0 16px 10px;
+          padding: 0 $grid-gutter-width/2 10px;
           margin: 0;
           font-size: 0.875em;
           font-family: $fontDroid;

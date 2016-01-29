@@ -119,8 +119,8 @@ body > .container.container-widget{
 }
 
 #wrapper {
-  margin-top: 48px;
-  margin-bottom: 30px;
+  margin-top: 1.5*$grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
 
   &.full{ 
     margin-top: 0;
