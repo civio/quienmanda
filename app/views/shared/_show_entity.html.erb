@@ -45,6 +45,12 @@
 
 <%= render 'shared/relations_list', item: entity, list: @relations %>
 
+<div id="wrapper">
+  <div class="title article">
+    <p>Artículos, fotos y temas relacionados</p>
+  </div>
+</div>
+
 <%= render 'shared/mixed_wall', 
             items: @related_topics+entity.related_posts+entity.related_photos,
             extra_wrapper_css: 'tight' %>
