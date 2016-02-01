@@ -99,7 +99,12 @@
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) {
 
-  
+  // Limmit posts width to 960px
+  #wrapper .row > .posts{
+    width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 /* Large devices (large desktops, 1200px and up) */
