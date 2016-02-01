@@ -764,7 +764,7 @@
             width: 100%;
             color: $colorTitle;
             font-weight: 600;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
 
             &:hover{
               text-decoration: none;
@@ -773,8 +773,9 @@
           }
           
           small{
+            display: block;
             font-size: 0.875em;
-            line-height: 1em;
+            line-height: 1.375em;
           }
         }
 
@@ -837,6 +838,27 @@
 
       //   @include box-shadow( 0px 0px 12px rgba(0, 0, 0, 1) );
       // }
+    }
+  }
+}
+
+// Center Related Entities Layout included in Posts
+#wrapper .post-content .sidebar .related-entities{
+
+  h3{
+    text-align: center;
+  }
+  
+  li{
+    text-align: center;
+
+    .picture{
+      position: static;
+      margin: 0 auto 8px;
+    }
+
+    .content{
+      margin-left: 0;
     }
   }
 }
