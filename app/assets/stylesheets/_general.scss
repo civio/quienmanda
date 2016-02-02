@@ -414,10 +414,17 @@ iframe.quienmanda-embed{
 =================================================================== */
 
 
-.modal{
+.modal-content{
   background: $colorHeader;
   border: none;
   border-radius: 0;
+  font-size: 1.125em;
+}
+
+.modal-header{
+  padding: $grid-gutter-width/3 $grid-gutter-width/2;
+  min-height: auto;
+  border: none;
 }
 
 .modal-footer{
