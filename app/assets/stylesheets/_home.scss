@@ -199,7 +199,7 @@
             top: 50%;
             width: 38px;
             height: 40px;
-            margin-top: -19px;
+            margin-top: -20px;
             overflow: hidden;
             background: url(/images/sprites-small.png) no-repeat 0 0 transparent;
 
@@ -235,6 +235,7 @@
   &.slides-5{
     .item > a{
       height: 90px;
+      font-size: 1.125em;
     }
   }
 }
