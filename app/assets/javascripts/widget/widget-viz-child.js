@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require ./pym.min.js
-//= require ../bootstrap.min.js
+//= require bootstrap-sprockets
 //= require ../spin.min.js
 //= require_directory ../viz
 //= require ../custom.js
