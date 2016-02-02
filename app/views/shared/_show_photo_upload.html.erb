@@ -1,3 +1,7 @@
 <% unless photo.nil? %>
-  <a class="upload-btn" href="#upload-photo-modal" data-toggle="modal" title="Subir una foto"><i class="icon-upload"></i> Subir una foto</a>
+  <% if current_user.nil? %>
+    <a class="upload-btn" href="<%= new_user_session_path(:redirect => request.fullpath) %>" title="Subir una foto"><i class="icon-upload"></i> Subir una foto</a>
+  <% else %>
+    <a class="upload-btn" href="#upload-photo-modal" data-toggle="modal" title="Subir una foto"><i class="icon-upload"></i> Subir una foto</a>
+  <% end %>
 <% end %>

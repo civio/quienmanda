@@ -18,7 +18,6 @@
     <a href="#" id="control-zoom-reset" data-toggle="tooltip" data-placement='bottom' data-original-title='Volver a la posición inicial'>
       <i class="icon-repeat"></i>
     </a>
-    <% if current_user and current_user.admin? %>
     <a href="#" id="control-history-undo" class="disabled" data-toggle="tooltip" data-placement='bottom' data-original-title='Deshacer la última acción'>
       <i class="icon-step-backward"></i>
     </a>
@@ -29,7 +28,6 @@
     <a href="#embed-code-modal" id="control-embed" data-url="<%= slug %>" data-toggle="modal" data-placement='bottom' data-original-title='Código para embeber la visualización'>
       <i class="icon-fontello-code"></i>
     </a>
-    <% end %>
     <% end %>
     <a href="#" id="control-help" data-toggle="tooltip" data-placement='bottom' data-html='true' data-original-title='Mueve los nodos para organizar tu propia visualización y haz click en ellos para expandirlos y mostrar otras entidades relacionadas.<br/>Si quieres más información sobre una persona, organismo o qué tipo de relación les une (líneas) pasa el puntero por encima de ellos.'>
       <i class="icon-question-sign"></i>
