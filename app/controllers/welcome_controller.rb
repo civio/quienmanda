@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
     @posts = @posts.where(featured: false).includes(:photo).order("published_at DESC").limit(5)
 
     # ...and photos
-    @photos = (can? :manage, Photo) ? Photo.all : Photo.published
+    @photos = (can? :manage, Photo) ? Photo.all : Photo.published.validated
     @photos = @photos.order("updated_at DESC").limit(6)
  
     # FIXME: Should check that web doesn't break if there're none of them, i.e. without seed data.   
