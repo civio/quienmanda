@@ -1,0 +1,64 @@
+/* Mixins
+=================================================================== */
+
+@mixin titleBorder()
+{
+
+  &:before{
+    float: left;
+    content: "";
+    display: block;
+    width: 5px;
+    height: 1.375em;
+    border-left: 1px solid $colorTextGreen;
+    border-right: 1px solid $colorTextGreen;
+    margin-right: 0.3em; //8px;
+  }
+}
+
+@mixin boxStyle()
+{
+  background: #f9f9f9;
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05)  );
+}
+
+/*
+
+@mixin opacity( $val )
+{
+  $val100: 100 * $val;
+  filter: alpha(opacity=$val100);
+  -moz-opacity: $val;
+  -khtml-opacity: $val;
+  opacity: $val;
+}
+
+@mixin border-radius( $radius )
+{
+  -webkit-border-radius: $radius;   
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition( $params )
+{
+  -webkit-transition: $params;
+  -moz-transition: $params;
+  -o-transition: $params;
+  -ms-transition: $params;
+  transition: $params;
+}
+
+// Mixin itself
+@mixin clearfix()
+{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+*/

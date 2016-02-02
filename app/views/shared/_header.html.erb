@@ -1,15 +1,18 @@
 <header>
   <div class="container">
-    <div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <%= link_to '<h1>Quien Manda</h1>'.html_safe, root_path, class: 'brand' %>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to '<h1>Quien Manda</h1>'.html_safe, root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse" aria-expanded="false">
+          <ul class="nav navbar-nav">
             <li class="<%= 'active' if controller.controller_name == 'posts' %>"><%= link_to 'Artículos', posts_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'photos' %>"><%= link_to 'Fotomandón', photos_path %></li>
             <li class="<%= 'active' if controller.controller_name == 'people' %>"><%= link_to 'Personas', people_path %></li>
@@ -17,19 +20,20 @@
             <li class="<%= 'active' if controller.controller_name == 'topics' %>"><%= link_to 'Temas', topics_path %></li>
           </ul>
           <%= form_tag search_path, :id => 'custom-search-form', 
-                                      :class => 'form-search form-horizontal pull-right', 
-                                      :method => 'get' do %>
-              <div class="input-append span2">
-                <%= text_field_tag  :q, 
-                                    params[:q], 
-                                    :class => 'search-query', 
-                                    :placeholder => 'Busca...' %>
-                <button type="submit" class="btn"><i class="icon-search"></i></button>
-              </div>
-            <% end %>
+                                    :class => 'form-search form-inline pull-right', 
+                                    :method => 'get' do %>
+
+            <div class="form-group">
+              <%= text_field_tag  :q, 
+                                  params[:q], 
+                                  :class => 'form-control', 
+                                  :placeholder => 'Busca...' %>
+              <button type="submit" class="btn btn-submit"><i class="icon-search"></i></button>
+            </div>
+          <% end %>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="user-navbar">
       <%# User is logged out %>

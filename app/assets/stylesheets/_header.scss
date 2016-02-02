@@ -1,0 +1,212 @@
+/* Header
+=================================================================== */
+
+body > header{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 145px;
+  background: $colorHeader;
+  z-index: 1000;
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
+}
+
+header > .container{
+  position: relative;
+}
+
+.navbar-header{
+  width: 100%;
+}
+
+.navbar-brand{
+
+  padding: 0;
+  margin: $grid-gutter-width/2 0 0;
+
+  h1{
+    display: block;
+    width: 225px;
+    height: 115px;
+    text-indent: -9999px;
+    background: url(/images/quien-manda_logo.png) no-repeat 0 0 transparent;
+  }
+
+  &:after, &:before{ display: none; }
+}
+
+.navbar-toggle{
+  position: relative; 
+  border: none;
+  padding: 19px $grid-gutter-width/2 18px;
+  border-radius: 0;
+  top: 80px;
+  right: 0;
+  margin: 0;
+  background: $colorSidebar; 
+
+  //&:before{ display: none; };
+  &:hover{ background: $colorBody; };
+
+  .icon-bar {
+    background: #a3a3a3 !important;
+    @include box-shadow( 0 1px 0 #fff );
+  }
+}
+
+
+#navbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 84px;
+  padding: 0;
+  background: transparent;
+  height: auto \9 !important;
+  overflow: visible \9 !important;
+  z-index: 9999;
+
+  .navbar-nav{
+    position: absolute;
+    left: 84px;
+    right: 222px;
+    padding-left: 140px;
+    margin: 0;
+    background: url(/images/nav-pattern.png) repeat-x 0 25px transparent !important;
+
+    >li{
+      background: $colorHeader;
+      margin: 0;
+
+      > a {
+        color: $colorGray;
+        font-family: $fontEconomica;
+        font-weight: 600;
+        font-size: 1.125em;
+        line-height: 22px;
+        padding: $grid-gutter-width/2 8px;
+        text-shadow: 0 1px 0 #ffffff;
+        @include transition( color 0.3s ease-in-out );
+
+        &:hover{ 
+          color: $colorHeaderLink;
+          background-color: transparent !important;
+        }
+      }
+
+      &.active{
+        > a{
+          color: $colorHeaderLink;
+
+          &:hover{
+            color: $colorGray;
+            @include box-shadow( none );
+          }
+        }
+
+        > a,
+        > a:focus{
+          background-color: transparent !important; 
+          @include box-shadow( none );
+        }
+      }
+    }
+  }
+}
+
+
+#custom-search-form{
+
+  padding: 0;
+  margin-top: 10px;
+  margin-right: 0;
+
+  .form-group{
+    margin-bottom: 0;
+  }
+
+  .form-control{
+    color: $colorGray;
+    width: 176px;
+    height: 32px;
+    background: darken( $colorBody, 2% );
+    padding-right: 8px;
+    padding-right: 9px \9;
+    padding-left: 8px;
+    padding-left: 9px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    border-radius: 0;
+    border: 1px solid #d3d9cd;
+    margin-top: 3px;
+    padding-top: 3px;
+    @include box-shadow( none );
+
+    &:focus + button { z-index: 3; }
+    &:focus{ 
+      border-color: #aaa; 
+      background: $colorBody; 
+    }
+  }
+
+  .btn-submit{
+    border: 0;
+    background: none;
+    padding: 4px 6px;
+    margin-top: 5px;
+    position: relative;
+    left: 0;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    @include box-shadow( none );
+
+    .icon-search{
+      color: $colorHeaderLink;
+      font-size: 18px;
+    }
+
+    &:hover .icon-search{ color: $colorGray; }
+  }
+}
+
+.user-navbar{
+  position: absolute;
+  top: $grid-gutter-width/2;
+  right: $grid-gutter-width/2;
+  font-size: 0.875em;
+
+  > a{
+    float: right;
+    color: $colorGray;
+    margin-left: 6px;
+    line-height: 1em;
+    font-weight: 600;
+
+    &:hover{
+      color: $colorHeaderLink;
+      text-decoration: none;
+    }
+  }
+
+  .icon-fontello-user:before{
+    color: $colorHeaderLink;
+  }
+
+  > p{
+    float: right;
+    color: $colorGray;
+    line-height: 1em;
+    padding-right: 6px;
+    border-right: 1px solid $colorHeaderLink;
+  }
+
+  a{
+    color: $colorGray;
+    font-weight: 600;
+
+    &:hover{
+      color: $colorHeaderLink;
+      text-decoration: none;
+    }
+  }
+}

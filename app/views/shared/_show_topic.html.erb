@@ -1,26 +1,29 @@
 <% if item.published or (can? :manage, item) %>
-<div class="<%= defined?(span) ? span : 'span4' %> item topic">
-  <%# Template for mixed wall %>
-  <% if defined? mixed and mixed %>
-    <h3><a href="<%= topic_path(item) %>" title="<%= item.title %>"><%= item.title %></a></h3>
-    <div class="image-container">
-      <a class="image" href="<%= topic_path(item) %>" title="<%= item.title %>">
-        <%= image_tag(item.photo && item.photo.file.url(:small))%>
-      </a>
-    </div>
-  </a>
-  <%# Template for Topics home %>
-  <% else %>
-  <a href="<%= topic_path(item) %>" class="picture">
-    <div class="image-container">
-      <div class="image">
-        <%= image_tag(item.photo && item.photo.file.url(:small))%>
+<div class="item-cont <%= (defined? span) ? span : 'col-xs-12 col-sm-6 col-md-4' %>"> 
+  <div class="item topic">
+
+    <%# Template for mixed wall %>
+    <% if defined? mixed and mixed %>
+      <h3><a href="<%= topic_path(item) %>" title="<%= item.title %>"><%= item.title %></a></h3>
+      <div class="image-container">
+        <a class="image" href="<%= topic_path(item) %>" title="<%= item.title %>">
+          <%= image_tag(item.photo && item.photo.file.url(:small))%>
+        </a>
       </div>
-    </div>
-    <span class="hover"></span>
-    <h3><%= item.title %></h3>
-  </a>  
-  <% end %>
-  <%= render 'shared/show_admin_links', :item => item %>
+    </a>
+    <%# Template for Topics home %>
+    <% else %>
+    <a href="<%= topic_path(item) %>" class="picture">
+      <div class="image-container">
+        <div class="image">
+          <%= image_tag(item.photo && item.photo.file.url(:small))%>
+        </div>
+      </div>
+      <span class="hover"></span>
+      <h3><%= item.title %></h3>
+    </a>  
+    <% end %>
+    <%= render 'shared/show_admin_links', :item => item %>
+  </div>
 </div>
 <% end %>

@@ -1,92 +1,92 @@
-<% unless photo.nil? or current_user.nil? %>
-          
-  <div id="upload-photo-modal" class="modal hide fade" tabindex="-1" aria-hidden="true">
-    <div class="modal-body">
-      <%= form_for Photo.new, html: {class: "form-horizontal"} do |f| %>
-        <fieldset>
-          <legend>Sube una foto al Fotomandón</legend>
+<% unless photo.nil? or current_user.nil? %>       
+  <div id="upload-photo-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= form_for Photo.new, html: {class: "form-horizontal"} do |f| %>
+            <fieldset>
+              <legend>Sube una foto al Fotomandón</legend>
 
-          <input type="hidden" id="photo_author_id" name="photo[author_id]" value="<%= current_user.id %>" />
+              <input type="hidden" id="photo_author_id" name="photo[author_id]" value="<%= current_user.id %>" />
 
-          <div class="control-group">
-            <label class="control-label" for="photo_file">Imágen</label>
-            <div class="controls">
-              <%= f.file_field(:file, accept: 'image/png,image/gif,image/jpeg') %>
-            </div>
-          </div>
+              <div class="control-group">
+                <label class="control-label" for="photo_file">Imágen</label>
+                <div class="controls">
+                  <%= f.file_field(:file, accept: 'image/png,image/gif,image/jpeg') %>
+                </div>
+              </div>
 
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_footer">Footer</label>
-            <div class="controls">
-               <%= f.text_area(:footer, cols: 48, rows: 3) %>
-              <span class="help-block">Opcional</span>
-            </div>
-          </div>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_footer">Footer</label>
+                <div class="controls">
+                   <%= f.text_area(:footer, cols: 48, rows: 3) %>
+                  <span class="help-block">Opcional</span>
+                </div>
+              </div>
 
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_copyright">Copyright</label>
-            <div class="controls">
-              <%= f.text_field(:copyright, size: 50, maxlength: 255) %>
-              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
-            </div>
-          </div>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_copyright">Copyright</label>
+                <div class="controls">
+                  <%= f.text_field(:copyright, size: 50, maxlength: 255) %>
+                  <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+                </div>
+              </div>
 
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_source">Fuente</label>
-            <div class="controls">
-              <%= f.url_field(:source, size: 50, maxlength: 255) %>
-              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
-            </div>
-          </div>
-        </fieldset>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_source">Fuente</label>
+                <div class="controls">
+                  <%= f.url_field(:source, size: 50, maxlength: 255) %>
+                  <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+                </div>
+              </div>
+            </fieldset>
 
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
-          <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
-        </div>
-      <% end %>
+            <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
+          <% end %>
       
-      <!--
-      <form id="upload-photo-form" class="form-horizontal" action="/admin/photo/new" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-        <fieldset>
-          <legend>Sube una foto al Fotomandón</legend>
-          <input name="utf8" type="hidden" value="✓">
-          <input name="authenticity_token" type="hidden" value="HU/zijKlhavgEtdo2u5RpldY3kl0bqpp3Icoh3TTfr4=">
-          <div class="control-group">
-            <label class="control-label" for="photo_file">Imágen</label>
-            <div class="controls">
-              <input data-fileupload="true" id="photo_file" name="photo[file]" type="file">
+          <!--
+          <form id="upload-photo-form" class="form-horizontal" action="/admin/photo/new" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+            <fieldset>
+              <legend>Sube una foto al Fotomandón</legend>
+              <input name="utf8" type="hidden" value="✓">
+              <input name="authenticity_token" type="hidden" value="HU/zijKlhavgEtdo2u5RpldY3kl0bqpp3Icoh3TTfr4=">
+              <div class="control-group">
+                <label class="control-label" for="photo_file">Imágen</label>
+                <div class="controls">
+                  <input data-fileupload="true" id="photo_file" name="photo[file]" type="file">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_footer">Footer</label>
+                <div class="controls">
+                  <textarea cols="48" data-options="{}" data-richtext="false" id="photo_footer" name="photo[footer]" rows="3"></textarea>
+                  <span class="help-block">Opcional</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_copyright">Copyright</label>
+                <div class="controls">
+                  <input id="photo_copyright" maxlength="255" name="photo[copyright]" size="50" type="text">
+                  <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" class="control-label" for="photo_source">Fuente</label>
+                <div class="controls">
+                  <input id="photo_source" maxlength="255" name="photo[source]" size="50" type="text">
+                  <span class="help-block">Opcional. Hasta 255 carácteres.</span>
+                </div>
+              </div>
+            </fieldset>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_footer">Footer</label>
-            <div class="controls">
-              <textarea cols="48" data-options="{}" data-richtext="false" id="photo_footer" name="photo[footer]" rows="3"></textarea>
-              <span class="help-block">Opcional</span>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_copyright">Copyright</label>
-            <div class="controls">
-              <input id="photo_copyright" maxlength="255" name="photo[copyright]" size="50" type="text">
-              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" class="control-label" for="photo_source">Fuente</label>
-            <div class="controls">
-              <input id="photo_source" maxlength="255" name="photo[source]" size="50" type="text">
-              <span class="help-block">Opcional. Hasta 255 carácteres.</span>
-            </div>
-          </div>
-        </fieldset>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-disable-with="Enviando" name="_save" type="submit"><i class="icon-white icon-ok"></i> Enviar</button>
-          <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
+          </form>
+          -->
         </div>
-      </form>
-      -->
-    
+      </div>
     </div>
   </div>
 <% end %>

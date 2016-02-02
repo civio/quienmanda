@@ -1,0 +1,286 @@
+/* Small devices (tablets, 768px and down) */
+@media (max-width: $screen-sm-min) {
+
+  .navbar-toggle{
+    right: -$grid-gutter-width;
+  }
+
+  #custom-search-form .form-control{
+    display: inline-block;
+  }
+  
+  #footer{
+    text-align: center;
+
+    .about .logos{
+      float: none;
+    }
+
+    .links {
+      padding-left: 0;
+      padding-right: 0;
+     
+      h3{
+        display: none;
+      }
+    }
+
+    .form-inline{
+
+      .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+      }
+
+      .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+      }
+    }
+  }  
+}
+
+/* Small & medium devices (mobile, tables, until 992px) */
+@media (max-width: $screen-md-min) {
+
+  #navbar{
+    position: absolute;
+    top: 145px;
+    left: auto;
+    right: $grid-gutter-width/2;
+    height: auto;
+    background: $colorHeader;
+    @include box-shadow( 0px 2px 4px rgba(0, 0, 0, 0.6) );
+
+    .navbar-nav{
+      float: none;
+      position: static;
+      padding: 0;
+      margin: 0;
+      right: auto;
+      left: auto;
+
+      >li{
+        float: none;
+        border-bottom: 2px solid $colorBody;
+
+        &:first-child > a{ 
+          padding-top: 15px;
+          border-top: none; 
+        }
+
+        a{
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+
+  #custom-search-form{
+    margin: $grid-gutter-width/2;
+  }
+
+  #wrapper .posts .post{
+    h2.post-title,
+    h3.post-title,
+    .picture,
+    .picture-footer,
+    .credits,
+    .post-content,
+    .post-end-image{
+      margin-right: $grid-gutter-width;
+      margin-left: $grid-gutter-width;
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+
+  // Limmit posts width to 960px
+  #wrapper .row > .posts{
+    width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+  #navbar .navbar-nav{
+    padding-left: 210px;
+
+    >li{
+      margin: 0 3px;
+
+      > a{
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  #footer .links {
+    padding-left: 120px;
+  }
+
+  // Setup higher topic items in Entities related items
+  #wall .col-lg-6  .item.topic .picture{
+    height: 280px;
+  }
+}
+
+
+/* Higher than 1200 (desktop devices)
+====================================================================== */
+@media (min-width: 1200px) {
+
+  #home-slider-list .item > a{
+    padding: 0 15px;
+
+    > div p{
+      padding-left: 50px;
+    }
+  }
+
+  #homepage-lead {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  #viz-container{
+    height: 490px;
+  }
+
+  /*
+  // show topic related entities in 6 columns
+  #wall.topic .item.people{
+    width: 14.8%;
+  }
+
+  #wall.mixed .item {
+    width: 23.076923076923077%;
+  }
+
+  #wrapper .posts .post.related-posts .item{
+    width: 48%;
+    margin-bottom: 16px;
+  }
+  */
+}
+
+/* Lower than 979 (tablets devices)
+====================================================================== */
+@media only screen and (max-width: 979px) {
+
+  .subtitle:after{
+    display: none;
+  }
+
+  #home-slider{
+    width: 100%;
+
+    .carousel-inner > .item > a{
+      height: 450px;
+    }
+
+    .carousel-control{
+      display: block;
+    }
+  }
+
+  #home-slider-list{
+    display: none;
+  }
+
+  #homepage-lead,
+  #homepage-slider{
+    width: 100%;
+
+    &:before{ display: none; };
+  }
+
+  #homepage-slider{
+    padding-top: 12px;
+
+    .flexslider.home{
+      padding: 3px;
+      border: 1px dotted #969a92;
+
+      .slides > li{ padding: 3px; }
+    }
+  }
+
+  /*
+  #wall .item.span3,
+  #wall .item.span4{
+    width: 48%;
+  }
+  #wall .item.span6{
+    width: 100%;
+  }
+  // show topic related entities in 3 columns
+  #wall.topic .item.people{
+    width: 31.6%;
+  }
+
+  #wrapper .sidebar.span4 .related-entities-navigation{
+    font-size: 0.913em;
+    margin: 24px 16px;
+  }
+  */
+}
+
+/* All Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 767px) {
+
+  .navbar .brand{
+    margin-left: 12px;
+  }
+
+  .navbar .btn-navbar{
+    margin-right: 12px;
+  }
+
+  #home-slider .carousel-inner > .item > a{
+    height: 380px;
+  }
+
+  body{
+    padding: 0;
+  }
+}
+
+
+/* Small Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 520px) {
+
+  .user-navbar > p{
+    display: none;
+  }
+
+  #home-slider .carousel-inner > .item > a{
+    height: 300px;
+  }
+
+  #home-slider .carousel-caption {
+    position: static;
+  }
+
+  /*
+  #wall .item.span3,
+  #wall .item.span4{
+    width: 100%;
+  }
+
+  // show topic related entities in 2 columns
+  #wall.topic .item.people{
+    width: 48%;
+  }
+  */
+}

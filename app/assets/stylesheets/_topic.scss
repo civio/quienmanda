@@ -46,7 +46,7 @@
     padding: 0;
     margin: 0;
     border: none;
-    font-size: 1.5em;
+    font-size: 1.75em;
     text-align: center;
     color: white;
     margin-top: -0.5em;
@@ -60,12 +60,12 @@
     right: 5px;
     bottom: 5px;
     background: black;
-    .opacity( 0.1 );
-    .transition( all 0.3s ease-out );
+    @include opacity( 0.1 );
+    @include transition( all 0.3s ease-out );
   }
 
   .picture:hover .hover{
-    .opacity( 0.5 );
+    @include opacity( 0.5 );
   }
 
   .admin-link{
@@ -84,42 +84,14 @@
   margin-top: 60px;
 }
 
-#wall.topic .item.people,
-#wall.topic .item.organization{
-
-  h4{
-    font-size: 1.125em;
-    padding: 10px;
-
-    &:before{
-      display: none;
-    }
-  }
-
-  .picture .description{
-    font-size: 0.875em;
-    line-height: 1.375em;
-
-    p{
-      padding-right: 10px;
-      padding-left: 10px;
-      .titleBorder();
-    }
-
-    .admin-link:before{
-      display: none;
-    }
-  }
-}
-
 .quien-manda-en{
   position: absolute;
   top: -26px;
   left: 0;
   right: 0;
-  color: @colorLinkGreen;
+  color: $colorLinkGreen;
   font-size: 1.125em;
-  font-family: @fontDroid;
+  font-family: $fontDroid;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   text-align: center;
@@ -127,9 +99,8 @@
   text-shadow: 0 1px 0 #ffffff;
 
   > span{
-    color: @colorGray;
-    font-family: @fontBaskerville;
-    font-style: italic;
+    color: $colorGray;
+    font-family: $fontBaskerville;
     text-transform: lowercase;
     font-weight: 400;
     padding-left: 0.25em;
@@ -137,17 +108,15 @@
 }
 
 .topic-description{
-  color: @colorGray;
+  color: $colorGray;
   font-size: 1.25em;
-  line-height: 1.5em;
+  line-height: 1.375em;
   text-align: center;
-  margin-top: 16px;
+  margin-top: $grid-gutter-width/2;
 }
 
 #wrapper.topic-viz{
-  margin-top: 30px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-top: $grid-gutter-width;
 
   #wrapper.full{
     position: relative;
@@ -167,7 +136,7 @@
     left: 0;
     margin: 0;
     padding: 12px 12px 8px 68px;
-    color: @colorGray;
+    color: $colorGray;
     font-size: 1.25em;
     line-height: 1.375em;
     height: auto;

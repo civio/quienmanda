@@ -19,18 +19,15 @@
 
     .logos{
 
-      float: left;
-      margin-right: 22px;
+      margin-bottom: 12px;
 
       .title{
         color: #FFF;
-        font-family: @fontBaskerville !important;
-        font-size: 1.067em;
-        font-style: italic;
+        font-family: $fontBaskerville !important;
+        font-size: 1.25em;
       }
 
       .logo img{
-        height: 34px;
         width: auto;
       }
     }
@@ -54,7 +51,7 @@
     a.partner{
 
       &:hover{
-        .opacity( 0.6 );
+        @include opacity( 0.6 );
       };
 
       img{
@@ -64,8 +61,6 @@
 
     .social{
 
-      clear: both;
-      float: none;
       padding: 16px 0 0;
       height: 36px;
 
@@ -81,12 +76,8 @@
         a{
           width: 36px;
           height: 36px;
-          background-color: @colorOrange;
-          -webkit-transition: background-color 0.4s ease-out;
-          -moz-transition: background-color 0.4s ease-out;
-          -o-transition: background-color 0.4s ease-out;
-          -ms-transition: background-color 0.4s ease-out;
-          transition: background-color 0.4s ease-out;
+          background-color: $colorOrange;
+          @include transition( background-color 0.4s ease-out );
 
           &.social-twitter {
             background-position: -82px -42px;
@@ -114,43 +105,35 @@
         }
       }
 
-      #mc-embedded-subscribe-form input{
-        display: block;
-        float: left;
-        background: #5BA1D7;
-        color: #fff;
-        font-size: 0.75em;
-        border: none;
-        height: 36px;
-        padding: 8px;
-        margin: 0;
-        width: 148px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
+      #mc-embedded-subscribe-form{
 
-        &:focus{
-          .box-shadow( none );
+        input{
+          background: #5BA1D7;
+          color: #fff;
+          border: none;
+          border-radius: 0;
+          min-width: 180px;
+
+          &:focus{
+            @include box-shadow( none );
+          }
         }
-      }
 
-      #mc-embedded-subscribe-form .btn-submit{
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-        background: url(/images/play-btn.png) no-repeat center center darken(#5BA1D7, 10%);
-        text-indent: 9999px;
-        overflow: hidden;
-        width: 32px;
-        height: 36px;
-        border-color: #5BA1D7;
-        .box-shadow( none );
+        .btn-submit{
+          border: none;
+          border-radius: 0;
+          background: url(/images/play-btn.png) no-repeat center center darken(#5BA1D7, 10%);
+          text-indent: 9999px;
+          overflow: hidden;
+          width: 34px;
+          height: 34px;
+          margin-left: -3px;
+          border-color: #5BA1D7;
+          @include box-shadow( none );
 
-        &:hover{
-          background-color: #5BA1D7
+          &:hover{
+            background-color: #5BA1D7
+          }
         }
       }
     }
@@ -158,22 +141,16 @@
     .contact{
       clear: both;
       float: none;
-      color: #fff;
-      font-size: 2em;
-      font-family: @fontEconomica;
+      font-size: 1.5em;
       text-transform: uppercase;
       margin-top: 36px;
 
       a{
-        color: @colorOrange !important;
+        color: white;
         font-size: 1em;
 
-        .arroba{
-          font-family: @fontDroid;
-        }
-
         &:hover{
-          color: #fff !important;
+          //color: #fff !important;
           text-decoration: none;
         }
       }
@@ -202,7 +179,7 @@
     }
 
     a{
-      color: @colorTextGreen !important;
+      color: $colorTextGreen !important;
       text-decoration: underline;
 
       &:hover{

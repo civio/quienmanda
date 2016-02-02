@@ -3,12 +3,14 @@
 <div id="wrapper" class="full tight">
 <% end %>
 
-  <p class="title">Artículos relacionados</p>
+  <div class="title article">
+    <p>Artículos relacionados</p>
+  </div>
 
-  <div class="row-fluid">
+  <div id="wall" class="row">
 
     <% related_posts[0..5].each do |post| %>
-      <%= render '/shared/show_post', :item => post, :span => defined?(span) ? span : 'span4' %>
+      <%= render '/shared/show_post', :item => post, :span => defined?(span) ? span : 'col-sm-4' %>
     <% end %>
 
   </div>

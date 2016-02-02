@@ -1,0 +1,45 @@
+@import "bootstrap/_variables";
+
+//== Color variables
+
+$colorTitle: #414141;
+$colorHeader: #eef2ea;
+$colorHeaderLink: #a8c315;
+$colorGray: #515151;
+$colorBody: #dee5d8;
+$colorSidebar: #e1e1cd;
+$colorTextGreen: #8aa304; //#6bb21b;
+$colorLinkGreen: #8aa304;
+$colorOrange: #ce7a20;
+$colorSecondary: #dde4cd;
+
+$link-color: $colorLinkGreen;
+
+
+//== Fonts variables
+
+$fontEconomica: 'Source Sans Pro', Helvetica, Arial sans-serif;
+$fontDroid: 'Source Sans Pro', Helvetica, Arial sans-serif;
+$fontBaskerville: 'Source Serif Pro', Georgia, serif;
+
+
+//== Grid system
+
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-md-min;
+
+
+//== Pagination
+
+$pagination-color:                     $link-color;
+$pagination-hover-color:               $link-color;
+$pagination-active-bg:                 $link-color;
+$pagination-active-border:             $link-color;
+
+//== Buttons
+
+$btn-border-radius-base:    0;
+
+//== Modals
+
+$modal-backdrop-opacity:      .75;

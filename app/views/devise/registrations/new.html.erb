@@ -1,19 +1,18 @@
 <!-- start: Page Title -->
-<div class="row-fluid">
-<div id="page-title" class="span12 centered">
-  <h2>Create your account</h2>
-</div>
+<div class="row">
+  <div id="page-title" class="col-sm-12 centered">
+    <h2>Create your account</h2>
+  </div>
 </div>
 <!-- end: Page Title -->
 
 <!--start: Wrapper-->
-<div class="row-fluid">
-<div id="wrapper" class="lr-page full login-container span4 offset4">
+<div id="wrapper" class="lr-page full login-container col-sm-4 col-sm-offset-4">
   
   <!-- start: Row -->
-  <div class="row-fluid">
+  <div class="row">
     
-    <div id="login-form" class="span12">
+    <div id="login-form" class="col-sm-12">
       
       <div class="page-title-small">
 
@@ -35,21 +34,20 @@
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
         
-        <div class="row-fluid">
 
-          <%= f.text_field :name, :autofocus => true, :placeholder => 'name', :class => 'span12' %>
-            
-          <%= f.email_field :email, :placeholder => 'email', :class => 'span12' %>
-            
-          <%= f.password_field :password, :placeholder => 'password', :class => 'span12' %>
+        <%= f.text_field :name, :autofocus => true, :placeholder => 'name', :class => 'form-control' %>
           
-          <%= f.password_field :password_confirmation, :placeholder => 'confirm password', :class => 'span12' %>
-       
-        </div>
+        <%= f.email_field :email, :placeholder => 'email', :class => 'form-control' %>
+          
+        <%= f.password_field :password, :placeholder => 'password', :class => 'form-control' %>
+        
+        <%= f.password_field :password_confirmation, :placeholder => 'confirm password', :class => 'form-control' %>
+        
+        <p>&nbsp;</p>
 
         <div class="actions">
           
-          <%= f.submit "Create account!", :class => 'btn span12' %>
+          <%= f.submit "Create account!", :class => 'btn btn-primary' %>
 
           <!-- <%= render "devise/shared/links" %> -->
           
@@ -64,4 +62,3 @@
 
 </div>
 <!-- end: Wrapper  -->  
-</div>

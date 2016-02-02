@@ -10,7 +10,7 @@
 <div id="wrapper">
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid post">
+  <div id="wall" class="row post">
             
     <% @posts.each do |post| %>
       <%= render '/shared/show_post', :item => post %>
@@ -19,7 +19,9 @@
   </div>
   <!-- end: Portfolio -->
   
-  <%= paginate @posts %>
+  <div class="row text-center">
+    <%= paginate @posts %>
+  </div>
 
 </div>
 <!-- end: Wrapper  -->

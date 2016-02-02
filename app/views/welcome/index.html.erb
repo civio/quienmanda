@@ -20,7 +20,9 @@
           <% end %>
           <div class="carousel-caption">
             <%= link_to post do %>
-              <h3><%= post.title %></h3>
+              <h3>
+                <span><%= post.title %></span>
+              </h3>
             <% end %>
             <p><%= post.lead %></p>
           </div>
@@ -38,7 +40,9 @@
           <% end %>
           <div class="carousel-caption">
             <%= link_to topic do %>
-              <h3><%= topic.title %></h3>
+              <h3>
+                <span><%= topic.title %></span>
+              </h3>
               <% unless topic.description.blank? %>
                 <p><%= topic.description %></p>
               <% end %>
@@ -50,8 +54,12 @@
     </div>
 
     <!-- Controls -->
-    <a class="carousel-control left" href="#home-slider" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#home-slider" data-slide="next">&rsaquo;</a>
+    <a class="carousel-control left" href="#home-slider" data-slide="prev">
+      <span>&lsaquo;</span>
+    </a>
+    <a class="carousel-control right" href="#home-slider" data-slide="next">
+      <span>&rsaquo;</span>
+    </a>
   </div>
 
   <div id="home-slider-list" class="slides-<%= @highlights_items %>">
@@ -87,16 +95,16 @@
   <div class="title article"><p>Artículos recientes</p></div>
 
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid">
+  <div id="wall" class="row">
             
     <% @posts.each do |post| %>
-      <%= render '/shared/show_post', :item => post, :span => 'span6', :frontpage => 'true' %>
+      <%= render '/shared/show_post', :item => post, :span => 'col-sm-6', :frontpage => 'true' %>
     <% end %>
 
   </div>
 
   <!-- Botón Todos los Artículos
-  <div class="all-btn row-fluid">
+  <div class="all-btn row">
     <a href="#" title="Todos los Artículos">Todos los Artículos</a>
   </div>
   -->
@@ -111,7 +119,7 @@
   <div class="title photo"><p>Las últimas del Fotomandón</p></div>
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid extra-wall photo">
+  <div id="wall" class="row extra-wall photo">
             
     <% @photos.each do |photo| %>
       <%= render '/shared/show_photo', :item => photo %>
@@ -120,7 +128,7 @@
   </div>
 
   <!-- Botón Todos los Fotomandón
-  <div class="all-btn row-fluid">
+  <div class="all-btn row">
     <a href="#" title="Todos los Fotomandón">Todos los Fotomandón</a>
   </div>
   -->

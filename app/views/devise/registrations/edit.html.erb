@@ -1,21 +1,19 @@
 <!-- start: Page Title -->
-<div class="row-fluid">
-<div id="page-title" class="span6 offset3">
-
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="row">
+  <div id="page-title" class="col-sm-12 centered">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  </div>
 </div>
-</div>
+
 <!-- end: Page Title -->
 
 <!--start: Wrapper-->
-<div class="row-fluid">
-<div id="wrapper" class="lr-page full span6 no-auto-resize offset3">
+<div id="wrapper" class="lr-page full col-sm-6 no-auto-resize col-sm-offset-3">
   
   <!-- start: Row -->
-  <div class="row-fluid">
+  <div class="row">
     
-    <div id="login-form" class="span12">
+    <div id="login-form" class="col-sm-12">
       
       <div class="page-title-small">
 
@@ -26,36 +24,36 @@
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
           <%= devise_error_messages! %>
 
-          <div style="clear: both;">
-          <%= f.label :name, :class => 'span4' %>
-          <%= f.text_field :name, :autofocus => true, :class => 'span8' %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, :autofocus => true, :class => 'form-control' %>
           </div>
 
-          <div style="clear: both;">
-          <%= f.label :name, :class => 'span4' %>
-          <%= f.email_field :email, :class => 'span8' %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.email_field :email, :class => 'form-control' %>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
 
-          <div style="clear: both;">
-          <%= f.label :password, :class => 'span4' %> <i>(leave blank if you don't want to change it)</i>
-          <%= f.password_field :password, :class => 'span8', :autocomplete => "off" %>
+          <div class="form-group">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+            <%= f.password_field :password, :class => 'form-control', :autocomplete => "off" %>
           </div>
 
-          <div style="clear: both;">
-          <%= f.label :password_confirmation, :class => 'span4' %>
-          <%= f.password_field :password_confirmation, :class => 'span8' %>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, :class => 'form-control' %>
           </div>
 
-          <div style="clear: both;">
-          <%= f.label :current_password, :class => 'span4' %> <i>(to confirm your changes)</i>
-          <%= f.password_field :current_password, :class => 'span8' %>
+          <div class="form-group">
+            <%= f.label :current_password %> <i>(to confirm your changes)</i>
+            <%= f.password_field :current_password, :class => 'form-control' %>
           </div>
 
-          <%= f.submit "Update", :class => 'btn span12' %>
+          <%= f.submit "Update", :class => 'btn btn-primary col-sm-12' %>
 
         <% end %>
       
@@ -65,15 +63,13 @@
 
       </div>
 
-        <%= button_to "Unhappy? Cancel your account", registration_path(resource_name), :class => 'btn btn-danger span12', :data => { :confirm => "Are you sure?" }, :method => :delete %>
+      <%= button_to "Unhappy? Cancel your account", registration_path(resource_name), :class => 'btn btn-danger col-sm-12', :data => { :confirm => "Are you sure?" }, :method => :delete %>
     
+      <%= link_to "Back", :back %>
+      
     </div>
     
   </div>
   <!-- end: Row --> 
 
 </div>
-<!-- end: Wrapper  -->  
-</div>
-
-<%= link_to "Back", :back %>

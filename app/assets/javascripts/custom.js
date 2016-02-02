@@ -38,7 +38,7 @@ jQuery.noConflict();
     if ($wall.length){
       $wall.imagesLoaded(function() {
         $wall.packery({
-          itemSelector: '.item',
+          itemSelector: '.item-cont',
           columnWidth: $wall.width() / 12
         });
       });
@@ -83,6 +83,13 @@ jQuery.noConflict();
         // Hide Timesheet Container if has no items or only one
         if (timesheet.items.length < 2) {
           $('#entity-timesheet-container').hide();
+        }
+        else{
+          $(window).scroll(function(){
+            var top = $(window).scrollTop() - $('#entity-timesheet').offset().top;
+            top = (top >= 0) ? top : 0;
+            $('#entity-timesheet .scale').css('top', top);
+          });
         }
       }
     }
@@ -290,7 +297,7 @@ jQuery.noConflict();
     // Related entities sidebar
     if ($('.extra-related-entity').length) {
       $('#related-entities-toggle').click(function(){
-        $('.extra-related-entity').slideToggle();
+        $('.extra-related-entity').removeClass('extra-related-entity');
         $('#related-entities-toggle').hide();
       });
     } else {

@@ -1,6 +1,8 @@
-<p class="picture-footer">
-  <% unless photo.date.blank? %>
-  <strong><%= I18n.localize(photo.date, :format => "%d de %B %Y") %>.</strong>
-  <% end %>
-  <%= raw(photo.footer) %>
-</p>
+<% unless photo.footer.blank? %>
+  <p class="picture-footer">
+    <% unless photo.date.blank? %>
+    <strong><%= I18n.localize(photo.date, :format => "%d de %B %Y") %>.</strong>
+    <% end %>
+    <%= raw(photo.footer) %>
+  </p>
+<% end %>

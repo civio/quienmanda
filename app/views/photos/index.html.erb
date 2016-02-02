@@ -11,7 +11,7 @@
 <div id="wrapper">
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid photo">
+  <div id="wall" class="row photo">
             
     <% @photos.each do |photo| %>
       <%= render partial_name(photo), :item => photo %>
@@ -20,7 +20,9 @@
   </div>
   <!-- end: Portfolio -->
   
-  <%= paginate @photos %>
+  <div class="row text-center">
+    <%= paginate @photos %>
+  </div>
 
 </div>
 <!-- end: Wrapper  -->

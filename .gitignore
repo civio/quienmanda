@@ -21,3 +21,5 @@ pickle-email-*.html
 latest.dump
 test.csv
 app/assets/stylesheets/less/config.codekit
+
+npm-debug.log

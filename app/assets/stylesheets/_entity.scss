@@ -3,31 +3,28 @@
 
 #wrapper.people{
 
-  .full.span3,
-  .full.span9{
-
+  .full,
+  .full{
     position: relative;
     padding: 0;
     border: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
     border-radius: 0;
   }
 
-  .full.span3{
-
+  .col-sm-3 .full{
+    
     .picture{
       padding: 3px;
       img{ width: 100%; }
     }
 
     .title{
-      color: @colorGray;
-      font-family: @fontBaskerville;
-      font-size: 1.125em;
+      color: $colorGray;
+      font-family: $fontBaskerville;
+      font-size: 1.375em;
       font-weight: bold;
-      line-height: 1.5em;
-      border-bottom: 1px solid @colorTextGreen;
+      line-height: 1.25em;
+      border-bottom: 1px solid $colorTextGreen;
       margin: 10px 12px 0;
       padding-bottom: 10px;
 
@@ -37,8 +34,8 @@
     }
 
     .description{
-      color: darken( @colorGray, 10% );
-      border-top: 1px solid @colorTextGreen;
+      color: darken( $colorGray, 10% );
+      border-top: 1px solid $colorTextGreen;
       font-size: 0.938em;
       margin: 3px 12px 12px;
       padding-top: 12px;
@@ -62,12 +59,13 @@
 
   display: block;
   width: 100%;
-  background: @colorSidebar;
+  background: $colorSidebar;
   height: 40px;
 
   ul{
     display: block;
     text-align: center;
+    padding: 0;
   }
 
   li{
@@ -75,11 +73,15 @@
     display: inline;
     line-height: 40px;
     font-size: 1.25em;
-  }
 
-  a:hover {
-    text-decoration: none;
-    color: @colorTextGreen;
+    a{
+      color: $colorTextGreen;
+
+      &:hover {
+        text-decoration: none;
+        color: $colorGray;
+      }
+    }
   }
 }
 
@@ -90,13 +92,13 @@
 #relations-table-toggle{
   float: right;
   background: #fff;
-  color: @colorLinkGreen;
+  color: $colorLinkGreen;
   padding: 8px 14px;
   text-shadow: none;
   font-size: 0.875em;
   font-weight: normal;
   margin-bottom: 24px;
-  .box-shadow( 0px 1px 6px rgba(0, 0, 0, 0.3) );
+  @include box-shadow( 0px 1px 6px rgba(0, 0, 0, 0.3) );
 }
 
 #relations-list{
@@ -107,7 +109,7 @@
   .footable-sortable{ 
 
     font-size: 0.938em;
-    color: @colorLinkGreen;
+    color: $colorLinkGreen;
 
     .footable-sort-indicator{ color: #3f3f3f; }
   }
@@ -118,11 +120,11 @@
   tr{
     
     td{
-      color: @colorGray;
+      color: $colorGray;
       font-size: 0.938em;
 
       a:hover{
-        color: @colorLinkGreen;
+        color: $colorLinkGreen;
         text-decoration: none;
       };
     }
@@ -143,7 +145,7 @@
   padding: 3px;
   background: white;
   margin-bottom: 30px;
-  .boxStyle();
+  @include boxStyle();
 
   .timesheet-arrow{
     position: absolute;
@@ -153,7 +155,7 @@
     background: white;
     opacity: 0;
     cursor: pointer;
-    .transition( opacity 0.3s ease-out );
+    @include transition( opacity 0.3s ease-out );
 
     > i{
       position: absolute;
@@ -161,8 +163,8 @@
       margin-top: -0.5em;
       margin-left: 0.6em;
       font-size: 2em;
-      color: @colorHeaderLink;
-      .transition( margin-left 0.3s ease-out );
+      color: $colorHeaderLink;
+      @include transition( margin-left 0.3s ease-out );
     }
   }
 
@@ -192,25 +194,26 @@
 #entity-timesheet{
   width: 100%;
   height: auto;
-  background: @colorHeader;
+  background: $colorHeader;
   overflow-x: auto;
+  overflow-y: hidden;
 
   &.timesheet{
 
     .scale{
 
       section{
-        font-family: @fontDroid;
-        font-size: 12px;
-        line-height: 28px;
-        color: @colorGray;
+        font-family: $fontDroid;
+        line-height: $grid-gutter-width;
+        color: $colorGray;
         border-left: none;
-        border-right: 1px solid @colorBody;
+        border-right: 1px solid $colorBody;
+        font-weight: 400;
       }
     }
 
     .data{
-      font-family: @fontDroid;
+      font-family: $fontDroid;
       overflow: visible;
 
       li{
@@ -222,17 +225,17 @@
           float: none;
           height: 8px;
           border-radius: 0;
-          background: @colorHeaderLink;
+          background: $colorHeaderLink;
         }
 
         &.nostart .bubble:before,
         &.now .bubble:after{
           content: '';
           float: right;
-          width: 3px;
+          width: 8px;
           height: 8px;
-          border-right: 2px solid @colorHeaderLink;
-          border-left: 3px solid @colorHeaderLink;
+          border-right: 2px solid $colorHeaderLink;
+          border-left: 3px solid $colorHeaderLink;
         }
 
         &.nostart .bubble{
@@ -251,12 +254,11 @@
 
         .date{
           visibility: hidden;
-          color: @colorLinkGreen;
-          font-size: 12px;
+          color: $colorLinkGreen;
           line-height: 22px;
           font-weight: 600;
           padding: 1px 6px;
-          background: @colorHeader;
+          background: $colorHeader;
         }
 
         .label-container{
@@ -267,16 +269,17 @@
 
         .label{
           line-height: 20px;
-          color: @colorGray;
+          color: $colorGray;
           padding: 0 5px 2px;
           text-shadow: none;
           background: white;
           margin: 0;
           border-radius: 0;
-          border: 1px solid mix(@colorHeaderLink, @colorHeader, 50%);
+          border: 1px solid mix($colorHeaderLink, $colorHeader, 50%);
+          font-weight: 400;
 
           a:hover{
-            color: @colorLinkGreen;
+            color: $colorLinkGreen;
             text-decoration: none;
           }
 
@@ -290,7 +293,7 @@
             visibility: visible;
           }
           .label{
-            border: 1px solid @colorHeaderLink;
+            border: 1px solid $colorHeaderLink;
           }
         }
       }

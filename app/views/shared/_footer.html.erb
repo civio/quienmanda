@@ -1,9 +1,9 @@
 <div id="footer">
   <div class="container">
-    <div class="row-fluid">
+    <div class="row">
 
       <!-- start: About -->
-      <div class="span5 about">
+      <div class="col-sm-6 col-md-5 about">
         <div class="logos">
           <p class="title">Un proyecto de</p>
           <a href="http://www.civio.es" class="logo" title="Civio" target="_blank">
@@ -27,19 +27,24 @@
             <li><a href="http://www.civio.es/feed/" class="social-rss" title="RSS" target="_blank"></a></li>
             -->
           </ul>
-          <form target="_blank" class="validate" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form" method="post" action="http://civio.us4.list-manage1.com/subscribe/post?u=9416fe6b76f2c3f985c1f8e0f&amp;id=9d5b4c8cda">         
-            <input id="mce-EMAIL" class="email" type="email" required="" placeholder="correo" name="EMAIL" value="SUSCRÍBETE AL BOLETÍN" style="border: none;">
-            <button type="submit" class="btn btn-submit">Enviar</button>
+          <form target="_blank" class="form-inline validate" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form" method="post" action="http://civio.us4.list-manage1.com/subscribe/post?u=9416fe6b76f2c3f985c1f8e0f&amp;id=9d5b4c8cda">
+            <div class="form-group">
+              <input id="mce-EMAIL" class="email form-control" type="email" required="" placeholder="correo" name="EMAIL" value="SUSCRÍBETE AL BOLETÍN">
+              <button type="submit" class="btn btn-submit">Enviar</button>
+            </div>
           </form>
         </div>
-        <div class="contact"><a href="mailto:contacto@civio.es" class="contact">contacto<span class="arroba">@</span>civio.es</a></div>
+        <div class="contact">
+          <a href="mailto:contacto@civio.es" class="contact">contacto<span class="arroba">@</span>civio.es</a>
+        </div>
       </div>
+
       <!-- end: About -->
 
-      <div class="span2 icon">
+      <div class="col-md-2 hidden-sm hidden-xs icon">
       </div>
 
-      <div class="span5 links">
+      <div class="col-sm-6 col-md-5 links">
         <h3>Quién Manda</h3>
         <p><a href="/posts/pero-que-es-esto#porque">¿Por qué hacemos esto?</a></p>
         <p><a href="/posts/pero-que-es-esto#quienes">Agradecimientos</a></p>

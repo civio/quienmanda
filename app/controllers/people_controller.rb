@@ -36,6 +36,8 @@ class PeopleController < ApplicationController
       # Order relations both by date at and by date from
       @relations = @relations.order("greatest(relations.from, relations.at) asc")
 
+      @related_topics = Topic.find_all_by_slug( @person.tag_list )
+
       # Facebook Open Graph metadata
       @fb_description = @person.description unless @person.description.blank?
       @fb_image_url = @person.avatar.url() unless @person.avatar.nil?

@@ -2,10 +2,9 @@
 <div id="wrapper" class="<%= extra_wrapper_css unless not defined? extra_wrapper_css %>">
   
   <!-- start: Portfolio -->
-  <div id="wall" class="row-fluid mixed">
-            
+  <div id="wall" class="row">
     <% items.each do |item| %>
-      <%= render partial_name(item), :item => item, :span => 'span4', :mixed => true %>
+      <%= render partial_name(item), :item => item, :span => ( item.class.name == 'Post' || item.class.name == 'Topic' ) ? 'col-sm-12 col-md-4 col-lg-6' : 'col-sm-6 col-md-4 col-lg-3' %>
     <% end %>
 
   </div>
