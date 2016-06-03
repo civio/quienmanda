@@ -18,6 +18,7 @@ grunt
 # other tasks (compile once)
 grunt sass
 grunt coffee
+grunt concat
 grunt uglify
 grunt cssmin
 
