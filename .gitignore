@@ -23,3 +23,5 @@ test.csv
 app/assets/stylesheets/less/config.codekit
 
 npm-debug.log
+
+extras/trips/node_modules/

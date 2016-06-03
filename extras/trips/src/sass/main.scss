@@ -1,0 +1,172 @@
+$peopleSize: 32px;
+
+$colorRed:    #FF8A80;
+$colorPurple: #EA80FC;
+$colorBlue:   #80D8FF;
+$colorOrange: #FFD180;
+$colorGreen:  #66BB6A;
+$colorPink:   #FF80AB;
+
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+.qm-trips-trips{
+  max-height: 450px;
+  overflow-y: scroll; 
+}
+
+.qm-trips-trip{
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background: white;
+
+  .popover-title{
+    line-height: 1.375em;
+    font-size: 1.125em;
+    font-weight: 600;
+  }
+}
+
+.qm-trips-trip-date{
+  margin-right: 5px;
+}
+
+.qm-trips-trip-name{
+  font-size: 0.75em;
+  text-transform: uppercase;
+  margin-bottom: 10px !important;
+}
+
+.qm-trips-filters{
+  margin-bottom: 15px;
+}
+
+.qm-trips-filters,
+.qm-trips-sort{
+  .btn{
+    color: #414141 !important;
+    font-weight: 400 !important;
+    padding: 5px 10px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    border-width: 2px !important;
+    border-style: solid !important; 
+    border-color: #aaa !important;
+    @include transition( background 0.25s ease-out );
+
+    @mixin qm-trips-filter-btn($color) {
+      &:before{
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background: $color;
+        margin-right: 5px;
+        margin-left: -1px;
+      }
+      //border-color: $color !important;
+      &.active,
+      &:hover{
+        background: mix( white, $color, 85% );
+      }
+    }
+
+    &.qm-trips-ministros{
+      @include qm-trips-filter-btn($colorRed);
+    }
+    &.qm-trips-exministros{
+      @include qm-trips-filter-btn($colorOrange);
+    }
+    &.qm-trips-altos-cargos{
+      @include qm-trips-filter-btn($colorBlue);
+    }
+    &.qm-trips-casa-real{
+      @include qm-trips-filter-btn($colorPurple);
+    }
+    &.qm-trips-empresarios{
+      @include qm-trips-filter-btn($colorGreen);
+    }
+    &.qm-trips-familiares{
+      @include qm-trips-filter-btn($colorPink);
+    }
+  }
+}
+
+.qm-trips-sort{
+  margin-bottom: 10px;
+
+  small{
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 5px;
+    font-weight: 600;
+  }
+
+  .btn{
+    margin-right: 0;
+    margin-left: 0;
+
+    &:last-child{
+      border-left-width: 1px !important;
+    }
+  }
+}
+
+.qm-trips-people-name{
+  display: none;
+}
+
+.qm-trips-people{
+  position: relative;
+  display: inline-block;
+  width: $peopleSize;
+  height: $peopleSize;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 3px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #A5A5A5;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  cursor: pointer;
+  border: 2px solid gray !important;
+  @include transition( opacity 0.25s ease-out );
+
+  &:focus,
+  &:active {
+    outline: none !important
+  }
+
+  &.disabled{
+    opacity: 0.2;
+    cursor: default;
+  }
+
+  &.qm-trips-ministros{
+    border-color: $colorRed !important;
+  }
+  &.qm-trips-exministros{
+    border-color: $colorOrange !important;
+  }
+  &.qm-trips-altos-cargos{
+    border-color: $colorBlue !important;
+  }
+  &.qm-trips-casa-real{
+    border-color: $colorPurple !important;
+  }
+  &.qm-trips-empresarios{
+    border-color: $colorGreen !important;
+  }
+  &.qm-trips-familiares{
+    border-color: $colorPink !important;
+  }
+}
