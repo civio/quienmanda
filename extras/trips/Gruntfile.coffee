@@ -33,12 +33,12 @@ module.exports = (grunt) ->
       options:
         separator: ';'
       dist:
-        src: ['src/js/jquery-2.2.4.js', 'src/js/boostrap-tooltip.js', 'src/qm-trips-visualization.js'],
-        dest: 'dist/js/qm-trips.js',
+        src: ['src/js/jquery-2.2.4.js', 'src/js/bootstrap-tooltip.js.js', 'src/js/qm-trips-visualization.js']
+        dest: 'dist/js/qm-trips.js'
 
     # grunt uglify
     uglify:
-      my_target:
+      dist:
         files:
           'dist/js/qm-trips.min.js': ['dist/js/qm-trips.js']
 
@@ -61,6 +61,7 @@ module.exports = (grunt) ->
       options:
         livereload: true
 
+
   # load plugins
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -70,4 +71,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
 
   # tasks
-  grunt.registerTask 'default', ['sass', 'coffee', 'concat', 'uglify', 'cssmin', 'watch']
+  grunt.registerTask 'default', ['sass', 'coffee', 'watch']
+  grunt.registerTask 'build', ['sass', 'coffee', 'concat', 'uglify', 'cssmin']
