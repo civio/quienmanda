@@ -19,6 +19,7 @@ grunt
 grunt sass
 grunt coffee
 grunt concat
+grunt jshint
 grunt uglify
 grunt cssmin
 

@@ -1,6 +1,7 @@
 .qm-trips-trips {
   max-height: 450px;
   overflow-y: scroll;
+  margin-bottom: 30px;
 }
 
 .qm-trips-trip {

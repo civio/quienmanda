@@ -1,5 +1,7 @@
-jQuery.noConflict()
+#jQuery.noConflict()
 jQuery(document).ready ($) ->
+
+  #"use strict"
 
   # trips data
   qm_trips_data = [
