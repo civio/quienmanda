@@ -227,6 +227,11 @@
     }
   }
 
+  &.slides-3{
+    .item > a{
+      height: 153px;
+    }
+  }
   &.slides-4{
     .item > a{
       height: 114px;
