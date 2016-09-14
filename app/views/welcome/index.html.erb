@@ -68,7 +68,7 @@
       <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
       <div class="item">
         <a href="#item-<%= i %>" class="<%= itemClass %>">
-          <div><p><span class="icon icon-post"></span><%= post.title %></p></div>
+          <div><p><span class="icon icon-post"></span><%= truncate(post.title, length: 86) %></p></div>
         </a>
       </div>
       <% i += 1 %>
