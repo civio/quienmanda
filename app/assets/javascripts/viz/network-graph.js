@@ -548,7 +548,7 @@ function NetworkGraph(selector, infobox, undoBtn, redoBtn, historyParams) {
     if ( link.at !== null ) {
       infobox.append('span')
         .attr('class', 'separator')
-        .text('('+relation.at+')');
+        .text('('+link.at+')');
     } else if ( link.from !== null || link.to !== null ) {
       infobox.append('span')
         .attr('class', 'separator')
