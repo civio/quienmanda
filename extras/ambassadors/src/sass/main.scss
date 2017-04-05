@@ -1,0 +1,109 @@
+$peopleSize: 44px;
+$peopleSizeBig: 60px;
+
+$grid-gutter-width: 30px;
+
+
+#qm-ambassadors{
+  font-size: 0.875em;
+
+  .popover-title {
+    line-height: 1.375em;
+    font-size: 1.125em;
+    font-weight: 600;
+  }
+}
+
+.qm-ambassador-picture{
+  width: $peopleSizeBig;
+  height: $peopleSizeBig;
+  border-radius: 50%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #A5A5A5;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border: 2px solid gray;
+}
+
+.qm-ambassador-term{
+  clear: both;
+  padding: 2*$grid-gutter-width/3  $grid-gutter-width/6 $grid-gutter-width/3;
+  margin-bottom: $grid-gutter-width/2;
+  border: 1px solid #dee5d8;
+  background: white;
+
+  .qm-ambassador-picture-term{
+    float: left;
+    margin-right: $grid-gutter-width/2;
+    margin-left: $grid-gutter-width/2;
+
+    &.pp{
+      border-color: #0BB2FF;
+    }
+    &.psoe{
+      border-color: #E2001A;
+    }
+  }
+
+  h3{
+    font-weight: 600;
+    line-height: 1.375em;
+    margin: 0;
+  }
+
+  .qm-ambassadors-container{
+    clear: both;
+    padding: $grid-gutter-width/2 0 0 !important;
+  }
+
+  .qm-ambassadors-container-title{
+    display: block;
+    width: 100%;
+    padding-left: $grid-gutter-width/2;
+    font-size: 12px;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: $grid-gutter-width/2;
+  }
+}
+
+.qm-ambassador{
+  display: inline-block;
+  width: 75px;
+  padding: 0 !important;
+  margin-bottom: $grid-gutter-width/2;
+  text-align: center;
+
+  .qm-ambassador-picture{
+    width: $peopleSize;
+    height: $peopleSize;
+    margin: 0 auto $grid-gutter-width/6;
+    opacity: 0.9;
+  }
+
+  h4{
+    line-height: 1em;
+    vertical-align: middle;
+  }
+
+  &:hover{
+    .qm-ambassador-picture{
+      opacity: 1;
+      &.pp{
+        border-color: #0BB2FF;
+      }
+      &.psoe{
+        border-color: #E2001A;
+      }
+    }
+    h4{
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "quienmanda-ambassadors",
+    "version": "0.1.0",
+    "repository": "",
+    "devDependencies": {
+        "grunt": "~0.4.2",
+        "grunt-contrib-sass": "~0.7.2",
+        "grunt-contrib-coffee": "~0.10.1",
+        "grunt-contrib-jshint": "~1.0.0",
+        "grunt-contrib-uglify": "~1.0.1",
+        "grunt-contrib-concat": "~1.0.1",
+        "grunt-contrib-connect": "~1.0.2",
+        "grunt-contrib-cssmin": "~1.0.1",
+        "grunt-contrib-watch": "~0.5.3",
+        "coffee-script": "~1.7.1"
+    }
+}
