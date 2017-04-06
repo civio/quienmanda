@@ -8,8 +8,8 @@
 }
 
 .qm-ambassador-picture {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   overflow: hidden;
   background-repeat: no-repeat;
@@ -33,6 +33,7 @@
   float: left;
   margin-right: 15px;
   margin-left: 15px;
+  border-width: 3px;
 }
 .qm-ambassador-term .qm-ambassador-picture-term.pp {
   border-color: #0BB2FF;
@@ -43,7 +44,12 @@
 .qm-ambassador-term h3 {
   font-weight: 600;
   line-height: 1.375em;
-  margin: 0;
+  margin: 0 0 5px;
+}
+.qm-ambassador-term > p {
+  line-height: 1.5em;
+  padding-left: 90px;
+  font-size: 17px;
 }
 .qm-ambassador-term .qm-ambassadors-container {
   clear: both;
@@ -62,14 +68,14 @@
 
 .qm-ambassador {
   display: inline-block;
-  width: 75px;
+  width: 82px;
   padding: 0 !important;
   margin-bottom: 15px;
   text-align: center;
 }
 .qm-ambassador .qm-ambassador-picture {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   margin: 0 auto 5px;
   opacity: 0.9;
 }

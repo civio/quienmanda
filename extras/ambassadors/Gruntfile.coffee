@@ -33,7 +33,7 @@ module.exports = (grunt) ->
       options: 
         separator: ';'
       dist:
-        src: ['src/js/qm-ambassadors.js']
+        src: ['src/js/bootstrap-tooltip.js', 'src/js/qm-ambassadors.js']
         dest: 'dist/js/qm-ambassadors.js'
 
 
