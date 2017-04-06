@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
       label: 'psoe',
       year: '(2004-2011)',
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/30/icon_Zapatero_ceja_4.jpg',
-      description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 11 no pertenecían al servicio diplomático.',
+      description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 12 no pertenecían al servicio diplomático. Uno de ellos, repetiría tras haber sido nombrado embajador por Felipe González, aunque nunca fue miembro del cuerpo diplomático',
       items: [
         {
           name: "Silvia Iranzo",
@@ -124,7 +124,7 @@ jQuery(document).ready(function($) {
         }, {
           name: "Raúl Morodo",
           short_name: "Morodo",
-          position: "Confundador del Partido Socialista Popular con Enrique Tierno Galván",
+          position: "Cofundador del Partido Socialista Popular, que se integró en el PSOE. Fue embajador también con González",
           year: '2004-2007',
           countries: "Venezuela, Trinidad y Tobago, Guyana y Surinam",
           img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png',
@@ -206,7 +206,7 @@ jQuery(document).ready(function($) {
         }, {
           name: "Raúl Morodo",
           short_name: "Morodo",
-          position: "Confundador del Partido Socialista Popular con Enrique Tierno Galván",
+          position: "Cofundador del Partido Socialista Popular de Tierno Galván, partido que se integró en el PSOE",
           year: '1983-1985 y 1995-1999',
           countries: "UNESCO (París) y Portugal",
           img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png',
@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
       $term = $('<div class="qm-ambassador-term"></div>');
       $term.append('<div class="qm-ambassador-picture qm-ambassador-picture-term ' + term.label + '" style="background-image: url(' + term.img + ')"></div><h3>' + term.name + '<small>' + term.year + '</small></h3><p>' + term.description + '</p>');
       $items = $('<div class="qm-ambassadors-container"></div>');
-      $items.append('<span class="qm-ambassadors-container-title">' + term.items.length + ' embajadores sin carrera diplomática</span>');
+      $items.append('<span class="qm-ambassadors-container-title">' + term.items.length + ' embajadores externos al cuerpo diplomático</span>');
       _ref = term.items;
       for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
         item = _ref[_j];
