@@ -295,13 +295,13 @@ jQuery(document).ready ($) ->
     for term in qm_data
       #console.log year, items
       $term = $('<div class="qm-ambassador-term"></div>')
-      $term.append '<div class="qm-ambassador-picture qm-ambassador-picture-term '+term.label+'" style="background-image: url('+term.img+'")"></div><h3>'+term.name+'<small>'+term.year+'</small></h3><p>'+term.description+'</p>'
+      $term.append '<div class="qm-ambassador-picture qm-ambassador-picture-term '+term.label+'" style="background-image: url('+term.img+')"></div><h3>'+term.name+'<small>'+term.year+'</small></h3><p>'+term.description+'</p>'
       $items = $('<div class="qm-ambassadors-container"></div>')
       $items.append '<span class="qm-ambassadors-container-title">'+term.items.length+' embajadores sin carrera diplomática</span>'
       for item in term.items
         popoverContent = item.position+'.<br/>Embajador/a en '+item.countries+' ('+item.year+')'
         $item = $('<div class="qm-ambassador"></div>')
-        $item.append '<a href="http://quienmanda.es/people/'+item.link+'" title="'+item.name+'" role="button" data-toggle="popover" data-placement="top" data-content="'+popoverContent+'"><div class="qm-ambassador-picture '+term.label+'" style="background-image: url('+item.img+'")"></div><h4>'+item.short_name+'</h4></a>'
+        $item.append '<a href="http://quienmanda.es/people/'+item.link+'" title="'+item.name+'" role="button" data-toggle="popover" data-placement="top" data-content="'+popoverContent+'"><div class="qm-ambassador-picture '+term.label+'" style="background-image: url('+item.img+')"></div><h4>'+item.short_name+'</h4></a>'
         $items.append $item
       $term.append $items
       $el.append $term
