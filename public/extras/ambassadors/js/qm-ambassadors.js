@@ -4,7 +4,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     {
       name: 'Rajoy',
       label: 'pp',
-      year: '(2011-)',
+      year: '(2011-Actualidad)',
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/31/icon_225px-Mariano_Rajoy__diciembre_de_2011_.jpg',
       description: 'Ha confiado en más de 170 personas para representar a España ante organismos internacionales o países extranjeros. Dos de sus exministros y uno de Aznar fueron premiados con embajadas en Washington, Londres y París.',
       items: [
@@ -142,7 +142,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     }, {
       name: 'Aznar',
       label: 'pp',
-      year: '(1996-204)',
+      year: '(1996-2004)',
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/4/icon_aznar.jpg',
       description: 'En sus dos legislaturas nombró a 182 embajadores, que se alternaron entre varias embajadas. Solo dos personas de las designadas no eran miembros del cuerpo diplomático.',
       items: [
