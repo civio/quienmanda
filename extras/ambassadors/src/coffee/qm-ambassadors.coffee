@@ -8,8 +8,9 @@ jQuery(document).ready ($) ->
     {
       name: 'Rajoy'
       label: 'pp'
+      year: '(2011-)' 
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/31/icon_225px-Mariano_Rajoy__diciembre_de_2011_.jpg'
-      description: 'Presidente del Gobierno desde diciembre de 2011. Ha confiado en más de 170 personas para representar a España ante organismos internacionales o países extranjeros. Dos de sus exministros y uno de Aznar fueron premiados con embajadas en Washington, Londres y París.'
+      description: 'Ha confiado en más de 170 personas para representar a España ante organismos internacionales o países extranjeros. Dos de sus exministros y uno de Aznar fueron premiados con embajadas en Washington, Londres y París.'
       items: [
         {
           name: "Pedro Morenés",
@@ -43,8 +44,9 @@ jQuery(document).ready ($) ->
     {
       name: 'Zapatero'
       label: 'psoe'
+      year: '(2004-2011)' 
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/30/icon_Zapatero_ceja_4.jpg'
-      description: 'Presidente del Gobierno entre 2004 y 2011. Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 11 no pertenecían al servicio diplomático.'
+      description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 11 no pertenecían al servicio diplomático.'
       items: [
         {
           name: "Silvia Iranzo",
@@ -97,7 +99,7 @@ jQuery(document).ready ($) ->
           position: "Ministra de Educación y Ciencia entre 2004 y 2006",
           year: '2006-2010',
           countries: "UNESCO (París)"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14417/icon_Captura_de_pantalla_2017-04-06_a_las_11.18.15.png'
           link: 'maria-jesus-san-segundo-gomez-de-cadinanos'
         },
         {
@@ -115,7 +117,7 @@ jQuery(document).ready ($) ->
           position: "Alcalde de A Coruña entre 1983 y 2006",
           year: '2006-2011',
           countries: "Santa Sede y en la Soberana y Militar Orden de Malta"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14418/icon_Captura_de_pantalla_2017-04-06_a_las_11.54.11.png'
           link: 'francisco-jose-vazquez-vazquez'
         },
         {
@@ -124,7 +126,7 @@ jQuery(document).ready ($) ->
           position: "Diputado del PSOE",
           year: '2004-2011',
           countries: "la Unión Europea y Marruecos"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14419/icon_Captura_de_pantalla_2017-04-06_a_las_11.57.25.png'
           link: 'luis-planas-puchades'
         },
         {
@@ -133,7 +135,7 @@ jQuery(document).ready ($) ->
           position: "Fue asesor económico de J.L. Zapatero",
           year: '2004-2008',
           countries: "OCDE (París)"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14420/icon_6544392a568a5035b1adf291fe609614b0da3d08.jpg'
           link: 'fernando-ballestero-diaz'
         },
         {
@@ -159,8 +161,9 @@ jQuery(document).ready ($) ->
     {
       name: 'Aznar'
       label: 'pp'
+      year: '(1996-204)' 
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/4/icon_aznar.jpg'
-      description: 'Presidente del Gobierno entre 1996 y 2004. En sus dos legislaturas nombró a 182 embajadores, que se alternaron entre varias embajadas. Solo dos personas de las designadas no eran miembros del cuerpo diplomático.'
+      description: 'En sus dos legislaturas nombró a 182 embajadores, que se alternaron entre varias embajadas. Solo dos personas de las designadas no eran miembros del cuerpo diplomático.'
       items: [
         {
           name: "María Elena Pisonero",
@@ -168,7 +171,7 @@ jQuery(document).ready ($) ->
           position: "Secretaria de Estado de Comercio con el PP",
           year: '2000-2004',
           countries: "OCDE (París)"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/9749/icon_Captura_de_pantalla_2017-04-06_a_las_12.14.23.png'
           link: 'elena-pisonero-ruiz'
         },
         {
@@ -185,7 +188,8 @@ jQuery(document).ready ($) ->
     {
       name: 'González'
       label: 'psoe'
-      description: 'Presidente del Gobierno desde 1982 hasta 1996. A lo largo de sus 14 años en el cargo nombró a 223 embajadores. De todos ellos, 10 no pertenecían a la carrera diplomática.'
+      year: '(1982-1996)' 
+      description: 'A lo largo de sus 14 años en el cargo nombró a 223 embajadores. De todos ellos, 10 no pertenecían a la carrera diplomática.'
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/3/icon_origin_2259454273.jpg'
       items: [
         {
@@ -203,7 +207,7 @@ jQuery(document).ready ($) ->
           position: "Exsenador del PSOE",
           year: '1990-1993',
           countries: "Venezuela, Guyana, Trinidad y Tobago y Surinam"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14422/icon_S4138.gif'
           link: 'alberto-de-armas-garcia'
         },
         {
@@ -221,7 +225,7 @@ jQuery(document).ready ($) ->
           position: "Presidente del Congreso (UCD)",
           year: '1986-1989',
           countries: "El Salvador"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14424/icon_Captura_de_pantalla_2017-04-06_a_las_12.28.00.png'
           link: 'fernando-alvarez-de-miranda-torres'
         },
         {
@@ -239,7 +243,7 @@ jQuery(document).ready ($) ->
           position: "Tras ser embajador fue eurodiputado del PSOE",
           year: '1983-1994',
           countries: "Jordania, Italia, San Marino y Albania"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14426/icon_4348.jpg'
           link: 'emilio-menendez-del-valle'
         },
         {
@@ -257,7 +261,7 @@ jQuery(document).ready ($) ->
           position: "Catedrático de derecho constitucional",
           year: '1983-1987',
           countries: "Italia"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14428/icon_Captura_de_pantalla_2017-04-06_a_las_12.34.46.png'
           link: 'jorge-de-esteban-alonso'
         },
         {
@@ -266,7 +270,7 @@ jQuery(document).ready ($) ->
           position: "Exsenador del PSOE",
           year: '1983-1987',
           countries: "el Consejo de Europa"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/14429/icon_S1013.gif'
           link: 'fernando-baeza-martos'
         },
         {
@@ -291,11 +295,11 @@ jQuery(document).ready ($) ->
     for term in qm_data
       #console.log year, items
       $term = $('<div class="qm-ambassador-term"></div>')
-      $term.append '<div class="qm-ambassador-picture qm-ambassador-picture-term '+term.label+'" style="background-image: url('+term.img+'")"></div><h3>'+term.name+'</h3><p>'+term.description+'</p>'
+      $term.append '<div class="qm-ambassador-picture qm-ambassador-picture-term '+term.label+'" style="background-image: url('+term.img+'")"></div><h3>'+term.name+'<small>'+term.year+'</small></h3><p>'+term.description+'</p>'
       $items = $('<div class="qm-ambassadors-container"></div>')
       $items.append '<span class="qm-ambassadors-container-title">'+term.items.length+' embajadores sin carrera diplomática</span>'
       for item in term.items
-        popoverContent = item.position+'<br/>Fue nombrado embajador en '+item.countries+' ('+item.year+').'
+        popoverContent = item.position+'.<br/>Embajador/a en '+item.countries+' ('+item.year+')'
         $item = $('<div class="qm-ambassador"></div>')
         $item.append '<a href="http://quienmanda.es/people/'+item.link+'" title="'+item.name+'" role="button" data-toggle="popover" data-placement="top" data-content="'+popoverContent+'"><div class="qm-ambassador-picture '+term.label+'" style="background-image: url('+item.img+'")"></div><h4>'+item.short_name+'</h4></a>'
         $items.append $item

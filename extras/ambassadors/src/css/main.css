@@ -46,9 +46,13 @@
   line-height: 1.375em;
   margin: 0 0 5px;
 }
+.qm-ambassador-term h3 small {
+  margin-left: 10px;
+  font-size: 13px;
+}
 .qm-ambassador-term > p {
   line-height: 1.5em;
-  padding-left: 90px;
+  padding-left: 94px;
   font-size: 17px;
 }
 .qm-ambassador-term .qm-ambassadors-container {
