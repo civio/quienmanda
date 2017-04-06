@@ -39,7 +39,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       label: 'psoe',
       year: '(2004-2011)',
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/30/icon_Zapatero_ceja_4.jpg',
-      description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 12 no pertenecían al servicio diplomático. Uno de ellos, repetiría tras haber sido nombrado embajador por Felipe González, aunque nunca fue miembro del cuerpo diplomático',
+      description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 12 no pertenecían al servicio diplomático. Uno de ellos, Raúl Morodo, repetiría tras haber sido nombrado embajador por Felipe González, aunque nunca fue miembro del cuerpo diplomático.',
       items: [
         {
           name: "Silvia Iranzo",
