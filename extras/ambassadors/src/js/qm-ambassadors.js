@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
           position: "Técnico Comercial y Economista del Estado",
           year: '1996-2000',
           countries: "OCDE (París)",
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png',
+          img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/6495/icon_2293-0291.jpg',
           link: 'jose-luis-feito-higueruela'
         }
       ]
