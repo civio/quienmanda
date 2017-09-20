@@ -7,7 +7,7 @@ quienmanda.es
 [![Dependency Status](https://gemnasium.com/civio/quienmanda.es.png)](https://gemnasium.com/civio/quienmanda.es)
 [![Stories in Ready](https://badge.waffle.io/civio/quienmanda.es.svg?label=ready&title=Ready)](http://waffle.io/civio/quienmanda.es)
 
-Quién Manda is a map of power relations in Spain, combining network visualizations, investigative journalism articles and annotated photos. The code is stable and has been [live](http://quienmanda.es) since October 2013, but some important features are still missing:
+Quién Manda is a map of power relations in Spain, combining network visualizations, investigative journalism articles and annotated photos. The code is stable and has been [live](https://quienmanda.es) since October 2013, but some important features are still missing:
 
  * Embeddable content: sharing annotated photos, network charts and entity profiles in other sites.
  

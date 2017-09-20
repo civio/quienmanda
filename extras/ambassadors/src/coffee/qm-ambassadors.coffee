@@ -8,7 +8,7 @@ jQuery(document).ready ($) ->
     {
       name: 'Rajoy'
       label: 'pp'
-      year: '(2011-Actualidad)' 
+      year: '(2011-Actualidad)'
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/31/icon_225px-Mariano_Rajoy__diciembre_de_2011_.jpg'
       description: 'Ha confiado en más de 170 personas para representar a España ante organismos internacionales o países extranjeros. Dos de sus exministros y uno de Aznar fueron premiados con embajadas en Washington, Londres y París.'
       items: [
@@ -44,7 +44,7 @@ jQuery(document).ready ($) ->
     {
       name: 'Zapatero'
       label: 'psoe'
-      year: '(2004-2011)' 
+      year: '(2004-2011)'
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/30/icon_Zapatero_ceja_4.jpg'
       description: 'Es el presidente que más embajadores "políticos" ha nombrado. De los 248 embajadores con los que contó, 12 no pertenecían al servicio diplomático. Uno de ellos, Raúl Morodo, repetiría tras haber sido nombrado embajador por Felipe González, aunque nunca fue miembro del cuerpo diplomático.'
       items: [
@@ -144,7 +144,7 @@ jQuery(document).ready ($) ->
           position: "Cofundador del Partido Socialista Popular, que se integró en el PSOE. Fue embajador también con González",
           year: '2004-2007',
           countries: "Venezuela, Trinidad y Tobago, Guyana y Surinam"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'raul-morodo-leoncio'
         },
         {
@@ -153,7 +153,7 @@ jQuery(document).ready ($) ->
           position: "Técnico Comercial y Economista del Estado",
           year: '2004-2007',
           countries: "Malasia y Brunei"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'german-bejarano-garcia'
         }
       ]
@@ -161,7 +161,7 @@ jQuery(document).ready ($) ->
     {
       name: 'Aznar'
       label: 'pp'
-      year: '(1996-2004)' 
+      year: '(1996-2004)'
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/4/icon_aznar.jpg'
       description: 'En sus dos legislaturas nombró a 182 embajadores, que se alternaron entre varias embajadas. Solo dos personas de las designadas no eran miembros del cuerpo diplomático.'
       items: [
@@ -188,7 +188,7 @@ jQuery(document).ready ($) ->
     {
       name: 'González'
       label: 'psoe'
-      year: '(1982-1996)' 
+      year: '(1982-1996)'
       description: 'A lo largo de sus 14 años en el cargo nombró a 223 embajadores. De todos ellos, 10 no pertenecían a la carrera diplomática.'
       img: 'https://quienmanda.s3.amazonaws.com/uploads/avatar/3/icon_origin_2259454273.jpg'
       items: [
@@ -216,7 +216,7 @@ jQuery(document).ready ($) ->
           position: "Exdirector del CIS",
           year: '1987-1990',
           countries: "Estados Unidos"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'julian-santamaria-ossorio'
         },
         {
@@ -234,7 +234,7 @@ jQuery(document).ready ($) ->
           position: "Cofundador del Partido Socialista Popular de Tierno Galván, partido que se integró en el PSOE",
           year: '1983-1985 y 1995-1999',
           countries: "UNESCO (París) y Portugal"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'raul-morodo-leoncio'
         },
         {
@@ -252,7 +252,7 @@ jQuery(document).ready ($) ->
           position: "Militante del PSP de Tierno Galván",
           year: '1983-1991',
           countries: "República Federal de Alemania"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'eduardo-foncillas-casaus'
         },
         {
@@ -279,14 +279,14 @@ jQuery(document).ready ($) ->
           position: "Fundador del PSC",
           year: '1983-1986',
           countries: "Francia"
-          img: 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+          img: 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
           link: 'joan-raventos-carner'
         }
       ]
     }
   ]
 
-  default_img = 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+  default_img = 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
 
   setupVisualization = ->
     console.log 'setupVisualization', qm_data
@@ -301,7 +301,7 @@ jQuery(document).ready ($) ->
       for item in term.items
         popoverContent = item.position+'.<br/>Embajador/a en '+item.countries+' ('+item.year+')'
         $item = $('<div class="qm-ambassador"></div>')
-        $item.append '<a href="http://quienmanda.es/people/'+item.link+'" title="'+item.name+'" role="button" data-toggle="popover" data-placement="top" data-content="'+popoverContent+'"><div class="qm-ambassador-picture '+term.label+'" style="background-image: url('+item.img+')"></div><h4>'+item.short_name+'</h4></a>'
+        $item.append '<a href="https://quienmanda.es/people/'+item.link+'" title="'+item.name+'" role="button" data-toggle="popover" data-placement="top" data-content="'+popoverContent+'"><div class="qm-ambassador-picture '+term.label+'" style="background-image: url('+item.img+')"></div><h4>'+item.short_name+'</h4></a>'
         $items.append $item
       $term.append $items
       $el.append $term

@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
   $el = $('#qm-trips-visualization');
   trips = [];
   types = [];
-  default_img = 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png';
+  default_img = 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png';
   formatData = function() {
     $.each(qm_trips_data, function(key, val) {
       var peopleIndex, trip;

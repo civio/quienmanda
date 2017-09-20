@@ -34,7 +34,7 @@ jQuery(document).ready ($) ->
   $el = $('#qm-trips-visualization')
   trips = []
   types = []
-  default_img = 'http://d2tvfs931h0imr.cloudfront.net/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
+  default_img = 'https://quienmanda.es/assets/avatar-tiny-7d22d37bcd7522dbf719291df1f334a3.png'
 
   formatData = ->
     # format json data
@@ -98,7 +98,7 @@ jQuery(document).ready ($) ->
 
 
   setupVisualization = ->
-    
+
     # add types selector
     $filters = $('<div class="qm-trips-filters"></div>')
     $filters.append '<a class="qm-trips-filter btn btn-default active" href="#all">Todos</a>'
@@ -106,7 +106,7 @@ jQuery(document).ready ($) ->
       $filters.append '<a class="qm-trips-filter btn btn-default qm-trips-'+type.split(' ').join('-').toLowerCase()+'" href="#'+type+'">'+type+'</a>'
     $el.append '<div class="qm-trips-sort"><small>Ordenar por</small> <div class="btn-group"><a href="#date" class="btn btn-default">Fecha</a><a href="#people" class="btn btn-default active">Séquito</a></div></div>'
     $el.append $filters
-    
+
     $trips = $('<div class="qm-trips-trips"></div>')
     # loop throught each trip
     trips.forEach (trip) ->
