@@ -2,112 +2,17 @@
   <h2>Un mapa del poder en España, con fuentes verificables y listo para investigar y compartir</h2>
 </div>
 
-<div class="home-slider-container">
-
-  <!-- Home slider -->
-  <div id="home-slider" class="carousel slide">
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <% i = 0 %>
-      <% @post_highlights.each do |post| %>
-        <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
-        <div class="<%= itemClass %>">
-          <%= link_to post do %>
-          <div class="img-cont">
-            <%= image_tag( post.photo && !post.photo.file.url.blank? ? post.photo.file.url(:full) : 'avatar.png') %>
-          </div>
-          <% end %>
-          <div class="carousel-caption">
-            <%= link_to post do %>
-              <h3>
-                <span><%= post.title %></span>
-              </h3>
-            <% end %>
-            <p><%= post.lead %></p>
-          </div>
-        </div>
-        <% i += 1 %>
-      <% end %>
-
-      <% @topic_highlights.each do |topic| %>
-        <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
-        <div class="<%= itemClass %>">
-          <%= link_to topic do %>
-            <div class="img-cont">
-            <%= image_tag( topic.photo && !topic.photo.file.url.blank? ? topic.photo.file.url(:full) : 'avatar.png') %>
-            </div>
-          <% end %>
-          <div class="carousel-caption">
-            <%= link_to topic do %>
-              <h3>
-                <span><%= topic.title %></span>
-              </h3>
-              <% unless topic.description.blank? %>
-                <p><%= topic.description %></p>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% i += 1 %>
-      <% end %>
-    </div>
-
-    <!-- Controls -->
-    <a class="carousel-control left" href="#home-slider" data-slide="prev">
-      <span>&lsaquo;</span>
-    </a>
-    <a class="carousel-control right" href="#home-slider" data-slide="next">
-      <span>&rsaquo;</span>
-    </a>
-  </div>
-
-  <div id="home-slider-list" class="slides-<%= @highlights_items %>">
-    <% i = 0 %>
-    <% @post_highlights.each do |post| %>
-      <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
-      <div class="item">
-        <a href="#item-<%= i %>" class="<%= itemClass %>">
-          <div><p><span class="icon icon-post"></span><%= truncate(post.title, length: 86) %></p></div>
-        </a>
-      </div>
-      <% i += 1 %>
-    <% end %>
-
-    <% @topic_highlights.each do |topic| %>
-      <% itemClass = ( i != 0 ) ? 'item' : 'item active' %>
-      <div class="item">
-        <a href="#item-<%= i %>" class="<%= itemClass %>">
-          <div><p><span class="icon icon-topic"></span><%= topic.title %></p></div>
-        </a>
-      </div>
-      <% i += 1 %>
-    <% end %>
-  </div>
-
-  <div class="clearfix"></div>
-</div>
-
-
 <!--start: Wrapper-->
 <div id="wrapper">
   
-  <div class="title article"><p>Artículos recientes</p></div>
-
   <!-- start: Portfolio -->
-  <div id="wall" class="row">
+  <div id="wall" class="row post">
             
-    <% @posts.each do |post| %>
-      <%= render '/shared/show_post', :item => post, :span => 'col-sm-6', :frontpage => 'true' %>
+    <% @topics.each do |topic| %>
+      <%= render '/shared/show_topic', :item => topic %>
     <% end %>
 
   </div>
-
-  <!-- Botón Todos los Artículos
-  <div class="all-btn row">
-    <a href="#" title="Todos los Artículos">Todos los Artículos</a>
-  </div>
-  -->
   <!-- end: Portfolio -->
 
 </div>
