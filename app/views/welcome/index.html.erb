@@ -18,6 +18,45 @@
 </div>
 <!-- end: Wrapper  -->
 
+
+<!--start: Wrapper-->
+<div id="wrapper">
+
+  <div class="title people"><p>Personas</p></div>
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row people">
+            
+    <% @people.each do |person| %>
+      <%= render '/shared/show_person', :item => person %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+
+</div>
+<!-- end: Wrapper  -->
+
+
+<!--start: Wrapper-->
+<div id="wrapper">
+
+  <div class="title organization"><p>Organizaciones</p></div>
+  
+  <!-- start: Portfolio -->
+  <div id="wall" class="row organization">
+            
+    <% @organizations.each do |organization| %>
+      <%= render '/shared/show_organization', :item => organization %>
+    <% end %>
+
+  </div>
+  <!-- end: Portfolio -->
+
+</div>
+<!-- end: Wrapper  -->
+
+
 <!--start: Wrapper-->
 <div id="wrapper">
 

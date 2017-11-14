@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
   def index    
     # Get topics
     @topics = (can? :manage, Topic) ? Topic.all : Topic.published
-    fresh_when  etag: @topics
+    #fresh_when  etag: @topics
     @topics = @topics.order("updated_at DESC")
 
     # Highlight manually curated articles in the frontpage
@@ -21,12 +21,22 @@ class WelcomeController < ApplicationController
     #@posts = (can? :manage, Post) ? Post.all : Post.published
     #@posts = @posts.where(featured: false).includes(:photo).order("published_at DESC").limit(5)
 
+    # Show the latests people...
+    @people = (can? :manage, Entity) ? Entity.people : Entity.people.published
+    @people = @people.where(priority: '1').order("updated_at DESC").limit(8)
+
+    # Show the latests organizations...
+    @organizations = (can? :manage, Entity) ? Entity.organizations : Entity.organizations.published
+    @organizations = @organizations.where(priority: '1').order("updated_at DESC").limit(8)
+
     # ...and photos
     @photos = (can? :manage, Photo) ? Photo.all : Photo.published.validated
     @photos = @photos.order("updated_at DESC").limit(6)
  
     # FIXME: Should check that web doesn't break if there're none of them, i.e. without seed data.   
     fresh_when  etag: [ @topics,
+                        @people,
+                        @organizations,
                         @photos]
   end
 end
