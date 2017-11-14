@@ -3,15 +3,15 @@
 //== Color variables
 
 $colorTitle: #414141;
-$colorHeader: #eef2ea;
-$colorHeaderLink: #a8c315;
-$colorGray: #515151;
-$colorBody: #dee5d8;
-$colorSidebar: #e1e1cd;
-$colorTextGreen: #8aa304; //#6bb21b;
-$colorLinkGreen: #8aa304;
+$colorHeader: mix( #18dfa1, white, 5% ); // #eef2ea;
+$colorGray: #333;
+$colorBody: mix( #FAFFE0, white, 35% ); // #dee5d8;
+$colorSidebar: $colorHeader; // #e1e1cd;
+$colorTextGreen: #18dfa1; // #8aa304; //#6bb21b;
+$colorLinkGreen: darken( $colorTextGreen, 15% ); //#8aa304;
+$colorHeaderLink: $colorLinkGreen; //#a8c315;
 $colorOrange: #ce7a20;
-$colorSecondary: #dde4cd;
+$colorSecondary: #FAFFE0;  // #dde4cd;
 
 $link-color: $colorLinkGreen;
 

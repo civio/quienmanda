@@ -1,5 +1,8 @@
+$civio-brand-primary:   #002A6D;  // Civio dark blue
+$civio-brand-secondary: #56FFA9;  // Civio light green
+$civio-brand-terciary:  #FFED6A;  // Civio light yellow
+
 #civio-navbar{
-  font-family: 'Lato', Arial, sans-serif;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11,7 +14,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  background-color: #002a6d;
+  background-color: $civio-brand-primary;
   z-index: 9999;
 }
 
@@ -24,7 +27,7 @@
   display: inline-block;
   padding: 0;
   margin: 0;
-  color: #fff;
+  color: white;
   -webkit-transition: color .3s ease-in-out;
   transition: color .3s ease-in-out;
 
@@ -41,16 +44,16 @@
   }
 
   #p1{
-    fill: #18dfa1;
+    fill: $civio-brand-secondary;
   }
   #p2{
-    fill: #e7ff61;
+    fill: $civio-brand-terciary;
   }
 
   &:hover{
-    color: #d2d9e5;
-    #p1{ fill: #e7ff61; }
-    #p2{ fill: #18dfa1; }
+    color: mix( $civio-brand-primary, white, 18% );
+    #p1{ fill: $civio-brand-terciary; }
+    #p2{ fill: $civio-brand-secondary; }
   }
 }
 
@@ -66,14 +69,13 @@
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #002a6d;
-  background: #ffed6a;
+  color: $civio-brand-primary;
+  background: $civio-brand-terciary;
   -webkit-transition: background .3s ease-in-out;
   transition: background .3s ease-in-out;
 
   &:hover{ 
-    background-color: #56ffa9;
+    background-color: $civio-brand-secondary;
+    text-decoration: none;
   }
-
-
 }
