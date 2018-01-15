@@ -3,7 +3,9 @@ $civio-brand-secondary: #56FFA9;  // Civio light green
 $civio-brand-terciary:  #FFED6A;  // Civio light yellow
 
 #civio-navbar{
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19,7 +21,7 @@ $civio-brand-terciary:  #FFED6A;  // Civio light yellow
 }
 
 #civio-navbar-brand-cont{
-  margin: 11px auto 0;
+  margin: 10px auto 0;
   text-align: center;
 }
 
