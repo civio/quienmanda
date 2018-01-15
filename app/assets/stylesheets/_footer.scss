@@ -4,7 +4,7 @@
 
   font-size: 0.938em;
   padding: 60px 0;
-  background: url(/images/footer-pattern.jpg) repeat 0 0 #2A2B2D;
+  background: #062E69;
   text-shadow: none;
 
   a{
@@ -23,7 +23,7 @@
 
       .title{
         color: #FFF;
-        font-family: $fontBaskerville !important;
+        //font-family: $fontBaskerville !important;
         font-size: 1.25em;
       }
 
@@ -141,8 +141,7 @@
     .contact{
       clear: both;
       float: none;
-      font-size: 1.5em;
-      text-transform: uppercase;
+      font-size: 1.25em;
       margin-top: 36px;
 
       a{
@@ -163,29 +162,13 @@
   }
 
   .links{
-
-    padding-top: 60px;
+    padding-top: 30px;
     padding-left: 25px;
-
-    h3{
-      display: block;
-      float: right;
-      margin-top: -40px;
-      width: 154px;
-      height: 220px;
-      text-indent: -9999px;
-      overflow: hidden;
-      background: url(/images/quien-manda_logo_footer.png) no-repeat 0 0 transparent;
-    }
+    font-size: 1.125em;
+    text-align: right;
 
     a{
-      color: $colorTextGreen !important;
-      text-decoration: underline;
-
-      &:hover{
-        color: #fff !important;
-        text-decoration: none;
-      };
+      color: white;
     }
   }
 }

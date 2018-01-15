@@ -1,0 +1,83 @@
+$civio-brand-primary:   #002A6D;  // Civio dark blue
+$civio-brand-secondary: #56FFA9;  // Civio light green
+$civio-brand-terciary:  #FFED6A;  // Civio light yellow
+
+#civio-navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 45px;
+  padding: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: $civio-brand-primary;
+  z-index: 9999;
+}
+
+#civio-navbar-brand-cont{
+  margin: 10px auto 0;
+  text-align: center;
+}
+
+#civio-navbar-brand{
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: white;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+
+  svg{
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+
+  #p1, 
+  #p2{
+    -webkit-transition: fill .3s ease-in-out;
+    transition: fill .3s ease-in-out;
+  }
+
+  #p1{
+    fill: $civio-brand-secondary;
+  }
+  #p2{
+    fill: $civio-brand-terciary;
+  }
+
+  &:hover{
+    color: mix( $civio-brand-primary, white, 18% );
+    #p1{ fill: $civio-brand-terciary; }
+    #p2{ fill: $civio-brand-secondary; }
+  }
+}
+
+#civio-navbar-donate-btn{
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 45px;
+  letter-spacing: .02em;
+  line-height: 45px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $civio-brand-primary;
+  background: $civio-brand-terciary;
+  -webkit-transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out;
+
+  &:hover{ 
+    background-color: $civio-brand-secondary;
+    text-decoration: none;
+  }
+}

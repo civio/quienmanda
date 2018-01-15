@@ -9,7 +9,7 @@ html {
 
 body{
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   font-family: $fontDroid;
   font-weight: 400;
   background: $colorBody;
@@ -91,7 +91,7 @@ input, button, select, textarea{ font-family: $fontDroid; }
 
 body > .container{
   position: relative;
-  margin-top: 145px;
+  margin-top: 190px;
 }
 
 body > .container.container-widget{
@@ -155,13 +155,38 @@ body > .container.container-widget{
   width: 180px;
 }
 
-.post-end-image {
+.banner-donor{
+  font-size: 16px;
+  color: #002a6d;
+  text-align: center;
 
-  display: block !important;
+  .banner-container{
+    background: #ffed6a;
+    padding: 32px 32px 20px;
+  }
 
-  a,
-  img{
-    width: 100%;
+  h2{
+    color: #002a6d;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 4px auto 12px;
+  }
+  p {
+    margin: 0 auto 22px;
+    max-width: 600px;
+  }
+  .btn-civio{
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    background: #001a44;
+    margin-bottom: 12px;
+    cursor: pointer;
+    width: auto;
+    min-width: 200px;
+    font-weight: 600;
   }
 }
 
