@@ -36,9 +36,6 @@ gem 'jbuilder', '~> 1.2'
 # Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible. Read more: https://github.com/cyu/rack-cors
 gem 'rack-cors', :require => 'rack/cors'
 
-# Serve assets in Heroku and handle logging
-gem 'rails_12factor', group: :production
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -48,7 +45,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
@@ -99,12 +96,12 @@ group :development, :test do
 end
 
 # Performance and profiling
-gem 'actionpack-action_caching'
+#gem 'actionpack-action_caching'
 gem 'newrelic_rpm'
-gem 'memcachier'
-gem 'rack-cache'
+#gem 'memcachier'
+#gem 'rack-cache'
 gem 'dalli'
-gem 'kgio'
+#gem 'kgio'
 group :profile do
   gem 'ruby-prof'
 end

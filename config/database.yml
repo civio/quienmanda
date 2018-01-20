@@ -9,9 +9,7 @@ docker: &docker
 
 default: &default
   adapter: postgresql
-  username: qm
-  password: 
-  host: localhost
+  encoding: unicode
   pool: 5
   timeout: 5000
 
