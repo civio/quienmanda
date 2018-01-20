@@ -20,7 +20,7 @@ Quienmanda::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
   config.static_cache_control = "public, max-age=2592000"
 
   # Compress JavaScripts and CSS.
@@ -28,7 +28,7 @@ Quienmanda::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -53,15 +53,15 @@ Quienmanda::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use the same storage as rack-cache
-  config.cache_store = :dalli_store
+  config.cache_store = :mem_cache_store
 
   # Configure rack-cache
-  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
-                             :value_max_bytes => 10485760)
-  config.action_dispatch.rack_cache = {
-    :metastore    => client,
-    :entitystore  => client
-  }
+  #client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
+  #                           :value_max_bytes => 10485760)
+  #config.action_dispatch.rack_cache = {
+  #  :metastore    => client,
+  #  :entitystore  => client
+  #}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_controller.asset_host = ENV['CDN_HOST'] unless ENV['CDN_HOST'].blank?
