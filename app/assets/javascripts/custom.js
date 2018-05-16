@@ -185,13 +185,13 @@ jQuery.noConflict();
 
     // On Annotorious Mouse Over Handler
     function onAnnoHover(e) {
-      if (e.K === undefined) return true;
+      if (e.C === undefined) return true;
 
       var $annoPopup = $('.annotorious-popup');
 
       // Align title right if its placed at the right half of the picture
-      if (e.K.shapes[0].geometry.x > 0.5) {
-        $annoPopup.css('left', $annoPopup.position().left - $annoPopup.width() - 16 + (e.K.shapes[0].geometry.width*$('.annotorious-annotationlayer').width()) );
+      if (e.C.shapes[0].geometry.x > 0.5) {
+        $annoPopup.css('left', $annoPopup.position().left - $annoPopup.width() - 16 + (e.C.shapes[0].geometry.width*$('.annotorious-annotationlayer').width()) );
       }
 
       if ($('#photo').data('readonly')) {
