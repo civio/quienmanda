@@ -23,6 +23,10 @@ $civio-brand-terciary:  #FFED6A;  // Civio light yellow
 #civio-navbar-brand-cont{
   margin: 10px auto 0;
   text-align: center;
+
+  @media (max-width: 420px) {
+    margin-left: 10px;
+  }
 }
 
 #civio-navbar-brand{
@@ -67,7 +71,7 @@ $civio-brand-terciary:  #FFED6A;  // Civio light yellow
   height: 45px;
   letter-spacing: .02em;
   line-height: 45px;
-  padding: 0 24px;
+  padding: 0 15px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
