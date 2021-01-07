@@ -4,9 +4,8 @@ CarrierWave.configure do |config|
     config.storage = :file
     config.root = "#{Rails.root}/tmp"
     config.enable_processing = false
-  elsif Rails.env.development? and ENV['FORCE_S3_IN_DEV']!='true'
-    config.storage = :file
-  else
+  # Disable AWS S3 for now, maybe for ever. See civio/infra-management#146
+  elsif false # Rails.env.production? or ENV['FORCE_S3_IN_DEV']=='true'
     config.storage = :fog
     config.fog_credentials = {
       # Configuration for Amazon S3 should be made available through an Environment variable.
@@ -26,6 +25,8 @@ CarrierWave.configure do |config|
     config.fog_directory  = ENV['S3_BUCKET_NAME']                    # required
     # config.fog_public     = false                                  # optional, defaults to true
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}   # optional, defaults to {}
+  else
+    config.storage = :file
   end
    
   config.cache_dir = "#{Rails.root}/tmp/uploads" # To let CarrierWave work on heroku
